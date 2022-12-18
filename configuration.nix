@@ -43,12 +43,25 @@
 
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-    desktopManager.xterm.enable = false;
+    #    displayManager.gdm = {
+    #     enable = true;
+    #    wayland = true;
+    # };
+    # desktopManager.gnome.enable = true;
+    # desktopManager.xterm.enable = false;
   };
-
-  services.gnome.sushi.enable = true;
+  
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "${pkgs.sway}/bin/sway";
+        user = "mei";
+      };
+      default_session = initial_session;
+    };
+  };
+  # services.gnome.sushi.enable = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -57,7 +70,7 @@
   #   "caps:escape" # map caps to escape.
   # };
 
-  programs.sway.enable = true;
+  # programs.sway.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -79,6 +92,7 @@
 
   nixpkgs.config.allowUnfree = true;
   security.doas.enable = true;
+  security.polkit.enable = true;
 
   environment.systemPackages = with pkgs; [
     wget

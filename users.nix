@@ -4,7 +4,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mei = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "adbusers" ];
+    extraGroups = [ "wheel" "adbusers" "input" ];
     packages = with pkgs; [
       blender
       gimp
@@ -15,6 +15,7 @@
       chezmoi
       disfetch
       ranger
+      ffmpeg
 
       firefox
       microsoft-edge
@@ -43,13 +44,167 @@
       stateVersion = "22.11";
       sessionPath = [ "$HOME/.cargo/bin" ];
       sessionVariables = { TERMINAL = "kitty"; };
-      # packages = [ pkgs.atool pkgs.httpie ];
+      packages = with pkgs; [ bemenu ];
     };
+    wayland.windowManager.sway = {
+      enable = true;
+      systemdIntegration = true;
+      config = rec {
+        bars = [ ];
+        menu = "bemenu-run -n";
+        modifier = "Mod4";
+        # Use kitty as default terminal
+        terminal = "kitty";
+        startup = [
+          # Launch Firefox on start
+          # { command = "kitty"; }
+        ];
+      };
+    };
+    # services.polybar = {
+    #   enable = true;
+    #   config = {
+    #     "bar/top" = {
+    #       monitor = "\${env:MONITOR:eDP1}";
+    #       width = "100%";
+    #       height = "3%";
+    #       radius = 0;
+    #       modules-center = "date";
+    #     };
+
+    #     "module/date" = {
+    #       type = "internal/date";
+    #       internal = 5;
+    #       date = "%d.%m.%y";
+    #       time = "%H:%M";
+    #       label = "%time%  %date%";
+    #     };
+    #   };
+    # };
     # xdg.userDirs = {
     #   enable = true;
     #   createDirectories = true;
     # };
     programs = {
+      home-manager.enable = true;
+
+      waybar = {
+        enable = true;
+        systemd = { enable = true; target = "sway-session.target"; };
+        style = ''
+          * {
+              border: none;
+              border-radius: 0;
+              font-family: Roboto, Helvetica, Arial, sans-serif;
+              font-size: 13px;
+              min-height: 0;
+          }
+
+          window#waybar {
+              background: rgba(43, 48, 59, 0.5);
+              border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+              color: white;
+          }
+
+          #workspaces button {
+              padding: 0 5px;
+              background: transparent;
+              color: white;
+              border-bottom: 3px solid transparent;
+          }
+
+          #workspaces button.focused {
+              background: #64727D;
+              border-bottom: 3px solid white;
+          }
+
+          #mode, #clock, #battery {
+              padding: 0 10px;
+              margin: 0 5px;
+          }
+
+          #mode {
+              background: #64727D;
+              border-bottom: 3px solid white;
+          }
+
+          #clock {
+              background-color: #64727D;
+          }
+
+          #battery {
+              background-color: #ffffff;
+              color: black;
+          }
+
+          #battery.charging {
+              color: white;
+              background-color: #26A65B;
+          }
+
+          @keyframes blink {
+              to {
+                  background-color: #ffffff;
+                  color: black;
+              }
+          }
+        '';
+        settings = {
+          mainBar = {
+            layer = "top";
+            position = "top";
+            height = 20;
+            modules-left = [ "sway/workspaces" "sway/mode" ];
+            modules-center = [ ];
+            modules-right = [
+              "network"
+              "temperature"
+              "keyboard-state"
+              "clock"
+              "tray"
+            ];
+            "sway/workspaces" = {
+              disable-scroll = true;
+              all-outputs = true;
+              format = "{name}";
+            };
+            "sway/mode" = {
+              "format" = "<span style=\"italic\">{}</span>";
+            };
+            "tray" = {
+              # "icon-size"= 21;
+              "spacing" = 10;
+            };
+            "clock" = {
+              "tooltip-format" = "{:%Y-%m-%d | %H:%M}";
+              "format-alt" = "{:%Y-%m-%d}";
+            };
+            "temperature" = {
+              "critical-threshold" = 80;
+              "format" = "{temperatureC}°C ";
+            };
+            "network" = {
+              # "interface" = "wlp4s0";
+              "format-wifi" = "{essid} ({signalStrength}%) {icon}";
+              "format-ethernet" = " {ifname}: {ipaddr}/{cidr} ";
+              "format-disconnected" = "Disconnected";
+            };
+            "keyboard-state" = {
+              "numlock" = true;
+              "capslock" = true;
+              "format" = {
+                "numlock" = "NUM {icon}";
+                "capslock" = "CAP {icon}";
+              };
+              "format-icons" = {
+                "locked" = "";
+                "unlocked" = "";
+              };
+            };
+          };
+        };
+      };
+
       bash = {
         enable = true;
         # profileExtra = ""; 
