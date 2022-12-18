@@ -44,7 +44,7 @@
       stateVersion = "22.11";
       sessionPath = [ "$HOME/.cargo/bin" ];
       sessionVariables = { TERMINAL = "kitty"; };
-      packages = with pkgs; [ bemenu ];
+      packages = with pkgs; [ bemenu libappindicator ];
     };
     wayland.windowManager.sway = {
       enable = true;
@@ -60,6 +60,9 @@
           # { command = "kitty"; }
         ];
       };
+      extraSessionCommands = ''
+        export XDG_CURRENT_DESKTOP=Unity
+      '';
     };
     # services.polybar = {
     #   enable = true;
@@ -153,7 +156,7 @@
           mainBar = {
             layer = "top";
             position = "top";
-            height = 20;
+            height = 24;
             modules-left = [ "sway/workspaces" "sway/mode" ];
             modules-center = [ ];
             modules-right = [
@@ -181,7 +184,7 @@
             };
             "temperature" = {
               "critical-threshold" = 80;
-              "format" = "{temperatureC}°C ";
+              "format" = "{temperatureC}°C  ";
             };
             "network" = {
               # "interface" = "wlp4s0";
@@ -193,12 +196,12 @@
               "numlock" = true;
               "capslock" = true;
               "format" = {
-                "numlock" = "NUM {icon}";
-                "capslock" = "CAP {icon}";
+                "numlock" = "N {icon}";
+                "capslock" = "C {icon}";
               };
               "format-icons" = {
-                "locked" = "";
-                "unlocked" = "";
+                "locked" = " ";
+                "unlocked" = " ";
               };
             };
           };
