@@ -56,13 +56,22 @@
         # Use kitty as default terminal
         terminal = "kitty";
         startup = [
-          # Launch Firefox on start
+          { command = "systemctl --user restart waybar"; always = true; }
+          { command = "fcitx5 -d --replace"; always = true; }
           # { command = "kitty"; }
         ];
       };
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=Unity
       '';
+    };
+    i18n.inputMethod = {
+      enabled = "fcitx";
+      fcitx.engines = with pkgs.fcitx-engines; [ rime ];
+      # fcitx5.enableRimeData = true;
+      fcitx5.addons = with pkgs; [
+        fcitx5-rime
+      ];
     };
     # services.polybar = {
     #   enable = true;

@@ -41,6 +41,8 @@
     };
   };
 
+  boot.kernelParams = [ "console=tty1" ];
+
   # services.xserver = {
   #  enable = true;
   #    displayManager.gdm = {
@@ -53,6 +55,7 @@
 
   services.greetd = {
     enable = true;
+    vt = 7;
     settings = rec {
       default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
@@ -61,6 +64,7 @@
     };
   };
 
+  services.journald.console = "tty1";
   # services.gnome.sushi.enable = true;
 
   # Configure keymap in X11
