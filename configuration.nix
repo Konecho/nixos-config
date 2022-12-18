@@ -41,26 +41,26 @@
     };
   };
 
-  services.xserver = {
-    enable = true;
-    #    displayManager.gdm = {
-    #     enable = true;
-    #    wayland = true;
-    # };
-    # desktopManager.gnome.enable = true;
-    # desktopManager.xterm.enable = false;
-  };
-  
+  # services.xserver = {
+  #  enable = true;
+  #    displayManager.gdm = {
+  #     enable = true;
+  #    wayland = true;
+  # };
+  # desktopManager.gnome.enable = true;
+  # desktopManager.xterm.enable = false;
+  #  };
+
   services.greetd = {
     enable = true;
     settings = rec {
-      initial_session = {
-        command = "${pkgs.sway}/bin/sway";
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
         user = "mei";
       };
-      default_session = initial_session;
     };
   };
+
   # services.gnome.sushi.enable = true;
 
   # Configure keymap in X11
@@ -70,7 +70,7 @@
   #   "caps:escape" # map caps to escape.
   # };
 
-  # programs.sway.enable = true;
+  programs.sway.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -103,11 +103,11 @@
     wezterm
     # alacritty
     rnix-lsp
-    gnomeExtensions.kimpanel
-    gnomeExtensions.gsconnect
+    # gnomeExtensions.kimpanel
+    # gnomeExtensions.gsconnect
 
-    nautilus-open-any-terminal
-    gnome.dconf-editor
+    # nautilus-open-any-terminal
+    # gnome.dconf-editor
   ];
 
   # LC_ALL=C xdg-user-dirs-update --force
