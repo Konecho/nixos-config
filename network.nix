@@ -54,12 +54,17 @@
           tag = "block";
           protocol = "blackhole";
         }
+        {
+          tag = "direct";
+          protocol = "freedom";
+        }
       ];
-      router = {
+      routing = {
         domainStrategy = "IpIfNonMatch";
-        rule = builtins.fromJSON ''
+        rules = builtins.fromJSON ''
           [
             {
+              "type": "field",
               "outboundTag": "proxy",
               "domain": [
                 "#以下三行是GitHub网站，为了不影响下载速度走代理",
@@ -69,6 +74,7 @@
               ]
             },
             {
+              "type": "field",
               "outboundTag": "block",
               "domain": [
                 "#阻止CrxMouse鼠标手势收集上网数据",
@@ -76,6 +82,7 @@
               ]
             },
             {
+              "type": "field",
               "outboundTag": "direct",
               "domain": [
                 "bitwarden.com",
@@ -115,14 +122,14 @@
               "outboundTag": "proxy",
               "domain": [
                 "#GFW域名列表",
-                "geosite:gfw",
+                "#geosite:gfw",
                 "geosite:greatfire"
               ]
             },
             {
               "type": "field",
               "port": "0-65535",
-              "outboundTag": "direct"
+              "outboundTag": "proxy"
             }
           ]
         '';
