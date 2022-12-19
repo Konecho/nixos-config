@@ -52,6 +52,16 @@
     };
   };
 
+  services.create_ap = {
+    enable = true;
+    settings = {
+      INTERNET_IFACE = "wlp4s0";
+      PASSPHRASE = "00000000";
+      SSID = "NixOS Hotspot";
+      WIFI_IFACE = "wlp4s0";
+    };
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

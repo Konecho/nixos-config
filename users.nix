@@ -44,7 +44,7 @@
       stateVersion = "22.11";
       sessionPath = [ "$HOME/.cargo/bin" ];
       sessionVariables = { TERMINAL = "kitty"; };
-      packages = with pkgs; [ bemenu libappindicator ];
+      packages = with pkgs; [ bemenu libappindicator highlight ];
     };
     wayland.windowManager.sway = {
       enable = true;
@@ -60,6 +60,11 @@
           { command = "fcitx5 -d --replace"; always = true; }
           # { command = "kitty"; }
         ];
+        output = {
+          HDMI-A-1 = {
+            bg = "~/.config/background fill";
+          };
+        };
       };
       extraSessionCommands = ''
         export XDG_CURRENT_DESKTOP=Unity
@@ -99,7 +104,23 @@
     # };
     programs = {
       home-manager.enable = true;
-
+      lf = {
+        enable = true;
+        previewer = {
+          keybinding = "i";
+          source = pkgs.writeShellScript "pv.sh" ''
+            #!/bin/sh
+            case "$1" in
+                *.tar*) tar tf "$1";;
+                *.zip) unzip -l "$1";;
+                *.rar) unrar l "$1";;
+                # *.7z) 7z l "$1";;
+                # *.pdf) pdftotext "$1" -;;
+                *) highlight -O ansi "$1" || cat "$1";;
+            esac
+          '';
+        };
+      };
       waybar = {
         enable = true;
         systemd = { enable = true; target = "sway-session.target"; };
@@ -172,8 +193,8 @@
               "network"
               "temperature"
               "keyboard-state"
-              "clock"
               "tray"
+              "clock"
             ];
             "sway/workspaces" = {
               disable-scroll = true;
@@ -184,7 +205,7 @@
               "format" = "<span style=\"italic\">{}</span>";
             };
             "tray" = {
-              # "icon-size"= 21;
+              "icon-size" = 20;
               "spacing" = 10;
             };
             "clock" = {
@@ -197,8 +218,8 @@
             };
             "network" = {
               # "interface" = "wlp4s0";
-              "format-wifi" = "{essid} ({signalStrength}%) {icon}";
-              "format-ethernet" = " {ifname}: {ipaddr}/{cidr} ";
+              "format-wifi" = "{essid} ({signalStrength}%)  ";
+              "format-ethernet" = " {ifname}: {ipaddr}/{cidr}  ";
               "format-disconnected" = "Disconnected";
             };
             "keyboard-state" = {
