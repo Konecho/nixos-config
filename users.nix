@@ -33,9 +33,14 @@
       rustup
       gcc
       python310Full
-      just
       qemu
-      fd
+
+      just # make
+      fd # find
+      procs # ps
+      sd # sed
+      du-dust # <dust> du
+      ripgrep # <rg> grep
     ];
   };
 
@@ -78,32 +83,38 @@
         fcitx5-rime
       ];
     };
-    # services.polybar = {
-    #   enable = true;
-    #   config = {
-    #     "bar/top" = {
-    #       monitor = "\${env:MONITOR:eDP1}";
-    #       width = "100%";
-    #       height = "3%";
-    #       radius = 0;
-    #       modules-center = "date";
-    #     };
-
-    #     "module/date" = {
-    #       type = "internal/date";
-    #       internal = 5;
-    #       date = "%d.%m.%y";
-    #       time = "%H:%M";
-    #       label = "%time%  %date%";
-    #     };
-    #   };
-    # };
     # xdg.userDirs = {
     #   enable = true;
     #   createDirectories = true;
     # };
     programs = {
       home-manager.enable = true;
+      navi.enable = true;
+      bat.enable = true; # cat
+      tealdeer.enable = true; # <tldr>
+      zellij.enable = true; # tmux
+      zoxide.enable = true; # <z> cd
+      bottom.enable = true; # <btm> top
+      mcfly.enable = true; # <ctrl-r>
+      broot.enable = true; # <br> tree-view search
+      lsd = { enable = true; enableAliases = true; }; # ls
+      bash = {
+        enable = true;
+        # profileExtra = ""; 
+        historyIgnore = [ "l" "ls" "z" "cd" "exit" ];
+      };
+      git = {
+        enable = true;
+        userName = "NixOS";
+        userEmail = "me@meiro.top";
+      };
+      kitty = {
+        enable = true;
+        font = {
+          size = 12;
+          name = "FiraCode Nerd Font";
+        };
+      };
       lf = {
         enable = true;
         previewer = {
@@ -235,25 +246,6 @@
               };
             };
           };
-        };
-      };
-
-      bash = {
-        enable = true;
-        # profileExtra = ""; 
-      };
-      bottom.enable = true;
-      lsd = { enable = true; enableAliases = true; };
-      git = {
-        enable = true;
-        userName = "NixOS";
-        userEmail = "me@meiro.top";
-      };
-      kitty = {
-        enable = true;
-        font = {
-          size = 12;
-          name = "FiraCode Nerd Font";
         };
       };
       neovim = {
