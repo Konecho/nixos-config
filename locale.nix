@@ -14,14 +14,14 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  # i18n.inputMethod = {
-  #   enabled = "fcitx5";
-  #   fcitx.engines = with pkgs.fcitx-engines; [ rime ];
-  #   fcitx5.enableRimeData = true;
-  #   fcitx5.addons = with pkgs; [
-  #     fcitx5-rime
-  #   ];
-  # };
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx.engines = with pkgs.fcitx-engines; [ rime ];
+    fcitx5.enableRimeData = true;
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+    ];
+  };
 
   fonts = {
     fontDir.enable = true;
@@ -32,7 +32,13 @@
       noto-fonts-emoji
       fira-code
       fira-code-symbols
-      (nerdfonts.override { fonts = [ "FiraCode" "Noto" ]; })
+      (nerdfonts.override {
+        fonts = [
+          "FiraCode"
+          "UbuntuMono"
+          # "Noto"
+        ];
+      })
       sarasa-gothic #更纱黑体
       source-code-pro
       hack-font
@@ -42,6 +48,7 @@
   fonts.fontconfig.defaultFonts = {
     emoji = [ "Noto Color Emoji" ];
     monospace = [
+      "UbuntuMono Nerd Font Mono"
       "Noto Sans Mono CJK SC"
       "DejaVu Sans Mono"
     ];
