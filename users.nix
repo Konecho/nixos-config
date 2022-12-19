@@ -48,15 +48,15 @@
     home = {
       stateVersion = "22.11";
       sessionPath = [ "$HOME/.cargo/bin" ];
-      sessionVariables = { TERMINAL = "kitty"; };
-      packages = with pkgs; [ bemenu libappindicator highlight ];
+      sessionVariables = { TERMINAL = "kitty"; XDG_CURRENT_DESKTOP = "Unity"; };
+      packages = with pkgs; [ libappindicator-gtk3 highlight ];
     };
     wayland.windowManager.sway = {
       enable = true;
       systemdIntegration = true;
       config = rec {
         bars = [ ];
-        menu = "bemenu-run -n";
+        menu = "rofi -show run";
         modifier = "Mod4";
         # Use kitty as default terminal
         terminal = "kitty";
@@ -98,6 +98,10 @@
       mcfly.enable = true; # <ctrl-r>
       broot.enable = true; # <br> tree-view search
       lsd = { enable = true; enableAliases = true; }; # ls
+      rofi = {
+        enable = true;
+        theme = "gruvbox-dark-soft";
+      };
       bash = {
         enable = true;
         # profileExtra = ""; 
