@@ -43,36 +43,18 @@
 
   boot.kernelParams = [ "console=tty1" ];
 
-  # services.xserver = {
-  #  enable = true;
-  #    displayManager.gdm = {
-  #     enable = true;
-  #    wayland = true;
-  # };
-  # desktopManager.gnome.enable = true;
-  # desktopManager.xterm.enable = false;
-  #  };
-
   services.greetd = {
     enable = true;
     vt = 7;
     settings = rec {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd sway";
         user = "mei";
       };
     };
   };
 
   services.journald.console = "tty1";
-  # services.gnome.sushi.enable = true;
-
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = {
-  #   "eurosign:e";
-  #   "caps:escape" # map caps to escape.
-  # };
 
   programs.sway.enable = true;
 
@@ -107,11 +89,6 @@
     wezterm
     # alacritty
     rnix-lsp
-    # gnomeExtensions.kimpanel
-    # gnomeExtensions.gsconnect
-
-    # nautilus-open-any-terminal
-    # gnome.dconf-editor
   ];
 
   # LC_ALL=C xdg-user-dirs-update --force
