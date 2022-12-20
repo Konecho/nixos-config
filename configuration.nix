@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, home-manager, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
@@ -90,6 +90,7 @@
     # wezterm
     # alacritty
     rnix-lsp
+    home-manager
   ];
 
   # LC_ALL=C xdg-user-dirs-update --force
@@ -117,7 +118,7 @@
       vimAlias = true;
     };
   };
-  
+
   environment.variables = {
     # EDITOR = "nvim";
     # BROWSER = "firefox";

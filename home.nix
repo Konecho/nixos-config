@@ -1,6 +1,9 @@
-{ pkgs, ... }: {
+# home-manager switch --flake .#mei  
+{ pkgs, ... }: rec{
   home = {
-    # stateVersion = "22.11";
+    stateVersion = "22.11";
+    username = "mei";
+    homeDirectory = "/home/mei";
     sessionPath = [ "$HOME/.cargo/bin" ];
     sessionVariables = { TERMINAL = "kitty"; XDG_CURRENT_DESKTOP = "Unity"; };
     packages = with pkgs; [ libappindicator-gtk3 highlight ];
@@ -43,6 +46,8 @@
   # };
   programs = {
     home-manager.enable = true;
+    starship = { enable = true; };
+    hyfetch.enable = true;
     navi.enable = true;
     bat.enable = true; # cat
     tealdeer.enable = true; # <tldr>

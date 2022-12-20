@@ -18,19 +18,9 @@
     in
     {
       homeConfigurations = {
-        "mei" = home-manager.lib.homeManagerConfiguration {
-          stateVersion = "22.11";
+        "mei" = home-manager.lib.homeManagerConfiguration rec {
           inherit pkgs;
-          configuration = { config, pkgs, ... }:
-            {
-              nixpkgs.config = {
-                allowUnfree = true;
-                # allowBroken = true;
-              };
-              imports = [
-                ./home.nix
-              ];
-            };
+          modules = [ ./home.nix ];
         };
       };
       nixosConfigurations = {
