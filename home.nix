@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home = {
-    stateVersion = "22.11";
+    # stateVersion = "22.11";
     sessionPath = [ "$HOME/.cargo/bin" ];
     sessionVariables = { TERMINAL = "kitty"; XDG_CURRENT_DESKTOP = "Unity"; };
     packages = with pkgs; [ libappindicator-gtk3 highlight ];
