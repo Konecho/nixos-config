@@ -2,12 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, home-manager, ... }:
 
 {
   imports =
     [
-      <home-manager/nixos>
+      # <home-manager/nixos>
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./network.nix
@@ -84,9 +84,10 @@
     wget
     unzip
     unrar
+    disfetch
     # neofetch
     # kitty
-    wezterm
+    # wezterm
     # alacritty
     rnix-lsp
   ];
@@ -109,7 +110,7 @@
     git = {
       enable = true;
     };
-    dconf.enable = true;
+    # dconf.enable = true;
     neovim = {
       enable = true;
       defaultEditor = true;
@@ -120,7 +121,7 @@
   environment.variables = {
     # EDITOR = "nvim";
     # BROWSER = "firefox";
-    TERMINAL = "wezterm";
+    # TERMINAL = "wezterm";
   };
 
   # Some programs need SUID wrappers, can be configured further or are

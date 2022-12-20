@@ -1,12 +1,12 @@
 { ... }:
 
 {
-  # networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "deskmini";
+
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # <nmcli device wifi list/connect>
 
-  # Configure network proxy if necessary
   networking.proxy.default = "http://127.0.0.1:1080/";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain,.cn";
 
@@ -139,15 +139,15 @@
 
   };
 
-  services.create_ap = {
-    enable = true;
-    settings = {
-      INTERNET_IFACE = "wlp4s0";
-      PASSPHRASE = "00000000";
-      SSID = "NixOS Hotspot";
-      WIFI_IFACE = "wlp4s0";
-    };
-  };
+  # services.create_ap = {
+  #   enable = true;
+  #   settings = {
+  #     INTERNET_IFACE = "wlp4s0";
+  #     PASSPHRASE = "00000000";
+  #     SSID = "NixOS Hotspot";
+  #     WIFI_IFACE = "wlp4s0";
+  #   };
+  # };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
