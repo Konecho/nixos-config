@@ -1,13 +1,16 @@
-# home-manager switch --flake .#mei  
-{ pkgs, ... }: rec{
-  home = {
-    stateVersion = "22.11";
-    username = "mei";
-    homeDirectory = "/home/mei";
-    sessionPath = [ "$HOME/.cargo/bin" ];
-    sessionVariables = { TERMINAL = "kitty"; XDG_CURRENT_DESKTOP = "Unity"; };
-    packages = with pkgs; [ libappindicator-gtk3 highlight ];
-  };
+# <home-manager switch --flake .#mei> 
+{ pkgs, ... }:
+
+rec {
+  home = let userspkgs = import ./userspkgs.nix pkgs; in
+    {
+      stateVersion = "22.11";
+      username = "mei";
+      homeDirectory = "/home/mei";
+      sessionPath = [ "$HOME/.cargo/bin" ];
+      sessionVariables = { TERMINAL = "kitty"; XDG_CURRENT_DESKTOP = "Unity"; };
+      packages = with pkgs; [ libappindicator-gtk3 highlight ] ++ userspkgs."mei";
+    };
   wayland.windowManager.sway = {
     enable = true;
     systemdIntegration = true;
@@ -15,7 +18,6 @@
       bars = [ ];
       menu = "rofi -show run";
       modifier = "Mod4";
-      # Use kitty as default terminal
       terminal = "kitty";
       startup = [
         { command = "systemctl --user restart waybar"; always = true; }
@@ -106,49 +108,40 @@
             font-size: 13px;
             min-height: 0;
         }
-
         window#waybar {
             background: rgba(43, 48, 59, 0.5);
             border-bottom: 3px solid rgba(100, 114, 125, 0.5);
             color: white;
         }
-
         #workspaces button {
             padding: 0 5px;
             background: transparent;
             color: white;
             border-bottom: 3px solid transparent;
         }
-
         #workspaces button.focused {
             background: #64727D;
             border-bottom: 3px solid white;
         }
-
         #mode, #clock, #battery {
             padding: 0 10px;
             margin: 0 5px;
         }
-
         #mode {
             background: #64727D;
             border-bottom: 3px solid white;
         }
-
         #clock {
             background-color: #64727D;
         }
-
         #battery {
             background-color: #ffffff;
             color: black;
         }
-
         #battery.charging {
             color: white;
             background-color: #26A65B;
         }
-
         @keyframes blink {
             to {
                 background-color: #ffffff;
