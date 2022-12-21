@@ -18,7 +18,7 @@
       # thunderbird
 
       scrcpy
-      vscode
+      # vscode
       w3m
       nyancat
 

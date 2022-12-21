@@ -80,6 +80,15 @@ rec {
         name = "FiraCode Nerd Font";
       };
     };
+    vscode = {
+      enable = true;
+      enableUpdateCheck = false;
+      userSettings = {
+        "workbench.colorTheme" = "Default Light+";
+        "nix.enableLanguageServer" = true;
+        "editor.fontFamily" = "'FiraCode Nerd Font'";
+      };
+    };
     lf = {
       enable = true;
       previewer = {
