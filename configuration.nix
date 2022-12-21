@@ -1,14 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
   imports =
     [
-      # <home-manager/nixos>
-      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./network.nix
       ./locale.nix
@@ -23,8 +17,6 @@
     channel = "https://mirrors.ustc.edu.cn/nix-channels/nixos-22.11";
   };
 
-  # Use the systemd-boot EFI boot loader.
-  # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.loader = {
@@ -65,9 +57,6 @@
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # qemu
   # virtualbox
   virtualisation = {
@@ -76,14 +65,14 @@
     # waydroid.enable = true;
   };
 
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
+  # security.polkit.enable = true;
   security.doas.enable = true;
-  security.polkit.enable = true;
 
   environment.systemPackages = with pkgs; [
     wget
     unzip
-    unrar
+    # unrar # is not unfree
     disfetch
     # neofetch
     # kitty
@@ -93,7 +82,7 @@
     home-manager
   ];
 
-  # LC_ALL=C xdg-user-dirs-update --force
+  # <LC_ALL=C xdg-user-dirs-update --force>
   environment.etc."xdg/user-dirs.locale".text = "en_US";
   environment.etc."xdg/user-dirs.defaults".text = ''
     DESKTOP=system/desktop
