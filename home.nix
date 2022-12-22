@@ -44,6 +44,17 @@ rec {
       fcitx5-rime
     ];
   };
+  services.swayidle = {
+    enable = true;
+    events = [
+      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -c 000000"; }
+      { event = "after-resume"; command = "swaymsg \"output * dpms on\""; }
+    ];
+    timeouts = [
+      { timeout = 300; command = "${pkgs.swaylock}/bin/swaylock -fF -c 000000"; }
+      { timeout = 360; command = "swaymsg \"output * dpms off\""; }
+    ];
+  };
   # xdg.userDirs = {
   #   enable = true;
   #   createDirectories = true;
@@ -60,6 +71,14 @@ rec {
     mcfly.enable = true; # <ctrl-r>
     broot.enable = true; # <br> tree-view search
     lsd = { enable = true; enableAliases = true; }; # ls
+    # swaylock.settings = {
+    #   color = "808080";
+    #   font-size = 24;
+    #   indicator-idle-visible = false;
+    #   indicator-radius = 100;
+    #   line-color = "ffffff";
+    #   show-failed-attempts = true; #-F
+    # };
     rofi = {
       enable = true;
       theme = "gruvbox-dark-soft";
