@@ -72,9 +72,9 @@
   environment.systemPackages = with pkgs; [
     wget
     unzip
+    p7zip # <7z>
     # unrar # is not unfree
-    disfetch
-    # neofetch
+
     # kitty
     # wezterm
     # alacritty

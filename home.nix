@@ -1,4 +1,5 @@
 # <home-manager switch --flake .#mei> 
+# <nix run nixpkgs#nyancat> #disfetch #neofetch #hyfetch
 { pkgs, ... }:
 
 rec {
@@ -50,7 +51,6 @@ rec {
   programs = {
     home-manager.enable = true;
     starship = { enable = true; };
-    hyfetch.enable = true;
     navi.enable = true;
     bat.enable = true; # cat
     tealdeer.enable = true; # <tldr>
@@ -88,6 +88,9 @@ rec {
         "workbench.colorTheme" = "Default Light+";
         "nix.enableLanguageServer" = true;
         "editor.fontFamily" = "'FiraCode Nerd Font'";
+        "git.enableSmartCommit" = true;
+        "git.autofetch" = true;
+        "git.confirmSync" = false;
       };
     };
     lf = {
@@ -100,8 +103,8 @@ rec {
               *.tar*) tar tf "$1";;
               *.zip) unzip -l "$1";;
               *.rar) unrar l "$1";;
-              # *.7z) 7z l "$1";;
-              # *.pdf) pdftotext "$1" -;;
+              *.7z) 7z l "$1";;
+              *.pdf) pdftotext "$1" -;;
               *) highlight -O ansi "$1" || cat "$1";;
           esac
         '';

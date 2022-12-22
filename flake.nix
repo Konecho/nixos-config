@@ -19,6 +19,7 @@
             "microsoft-edge-stable"
             "vscode"
             "obsidian"
+            "unrar"
           ];
         };
     in

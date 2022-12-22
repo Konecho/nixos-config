@@ -20,7 +20,8 @@
       scrcpy
       # vscode
       w3m
-      nyancat
+      unrar
+      poppler_utils # <pdftotext>
 
       # chezmoi
       # ranger
@@ -29,8 +30,18 @@
       ## rust-os-project
       rustup
       gcc
-      python310Full
       qemu
+
+      (
+        let
+          python-packages = python-packages: with python-packages; [
+            # pandas
+            requests
+          ];
+          python-with-packages = python3.withPackages python-packages;
+        in
+        python-with-packages
+      )
 
       just # make
       fd # find
