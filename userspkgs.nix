@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   "mei" = with pkgs;
@@ -9,7 +9,7 @@
       inkscape
       # krita
 
-      firefox
+      # firefox
       microsoft-edge
       obsidian
       libreoffice

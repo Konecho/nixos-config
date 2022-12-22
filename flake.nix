@@ -11,10 +11,16 @@
   outputs = inputs @{ self, nixpkgs, nixos-hardware, home-manager, ... }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
+      pkgs = let lib = nixpkgs.lib; in
+        import nixpkgs {
+          inherit system;
+          # config.allowUnfree = true;
+          config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+            "microsoft-edge-stable"
+            "vscode"
+            "obsidian"
+          ];
+        };
     in
     {
       homeConfigurations = {

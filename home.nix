@@ -22,6 +22,7 @@ rec {
       startup = [
         { command = "systemctl --user restart waybar"; always = true; }
         { command = "fcitx5 -d --replace"; always = true; }
+        { command = "starship preset plain-text-symbols > ~/.config/starship.toml"; }
         # { command = "kitty"; }
       ];
       output = {
