@@ -12,10 +12,10 @@
   nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  system.autoUpgrade = {
-    enable = true;
-    channel = "https://mirrors.ustc.edu.cn/nix-channels/nixos-22.11";
-  };
+  # system.autoUpgrade = {
+  #   enable = true;
+  #   channel = "https://mirrors.ustc.edu.cn/nix-channels/nixos-22.11";
+  # };
 
   boot.loader.efi.canTouchEfiVariables = true;
 

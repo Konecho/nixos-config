@@ -250,6 +250,13 @@ rec {
         set tabstop=4
         set helplang=cn
         set encoding=utf-8
+        if exists("g:neovide")
+          set guifont=Fira_Code_Nerd_Font,Noto_Sans_Mono_CJK_SC:h14
+          set guifont=Noto_Sans_Mono_CJK_SC:h14
+          let g:neovide_transparency = 0.8
+          let g:neovide_cursor_vfx_mode = "pixiedust"
+          let g:neovide_cursor_vfx_mode = "sonicboom"
+        endif
       '';
       plugins = with pkgs.vimPlugins; [
         vim-nix
