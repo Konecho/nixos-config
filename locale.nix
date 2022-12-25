@@ -16,16 +16,15 @@
 
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx.engines = with pkgs.fcitx-engines; [ rime ];
-    fcitx5.enableRimeData = true;
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-    ];
+    # fcitx.engines = with pkgs.fcitx-engines; [ rime ];
+    # fcitx5.enableRimeData = true;
+    # fcitx5.addons = with pkgs; [
+    #   fcitx5-rime
+    # ];
   };
 
   fonts = {
     fontDir.enable = true;
-    fontconfig.enable = true;
     fonts = with pkgs; [
       noto-fonts
       noto-fonts-cjk
@@ -44,21 +43,25 @@
       hack-font
       jetbrains-mono
     ];
-  };
-  fonts.fontconfig.defaultFonts = {
-    emoji = [ "Noto Color Emoji" ];
-    monospace = [
-      "UbuntuMono Nerd Font Mono"
-      "Noto Sans Mono CJK SC"
-      "DejaVu Sans Mono"
-    ];
-    sansSerif = [
-      "Noto Sans CJK SC"
-      "Source Han Sans SC"
-    ];
-    serif = [
-      "Noto Serif CJK SC"
-      "Source Han Serif SC"
-    ];
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
+        monospace = [
+          "UbuntuMono Nerd Font Mono"
+          "Noto Sans Mono CJK SC"
+          "DejaVu Sans Mono"
+        ];
+        sansSerif = [
+          "Noto Sans CJK SC"
+          "Source Han Sans SC"
+        ];
+        serif = [
+          "Noto Serif CJK SC"
+          "Source Han Serif SC"
+        ];
+      };
+    };
+
   };
 }

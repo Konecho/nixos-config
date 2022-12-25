@@ -10,18 +10,15 @@
 
   outputs = inputs @{ self, nixpkgs, nixos-hardware, home-manager, ... }:
     let
-      system = "x86_64-linux";
-      pkgs = let lib = nixpkgs.lib; in
-        import nixpkgs {
-          inherit system;
-          # config.allowUnfree = true;
-          config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-            "microsoft-edge-stable"
-            "vscode"
-            "obsidian"
-            "unrar"
-          ];
-        };
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+          "microsoft-edge-stable"
+          "vscode"
+          "obsidian"
+          "unrar"
+        ];
+      };
     in
     {
       homeConfigurations = {
@@ -32,9 +29,12 @@
       };
       nixosConfigurations = {
         "deskmini" = nixpkgs.lib.nixosSystem {
-          inherit system;
           modules = [
+            ./hardware-configuration.nix
             ./configuration.nix
+            ./network.nix
+            ./locale.nix
+            ./system-users.nix
           ];
         };
       };

@@ -3,7 +3,7 @@
 { pkgs, ... }:
 
 rec {
-  home = let userspkgs = import ./userspkgs.nix pkgs; in
+  home = let userspkgs = import ./home-pkgs.nix pkgs; in
     {
       stateVersion = "22.11";
       username = "mei";
@@ -22,6 +22,7 @@ rec {
       terminal = "kitty";
       startup = [
         { command = "systemctl --user restart waybar"; always = true; }
+        { command = "systemctl --user restart swayidle"; always = true; }
         { command = "fcitx5 -d --replace"; always = true; }
         { command = "starship preset plain-text-symbols > ~/.config/starship.toml"; }
         # { command = "kitty"; }
