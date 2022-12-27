@@ -24,7 +24,7 @@
     };
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-id/nvme-TS512GMTE110S_F995920249-part6";
+      device = "/dev/disk/by-label/boot2";
       fsType = "vfat";
     };
 

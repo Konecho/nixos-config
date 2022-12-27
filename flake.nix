@@ -1,5 +1,7 @@
 {
-  description = "A very basic flake";
+  # sudo ln -s /home/flake/flake.nix /etc/nixos/flake.nix
+  # sudo nixos-rebuild switch
+  description = "A flake";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
