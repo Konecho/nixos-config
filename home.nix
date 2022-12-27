@@ -23,7 +23,9 @@ rec {
       startup = [
         { command = "systemctl --user restart waybar"; always = true; }
         { command = "systemctl --user restart swayidle"; always = true; }
-        { command = "fcitx5 -d --replace"; always = true; }
+        { command = "systemctl --user restart mpd"; always = true; }
+        { command = "systemctl --user restart fcitx5-daemon"; always = true; }
+        # { command = "fcitx5 -d --replace"; always = true; }
         { command = "starship preset plain-text-symbols > ~/.config/starship.toml"; }
         # { command = "kitty"; }
       ];
@@ -38,13 +40,14 @@ rec {
     '';
   };
   i18n.inputMethod = {
-    enabled = "fcitx";
-    fcitx.engines = with pkgs.fcitx-engines; [ rime ];
+    enabled = "fcitx5";
+    # fcitx.engines = with pkgs.fcitx-engines; [ rime ];
     # fcitx5.enableRimeData = true;
     fcitx5.addons = with pkgs; [
       fcitx5-rime
     ];
   };
+  services.mpd.enable = true;
   services.swayidle = {
     enable = true;
     events = [
@@ -56,10 +59,10 @@ rec {
       { timeout = 360; command = "swaymsg \"output * dpms off\""; }
     ];
   };
-  # xdg.userDirs = {
-  #   enable = true;
-  #   createDirectories = true;
-  # };
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
   programs = {
     home-manager.enable = true;
     starship = { enable = true; };
@@ -143,108 +146,9 @@ rec {
     waybar = {
       enable = true;
       systemd = { enable = true; target = "sway-session.target"; };
-      style = ''
-        * {
-            border: none;
-            border-radius: 0;
-            font-family: Roboto, Helvetica, Arial, sans-serif;
-            font-size: 13px;
-            min-height: 0;
-        }
-        window#waybar {
-            background: rgba(43, 48, 59, 0.5);
-            border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-            color: white;
-        }
-        #workspaces button {
-            padding: 0 5px;
-            background: transparent;
-            color: white;
-            border-bottom: 3px solid transparent;
-        }
-        #workspaces button.focused {
-            background: #64727D;
-            border-bottom: 3px solid white;
-        }
-        #mode, #clock, #battery {
-            padding: 0 10px;
-            margin: 0 5px;
-        }
-        #mode {
-            background: #64727D;
-            border-bottom: 3px solid white;
-        }
-        #clock {
-            background-color: #64727D;
-        }
-        #battery {
-            background-color: #ffffff;
-            color: black;
-        }
-        #battery.charging {
-            color: white;
-            background-color: #26A65B;
-        }
-        @keyframes blink {
-            to {
-                background-color: #ffffff;
-                color: black;
-            }
-        }
-      '';
+      style = ./styles/waybar.css;
       settings = {
-        mainBar = {
-          layer = "top";
-          position = "top";
-          height = 24;
-          modules-left = [ "sway/workspaces" "sway/mode" ];
-          modules-center = [ ];
-          modules-right = [
-            "network"
-            "temperature"
-            "keyboard-state"
-            "tray"
-            "clock"
-          ];
-          "sway/workspaces" = {
-            disable-scroll = true;
-            all-outputs = true;
-            format = "{name}";
-          };
-          "sway/mode" = {
-            "format" = "<span style=\"italic\">{}</span>";
-          };
-          "tray" = {
-            "icon-size" = 20;
-            "spacing" = 10;
-          };
-          "clock" = {
-            "tooltip-format" = "{:%Y-%m-%d | %H:%M}";
-            "format-alt" = "{:%Y-%m-%d}";
-          };
-          "temperature" = {
-            "critical-threshold" = 80;
-            "format" = "{temperatureC}°C  ";
-          };
-          "network" = {
-            # "interface" = "wlp4s0";
-            "format-wifi" = "{essid} ({signalStrength}%)  ";
-            "format-ethernet" = " {ifname}: {ipaddr}/{cidr}  ";
-            "format-disconnected" = "Disconnected";
-          };
-          "keyboard-state" = {
-            "numlock" = true;
-            "capslock" = true;
-            "format" = {
-              "numlock" = "N {icon}";
-              "capslock" = "C {icon}";
-            };
-            "format-icons" = {
-              "locked" = " ";
-              "unlocked" = " ";
-            };
-          };
-        };
+        mainBar = builtins.fromJSON (builtins.readFile ./styles/waybar.json);
       };
     };
     neovim = {

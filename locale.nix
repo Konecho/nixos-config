@@ -3,7 +3,7 @@
 {
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
-  time.hardwareClockInLocalTime = true;
+  # time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
   i18n.supportedLocales = [ "zh_CN.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
@@ -18,9 +18,9 @@
     enabled = "fcitx5";
     # fcitx.engines = with pkgs.fcitx-engines; [ rime ];
     # fcitx5.enableRimeData = true;
-    # fcitx5.addons = with pkgs; [
-    #   fcitx5-rime
-    # ];
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+    ];
   };
 
   fonts = {
