@@ -29,7 +29,7 @@ rec {
       ];
       output = {
         HDMI-A-1 = {
-          bg = "~/.config/background fill";
+          # bg = "~/.config/background fill";
         };
       };
     };
@@ -66,6 +66,15 @@ rec {
     navi.enable = true;
     bat.enable = true; # cat
     tealdeer.enable = true; # <tldr>
+    tealdeer.settings = {
+      display = {
+        compact = false;
+        use_pager = true;
+      };
+      updates = {
+        auto_update = true;
+      };
+    };
     zellij.enable = true; # tmux
     zoxide.enable = true; # <z> cd
     bottom.enable = true; # <btm> top
@@ -112,6 +121,7 @@ rec {
         "git.autofetch" = true;
         "git.confirmSync" = false;
       };
+      extensions = with pkgs.vscode-extensions; [ ms-ceintl.vscode-language-pack-zh-hans ];
     };
     lf = {
       enable = true;

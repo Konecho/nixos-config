@@ -12,14 +12,30 @@
   nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  fileSystems."/" =
+    {
+      device = "/dev/disk/by-label/nixos";
+      fsType = "ext4";
+    };
+  fileSystems."/nix/store" =
+    {
+      device = "/dev/disk/by-label/nix-store";
+      fsType = "ext4";
+    };
+  fileSystems."/boot" =
+    {
+      device = "/dev/disk/by-id/nvme-TS512GMTE110S_F995920249-part6";
+      fsType = "vfat";
+    };
+
   boot.loader = {
     efi.canTouchEfiVariables = true;
     grub = {
       enable = true;
       efiSupport = true;
       device = "nodev";
-      fsIdentifier = "label";
-      useOSProber = true;
+      # fsIdentifier = "label";
+      # useOSProber = true;
       # efiInstallAsRemovable = true;
       gfxmodeEfi = "1920x1080";
       # font = "${pkgs.hack-font}/share/fonts/hack/Hack-Regular.ttf";
@@ -84,6 +100,8 @@
     git = {
       enable = true;
     };
+    ssh.knownHosts."github.com".publicKey = "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
+";
     # dconf.enable = true;
     neovim = {
       enable = true;
