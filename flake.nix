@@ -39,7 +39,6 @@
         "${hostname}" = nixpkgs.lib.nixosSystem {
           modules = [
             ./hardware-configuration.nix
-            ./configuration.nix
             {
               imports = [ ./system ];
               networking.hostName = "${hostname}";
