@@ -1,44 +1,21 @@
 # <home-manager switch --flake .#mei> 
 # <nix run nixpkgs#nyancat> #disfetch #neofetch #hyfetch
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 rec {
-  home = let userspkgs = import ./home-pkgs.nix pkgs; in
+
+  home = let userspkgs = import ./packages.nix pkgs; in
     {
       stateVersion = "22.11";
-      username = "mei";
-      homeDirectory = "/home/mei";
+      # username = "${username}";
+      homeDirectory = "/home/${config.home.username}";
       sessionPath = [ "$HOME/.cargo/bin" ];
       sessionVariables = { TERMINAL = "kitty"; XDG_CURRENT_DESKTOP = "Unity"; };
-      packages = with pkgs; [ libappindicator-gtk3 highlight ] ++ userspkgs."mei";
+      packages = with pkgs; [ libappindicator-gtk3 highlight ] ++ userspkgs;
     };
-  wayland.windowManager.sway = {
-    enable = true;
-    systemdIntegration = true;
-    config = rec {
-      bars = [ ];
-      menu = "rofi -show run";
-      modifier = "Mod4";
-      terminal = "kitty";
-      startup = [
-        { command = "systemctl --user restart waybar"; always = true; }
-        { command = "systemctl --user restart swayidle"; always = true; }
-        { command = "systemctl --user restart mpd"; always = true; }
-        { command = "systemctl --user restart fcitx5-daemon"; always = true; }
-        # { command = "fcitx5 -d --replace"; always = true; }
-        { command = "starship preset plain-text-symbols > ~/.config/starship.toml"; }
-        # { command = "kitty"; }
-      ];
-      output = {
-        HDMI-A-1 = {
-          # bg = "~/.config/background fill";
-        };
-      };
-    };
-    extraSessionCommands = ''
-      export XDG_CURRENT_DESKTOP=Unity
-    '';
-  };
+
+  imports = [ ./wayland.nix ];
+
   i18n.inputMethod = {
     enabled = "fcitx5";
     # fcitx.engines = with pkgs.fcitx-engines; [ rime ];
@@ -47,21 +24,29 @@ rec {
       fcitx5-rime
     ];
   };
-  services.mpd.enable = true;
-  services.swayidle = {
-    enable = true;
-    events = [
-      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -c 000000"; }
-      { event = "after-resume"; command = "swaymsg \"output * dpms on\""; }
-    ];
-    timeouts = [
-      { timeout = 300; command = "${pkgs.swaylock}/bin/swaylock -fF -c 000000"; }
-      { timeout = 360; command = "swaymsg \"output * dpms off\""; }
-    ];
-  };
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    desktop = "system/desktop";
+    download = "downloads";
+    templates = "system/templates";
+    publicShare = "system/public";
+    documents = "documents";
+    music = "media/music";
+    pictures = "media/photos";
+    videos = "media/video";
+  };
+  gtk = {
+    enable = true;
+    cursorTheme = { name = "Vanilla-DMZ"; package = pkgs.vanilla-dmz; };
+    theme = {
+      name = "Pop";
+      package = pkgs.pop-gtk-theme;
+    };
+    iconTheme = {
+      name = "Numix";
+      package = pkgs.numix-solarized-gtk-theme;
+    };
   };
   programs = {
     home-manager.enable = true;
@@ -84,18 +69,6 @@ rec {
     mcfly.enable = true; # <ctrl-r>
     broot.enable = true; # <br> tree-view search
     lsd = { enable = true; enableAliases = true; }; # ls
-    # swaylock.settings = {
-    #   color = "808080";
-    #   font-size = 24;
-    #   indicator-idle-visible = false;
-    #   indicator-radius = 100;
-    #   line-color = "ffffff";
-    #   show-failed-attempts = true; #-F
-    # };
-    rofi = {
-      enable = true;
-      theme = "gruvbox-dark-soft";
-    };
     bash = {
       enable = true;
       # profileExtra = ""; 
@@ -105,13 +78,6 @@ rec {
       enable = true;
       userName = "NixOS";
       userEmail = "me@meiro.top";
-    };
-    kitty = {
-      enable = true;
-      font = {
-        size = 12;
-        name = "FiraCode Nerd Font";
-      };
     };
     vscode = {
       enable = true;
@@ -141,14 +107,6 @@ rec {
               *) highlight -O ansi "$1" || cat "$1";;
           esac
         '';
-      };
-    };
-    waybar = {
-      enable = true;
-      systemd = { enable = true; target = "sway-session.target"; };
-      style = ./styles/waybar.css;
-      settings = {
-        mainBar = builtins.fromJSON (builtins.readFile ./styles/waybar.json);
       };
     };
     neovim = {

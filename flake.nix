@@ -21,22 +21,33 @@
           "unrar"
         ];
       };
+      username = "mei";
+      hostname = "deskmini";
     in
     {
       homeConfigurations = {
-        "mei" = home-manager.lib.homeManagerConfiguration rec {
+        "${username}" = home-manager.lib.homeManagerConfiguration rec {
           inherit pkgs;
-          modules = [ ./home.nix ];
+          modules = [{
+            home.username="${username}";
+            # home.homeDirectory = "/home/${username}";
+            imports = [ ./home ];
+          }];
         };
       };
       nixosConfigurations = {
-        "deskmini" = nixpkgs.lib.nixosSystem {
+        "${hostname}" = nixpkgs.lib.nixosSystem {
           modules = [
             ./hardware-configuration.nix
             ./configuration.nix
-            ./network.nix
-            ./locale.nix
-            ./system-users.nix
+            {
+              imports = [ ./system ];
+              networking.hostName = "${hostname}";
+              users.users."${username}" = {
+                isNormalUser = true;
+                extraGroups = [ "wheel" "adbusers" "input" "networkmanager" ];
+              };
+            }
           ];
         };
       };

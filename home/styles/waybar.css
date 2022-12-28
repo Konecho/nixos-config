@@ -39,7 +39,7 @@
   color: rgba(246,71,71,0.8);
 }
 
-#tray {
+/* #tray {
   margin: 3px 2px;
   border-radius: 12px;
   background-color: rgba(0,0,0,0.4);
@@ -52,7 +52,7 @@
 
 #tray *:first-child {
   border-left: none;
-}
+} */
 
 #mode, #battery, #cpu, #disk, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #mpd, #clock, #temperature {
   margin: 4px 2px;

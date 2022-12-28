@@ -56,26 +56,13 @@
         };
       };
     };
-    journald.console = "tty1";
-  };
-
-  virtualisation = {
-    # anbox.enable = true;
-    docker.enable = true;
-    # waydroid.enable = true;
+    journald.console = "/dev/tty1";
   };
 
   security.doas.enable = true;
 
   # <LC_ALL=C xdg-user-dirs-update --force>
   environment = {
-    systemPackages = with pkgs; [
-      wget
-      unzip
-      p7zip # <7z>
-      rnix-lsp
-      home-manager
-    ];
     etc."xdg/user-dirs.locale".text = "en_US";
     etc."xdg/user-dirs.defaults".text = ''
       DESKTOP=system/desktop
@@ -94,21 +81,10 @@
     };
   };
 
-  programs = {
-    adb.enable = true;
-    sway.enable = true;
-    git = {
-      enable = true;
-    };
-    ssh.knownHosts."github.com".publicKey = "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
-";
-    # dconf.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      vimAlias = true;
-    };
-  };
+  # To set up Sway using Home Manager, first you must enable Polkit in your nix configuration:
+  security.polkit.enable = true;
+
+
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
