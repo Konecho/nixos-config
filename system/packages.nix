@@ -3,8 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     wget
-    unzip
-    p7zip # <7z>
     rnix-lsp
     home-manager
   ];

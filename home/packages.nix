@@ -8,23 +8,29 @@ with pkgs;
   inkscape
   # krita
 
-  # firefox
   microsoft-edge
   obsidian
   libreoffice
   onlyoffice-bin
-  # obs-studio
+  # firefox
   # thunderbird
 
   scrcpy
-  # vscode
-  w3m
-  unrar
-  poppler_utils # <pdftotext>
 
-  # chezmoi
-  # ranger
-  # ffmpeg
+  ## lib for <lf>
+  unrar
+  unzip
+  p7zip # <7z>
+  w3m
+  poppler_utils # <pdftotext>
+  highlight
+
+  ## multi-media
+  wf-recorder
+  ffmpeg
+  yt-dlp
+  mpvpaper
+  # obs-studio
 
   ## rust-os-project
   rustup
@@ -42,6 +48,7 @@ with pkgs;
     python-with-packages
   )
 
+  ## terminal
   fd # find
   ripgrep # <rg> grep
   procs # ps

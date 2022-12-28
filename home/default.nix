@@ -11,7 +11,7 @@ rec {
       homeDirectory = "/home/${config.home.username}";
       sessionPath = [ "$HOME/.cargo/bin" ];
       sessionVariables = { TERMINAL = "kitty"; XDG_CURRENT_DESKTOP = "Unity"; };
-      packages = with pkgs; [ libappindicator-gtk3 highlight ] ++ userspkgs;
+      packages = with pkgs; [ libappindicator-gtk3 ] ++ userspkgs;
     };
 
   imports = [ ./wayland.nix ];
@@ -27,14 +27,14 @@ rec {
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
-    desktop = "system/desktop";
-    download = "downloads";
-    templates = "system/templates";
-    publicShare = "system/public";
-    documents = "documents";
-    music = "media/music";
-    pictures = "media/photos";
-    videos = "media/video";
+    desktop = "$HOME/system/desktop";
+    download = "$HOME/downloads";
+    templates = "$HOME/system/templates";
+    publicShare = "$HOME/system/public";
+    documents = "$HOME/documents";
+    music = "$HOME/media/music";
+    pictures = "$HOME/media/photos";
+    videos = "$HOME/media/video";
   };
   gtk = {
     enable = true;
