@@ -29,6 +29,7 @@ with pkgs;
   wf-recorder
   ffmpeg
   yt-dlp
+  mpv
   mpvpaper
   # obs-studio
 

@@ -6,6 +6,8 @@
   nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  hardware.pulseaudio.enable = true;
+
   security.doas.enable = true;
 
   # To set up Sway using Home Manager, first you must enable Polkit in your nix configuration:

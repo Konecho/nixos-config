@@ -2,98 +2,196 @@
   transition: none;
   box-shadow: none;
   font-family: "FiraCode Nerd Font";
-  font-size: 14px;
-  color: #89CFF0;
+  font-size: 16px;
+
+  background: transparent;
 }
 
-#waybar {
-  margin-top: 14px;
-  background: rgba(52,45,113,0.3);
-  border-radius: 12px;
-  border: 2px solid #89CFF0;
-}
 
 #workspaces {
-  margin: 0 3px;
-  color: transparent;
+  padding: 0 16px;
+  background: rgb(6, 139, 216);
+  border-radius: 14px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: white;
 }
 
 #workspaces button {
-  margin: 3px 0;
-  padding: 0 4px;
+  /* font-size: 28px; */
+  color: #ffffff;
+
+  border-width: 0px;
+
+  padding: 0 8px;
+  transition: all 0.5s cubic-bezier(.55, -0.68, .48, 1.68);
+  background-color: transparent;
 }
 
-#workspaces button.visible {
+/* #workspaces button.visible {
+} */
+
+#workspaces button.active {
+  color: #a3e0d8;
+  border-bottom-color: #e24d5f;
+  border-bottom-style: solid;
 }
 
-#workspaces button.focused {
-  border-radius: 10px;
-  background-color: rgba(0,0,0,0.4);
+#workspaces button:hover {
+  color: rgba(246, 71, 71, 0.8);
 }
 
 #workspaces button.urgent {
-  border-radius: 10px;
+  color: rgb(76, 234, 245);
 }
 
 #workspaces button.urgent * {
-  color: rgba(246,71,71,0.8);
+  color: rgba(246, 71, 71, 0.8);
 }
 
-/* #tray {
-  margin: 3px 2px;
-  border-radius: 12px;
+#tray {
   background-color: rgba(0,0,0,0.4);
 }
 
 #tray * {
-  padding: 0 6px;
   border-left: 1px solid black;
 }
 
 #tray *:first-child {
   border-left: none;
-} */
+}
 
-#mode, #battery, #cpu, #disk, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #mpd, #clock, #temperature {
-  margin: 4px 2px;
-  padding: 0 6px;
-  border-radius: 20px;
-  min-width: 10px;
-  background-color: transparent;
+tooltip {
+  background-color: white;
+}
+
+tooltip label {
+  color: black;
+}
+
+/* rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr */
+
+#pulseaudio,
+#keyboard-state,
+#backlight,
+#idle_inhibitor,
+#network,
+#clock,
+#custom-power {
+  margin: 0 0px;
+  padding: 0 8px;
+
+  margin-left: -28px;
+  padding-right: 36px;
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+
+  /* border-radius: 0px; */
+  border-width: 2px;
+  border-style: solid;
+  border-color: white;
+  min-width: 16px;
+  background-color: white;
+}
+
+#keyboard-state {
+  background-color: #bd3dce;
+  color: white;
+}
+
+#backlight {
+  background-color: #3b84b4;
+  color: white;
+}
+
+#idle_inhibitor {
+  background-color: #329b73;
+  color: white;
+}
+
+#network {
+  background-color: #519b30;
+  color: white;
 }
 
 #clock {
-  margin: 4px 2px;
+  background-color: #d85fc4;
+  color: white;
+  padding-right: 16px;
 }
 
-#mpd *{
-  min-width: 10px;
-  font-size: 11px;
-  font-family: JetBrainsMono;
+#custom-power {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+/* 
+  border-radius: 12px;
+  border-width: 0px; */
+
+  background-color: #e24d5f;
+  padding: 0 8px;
+  margin-left: -12px;
+  color: white;
+  min-width: 28px;
 }
 
-#custom-power{
-  margin: 4px 5px 4px 1px;
-  padding: 0 6px;
-  background-color: #722F37;
-  border-radius: 10px;
-  min-width: 15px;
+/* lllllllllllllllllllllllll */
+
+#custom-launcher,
+#mode,
+#cpu,
+#memory,
+#disk,
+#mpd,
+#custom-recorder,
+#custom-audiorec {
+  margin: 0 0px;
+  padding: 0 8px;
+
+  margin-right: 0px;
+  /* padding-left: 0px; */
+  border-radius: 14px;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+
+  /* border-radius: 0px; */
+  border-width: 2px;
+  border-style: solid;
+  border-color: white;
+  min-width: 16px;
+  background-color: white;
+  color: white;
 }
 
-#custom-recorder, #custom-audiorec {
-  margin: 4px 2px;
-  padding: 0 6px;
-  background-color: rgba(175,65,84,0.8);
+#cpu {
+  background-color: #e24d5f;
 }
 
-#custom-launcher{
-  margin: 4px 1px 4px 5px;
-  padding: 0 6px;
-  background-color: #722F37;
-  border-radius: 10px;
-  min-width: 15px;
+#memory {
+  background-color: #9e8705;
 }
 
+#disk {
+  background-color: #4b8303;
+}
+
+#mpd {
+  color: black;
+}
+
+#custom-recorder,
+#custom-audiorec {
+  background-color: rgba(175, 65, 84, 0.8);
+}
+
+#custom-launcher {
+  padding-left: 0;
+
+  border-radius: 14px;
+  background-color: #1879b9;
+  min-width: 128px;
+}
+
+/*  */
 #temperature.critical {
   color: #800020;
 }

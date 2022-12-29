@@ -1,25 +1,24 @@
 {
     "layer": "bottom",
     "position": "top",
-    "height": 10,
+    "height": 28,
     "width": 1920,
-    "margin": "3, 0, 2, 0",
+    "margin": "2, 0, 2, 0",
     "modules-left": [
         "custom/launcher",
-        "sway/workspaces",
         "cpu",
         "memory",
         "disk",
+        "mpd",
         "custom/recorder",
         "custom/audiorec"
     ],
     "modules-center": [
-        "mpd"
+        "sway/workspaces"
     ],
     "modules-right": [
-        "pulseaudio",
-        "battery",
         "tray",
+        "pulseaudio",
         "keyboard-state",
         "backlight",
         "idle_inhibitor",
@@ -30,21 +29,18 @@
     "sway/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "1": "♠",
-            "2": "♥",
-            "3": "♦",
-            "4": "♣",
-            "5": "₿",
-            "6": "⟠",
-            "7": "₮",
-            "8": "Ð",
-            "urgent": "",
-            "focused": "",
-            "default": ""
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "❅",
+            "focused": "[❆]",
+            "default": "❄"
         }
     },
     "custom/launcher": {
-        "format": "⋏",
+        "format": "NixOS",
         "on-click": "rofi -show run",
         "tooltip": false
     },
@@ -154,7 +150,7 @@
         }
     },
     "tray": {
-        "icon-size": 15,
+        "icon-size": 16,
         "format-icons": {
             "input-keyboard-symbolic": "I"
         }
@@ -205,7 +201,7 @@
         "max-length": 45
     },
     "custom/power": {
-        "format": "⏻",
+        "format": "⏻ PWR",
         "on-click": "",
         "tooltip": false
     },
