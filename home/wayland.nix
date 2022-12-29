@@ -38,10 +38,6 @@ rec {
       export XDG_CURRENT_DESKTOP=Unity
     '';
   };
-  services.mpd = {
-    enable = true;
-    musicDirectory = "${config.home.homeDirectory}/media/music";
-  };
   services.swayidle = {
     enable = true;
     events = [
@@ -76,9 +72,8 @@ rec {
         size = 12;
         name = "FiraCode Nerd Font";
       };
-      settings = { background_opacity = "0.8"; window_border_width = "2px"; window_margin_width=1;};
+      settings = { background_opacity = "0.8"; window_border_width = "2px"; window_margin_width = 1; };
     };
-    ncmpcpp.enable = true;
     # swaylock.settings = {
     #   color = "808080";
     #   font-size = 24;

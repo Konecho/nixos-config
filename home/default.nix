@@ -14,7 +14,7 @@ rec {
       packages = with pkgs; [ libappindicator-gtk3 ] ++ userspkgs;
     };
 
-  imports = [ ./wayland.nix ];
+  imports = [ ./wayland.nix ./music.nix];
 
   i18n.inputMethod = {
     enabled = "fcitx5";
