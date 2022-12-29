@@ -83,6 +83,7 @@
               "type": "field",
               "outboundTag": "direct",
               "domain": [
+                "163.com",
                 "bitwarden.com",
                 "bitwarden.net",
                 "baiyunju.cc",

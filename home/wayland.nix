@@ -20,6 +20,14 @@ rec {
         { command = "starship preset plain-text-symbols > ~/.config/starship.toml"; }
         # { command = "kitty"; }
       ];
+      assigns = {
+        # https://i3wm.org/docs/userguide.html#command_criteria
+        # <swaymsg -t get_tree>
+        # <nix run nixpkgs#wlprop>
+        "3: web" = [{ class = "^Microsoft-edge$"; window_role = "browser"; }];
+        "2: code" = [{ class = "^Code$"; }];
+        "1: term" = [{ app_id = "^kitty$"; }];
+      };
       output = {
         HDMI-A-1 = {
           # bg = "~/.config/background fill";
@@ -30,7 +38,10 @@ rec {
       export XDG_CURRENT_DESKTOP=Unity
     '';
   };
-  services.mpd = { enable = true; musicDirectory = "${config.home.homeDirectory}/media/music"; };
+  services.mpd = {
+    enable = true;
+    musicDirectory = "${config.home.homeDirectory}/media/music";
+  };
   services.swayidle = {
     enable = true;
     events = [
@@ -45,7 +56,8 @@ rec {
   programs = {
     rofi = {
       enable = true;
-      theme = "gruvbox-dark-soft";
+      # https://github.com/adi1090x/rofi
+      theme = ./styles/rofi.rasi;
     };
     waybar = {
       enable = true;
@@ -65,6 +77,7 @@ rec {
         name = "FiraCode Nerd Font";
       };
     };
+    ncmpcpp.enable = true;
     # swaylock.settings = {
     #   color = "808080";
     #   font-size = 24;
