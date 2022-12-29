@@ -2,12 +2,12 @@
   transition: none;
   box-shadow: none;
   font-family: "FiraCode Nerd Font";
-  font-size: 16px;
+  font-size: 14px;
 
   background: transparent;
 }
 
-
+#tray,
 #workspaces {
   padding: 0 16px;
   background: rgb(6, 139, 216);
@@ -16,6 +16,7 @@
   border-style: solid;
   border-color: white;
 }
+
 
 #workspaces button {
   /* font-size: 28px; */
@@ -49,17 +50,6 @@
   color: rgba(246, 71, 71, 0.8);
 }
 
-#tray {
-  background-color: rgba(0,0,0,0.4);
-}
-
-#tray * {
-  border-left: 1px solid black;
-}
-
-#tray *:first-child {
-  border-left: none;
-}
 
 tooltip {
   background-color: white;
@@ -72,6 +62,7 @@ tooltip label {
 /* rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr */
 
 #pulseaudio,
+
 #keyboard-state,
 #backlight,
 #idle_inhibitor,
@@ -123,7 +114,7 @@ tooltip label {
 #custom-power {
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
-/* 
+  /* 
   border-radius: 12px;
   border-width: 0px; */
 
@@ -132,6 +123,17 @@ tooltip label {
   margin-left: -12px;
   color: white;
   min-width: 28px;
+}
+
+/* tray */
+#tray menu {
+  background-color: white;
+  color: black;
+}
+
+#tray {
+  padding: 0 8px;
+  background: #d4ba24;
 }
 
 /* lllllllllllllllllllllllll */
@@ -174,9 +176,12 @@ tooltip label {
   background-color: #4b8303;
 }
 
+
+
 #mpd {
   color: black;
 }
+
 
 #custom-recorder,
 #custom-audiorec {
@@ -184,11 +189,11 @@ tooltip label {
 }
 
 #custom-launcher {
-  padding-left: 0;
+  padding: 0 16px;
 
   border-radius: 14px;
   background-color: #1879b9;
-  min-width: 128px;
+
 }
 
 /*  */

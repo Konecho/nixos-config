@@ -76,6 +76,7 @@ rec {
         size = 12;
         name = "FiraCode Nerd Font";
       };
+      settings = { background_opacity = "0.8"; window_border_width = "2px"; window_margin_width=1;};
     };
     ncmpcpp.enable = true;
     # swaylock.settings = {

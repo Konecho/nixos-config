@@ -14,14 +14,14 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    # fcitx.engines = with pkgs.fcitx-engines; [ rime ];
-    # fcitx5.enableRimeData = true;
-    fcitx5.addons = with pkgs; [
-      fcitx5-rime
-    ];
-  };
+  # i18n.inputMethod = {
+  #   enabled = "fcitx5";
+  #   # fcitx.engines = with pkgs.fcitx-engines; [ rime ];
+  #   # fcitx5.enableRimeData = true;
+  #   fcitx5.addons = with pkgs; [
+  #     fcitx5-rime
+  #   ];
+  # };
 
   fonts = {
     fontDir.enable = true;

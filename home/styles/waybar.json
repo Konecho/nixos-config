@@ -14,10 +14,10 @@
         "custom/audiorec"
     ],
     "modules-center": [
-        "sway/workspaces"
+        "sway/workspaces",
+        "tray"
     ],
     "modules-right": [
-        "tray",
         "pulseaudio",
         "keyboard-state",
         "backlight",
@@ -34,10 +34,11 @@
             "3": "",
             "4": "",
             "5": "",
-            "urgent": "❅",
-            "focused": "[❆]",
-            "default": "❄"
-        }
+            "urgent": "",
+            "active": "",
+            "default": ""
+        },
+        "sort-by-number": true
     },
     "custom/launcher": {
         "format": "NixOS",
@@ -93,7 +94,7 @@
         "format": "{icon}",
         "format-alt": "{ipaddr}/{cidr} {icon}",
         "format-alt-click": "click-right",
-        "format-wifi": "{icon} ({signalStrength}%)",
+        "format-wifi": "{icon} {signalStrength}%",
         "format-icons": {
             "wifi": [
                 "睊",
