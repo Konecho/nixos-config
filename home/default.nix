@@ -3,7 +3,23 @@
 { pkgs, config, ... }:
 
 rec {
-
+  nix.package = pkgs.nix;
+  nix.settings.tarball-ttl = 43200;
+  nix.registry = {
+    n = {
+      # flake = pkgs;
+      from = {
+        id = "n";
+        type = "indirect";
+      };
+      to = {
+        owner = "NixOS";
+        ref = "nixpkgs-unstable";
+        repo = "nixpkgs";
+        type = "github";
+      };
+    };
+  };
   home = let userspkgs = import ./packages.nix pkgs; in
     {
       stateVersion = "22.11";
