@@ -23,7 +23,7 @@
 
   border-width: 0px;
 
-  padding: 0 8px;
+  padding: 0 4px;
   transition: all 0.5s cubic-bezier(.55, -0.68, .48, 1.68);
   background-color: transparent;
 }
@@ -50,8 +50,78 @@ tooltip label {
   color: black;
 }
 
-/* rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr */
+/* lllllllllllllllllllllllll */
+#pulseaudio,
+#keyboard-state,
+#backlight,
+#idle_inhibitor,
+#network,
+#clock,
+#custom-power,
 
+#custom-launcher,
+#mode,
+#cpu,
+#memory,
+#disk,
+#window,
+#mpd,
+#custom-recorder,
+#custom-audiorec {
+  margin: 0 0px;
+  padding: 0 8px;
+
+  margin-right: 0px;
+  /* padding-left: 0px; */
+
+  /* border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px; */
+
+  border-radius: 14px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: white;
+
+  background-color: white;
+  color: white;
+
+  min-width: 16px;
+}
+
+#mode {
+  background-color: rgb(138, 35, 207);
+}
+
+#cpu {
+  background-color: #e24d5f;
+}
+
+#memory {
+  background-color: #9e8705;
+}
+
+#disk {
+  background-color: #4b8303;
+}
+
+#window,
+#mpd {
+  color: black;
+}
+
+#custom-recorder,
+#custom-audiorec {
+  background-color: rgba(175, 65, 84, 0.8);
+}
+
+#custom-launcher {
+  min-width: 28px;
+  background-color: #3190b6;
+  /* color:#62aee0; */
+}
+
+/* rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr */
+/* 
 #pulseaudio,
 #keyboard-state,
 #backlight,
@@ -75,7 +145,7 @@ tooltip label {
   color: white;
 
   min-width: 16px;
-}
+} */
 
 #pulseaudio {
   color: black;
@@ -102,8 +172,8 @@ tooltip label {
 }
 
 #custom-power {
-  border-top-right-radius: 14px;
-  border-bottom-right-radius: 14px;
+  border-radius: 14px;
+  /* border-bottom-right-radius: 14px; */
 
   background-color: #e24d5f;
 
@@ -123,61 +193,6 @@ tooltip label {
   background: #d4ba24;
 }
 
-/* lllllllllllllllllllllllll */
-
-#custom-launcher,
-#mode,
-#cpu,
-#memory,
-#disk,
-#mpd,
-#custom-recorder,
-#custom-audiorec {
-  margin: 0 0px;
-  padding: 0 8px;
-
-  margin-right: 0px;
-  /* padding-left: 0px; */
-
-  /* border-top-right-radius: 14px;
-  border-bottom-right-radius: 14px; */
-  
-  border-radius: 14px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: white;
-
-  background-color: white;
-  color: white;
-
-  min-width: 16px;
-}
-
-#cpu {
-  background-color: #e24d5f;
-}
-
-#memory {
-  background-color: #9e8705;
-}
-
-#disk {
-  background-color: #4b8303;
-}
-
-#mpd {
-  color: black;
-}
-
-#custom-recorder,
-#custom-audiorec {
-  background-color: rgba(175, 65, 84, 0.8);
-}
-
-#custom-launcher {
-  min-width: 32px;
-  background-color: #1879b9;
-}
 
 /*  */
 #temperature.critical {

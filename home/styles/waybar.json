@@ -5,21 +5,21 @@
     "width": 1920,
     "margin": "2, 0, 2, 0",
     "modules-left": [
-        "custom/launcher",
-        "mode",
+        "sway/workspaces",
+        "sway/mode",
         "cpu",
         "memory",
         "disk",
-        "mpd",
-        "custom/recorder",
-        "custom/audiorec"
+        "sway/window"
     ],
     "modules-center": [
-        "sway/workspaces",
-        "tray"
+        "custom/recorder",
+        "custom/audiorec",
+        "mpd"
     ],
     "modules-right": [
         "pulseaudio",
+        "tray",
         "keyboard-state",
         "backlight",
         "idle_inhibitor",
@@ -28,27 +28,23 @@
         "custom/power"
     ],
     "sway/workspaces": {
-        "format": "{icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "urgent": "",
-            "active": "",
-            "default": ""
-        },
+
         "sort-by-number": true
     },
     "custom/launcher": {
-        "format": "NixOS",
+        "format": "Nix",
         "on-click": "rofi -show run",
         "tooltip": false
     },
     "sway/window": {
-        "max-length": 25,
-        "tooltip": false
+        "format": "{title}",
+        "max-length": 50,
+        "rewrite": {
+            "(.*) - Microsoft Edge": "🌎 $1",
+            "(.*) - vim": " $1",
+            "(.*) - zsh": " [$1]",
+            "(.*) - (.*) - Visual Studio Code": " [$2]$1"
+        }
     },
     "clock": {
         "interval": 1,
@@ -92,6 +88,7 @@
         "format": "{temperatureC}° "
     },
     "network": {
+        "interval": 1,
         "format": "{icon}",
         "format-alt": "{ipaddr}/{cidr} {icon}",
         "format-alt-click": "click-right",
@@ -110,7 +107,7 @@
             ]
         },
         "on-click": "kitty nmtui",
-        "tooltip-format": "{ifname}: {ipaddr}"
+        "tooltip-format": "{ifname}: {ipaddr}  {bandwidthTotalBytes}"
     },
     "pulseaudio": {
         "format": "{icon} {volume}% {format_source}",
@@ -152,13 +149,11 @@
         }
     },
     "tray": {
-        "icon-size": 16,
-        "format-icons": {
-            "input-keyboard-symbolic": "I"
-        }
+        "icon-size": 16
     },
     "disk": {
-        "format": " {free}"
+        "format": " {free}",
+        "path": "/nix/store"
     },
     "custom/recorder": {
         "format": " Rec",

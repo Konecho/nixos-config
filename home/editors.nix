@@ -2,7 +2,24 @@
 
 rec {
   programs = {
-    emacs = { enable = true; package = pkgs.emacs-nox; };
+    git = {
+      enable = true;
+      delta.enable = true;
+      ignores = [
+        "*~"
+        "\\#*\\#"
+      ];
+      userName = "NixOS";
+      userEmail = "me@meiro.top";
+    };
+    emacs = {
+      enable = true;
+      package = pkgs.emacs-nox;
+      extraConfig = ''
+        (setq standard-indent 2)
+      '';
+      extraPackages = epkgs: with epkgs;[ nix-mode ];
+    };
     vscode = {
       enable = true;
       enableUpdateCheck = false;

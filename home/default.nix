@@ -14,7 +14,7 @@ rec {
       packages = with pkgs; [ ] ++ userspkgs;
     };
 
-  imports = [ ./wayland.nix ./music.nix ./editors.nix];
+  imports = [ ./wayland.nix ./music.nix ./editors.nix ];
 
   i18n.inputMethod = {
     enabled = "fcitx5";
@@ -75,11 +75,6 @@ rec {
       enable = true;
       # profileExtra = ""; 
       historyIgnore = [ "l" "ls" "z" "cd" "exit" ];
-    };
-    git = {
-      enable = true;
-      userName = "NixOS";
-      userEmail = "me@meiro.top";
     };
     lf = {
       enable = true;
