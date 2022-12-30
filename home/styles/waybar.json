@@ -6,6 +6,7 @@
     "margin": "2, 0, 2, 0",
     "modules-left": [
         "custom/launcher",
+        "mode",
         "cpu",
         "memory",
         "disk",

@@ -9,7 +9,7 @@
 
 #tray,
 #workspaces {
-  padding: 0 16px;
+  padding: 0 8px;
   background: rgb(6, 139, 216);
   border-radius: 14px;
   border-width: 2px;
@@ -19,7 +19,6 @@
 
 
 #workspaces button {
-  /* font-size: 28px; */
   color: #ffffff;
 
   border-width: 0px;
@@ -29,27 +28,19 @@
   background-color: transparent;
 }
 
-/* #workspaces button.visible {
-} */
-
 #workspaces button.active {
-  color: #a3e0d8;
-  border-bottom-color: #e24d5f;
-  border-bottom-style: solid;
+  color: rgb(163, 224, 216);
 }
 
 #workspaces button:hover {
   color: rgba(246, 71, 71, 0.8);
 }
 
-#workspaces button.urgent {
-  color: rgb(76, 234, 245);
-}
-
 #workspaces button.urgent * {
   color: rgba(246, 71, 71, 0.8);
 }
 
+/*  */
 
 tooltip {
   background-color: white;
@@ -62,7 +53,6 @@ tooltip label {
 /* rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr */
 
 #pulseaudio,
-
 #keyboard-state,
 #backlight,
 #idle_inhibitor,
@@ -77,55 +67,52 @@ tooltip label {
   border-top-left-radius: 14px;
   border-bottom-left-radius: 14px;
 
-  /* border-radius: 0px; */
   border-width: 2px;
   border-style: solid;
   border-color: white;
-  min-width: 16px;
+
   background-color: white;
+  color: white;
+
+  min-width: 16px;
+}
+
+#pulseaudio {
+  color: black;
 }
 
 #keyboard-state {
   background-color: #bd3dce;
-  color: white;
 }
 
 #backlight {
   background-color: #3b84b4;
-  color: white;
 }
 
 #idle_inhibitor {
   background-color: #329b73;
-  color: white;
 }
 
 #network {
   background-color: #519b30;
-  color: white;
 }
 
 #clock {
   background-color: #d85fc4;
-  color: white;
-  padding-right: 16px;
 }
 
 #custom-power {
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
-  /* 
-  border-radius: 12px;
-  border-width: 0px; */
 
   background-color: #e24d5f;
-  padding: 0 8px;
-  margin-left: -12px;
-  color: white;
+
+  padding-right: 8px;
   min-width: 28px;
 }
 
 /* tray */
+
 #tray menu {
   background-color: white;
   color: black;
@@ -151,17 +138,19 @@ tooltip label {
 
   margin-right: 0px;
   /* padding-left: 0px; */
-  border-radius: 14px;
-  border-top-right-radius: 14px;
-  border-bottom-right-radius: 14px;
 
-  /* border-radius: 0px; */
+  /* border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px; */
+  
+  border-radius: 14px;
   border-width: 2px;
   border-style: solid;
   border-color: white;
-  min-width: 16px;
+
   background-color: white;
   color: white;
+
+  min-width: 16px;
 }
 
 #cpu {
@@ -176,12 +165,9 @@ tooltip label {
   background-color: #4b8303;
 }
 
-
-
 #mpd {
   color: black;
 }
-
 
 #custom-recorder,
 #custom-audiorec {
@@ -189,11 +175,8 @@ tooltip label {
 }
 
 #custom-launcher {
-  padding: 0 16px;
-
-  border-radius: 14px;
+  min-width: 32px;
   background-color: #1879b9;
-
 }
 
 /*  */
