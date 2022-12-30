@@ -21,6 +21,9 @@ rec {
   programs.ncmpcpp = {
     enable = true;
     settings = {
+      # https://github.com/archcraft-os/archcraft-skeleton/blob/main/archcraft-config-music/files/.ncmpcpp/config
+      mpd_crossfade_time = "2";
+
       ### Behaviour ###
       message_delay_time = 1;
       autocenter_mode = "yes";

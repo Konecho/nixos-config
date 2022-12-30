@@ -24,6 +24,7 @@ with pkgs;
   w3m
   poppler_utils # <pdftotext>
   highlight
+  mediainfo
 
   ## multi-media
   wf-recorder
@@ -57,5 +58,8 @@ with pkgs;
   just # make
   sd # sed
   du-dust # <dust> du
+
+  ## Fonts
+  monocraft
 ]
 

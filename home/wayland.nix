@@ -10,7 +10,7 @@ rec {
       bars = [ ];
       menu = "rofi -show run";
       modifier = "Mod4";
-      terminal = "kitty";
+      terminal = "alacritty";
       startup = [
         { command = "systemctl --user restart waybar"; always = true; }
         { command = "systemctl --user restart swayidle"; always = true; }
@@ -24,13 +24,13 @@ rec {
         # https://i3wm.org/docs/userguide.html#command_criteria
         # <swaymsg -t get_tree>
         # <nix run nixpkgs#wlprop>
-        "3: web" = [{ class = "^Microsoft-edge$"; window_role = "browser"; }];
-        "2: code" = [{ class = "^Code$"; }];
-        "1: term" = [{ app_id = "^kitty$"; }];
+        # "1: term" = [{ app_id = "^kitty$"; }];
+        # "2: code" = [{ class = "^Code$"; }];
+        # "3: web" = [{ class = "^Microsoft-edge$"; window_role = "browser"; }];
       };
       output = {
         HDMI-A-1 = {
-          # bg = "~/.config/background fill";
+          bg = "${pkgs.nixos-artwork.wallpapers.dracula.gnomeFilePath} fill";
         };
       };
     };
@@ -73,6 +73,14 @@ rec {
         name = "FiraCode Nerd Font";
       };
       settings = { background_opacity = "0.8"; window_border_width = "2px"; window_margin_width = 1; };
+    };
+    alacritty = {
+      enable = true;
+      settings = {
+        opacity = 0.8;
+        font.normal.family = "FiraCode Nerd Font";
+        font.size = 12;
+      };
     };
     # swaylock.settings = {
     #   color = "808080";

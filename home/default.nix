@@ -10,11 +10,11 @@ rec {
       # username = "${username}";
       homeDirectory = "/home/${config.home.username}";
       sessionPath = [ "$HOME/.cargo/bin" ];
-      sessionVariables = { TERMINAL = "kitty"; XDG_CURRENT_DESKTOP = "Unity"; };
-      packages = with pkgs; [ libappindicator-gtk3 ] ++ userspkgs;
+      sessionVariables = { TERMINAL = "alacritty"; XDG_CURRENT_DESKTOP = "Unity"; };
+      packages = with pkgs; [ ] ++ userspkgs;
     };
 
-  imports = [ ./wayland.nix ./music.nix];
+  imports = [ ./wayland.nix ./music.nix ];
 
   i18n.inputMethod = {
     enabled = "fcitx5";
@@ -106,6 +106,7 @@ rec {
               *.rar) unrar l "$1";;
               *.7z) 7z l "$1";;
               *.pdf) pdftotext "$1" -;;
+              *.mp3|*.avi|*.mp4|*.webm|*.mkv|*.flv|*.mov|*.mpg|*.wmv|*.ogg) mediainfo "$1";;
               *) highlight -O ansi "$1" || cat "$1";;
           esac
         '';
