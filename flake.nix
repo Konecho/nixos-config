@@ -19,6 +19,11 @@
           "vscode"
           "obsidian"
           "unrar"
+          "steam-runtime"
+          "steam-original"
+          "steam"
+          "steam-run"
+          "steamcmd"
         ];
       };
       username = "mei";

@@ -1,65 +1,83 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 
-with pkgs;
-[
-  blender
-  gimp
-  godot
-  inkscape
-  # krita
+{
+  # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  #   "microsoft-edge-stable"
+  #   "vscode"
+  #   "obsidian"
+  #   "unrar"
+  #   "steamcmd"
+  #   "steam"
+  #   "steam-original"
+  # ];
+  home.packages = with pkgs;
+    [
+      # steam-tui
+      # steamcmd
+      # steam
 
-  microsoft-edge
-  obsidian
-  libreoffice
-  onlyoffice-bin
-  # firefox
-  # thunderbird
+      blender
+      gimp
+      godot
+      inkscape
+      # krita
 
-  scrcpy
+      microsoft-edge
+      obsidian
+      libreoffice
+      onlyoffice-bin
+      # firefox
+      # thunderbird
 
-  ## lib for <lf>
-  unrar
-  unzip
-  p7zip # <7z>
-  w3m
-  poppler_utils # <pdftotext>
-  highlight
-  mediainfo
+      scrcpy
 
-  ## multi-media
-  wf-recorder
-  ffmpeg
-  yt-dlp
-  mpv
-  mpvpaper
-  # obs-studio
+      ## lib for <lf>
+      unrar
+      unzip
+      p7zip # <7z>
+      w3m
+      poppler_utils # <pdftotext>
+      highlight
+      mediainfo
 
-  ## rust-os-project
-  rustup
-  gcc
-  qemu
+      ## multi-media
+      wf-recorder
+      ffmpeg
+      yt-dlp
+      mpv
+      mpvpaper
+      # obs-studio
 
-  (
-    let
-      python-packages = python-packages: with python-packages; [
-        # pandas
-        requests
-      ];
-      python-with-packages = python3.withPackages python-packages;
-    in
-    python-with-packages
-  )
+      ## rust-os-project
+      rustup
+      gcc
+      qemu
 
-  ## terminal
-  fd # find
-  ripgrep # <rg> grep
-  procs # ps
+      (
+        let
+          python-packages = python-packages: with python-packages; [
+            # pandas
+            requests
+          ];
+          python-with-packages = python3.withPackages python-packages;
+        in
+        python-with-packages
+      )
 
-  just # make
-  sd # sed
-  du-dust # <dust> du
+      ## terminal
+      fd # find
+      ripgrep # <rg> grep
+      procs # ps
 
-  ## Fonts
-  monocraft
-]
+      just # make
+      sd # sed
+      du-dust # <dust> du
 
+      ## Fonts
+      monocraft
+
+      imagemagick
+      ueberzug
+    ];
+
+}
