@@ -28,15 +28,29 @@ rec {
         # "2: code" = [{ class = "^Code$"; }];
         # "3: web" = [{ class = "^Microsoft-edge$"; window_role = "browser"; }];
       };
+      input."type:keyboard" = {
+        xkb_numlock = "enabled";
+      };
       output = {
         HDMI-A-1 = {
-          bg = "${pkgs.nixos-artwork.wallpapers.dracula.gnomeFilePath} fill";
+          # bg = "${pkgs.nixos-artwork.wallpapers.dracula.gnomeFilePath} fill";
         };
       };
     };
     extraSessionCommands = ''
-      export XDG_CURRENT_DESKTOP=Unity
+      # mpvpaper -o 'no-audio --loop-playlist shuffle' HDMI-A-1 ${config.xdg.userDirs.videos};
+      # export XDG_CURRENT_DESKTOP=Unity
     '';
+  };
+  systemd.user.services.mpvpaper = {
+    Install = { WantedBy = ["sway-session.target"]; };
+    Unit = {
+      Description = "wallpaper program that allows you to play videos with mpv as your wallpaper";
+      Documentation = [ "man:mpvpaper(1)" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.mpvpaper}/bin/mpvpaper -o \"no-audio --loop-playlist shuffle\" HDMI-A-1 ${config.home.homeDirectory}/media/video";
+    };
   };
   services.swayidle = {
     enable = true;
