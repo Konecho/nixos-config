@@ -8,6 +8,10 @@
 
   hardware.pulseaudio.enable = true;
 
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=10s
+  '';
+
   security.doas.enable = true;
 
   # To set up Sway using Home Manager, first you must enable Polkit in your nix configuration:

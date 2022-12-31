@@ -37,19 +37,22 @@ rec {
         };
       };
     };
+    extraConfig = ''exec_always autotiling'';
     extraSessionCommands = ''
-      # mpvpaper -o 'no-audio --loop-playlist shuffle' HDMI-A-1 ${config.xdg.userDirs.videos};
       # export XDG_CURRENT_DESKTOP=Unity
     '';
   };
   systemd.user.services.mpvpaper = {
-    Install = { WantedBy = ["sway-session.target"]; };
+    Install = { WantedBy = [ "sway-session.target" ]; };
     Unit = {
       Description = "wallpaper program that allows you to play videos with mpv as your wallpaper";
       Documentation = [ "man:mpvpaper(1)" ];
     };
     Service = {
-      ExecStart = "${pkgs.mpvpaper}/bin/mpvpaper -o \"no-audio --loop-playlist shuffle\" HDMI-A-1 ${config.home.homeDirectory}/media/video";
+      ExecStart = ''
+        ${pkgs.mpvpaper}/bin/mpvpaper -o "no-audio --loop-playlist shuffle input-ipc-server=/tmp/mpv-socket" \
+        HDMI-A-1 ${config.home.homeDirectory}/media/video
+      '';
     };
   };
   services.swayidle = {

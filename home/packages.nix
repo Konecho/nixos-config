@@ -46,6 +46,7 @@
       yt-dlp
       mpv
       mpvpaper
+      socat # <echo 'cycle pause' | socat - /tmp/mpv-socket>
       # obs-studio
 
       ## rust-os-project
@@ -78,6 +79,8 @@
 
       imagemagick
       ueberzug
+      autotiling
+      pavucontrol
     ];
 
 }
