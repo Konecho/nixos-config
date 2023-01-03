@@ -51,7 +51,7 @@ rec {
     Service = {
       ExecStart = ''
         ${pkgs.mpvpaper}/bin/mpvpaper -o "no-audio --loop-playlist shuffle input-ipc-server=/tmp/mpv-socket" \
-        HDMI-A-1 ${config.home.homeDirectory}/media/video
+        HDMI-A-1 ${config.home.homeDirectory}/media/video/wallpapers
       '';
     };
   };

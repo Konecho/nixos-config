@@ -1,5 +1,6 @@
 { pkgs, config, lib, ... }:
 
+let maple-font = pkgs.callPackage ./maple-font.nix { }; in
 {
   # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
   #   "microsoft-edge-stable"
@@ -76,6 +77,7 @@
 
       ## Fonts
       monocraft
+      # maple-font.Mono-SC-NF-v6
 
       imagemagick
       ueberzug

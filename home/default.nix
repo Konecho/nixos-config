@@ -22,6 +22,7 @@ rec {
   };
   home = {
     stateVersion = "22.11";
+    shellAliases = { em = "emacs"; };
     # username = "${username}";
     homeDirectory = "/home/${config.home.username}";
     sessionPath = [ "$HOME/.cargo/bin" ];

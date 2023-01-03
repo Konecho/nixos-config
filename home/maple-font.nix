@@ -7,7 +7,6 @@
 let
   maple-font = { pname, version, sha256, desc }: stdenv.mkDerivation
     rec{
-
       inherit pname version desc;
       src = fetchurl {
         url = "https://github.com/subframe7536/Maple-font/releases/download/v${version}/${pname}.zip";
@@ -18,6 +17,9 @@ let
       # case that happens when the archive doesn't have a subdirectory.
       setSourceRoot = "sourceRoot=`pwd`";
       nativeBuildInputs = [ unzip ];
+      unpackPhase = ''
+        unzip $src | echo
+      '';
       installPhase = ''
         find . -name '*.ttf'    -exec install -Dt $out/share/fonts/truetype {} \;
       '';
@@ -44,7 +46,7 @@ in
   Mono-NF-v6 = maple-font {
     pname = "MapleMono-NF";
     version = "6.0";
-    sha256 = "09666c467a330cda832933282d3cedff1d9533295392634936127e8ba0581d6c";
+    sha256 = "sha256-oQstrEqVsuJC46zOmoOEa2oBaoA5Jp3yt4wYgCqXCdk=";
     desc = "Nerd Font";
   };
   Mono-SC-NF-v6 = maple-font {

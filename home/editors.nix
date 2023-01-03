@@ -30,6 +30,9 @@ rec {
         "git.enableSmartCommit" = true;
         "git.autofetch" = true;
         "git.confirmSync" = false;
+        "explorer.excludeGitIgnore" = true;
+        "files.autoSave" = "on";
+        "editor.formatOnSave" = true;
       };
       extensions = with pkgs.vscode-extensions; [ ms-ceintl.vscode-language-pack-zh-hans ];
     };
