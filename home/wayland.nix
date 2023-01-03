@@ -6,8 +6,42 @@ rec {
     enable = true;
     systemdIntegration = true;
     wrapperFeatures.gtk = true;
-    config = rec {
+    config = {
       bars = [ ];
+      # bars = [{
+      #   fonts = {
+      #     names = [ "FiraCode Nerd Font" ];
+      #     style = "Bold Semi-Condensed";
+      #     size = 11.0;
+      #   };
+      #   position = "bottom";
+      #   statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.home.homeDirectory}/.config/i3status-rust/config-bottom.toml";
+      #   colors = {
+      #     separator = "#666666";
+      #     background = "#222222";
+      #     statusline = "#dddddd";
+      #     focusedWorkspace = {
+      #       background = "#285577";
+      #       border = "#4c7899";
+      #       text = "#ffffff";
+      #     };
+      #     activeWorkspace = {
+      #       background = "#5f676a";
+      #       border = "#333333";
+      #       text = "#ffffff";
+      #     };
+      #     inactiveWorkspace = {
+      #       background = "#222222";
+      #       border = "#333333";
+      #       text = "#888888";
+      #     };
+      #     urgentWorkspace = {
+      #       background = "#900000";
+      #       border = "#2f343a";
+      #       text = "#ffffff";
+      #     };
+      #   };
+      # }];
       menu = "rofi -show run";
       modifier = "Mod4";
       terminal = "alacritty";
@@ -67,6 +101,56 @@ rec {
     ];
   };
   programs = {
+    i3status-rust = {
+      enable = false;
+      bars.bottom = {
+        blocks = [
+          {
+            block = "disk_space";
+            path = "/nix/store";
+            alias = "/nix/store";
+            info_type = "available";
+            unit = "GB";
+            interval = 60;
+            warning = 10.0;
+            alert = 5.0;
+          }
+          {
+            block = "memory";
+            display_type = "memory";
+            format_mem = "{mem_used_percents}";
+            format_swap = "{swap_used_percents}";
+          }
+          {
+            block = "cpu";
+            interval = 1;
+          }
+          # {
+          #   block = "load";
+          #   interval = 1;
+          #   format = "{1m}";
+          # }
+          { block = "sound"; }
+          {
+            block = "time";
+            interval = 60;
+            format = "%a %d/%m %R";
+          }
+        ];
+        settings = {
+          theme = {
+            name = "gruvbox-dark";
+            # overrides = {
+            #   idle_bg = "#123456";
+            #   idle_fg = "#abcdef";
+            # };
+          };
+          icons.overrides = { cpu = ""; };
+        };
+        icons = "awesome5";
+        # theme = "gruvbox-dark";
+      };
+    };
     rofi = {
       enable = true;
       # https://github.com/adi1090x/rofi

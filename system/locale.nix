@@ -38,10 +38,10 @@
           # "Noto"
         ];
       })
-      sarasa-gothic #更纱黑体
-      source-code-pro
-      hack-font
-      jetbrains-mono
+      # sarasa-gothic #更纱黑体
+      # source-code-pro
+      # hack-font
+      # jetbrains-mono
     ];
     fontconfig = {
       enable = true;
@@ -49,16 +49,16 @@
         emoji = [ "Noto Color Emoji" ];
         monospace = [
           "UbuntuMono Nerd Font Mono"
-          "Noto Sans Mono CJK SC"
-          "DejaVu Sans Mono"
+          # "Noto Sans Mono CJK SC"
+          # "DejaVu Sans Mono"
         ];
         sansSerif = [
           "Noto Sans CJK SC"
-          "Source Han Sans SC"
+          # "Source Han Sans SC"
         ];
         serif = [
           "Noto Serif CJK SC"
-          "Source Han Serif SC"
+          # "Source Han Serif SC"
         ];
       };
     };
