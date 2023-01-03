@@ -5,11 +5,11 @@
 }:
 
 let
-  maple-font = { pname, version, sha256, desc }: stdenv.mkDerivation
+  maple-font = { pname, version, sha256, desc, repo ? "https://github.com/subframe7536/Maple-font" }: stdenv.mkDerivation
     rec{
       inherit pname version desc;
       src = fetchurl {
-        url = "https://github.com/subframe7536/Maple-font/releases/download/v${version}/${pname}.zip";
+        url = "${repo}/releases/download/v${version}/${pname}.zip";
         inherit sha256;
       };
 
@@ -17,9 +17,9 @@ let
       # case that happens when the archive doesn't have a subdirectory.
       setSourceRoot = "sourceRoot=`pwd`";
       nativeBuildInputs = [ unzip ];
-      unpackPhase = ''
-        unzip $src | echo
-      '';
+      # unpackPhase = ''
+      #   unzip $src
+      # '';
       installPhase = ''
         find . -name '*.ttf'    -exec install -Dt $out/share/fonts/truetype {} \;
       '';
@@ -53,6 +53,13 @@ in
     pname = "MapleMono-SC-NF";
     version = "6.0";
     sha256 = "4f209b087cc03dae97be401a65f545c1cf0d5447a1bf11c48ca443f253ba8830";
-    desc = "Nerd Font SC";
+    desc = "Nerd Font SC NF";
+  };
+  Mono-SC-NF-v5 = maple-font {
+    pname = "MapleMono-SC-NF";
+    version = "5.5";
+    sha256 = "sha256-8zIlxuPRg+AyHd+T2hfpL9o5YWVJI6EhjaPcRuz9F2k=";
+    desc = "Nerd Font SC NF";
+    repo = "https://gitee.com/subframe7536/Maple";
   };
 }

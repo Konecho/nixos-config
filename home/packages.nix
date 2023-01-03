@@ -11,6 +11,11 @@ let maple-font = pkgs.callPackage ./maple-font.nix { }; in
   #   "steam"
   #   "steam-original"
   # ];
+  fonts.fontconfig.enable = true;
+  gtk.font = {
+    package = maple-font.Mono-SC-NF-v5;
+    name = "Maple Mono SC NF";
+  };
   home.packages = with pkgs;
     [
       # steam-tui
@@ -77,7 +82,7 @@ let maple-font = pkgs.callPackage ./maple-font.nix { }; in
 
       ## Fonts
       monocraft
-      # maple-font.Mono-SC-NF-v6
+      # maple-font.Mono-SC-NF-v5
 
       imagemagick
       ueberzug

@@ -53,18 +53,6 @@ rec {
     pictures = "$HOME/media/photos";
     videos = "$HOME/media/video";
   };
-  gtk = {
-    enable = true;
-    cursorTheme = { name = "Vanilla-DMZ"; package = pkgs.vanilla-dmz; };
-    theme = {
-      name = "Pop";
-      package = pkgs.pop-gtk-theme;
-    };
-    iconTheme = {
-      name = "Numix";
-      package = pkgs.numix-solarized-gtk-theme;
-    };
-  };
   programs = {
     home-manager.enable = true;
     starship = { enable = true; };

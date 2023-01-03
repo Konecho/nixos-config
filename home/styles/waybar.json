@@ -10,12 +10,12 @@
         "cpu",
         "memory",
         "disk",
-        "sway/window"
-    ],
-    "modules-center": [
         "custom/recorder",
         "custom/audiorec",
         "mpd"
+    ],
+    "modules-center": [
+        "sway/window"
     ],
     "modules-right": [
         "pulseaudio",
@@ -28,7 +28,6 @@
         "custom/power"
     ],
     "sway/workspaces": {
-
         "sort-by-number": true
     },
     "custom/launcher": {
@@ -56,7 +55,7 @@
         "interval": 10,
         "format": " {usage}%",
         "max-length": 10,
-        "on-click": "kitty -e 'btm'"
+        "on-click": "alacritty -e btm"
     },
     "memory": {
         "interval": 30,
@@ -106,7 +105,7 @@
                 ""
             ]
         },
-        "on-click": "kitty nmtui",
+        "on-click": "alacritty -e nmtui",
         "tooltip-format": "{ifname}: {ipaddr}  {bandwidthTotalBytes}"
     },
     "pulseaudio": {
@@ -144,8 +143,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": " ON",
+            "deactivated": " OFF"
         }
     },
     "tray": {
