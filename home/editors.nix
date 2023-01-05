@@ -1,6 +1,7 @@
 { pkgs, config, ... }:
 
 rec {
+  home.shellAliases.em = "emacs";
   programs = {
     git = {
       enable = true;

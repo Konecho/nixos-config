@@ -22,14 +22,13 @@ rec {
   };
   home = {
     stateVersion = "22.11";
-    shellAliases = { em = "emacs"; };
     # username = "${username}";
     homeDirectory = "/home/${config.home.username}";
     sessionPath = [ "$HOME/.cargo/bin" ];
     sessionVariables = { TERMINAL = "alacritty"; };
   };
 
-  imports = [ ./wayland.nix ./music.nix ./editors.nix ./packages.nix ];
+  imports = [ ./desktop.nix ./sway.nix ./music.nix ./editors.nix ./packages.nix ];
 
   i18n.inputMethod = {
     enabled = "fcitx5";

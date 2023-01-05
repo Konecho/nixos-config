@@ -6,11 +6,19 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
-    home-manager.url = github:nix-community/home-manager;
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = github:nix-community/home-manager;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nur.url = "github:nix-community/NUR";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @{ self, nixpkgs, nixos-hardware, home-manager, ... }:
+  outputs = inputs @{ self, nixpkgs, nixos-hardware, home-manager, hyprland, nur, ... }:
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
@@ -33,11 +41,14 @@
       homeConfigurations = {
         "${username}" = home-manager.lib.homeManagerConfiguration rec {
           inherit pkgs;
-          modules = [{
-            home.username="${username}";
-            # home.homeDirectory = "/home/${username}";
-            imports = [ ./home ];
-          }];
+          modules = [
+            hyprland.homeManagerModules.default
+            {
+              home.username = "${username}";
+              # home.homeDirectory = "/home/${username}";
+              imports = [ ./home ];
+            }
+          ];
         };
       };
       nixosConfigurations = {
