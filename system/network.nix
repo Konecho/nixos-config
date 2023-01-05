@@ -22,30 +22,30 @@
           protocol = "vmess";
           settings = {
             vnext = [{
-              address = "173.82.7.19";
-              port = 32123;
+              address = "cc.meiro.top";
+              port = 443;
               users = [{
-                alterId = 0;
-                encryption = "";
-                flow = "";
-                id = "ffc9e515-2b84-42a4-97ef-07c3e26cbae1";
-                level = 8;
-                security = "auto";
+                "id" = "ffc9e515-2b84-42a4-97ef-07c3e26cbae1";
+                "alterId" = 0;
+                "email" = "t@t.tt";
+                "security" = "auto";
               }];
             }];
           };
           streamSettings = {
-            kcpSettings = {
-              congestion = false;
-              downlinkCapacity = 100;
-              header = { type = "dtls"; };
-              mtu = 1350;
-              readBufferSize = 1;
-              tti = 50;
-              uplinkCapacity = 12;
-              writeBufferSize = 1;
+            "network" = "ws";
+            "security" = "tls";
+            "tlsSettings" = {
+              "allowInsecure" = false;
+              "serverName" = "cc.meiro.top";
+              "fingerprint" = "";
             };
-            network = "kcp";
+            "wsSettings" = {
+              "path" = "/";
+              "headers" = {
+                "Host" = "cc.meiro.top";
+              };
+            };
           };
         }
         {
