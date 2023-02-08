@@ -2,6 +2,7 @@
 
 rec {
   imports = [ ./hyprland.nix ];
+  # imports = [ ./sway.nix ];
   gtk = {
     enable = true;
     cursorTheme = { name = "Vanilla-DMZ"; package = pkgs.vanilla-dmz; };
@@ -30,6 +31,24 @@ rec {
       opacity = 0.8;
       font.normal.family = "Maple Mono SC NF";
       font.size = 12;
+    };
+  };
+  programs = {
+    rofi = {
+      enable = true;
+      # https://github.com/adi1090x/rofi
+      theme = ./styles/rofi.rasi;
+    };
+    waybar = {
+      enable = true;
+      # systemd = {
+      #   enable = true;
+      #   # target = "sway-session.target";
+      # };
+      style = ./styles/waybar.css;
+      settings = {
+        mainBar = builtins.fromJSON (builtins.readFile ./styles/waybar.json);
+      };
     };
   };
 }

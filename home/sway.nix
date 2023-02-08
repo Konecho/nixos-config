@@ -150,23 +150,8 @@ rec {
         # theme = "gruvbox-dark";
       };
     };
-    rofi = {
-      enable = true;
-      # https://github.com/adi1090x/rofi
-      theme = ./styles/rofi.rasi;
-    };
-    waybar = {
-      enable = true;
-      systemd = {
-        enable = true;
-        # target = "sway-session.target";
-      };
-      style = ./styles/waybar.css;
-      settings = {
-        mainBar = builtins.fromJSON (builtins.readFile ./styles/waybar.json);
-      };
-    };
 
+    programs.waybar.systemd.enable = true;
     # swaylock.settings = {
     #   color = "808080";
     #   font-size = 24;

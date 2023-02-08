@@ -1,78 +1,103 @@
 {
-    "layer": "bottom",
-    "position": "top",
-    "height": 28,
-    "width": 1920,
-    "margin": "2, 0, 2, 0",
+    "layer": "top",
+    "position": "bottom",
+    "height": 35,
+    "spacing": 4,
+    "margin-top": 10,
+    "margin-bottom": 5,
     "modules-left": [
-        "sway/workspaces",
-        "sway/mode",
+        "idle_inhibitor",
+        "pulseaudio",
         "cpu",
         "memory",
-        "disk",
-        "custom/recorder",
-        "custom/audiorec",
-        "mpd"
+        "temperature"
     ],
     "modules-center": [
-        "sway/window"
-    ],
-    "modules-right": [
-        "pulseaudio",
-        "tray",
-        "keyboard-state",
-        "backlight",
-        "idle_inhibitor",
-        "network",
-        "clock",
+        "custom/launcher",
+        "custom/media",
+        "wlr/taskbar",
         "custom/power"
     ],
-    "sway/workspaces": {
-        "sort-by-number": true
-    },
-    "custom/launcher": {
-        "format": "Nix",
-        "on-click": "rofi -show run",
-        "tooltip": false
-    },
-    "sway/window": {
-        "format": "{title}",
-        "max-length": 50,
-        "rewrite": {
-            "(.*) - Microsoft Edge": "🌎 $1",
-            "(.*) - vim": " $1",
-            "(.*) - zsh": " [$1]",
-            "(.*) - (.*) - Visual Studio Code": " [$2]$1"
+    "modules-right": [
+        "custom/layout",
+        "custom/updater",
+        "custom/snip",
+        "backlight",
+        "keyboard-state",
+        "battery",
+        "battery#bat2",
+        "network",
+        "tray",
+        "clock"
+    ],
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": " {name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
         }
     },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 20,
+        "icon-theme": "Star",
+        "tooltip-format": "{title}",
+        "on-click": "minimize",
+        "on-click-middle": "close",
+        "on-click-right": "activate"
+    },
+    "sway/language": {
+        "format": " {}"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 10
+    },
     "clock": {
-        "interval": 1,
-        "locale": "C",
-        "format": "{:%I:%M %p}",
-        "format-alt": " {:%a,%b %d}"
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
-        "interval": 10,
-        "format": " {usage}%",
-        "max-length": 10,
-        "on-click": "alacritty -e btm"
+        "format": "{usage}% ",
+        "tooltip": false
     },
     "memory": {
-        "interval": 30,
-        "format": " {used:0.2f}GB",
-        "max-length": 10,
-        "tooltip": false,
-        "warning": 70,
-        "critical": 90
+        "format": "{}% "
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": [
+            "",
+            "",
+            ""
+        ]
+    },
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": [
+            "",
+            ""
+        ]
     },
     "battery": {
         "states": {
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon} {capacity}%",
-        "format-charging": "⚡ {capacity}%",
-        "format-plugged": "  {capacity}%",
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
         "format-icons": [
             "",
             "",
@@ -81,44 +106,29 @@
             ""
         ]
     },
-    "temperature": {
-        "critical-threshold": 80,
-        "format-critical": "{temperatureC}° ",
-        "format": "{temperatureC}° "
+    "battery#bat2": {
+        "bat": "BAT2"
     },
     "network": {
-        "interval": 1,
-        "format": "{icon}",
-        "format-alt": "{ipaddr}/{cidr} {icon}",
-        "format-alt-click": "click-right",
-        "format-wifi": "{icon} {signalStrength}%",
-        "format-icons": {
-            "wifi": [
-                "睊",
-                "直",
-                ""
-            ],
-            "ethernet": [
-                ""
-            ],
-            "disconnected": [
-                ""
-            ]
-        },
-        "on-click": "alacritty -e nmtui",
-        "tooltip-format": "{ifname}: {ipaddr}  {bandwidthTotalBytes}"
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "Connected  ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "bash ~/.config/rofi/wifi_menu/rofi_wifi_menu"
     },
     "pulseaudio": {
-        "format": "{icon} {volume}% {format_source}",
-        "format-bluetooth": "{icon} {volume}% {format_source}",
-        "format-bluetooth-muted": " {format_source}",
-        "format-muted": "  {format_source}",
-        "format-source": " {volume}%",
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": "{icon} {format_source}",
+        "format-muted": "{format_source}",
+        "format-source": "",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
-            "headset": "🎧",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
@@ -130,87 +140,37 @@
         },
         "on-click": "pavucontrol"
     },
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": [
-            "☀️",
-            ""
-        ],
-        "on-scroll-down": "brightnessctl -c backlight set 1%-",
-        "on-scroll-up": "brightnessctl -c backlight set +1%"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 15,
         "format-icons": {
-            "activated": " ON",
-            "deactivated": " OFF"
-        }
-    },
-    "tray": {
-        "icon-size": 16
-    },
-    "disk": {
-        "format": " {free}",
-        "path": "/nix/store"
-    },
-    "custom/recorder": {
-        "format": " Rec",
-        "format-disabled": " Off-air",
-        "return-type": "json",
-        "interval": 1,
-        "exec": "echo '{\"class\": \"recording\"}'",
-        "exec-if": "pgrep wf-recorder"
-    },
-    "custom/audiorec": {
-        "format": "♬ Rec",
-        "format-disabled": "♬ Off-air",
-        "return-type": "json",
-        "interval": 1,
-        "exec": "echo '{\"class\": \"audio recording\"}'",
-        "exec-if": "pgrep ffmpeg"
-    },
-    "mpd": {
-        "format": "{stateIcon} {artist} - {title}",
-        "format-disconnected": "🎶",
-        "format-stopped": "♪",
-        "interval": 10,
-        "consume-icons": {
-            "on": " "
+            "spotify": " ",
+            "default": " "
         },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)",
-        "max-length": 45
+        "escape": true,
+        "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
+        "on-click": "playerctl play-pause"
+    },
+    "custom/launcher": {
+        "format": " ",
+        "on-click": "rofi -show drun -theme ~/.config/rofi/wayfire/config.rasi",
+        "on-click-right": "killall rofi"
     },
     "custom/power": {
-        "format": "⏻ PWR",
-        "on-click": "",
-        "tooltip": false
+        "format": "  ",
+        "on-click": "nwg-bar",
+        "on-click-right": "killall nwg-bar"
     },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": {
-            "numlock": "[{icon} NUM]",
-            "capslock": "[{icon} CAP]"
-        },
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
+    "custom/layout": {
+        "format": "",
+        "on-click": "bash ~/.config/system_scripts/layout.sh"
+    },
+    "custom/updater": {
+        "format": "  {} Updates",
+        "exec": "checkupdates | wc -l",
+        "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
+        "interval": 15,
+        "on-click": "alacritty -e yay -Syu"
     }
 }

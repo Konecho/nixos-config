@@ -35,7 +35,7 @@ rec {
         "files.autoSave" = "on";
         "editor.formatOnSave" = true;
       };
-      extensions = with pkgs.vscode-extensions; [ ms-ceintl.vscode-language-pack-zh-hans ];
+      # extensions = with pkgs.vscode-extensions; [ ms-ceintl.vscode-language-pack-zh-hans ];
     };
     neovim = {
       enable = true;

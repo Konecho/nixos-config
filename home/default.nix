@@ -28,7 +28,7 @@ rec {
     sessionVariables = { TERMINAL = "alacritty"; };
   };
 
-  imports = [ ./desktop.nix ./sway.nix ./music.nix ./editors.nix ./packages.nix ];
+  imports = [ ./desktop.nix ./music.nix ./editors.nix ./packages.nix ];
 
   i18n.inputMethod = {
     enabled = "fcitx5";

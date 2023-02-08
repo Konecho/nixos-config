@@ -39,20 +39,20 @@ in
 {
   Mono-v6 = maple-font {
     pname = "MapleMono";
-    version = "6.0";
+    version = "6.1";
     sha256 = "5045e80a5648b75c19ac8366467666b523cd726beb2b1de362d8c9c75b66e513";
     desc = "monospace";
   };
   Mono-NF-v6 = maple-font {
     pname = "MapleMono-NF";
-    version = "6.0";
-    sha256 = "sha256-oQstrEqVsuJC46zOmoOEa2oBaoA5Jp3yt4wYgCqXCdk=";
+    version = "6.1";
+    sha256 = "5045e80a5648b75c19ac8366467666b523cd726beb2b1de362d8c9c75b66e513";
     desc = "Nerd Font";
   };
   Mono-SC-NF-v6 = maple-font {
     pname = "MapleMono-SC-NF";
-    version = "6.0";
-    sha256 = "4f209b087cc03dae97be401a65f545c1cf0d5447a1bf11c48ca443f253ba8830";
+    version = "6.1";
+    sha256 = "sha256-cp7pASXEiP8Td8yR+5hKpZyTST0o0pxgck4llHps4go=";
     desc = "Nerd Font SC NF";
   };
   Mono-SC-NF-v5 = maple-font {

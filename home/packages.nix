@@ -13,7 +13,7 @@ let maple-font = pkgs.callPackage ./maple-font.nix { }; in
   # ];
   fonts.fontconfig.enable = true;
   gtk.font = {
-    package = maple-font.Mono-SC-NF-v5;
+    package = maple-font.Mono-SC-NF-v6;
     name = "Maple Mono SC NF";
   };
   home.packages = with pkgs;
@@ -32,11 +32,11 @@ let maple-font = pkgs.callPackage ./maple-font.nix { }; in
       inkscape
       # krita
 
-      microsoft-edge
+      # microsoft-edge
       obsidian
       libreoffice
       onlyoffice-bin
-      # firefox
+      firefox
       # thunderbird
 
       scrcpy
