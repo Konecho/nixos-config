@@ -103,6 +103,8 @@
             },
             {
                 "domain": [
+                    "wttr.in",
+                    "weather.com",
                     "163.com",
                     "bitwarden.com",
                     "bitwarden.net",

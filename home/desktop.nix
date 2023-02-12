@@ -46,9 +46,9 @@ rec {
       #   # target = "sway-session.target";
       # };
       style = ./styles/waybar.css;
-      settings = {
-        mainBar = builtins.fromJSON (builtins.readFile ./styles/waybar.json);
-      };
+      # settings = {
+      #   mainBar = builtins.fromJSON (builtins.readFile ./styles/waybar.jsonc);
+      # };
     };
   };
 }
