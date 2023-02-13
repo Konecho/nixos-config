@@ -23,6 +23,7 @@
   };
   virtualisation = {
     # anbox.enable = true;
+    # libvirtd.enable = true;
     docker.enable = true;
     # waydroid.enable = true;
   };

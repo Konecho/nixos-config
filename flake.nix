@@ -23,6 +23,7 @@
       pkgs = import nixpkgs {
         system = "x86_64-linux";
         config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+          "android-studio-stable"
           "microsoft-edge-stable"
           "vscode"
           "obsidian"

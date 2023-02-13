@@ -26,19 +26,20 @@ let maple-font = pkgs.callPackage ./maple-font.nix { }; in
       # steam
       wofi
 
-      blender
-      gimp
-      godot
-      inkscape
+      # blender
+      # gimp
+      # godot
+      # inkscape
       # krita
 
       # microsoft-edge
       obsidian
-      libreoffice
-      onlyoffice-bin
+      # libreoffice
+      # onlyoffice-bin
       firefox
       # thunderbird
 
+      android-studio
       scrcpy
 
       ## lib for <lf>
