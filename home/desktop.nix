@@ -34,11 +34,11 @@ rec {
     };
   };
   programs = {
-    rofi = {
-      enable = true;
-      # https://github.com/adi1090x/rofi
-      theme = ./styles/rofi.rasi;
-    };
+    # rofi = {
+    #   enable = true;
+    #   # https://github.com/adi1090x/rofi
+    #   theme = ./styles/rofi.rasi;
+    # };
     waybar = {
       enable = true;
       # systemd = {

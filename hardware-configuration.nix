@@ -19,11 +19,17 @@
       device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
-  fileSystems."/nix/store" =
-    {
-      device = "/dev/disk/by-label/nix-store";
-      fsType = "ext4";
-    };
+  # fileSystems."/nix/store" =
+  #   {
+  #     device = "/dev/disk/by-label/nix-store";
+  #     fsType = "ext4";
+  #   };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-label/nix";
+    fsType = "ext4";
+    neededForBoot = true;
+    options = [ "noatime" ];
+  };
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-label/boot2";

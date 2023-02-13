@@ -18,13 +18,13 @@ let maple-font = pkgs.callPackage ./maple-font.nix { }; in
   };
   home.packages = with pkgs;
     [
-      # hyprland
-      swaybg
-      swaylock-effects
+      # swaybg
+      # swaylock-effects
       pamixer
       # steam-tui
       # steamcmd
       # steam
+      wofi
 
       blender
       gimp
