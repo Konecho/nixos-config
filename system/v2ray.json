@@ -13,17 +13,9 @@
             "settings": {
                 "servers": [
                     {
-                        "address": "173.82.7.19",
+                        "address": "192.168.199.156",
                         "ota": false,
-                        "port": 39848,
-                        "level": 1,
-                        "users": [
-                            {
-                                "user": "233blog",
-                                "pass": "233blog.com",
-                                "level": 1
-                            }
-                        ]
+                        "port": 2080
                     }
                 ]
             },

@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }:
 
-let maple-font = pkgs.callPackage ./maple-font.nix { }; in
+# let maple-font = pkgs.callPackage ./maple-font.nix { }; in
 {
   # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
   #   "microsoft-edge-stable"
@@ -13,7 +13,7 @@ let maple-font = pkgs.callPackage ./maple-font.nix { }; in
   # ];
   fonts.fontconfig.enable = true;
   gtk.font = {
-    package = maple-font.Mono-SC-NF-v6;
+    package = pkgs.maple-mono-SC-NF;
     name = "Maple Mono SC NF";
   };
   home.packages = with pkgs;
@@ -33,13 +33,13 @@ let maple-font = pkgs.callPackage ./maple-font.nix { }; in
       # krita
 
       # microsoft-edge
-      obsidian
+      # obsidian
       # libreoffice
       # onlyoffice-bin
       firefox
       # thunderbird
 
-      android-studio
+      # android-studio
       scrcpy
 
       ## lib for <lf>

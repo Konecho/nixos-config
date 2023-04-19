@@ -2,7 +2,7 @@
 
 {
   boot.loader = {
-    systemd-boot = { enable = true; consoleMode = "max"; };
+    systemd-boot = { enable = true; consoleMode = "auto"; };
     # efi.canTouchEfiVariables = true;
     # efi.efiSysMountPoint = "/boot/efi";
     # grub = {
@@ -27,7 +27,7 @@
       vt = 7;
       settings = rec {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember-session --cmd Hyprland"; #sway
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember-session --cmd Hyprland --user-menu --time-format '%a, %d %h %Y - %H:%M'"; #sway
           # user = "mei";
         };
       };
