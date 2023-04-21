@@ -26,8 +26,9 @@
           "android-studio-stable"
           "microsoft-edge-stable"
           "vscode"
-          "obsidian"
+          # "obsidian"
           "unrar"
+          "libsciter" # rustdesk
           "steam-runtime"
           "steam-original"
           "steam"

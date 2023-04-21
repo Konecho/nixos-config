@@ -18,6 +18,8 @@
   };
   home.packages = with pkgs;
     [
+      cardboard
+      rustdesk
       # swaybg
       # swaylock-effects
       pamixer
@@ -69,6 +71,7 @@
         let
           python-packages = python-packages: with python-packages; [
             # pandas
+            pip
             requests
           ];
           python-with-packages = python3.withPackages python-packages;
@@ -76,6 +79,7 @@
         python-with-packages
       )
 
+      conda
       ## terminal
       fd # find
       ripgrep # <rg> grep

@@ -23,18 +23,18 @@ rec {
     };
     vscode = {
       enable = true;
-      enableUpdateCheck = false;
-      userSettings = {
-        "workbench.colorTheme" = "Default Light+";
-        "nix.enableLanguageServer" = true;
-        "editor.fontFamily" = "'FiraCode Nerd Font'";
-        "git.enableSmartCommit" = true;
-        "git.autofetch" = true;
-        "git.confirmSync" = false;
-        "explorer.excludeGitIgnore" = true;
-        "files.autoSave" = "on";
-        "editor.formatOnSave" = true;
-      };
+      # enableUpdateCheck = false;
+      # userSettings = {
+      #   "workbench.colorTheme" = "Default Light+";
+      #   "nix.enableLanguageServer" = true;
+      #   "editor.fontFamily" = "'FiraCode Nerd Font'";
+      #   "git.enableSmartCommit" = true;
+      #   "git.autofetch" = true;
+      #   "git.confirmSync" = false;
+      #   "explorer.excludeGitIgnore" = true;
+      #   "files.autoSave" = "on";
+      #   "editor.formatOnSave" = true;
+      # };
       # extensions = with pkgs.vscode-extensions; [ ms-ceintl.vscode-language-pack-zh-hans ];
     };
     neovim = {

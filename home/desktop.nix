@@ -39,6 +39,11 @@ rec {
     #   # https://github.com/adi1090x/rofi
     #   theme = ./styles/rofi.rasi;
     # };
+    eww = {
+      enable = true;
+      package = pkgs.eww-wayland;
+      configDir = ./.eww;
+    };
     waybar = {
       enable = true;
       # systemd = {
