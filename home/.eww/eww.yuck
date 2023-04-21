@@ -17,7 +17,12 @@
     (metric :label "disk"
       :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
     :onchange "")
-  time))
+  time weather))
+
+; hyprctl dispatch workspace e+1
+; pamixer -t
+; echo 'cycle pause' | socat - /tmp/mpv-socket
+
 
 (defwidget workspaces []
   (box :class "workspaces"
@@ -54,8 +59,6 @@
       :value value
     :onchange onchange)))
 
-
-
 (deflisten music :initial ""
 "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
 
@@ -63,7 +66,10 @@
 "pamixer --get-volume")
 
 (defpoll time :interval "10s"
-"date '+%H:%M %b %d, %Y'")
+"date '+%H:%M %b %d '")
+
+(defpoll weather :interval "10m"
+"scripts/caiyun.py")
 
 (defwindow bar
   :monitor 0

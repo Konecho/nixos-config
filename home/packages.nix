@@ -18,15 +18,20 @@
   };
   home.packages = with pkgs;
     [
+      ## windows manager
       cardboard
-      rustdesk
       # swaybg
       # swaylock-effects
+      wofi
       pamixer
+
+      pavucontrol
+      xdg-utils # xdg-open
+
+      rustdesk
       # steam-tui
       # steamcmd
       # steam
-      wofi
 
       # blender
       # gimp
@@ -62,6 +67,9 @@
       socat # <echo 'cycle pause' | socat - /tmp/mpv-socket>
       # obs-studio
 
+
+      ## programming
+      conda
       ## rust-os-project
       rustup
       gcc
@@ -72,6 +80,7 @@
           python-packages = python-packages: with python-packages; [
             # pandas
             pip
+            autopep8
             requests
           ];
           python-with-packages = python3.withPackages python-packages;
@@ -79,7 +88,6 @@
         python-with-packages
       )
 
-      conda
       ## terminal
       fd # find
       ripgrep # <rg> grep
@@ -91,12 +99,11 @@
 
       ## Fonts
       monocraft
-      # maple-font.Mono-SC-NF-v5
 
       imagemagick
       ueberzug
-      autotiling
-      pavucontrol
+
+      neovide # WINIT_UNIX_BACKEND=x11 neovide
     ];
 
 }
