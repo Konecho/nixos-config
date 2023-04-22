@@ -1,4 +1,4 @@
-; eww -c /home/flake/home/.eww open bar
+; eww -c /etc/nixos/home/.eww open bar
 
 (defwidget bar []
   (centerbox :orientation "h"

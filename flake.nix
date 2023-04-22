@@ -1,5 +1,4 @@
 {
-  # sudo ln -s /home/flake/flake.nix /etc/nixos/flake.nix
   # sudo nixos-rebuild switch
   description = "A flake";
 
@@ -51,24 +50,23 @@
               home.homeDirectory = "/home/${username}";
               imports = [ ./home ];
             }
-            impermanence.nixosModules.home-manager.impermanence
-            {
-
-              home.persistence."/nix/persist/home/${username}" = {
-                directories = [
-                  "downloads"
-                  "media"
-                  ".ssh"
-                  ".vscode"
-                  ".config"
-                ];
-                files = [
-                  ".bash_history"
-                ];
-                allowOther = true;
-              };
-            }
-
+            # impermanence.nixosModules.home-manager.impermanence
+            # {
+            #   home.persistence."/nix/persist/home/${username}" = {
+            #     directories = [
+            #       "downloads"
+            #       "media"
+            #       ".ssh"
+            #       ".vscode"
+            #       ".config/Code"
+            #     ];
+            #     files = [
+            #       ".bash_history"
+            #       ".python_history"
+            #     ];
+            #     allowOther = true;
+            #   };
+            # }
           ];
         };
       };
@@ -96,12 +94,9 @@
                   "/var/lib/systemd/coredump"
                   "/etc/NetworkManager/system-connections"
                 ];
-
                 files = [ "/etc/machine-id" ];
               };
-
             }
-
           ];
         };
       };
