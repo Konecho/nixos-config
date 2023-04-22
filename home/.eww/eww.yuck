@@ -15,7 +15,7 @@
       :value {EWW_RAM.used_mem_perc}
     :onchange "")
     (metric :label "disk"
-      :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
+      :value {round((1 - (EWW_DISK["/nix"].free / EWW_DISK["/nix"].total)) * 100, 0)}
     :onchange "")
   time weather))
 

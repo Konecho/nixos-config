@@ -10,6 +10,7 @@
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence.url = "github:nix-community/impermanence";
 
     nur.url = "github:nix-community/NUR";
     hyprland = {
@@ -18,7 +19,7 @@
     };
   };
 
-  outputs = inputs @{ self, nixpkgs, nixos-hardware, home-manager, hyprland, nur, ... }:
+  outputs = inputs @{ self, nixpkgs, nixos-hardware, home-manager, impermanence, hyprland, nur, ... }:
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
@@ -47,9 +48,27 @@
             hyprland.homeManagerModules.default
             {
               home.username = "${username}";
-              # home.homeDirectory = "/home/${username}";
+              home.homeDirectory = "/home/${username}";
               imports = [ ./home ];
             }
+            impermanence.nixosModules.home-manager.impermanence
+            {
+
+              home.persistence."/nix/persist/home/${username}" = {
+                directories = [
+                  "downloads"
+                  "media"
+                  ".ssh"
+                  ".vscode"
+                  ".config"
+                ];
+                files = [
+                  ".bash_history"
+                ];
+                allowOther = true;
+              };
+            }
+
           ];
         };
       };
@@ -60,11 +79,29 @@
             {
               imports = [ ./system ];
               networking.hostName = "${hostname}";
+              # users.users.root.initialPassword = "admin";
               users.users."${username}" = {
                 isNormalUser = true;
+                initialPassword = "5112";
                 extraGroups = [ "wheel" "adbusers" "input" "networkmanager" ];
               };
             }
+            impermanence.nixosModules.impermanence
+            {
+              environment.persistence."/nix/persist" = {
+                directories = [
+                  "/etc/nixos"
+                  "/var/log"
+                  "/var/lib/bluetooth"
+                  "/var/lib/systemd/coredump"
+                  "/etc/NetworkManager/system-connections"
+                ];
+
+                files = [ "/etc/machine-id" ];
+              };
+
+            }
+
           ];
         };
       };
