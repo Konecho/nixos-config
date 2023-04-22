@@ -22,6 +22,7 @@
       cardboard
       # swaybg
       # swaylock-effects
+      kickoff
       wofi
       pamixer
 
