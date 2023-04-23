@@ -19,7 +19,7 @@
     options = [ "defaults" "size=2G" "mode=755" ];
   };
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot2";
+    device = "/dev/disk/by-label/boot";
     fsType = "vfat";
   };
   fileSystems."/home" = {
