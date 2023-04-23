@@ -55,6 +55,10 @@ rec {
   programs = {
     home-manager.enable = true;
     starship = { enable = true; };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
     navi.enable = true;
     bat.enable = true; # cat
     tealdeer.enable = true; # <tldr>
