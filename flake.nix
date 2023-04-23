@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
-
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     nur.url = "github:nix-community/NUR";
     hyprland = {
       url = "github:hyprwm/Hyprland";
@@ -18,7 +18,7 @@
     };
   };
 
-  outputs = inputs @{ self, nixpkgs, nixos-hardware, home-manager, impermanence, hyprland, nur, ... }:
+  outputs = inputs @{ self, nixpkgs, nixos-hardware, home-manager, impermanence, nix-doom-emacs, hyprland, nur, ... }:
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
@@ -48,7 +48,7 @@
             {
               home.username = "${username}";
               home.homeDirectory = "/home/${username}";
-              imports = [ ./home ];
+              imports = [ ./home nix-doom-emacs.hmModule ];
             }
             # impermanence.nixosModules.home-manager.impermanence
             # {

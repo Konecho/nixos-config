@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 rec {
-  home.shellAliases.em = "emacs";
+  home.shellAliases.em = "emacs -nw";
   programs = {
     git = {
       enable = true;
@@ -13,13 +13,19 @@ rec {
       userName = "NixOS";
       userEmail = "me@meiro.top";
     };
-    emacs = {
+    # emacs = {
+    #   enable = true;
+    #   package = pkgs.emacs-nox;
+    #   extraConfig = ''
+    #     (setq standard-indent 2)
+    #   '';
+    #   extraPackages = epkgs: with epkgs;[ nix-mode ];
+    # };
+    doom-emacs = {
       enable = true;
-      package = pkgs.emacs-nox;
-      extraConfig = ''
-        (setq standard-indent 2)
-      '';
-      extraPackages = epkgs: with epkgs;[ nix-mode ];
+      doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
+      # and packages.el files
+      # emacsPackage = pkgs.emacs-nox;
     };
     vscode = {
       enable = true;
