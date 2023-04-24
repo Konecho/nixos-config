@@ -44,7 +44,7 @@
 
 (defwidget sidestuff []
   (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
-    (metric :label "vol"
+    (metric :label {volume=="0"?"muted":"vol"}
       :value ; volume
       {volume==""? 0:volume}
     :onchange "pamixer --set-volume {}")
@@ -93,7 +93,7 @@
 )
 
 (defpoll time :interval "10s"
-"date '+%H:%M %b %d '")
+"date '+%H:%M'")
 
 (defpoll now-paper :interval "10s"
 "scripts/random-wallpaper.sh")
@@ -110,7 +110,11 @@
     ; (button :onclick
       ;   "find '$1'| while read -r img; do echo '$((RANDOM % 1000)):$img' done| sort -n | cut -d':' -f2- | if read -r img; then swww img '$img';fi"
     ; hypr-socket)
-    (button :width "400" :onclick "scripts/random-wallpaper.sh" hypr-socket)
+    (button :width "100"
+      :onmiddleclick "scripts/random-wallpaper.sh"
+      :onrightclick "hyprctl dispatch workspace e+1"
+      :onclick "hyprctl dispatch workspace e-1"
+    hypr-socket)
     (sidestuff)))
 
 (defwindow bar
@@ -118,7 +122,7 @@
   :windowtype "dock"
   :geometry (geometry :x "0%"
     :y "0%"
-    :width "90%"
+    :width "92%"
     :height "20px"
   :anchor "top center")
   :reserve (struts :side "top" :distance "4%")

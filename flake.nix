@@ -45,10 +45,11 @@
           inherit pkgs;
           modules = [
             hyprland.homeManagerModules.default
+            nix-doom-emacs.hmModule
             {
               home.username = "${username}";
-              home.homeDirectory = "/home/${username}";
-              imports = [ ./home nix-doom-emacs.hmModule ];
+              # home.homeDirectory = "/home/${username}";
+              imports = [ ./home ];
             }
             # impermanence.nixosModules.home-manager.impermanence
             # {
@@ -89,6 +90,8 @@
               environment.persistence."/nix/persist" = {
                 directories = [
                   "/etc/nixos"
+                  # "/etc/passwd"
+                  # "/etc/shadow"
                   "/var/log"
                   "/var/lib/bluetooth"
                   "/var/lib/systemd/coredump"

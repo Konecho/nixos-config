@@ -15,6 +15,7 @@
 # Edit bellow to control the images transition
 export SWWW_TRANSITION_FPS=60
 export SWWW_TRANSITION_STEP=2
+export SWWW_TRANSITION_TYPE="random"
 export XDG_CACHE_HOME="/home/mei/.cache"
 img_path="/home/mei/media/photos/pokemon-wallpapers/pokemon"
 

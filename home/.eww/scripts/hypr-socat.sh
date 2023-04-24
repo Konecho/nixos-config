@@ -1,16 +1,23 @@
 #!/usr/bin/env bash
 
 last_window="hypr-socat"
+current_workspace="1"
+# pid=""
 
 function print_scroll() {
-    echo "$last_window" | zscroll -l 40 -d 0.1
+    # if [[ $pid != "" ]]; then
+    #     echo $pid
+    #     kill -9 $pid
+    # fi
+    # (echo "$last_window" | zscroll -b "[$current_workspace]" -l 40 -d 0.5) &
+    # pid=$!
+    echo "[$current_workspace]${last_window:0:40}"
 }
 
 function handle() {
     if [[ ${1:0:6} == "active" ]]; then
         if [[ ${1:6:7} == "window>" ]]; then # no windowv2
             last_window=${1#*,}
-            print_scroll
         fi
         #   elif [[ ${1:0:4} == "move" ]]; then
         #     if [[ ${1:4:7} == "window>" ]]; then # no windowv2
@@ -19,14 +26,11 @@ function handle() {
         #       echo "???"
         #     fi
     elif [[ ${1:0:9} == "workspace" ]]; then
-        echo "workspace:${1#*>>}"
-        sleep 1s
-        print_scroll
+        current_workspace="${1#*>>}"
     else
         echo "$1"
-        sleep 1s
-        print_scroll
     fi
+    print_scroll
 }
 
 # tail -f /tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/hyprland.log
