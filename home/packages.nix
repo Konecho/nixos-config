@@ -20,6 +20,8 @@
     [
       ## windows manager
       cardboard
+
+      swww
       # swaybg
       # swaylock-effects
       kickoff
@@ -58,7 +60,7 @@
       poppler_utils # <pdftotext>
       highlight
       mediainfo
-
+      zscroll
       ## multi-media
       wf-recorder
       ffmpeg
@@ -94,6 +96,7 @@
       ripgrep # <rg> grep
       procs # ps
 
+      jq
       just # make
       sd # sed
       du-dust # <dust> du

@@ -4,6 +4,8 @@ import json
 import requests
 from datetime import datetime
 
+import time
+
 from pathlib import Path
 
 # https://docs.caiyunapp.com/docs/tables/skycon
@@ -32,14 +34,18 @@ t = {'CLEAR_DAY': '晴（白天）',
 
 base_url = 'https://api.caiyunapp.com/v2.6/TAkhjf8d1nlSlspN/113.3401,23.1535/'
 
-realtime = requests.get(
-    base_url + "realtime").json()
+if __name__ == '__main__':
+    # while True:
 
-if realtime['status'] == 'ok':
-    print(t[realtime['result']['realtime']['skycon']], end=' ')
+    realtime = requests.get(
+        base_url + "realtime").json()
+    if realtime['status'] == 'ok':
+        print(t[realtime['result']['realtime']['skycon']], end='')
 
-weather = requests.get(
-    base_url+"minutely").json()
+    if not realtime['result']['realtime']['skycon'] in ['CLEAR_DAY', 'CLEAR_NIGHT']:
+        weather = requests.get(
+            base_url+"minutely").json()
 
-if weather['status'] == 'ok':
-    print(weather['result']['forecast_keypoint'])
+        if weather['status'] == 'ok':
+            print(' '+weather['result']['forecast_keypoint'])
+    # time.sleep(60*10)

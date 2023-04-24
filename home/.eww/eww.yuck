@@ -1,29 +1,9 @@
 ; eww -c /etc/nixos/home/.eww open bar
 
-(defwidget bar []
-  (centerbox :orientation "h"
-    (workspaces)
-    (music)
-    (sidestuff)))
-
-(defwidget sidestuff []
-  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
-    (metric :label "vol"
-      :value volume
-    :onchange "pamixer --set-volume {}")
-    (metric :label "ram"
-      :value {EWW_RAM.used_mem_perc}
-    :onchange "")
-    (metric :label "disk"
-      :value {round((1 - (EWW_DISK["/nix"].free / EWW_DISK["/nix"].total)) * 100, 0)}
-    :onchange "")
-  time weather))
-
 ; hyprctl dispatch workspace e+1
 ; pamixer -t
 ; echo 'cycle pause' | socat - /tmp/mpv-socket
-
-
+;
 (defwidget workspaces []
   (box :class "workspaces"
     :orientation "h"
@@ -38,15 +18,18 @@
     (button :onclick "hyprctl dispatch workspace 6" 6)
     (button :onclick "hyprctl dispatch workspace 7" 7)
     (button :onclick "hyprctl dispatch workspace 8" 8)
-    (button :onclick "hyprctl dispatch workspace 9" 9)))
+    (button :onclick "hyprctl dispatch workspace 9" 9)
+  ))
 
-(defwidget music []
-  (box :class "music"
-    :orientation "h"
-    :space-evenly false
-    :halign "center"
-  {music != "" ? "music!${music}" : ""}))
+; (defwidget music []
+  ;   (box :class "music"
+    ;     :orientation "h"
+    ;     :space-evenly false
+    ;     :halign "center"
+  ;   {music != "" ? "music!${music}" : ""}))
 
+; (deflisten music :initial ""
+; "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
 
 (defwidget metric [label value onchange]
   (box :orientation "h"
@@ -59,17 +42,76 @@
       :value value
     :onchange onchange)))
 
-(deflisten music :initial ""
-"playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+(defwidget sidestuff []
+  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+    (metric :label "vol"
+      :value ; volume
+      {volume==""? 0:volume}
+    :onchange "pamixer --set-volume {}")
+    (metric :label "ram"
+      :value {EWW_RAM.used_mem_perc}
+    :onchange "")
+    (metric :label "disk"
+      :value {round((1 - (EWW_DISK["/nix"].free / EWW_DISK["/nix"].total)) * 100, 0)}
+    :onchange "")
+    time
+  ))
+
+(defwidget weather []
+  (box :class "weather" :orientation "h" :space-evenly false :halign "center"
+    weather-rain
+    ; music
+  ))
+
+(defwidget activewindow []
+  (scroll :vscroll false :class "activewindow" :halign "start" :width "400"
+    ; {
+    ; replace(
+      ;   replace(
+        ;     replace(
+          ;       captures(hypr-socket ,"[a-z]+(window|workspace)>>(.+),(.+)")[0][3],
+        ;     "activewindow>>","🪟"),
+      ;   "destroyworkspace>>","💣"),
+    ; "workspace>>","🎂")
+    ; }
+    hypr-socket
+    ; music
+  ))
+;
+; [1]type[2]class[3]title
+; (defvar hypr-info
+  ;   {captures(hypr-socket ,"[a-z]+(window|workspace)>>(.+),(.+)")[0]})
+
 
 (defpoll volume :interval "1s"
 "pamixer --get-volume")
 
+; https://wiki.hyprland.org/IPC/
+(deflisten hypr-socket :initial "hyprland"
+  "scripts/hypr-socat.sh"
+  ; "socat -U - UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+)
+
 (defpoll time :interval "10s"
 "date '+%H:%M %b %d '")
 
-(defpoll weather :interval "10m"
-"scripts/caiyun.py")
+(defpoll now-paper :interval "10s"
+"scripts/random-wallpaper.sh")
+
+(defpoll weather-rain :interval "10m"
+  "scripts/caiyun.py"
+  ; "zscroll -l 2 -d 1 -u 'scripts/caiyun.py'"
+)
+
+(defwidget bar []
+  (centerbox :orientation "h"
+    (weather)
+    ; (activewindow)
+    ; (button :onclick
+      ;   "find '$1'| while read -r img; do echo '$((RANDOM % 1000)):$img' done| sort -n | cut -d':' -f2- | if read -r img; then swww img '$img';fi"
+    ; hypr-socket)
+    (button :width "400" :onclick "scripts/random-wallpaper.sh" hypr-socket)
+    (sidestuff)))
 
 (defwindow bar
   :monitor 0
