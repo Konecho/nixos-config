@@ -12,27 +12,55 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-
-  fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = [ "defaults" "size=2G" "mode=755" ];
-  };
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
-    fsType = "vfat";
-  };
-  fileSystems."/home" = {
-    device = "/dev/disk/by-label/home";
-    fsType = "ext4";
-  };
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-label/nix";
-    fsType = "ext4";
-    neededForBoot = true;
-    options = [ "noatime" ];
-  };
-
+  fileSystems =
+    let
+      # https://archive.kernel.org/oldwiki/btrfs.wiki.kernel.org/index.php/FAQ.html#Can_I_mount_subvolumes_with_different_mount_options.3F
+      btrfsops = [
+        "noatime"
+        "defaults"
+        "nodev"
+        "nosuid"
+        "rw"
+        # ^:generic v:specific
+        "autodefrag"
+        "compress=zstd"
+        "space_cache=v2"
+        "ssd"
+      ];
+    in
+    {
+      "/" = {
+        device = "none";
+        fsType = "tmpfs";
+        options = [ "defaults" "size=2G" "mode=755" ];
+      };
+      "/boot" = {
+        device = "/dev/disk/by-label/boot";
+        fsType = "vfat";
+      };
+      "/nix" = {
+        device = "/dev/disk/by-label/btrfs";
+        fsType = "btrfs";
+        neededForBoot = true;
+        options = btrfsops ++ [ "subvol=@nix" ];
+      };
+      "/persist" = {
+        device = "/dev/disk/by-label/btrfs";
+        fsType = "btrfs";
+        neededForBoot = true;
+        options = btrfsops ++ [ "subvol=@persist" ];
+      };
+    };
+  # fileSystems."/home" = {
+  #   device = "/dev/disk/by-label/home";
+  #   fsType = "ext4";
+  # };
+  # fileSystems."/nix" = {
+  #   device = "/dev/disk/by-label/nix";
+  #   fsType = "ext4";
+  #   neededForBoot = true;
+  #   options = [ "noatime" ];
+  # };
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

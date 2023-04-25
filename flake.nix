@@ -87,8 +87,9 @@
             }
             impermanence.nixosModules.impermanence
             {
-              environment.persistence."/nix/persist" = {
+              environment.persistence."/persist" = {
                 directories = [
+                  "/home"
                   "/etc/nixos"
                   # "/etc/passwd"
                   # "/etc/shadow"

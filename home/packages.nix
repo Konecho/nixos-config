@@ -95,6 +95,7 @@
       fd # find
       ripgrep # <rg> grep
       procs # ps
+      comma
 
       jq
       just # make
