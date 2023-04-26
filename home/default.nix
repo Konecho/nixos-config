@@ -1,6 +1,6 @@
 # <home-manager switch --flake .#mei> 
 # <nix run nixpkgs#nyancat> #disfetch #neofetch #hyfetch
-{ pkgs, config, ... }:
+{ pkgs, config, flake-utils, ... }:
 
 rec {
   nix.package = pkgs.nix;
@@ -27,10 +27,10 @@ rec {
     sessionPath = [ "$HOME/.cargo/bin" ];
     sessionVariables = {
       TERMINAL = "alacritty";
-      SWWW_TRANSITION_FPS = 60;
-      SWWW_TRANSITION_STEP = 2;
-      SWWW_TRANSITION_TYPE = "random";
-      XDG_CACHE_HOME = "${home.homeDirectory}/.cache";
+      # SWWW_TRANSITION_FPS = 60;
+      # SWWW_TRANSITION_STEP = 2;
+      # SWWW_TRANSITION_TYPE = "random";
+      # XDG_CACHE_HOME = "${home.homeDirectory}/.cache";
     };
   };
 
@@ -46,7 +46,7 @@ rec {
       # rime-data
     ];
   };
-  xdg.cacheHome = "${home.homeDirectory}/.cache";
+  # xdg.cacheHome = "${home.homeDirectory}/.cache";
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
@@ -102,18 +102,7 @@ rec {
       enable = true;
       previewer = {
         keybinding = "i";
-        source = pkgs.writeShellScript "pv.sh" ''
-          #!/bin/sh
-          case "$1" in
-              *.tar*) tar tf "$1";;
-              *.zip) unzip -l "$1";;
-              *.rar) unrar l "$1";;
-              *.7z) 7z l "$1";;
-              *.pdf) pdftotext "$1" -;;
-              *.mp3|*.avi|*.mp4|*.webm|*.mkv|*.flv|*.mov|*.mpg|*.wmv|*.ogg) mediainfo "$1";;
-              *) highlight -O ansi "$1" || cat "$1";;
-          esac
-        '';
+        source = "${(pkgs.callPackage ./mypkgs/lf-pv { } )}/bin/lf-pv";
       };
     };
   };

@@ -111,9 +111,10 @@
       ;   "find '$1'| while read -r img; do echo '$((RANDOM % 1000)):$img' done| sort -n | cut -d':' -f2- | if read -r img; then swww img '$img';fi"
     ; hypr-socket)
     (button :width "100"
-      :onmiddleclick "pokemon -w"
-      :onrightclick "hyprctl dispatch workspace e+1"
-      :onclick "hyprctl dispatch workspace e-1"
+      ; :onmiddleclick "pokemon -w"
+      ; :onrightclick "hyprctl dispatch workspace e+1"
+      ; :onclick "hyprctl dispatch workspace e-1"
+      :onclick "pokemon -w"
     hypr-socket)
     (sidestuff)))
 

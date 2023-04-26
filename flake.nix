@@ -3,6 +3,7 @@
   description = "A flake";
 
   inputs = {
+    flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager = {
@@ -18,7 +19,7 @@
     };
   };
 
-  outputs = inputs @{ self, nixpkgs, nixos-hardware, home-manager, impermanence, nix-doom-emacs, hyprland, nur, ... }:
+  outputs = inputs @{ self, nixpkgs, flake-utils, nixos-hardware, home-manager, impermanence, nix-doom-emacs, hyprland, nur, ... }:
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";

@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, flake-utils, ... }:
 
 # let maple-font = pkgs.callPackage ./maple-font.nix { }; in
 {
@@ -26,11 +26,11 @@
       # swaybg
       # swaylock-effects
       kickoff
-      wofi
+      # wofi
       pamixer
 
       pavucontrol
-      xdg-utils # xdg-open
+      xdg-utils # <xdg-open>
 
       rustdesk
       # steam-tui
@@ -54,13 +54,16 @@
       scrcpy
 
       ## lib for <lf>
-      unrar
-      unzip
-      p7zip # <7z>
-      w3m
-      poppler_utils # <pdftotext>
-      highlight
-      mediainfo
+      # unrar
+      # unzip
+      # p7zip # <7z>
+      # w3m
+      # poppler_utils # <pdftotext>
+      # highlight
+      # mediainfo
+      # chafa
+      # timg
+
       zscroll
       ## multi-media
       wf-recorder
@@ -73,7 +76,7 @@
 
 
       ## programming
-      conda
+      # conda
       ## rust-os-project
       rustup
       gcc
@@ -96,7 +99,7 @@
       fd # find
       ripgrep # <rg> grep
       procs # ps
-      comma
+      comma # , <command>
 
       jq
       just # make
@@ -107,7 +110,7 @@
       monocraft
 
       imagemagick
-      ueberzug
+      # ueberzug
 
       neovide # WINIT_UNIX_BACKEND=x11 neovide
     ];
