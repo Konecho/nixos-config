@@ -1,4 +1,4 @@
-{ pkgs, config, lib, flake-utils, ... }:
+{ pkgs, config, lib, ... }:
 
 # let maple-font = pkgs.callPackage ./maple-font.nix { }; in
 {

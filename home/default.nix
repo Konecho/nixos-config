@@ -1,6 +1,6 @@
 # <home-manager switch --flake .#mei> 
 # <nix run nixpkgs#nyancat> #disfetch #neofetch #hyfetch
-{ pkgs, config, flake-utils, ... }:
+{ pkgs, config, ... }:
 
 rec {
   nix.package = pkgs.nix;
