@@ -18,6 +18,7 @@
   };
   home.packages = with pkgs;
     [
+      (pkgs.callPackage ./mypkgs/pokemon-wallpaper { })
       ## windows manager
       cardboard
 

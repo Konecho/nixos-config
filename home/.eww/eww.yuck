@@ -96,7 +96,7 @@
 "date '+%H:%M'")
 
 (defpoll now-paper :interval "10s"
-"scripts/random-wallpaper.sh")
+"pokemon")
 
 (defpoll weather-rain :interval "10m"
   "scripts/caiyun.py"
@@ -111,7 +111,7 @@
       ;   "find '$1'| while read -r img; do echo '$((RANDOM % 1000)):$img' done| sort -n | cut -d':' -f2- | if read -r img; then swww img '$img';fi"
     ; hypr-socket)
     (button :width "100"
-      :onmiddleclick "scripts/random-wallpaper.sh"
+      :onmiddleclick "pokemon -w"
       :onrightclick "hyprctl dispatch workspace e+1"
       :onclick "hyprctl dispatch workspace e-1"
     hypr-socket)

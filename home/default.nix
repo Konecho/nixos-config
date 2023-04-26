@@ -20,12 +20,18 @@ rec {
       };
     };
   };
-  home = {
+  home = rec {
     stateVersion = "22.11";
     # username = "${username}";
     homeDirectory = "/home/${config.home.username}";
     sessionPath = [ "$HOME/.cargo/bin" ];
-    sessionVariables = { TERMINAL = "alacritty"; };
+    sessionVariables = {
+      TERMINAL = "alacritty";
+      SWWW_TRANSITION_FPS = 60;
+      SWWW_TRANSITION_STEP = 2;
+      SWWW_TRANSITION_TYPE = "random";
+      XDG_CACHE_HOME = "${home.homeDirectory}/.cache";
+    };
   };
 
   imports = [ ./desktop.nix ./music.nix ./editors.nix ./packages.nix ];
@@ -40,6 +46,7 @@ rec {
       # rime-data
     ];
   };
+  xdg.cacheHome = "${home.homeDirectory}/.cache";
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
@@ -54,29 +61,38 @@ rec {
   };
   programs = {
     home-manager.enable = true;
-    starship = { enable = true; };
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
+
+    starship.enable = true;
     navi.enable = true;
     bat.enable = true; # cat
-    tealdeer.enable = true; # <tldr>
-    tealdeer.settings = {
-      display = {
-        compact = false;
-        use_pager = true;
-      };
-      updates = {
-        auto_update = true;
-      };
-    };
     zellij.enable = true; # tmux
     zoxide.enable = true; # <z> cd
     bottom.enable = true; # <btm> top
     mcfly.enable = true; # <ctrl-r>
-    broot.enable = true; # <br> tree-view search
-    lsd = { enable = true; enableAliases = true; }; # ls
+    broot.enable = true; # <br> tree-view search 
+
+    # ls
+    lsd = {
+      enable = true;
+      enableAliases = true;
+    };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+    # <tldr>
+    tealdeer = {
+      enable = true;
+      settings = {
+        display = {
+          compact = false;
+          use_pager = true;
+        };
+        updates = {
+          auto_update = true;
+        };
+      };
+    };
     bash = {
       enable = true;
       # profileExtra = ""; 
