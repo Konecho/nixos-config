@@ -8,7 +8,7 @@
   ];
   programs = {
     adb.enable = true;
-    sway.enable = true;
+    # sway.enable = true;
     clash-verge.enable = true;
     git = {
       enable = true;

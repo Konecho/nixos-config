@@ -22,7 +22,6 @@
   #     fcitx5-rime
   #   ];
   # };
-
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
@@ -48,8 +47,7 @@
       defaultFonts = {
         emoji = [ "Noto Color Emoji" ];
         monospace = [
-          "UbuntuMono Nerd Font Mono"
-          # "Noto Sans Mono CJK SC"
+          "Noto Sans Mono CJK SC"
           # "DejaVu Sans Mono"
         ];
         sansSerif = [

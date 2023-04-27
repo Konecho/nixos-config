@@ -13,6 +13,7 @@
     impermanence.url = "github:nix-community/impermanence";
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     nur.url = "github:nix-community/NUR";
+    my-nixpkgs.url = "github:Konecho/my-nixpkgs";
     hyprland = {
       url = "github:hyprwm/Hyprland";
       # inputs.nixpkgs.follows = "nixpkgs";

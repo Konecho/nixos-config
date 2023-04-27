@@ -35,7 +35,7 @@ rec {
     enable = true;
     font = {
       size = 12;
-      name = "Maple Mono SC NF";
+      name = "Maple Mono SC NF Regular";
     };
     settings = { background_opacity = "0.8"; window_border_width = "2px"; window_margin_width = 1; };
   };

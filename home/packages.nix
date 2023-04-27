@@ -10,7 +10,7 @@
   #   "steamcmd"
   #   "steam"
   #   "steam-original"
-  # ];
+  # ];q
   fonts.fontconfig.enable = true;
   gtk.font = {
     package = pkgs.maple-mono-SC-NF;

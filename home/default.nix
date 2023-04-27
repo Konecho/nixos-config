@@ -19,6 +19,19 @@ rec {
         type = "github";
       };
     };
+    m = {
+      # flake = pkgs;
+      from = {
+        id = "m";
+        type = "indirect";
+      };
+      to = {
+        owner = "Konecho";
+        ref = "master";
+        repo = "my-nixpkgs";
+        type = "github";
+      };
+    };
   };
   home = rec {
     stateVersion = "22.11";
@@ -102,7 +115,7 @@ rec {
       enable = true;
       previewer = {
         keybinding = "i";
-        source = "${(pkgs.callPackage ./mypkgs/lf-pv { } )}/bin/lf-pv";
+        source = "${pkgs.ctpv}/bin/ctpv";
       };
     };
   };
