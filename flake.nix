@@ -84,7 +84,7 @@
               users.users."${username}" = {
                 isNormalUser = true;
                 initialPassword = "5112";
-                extraGroups = [ "wheel" "adbusers" "input" "networkmanager" ];
+                extraGroups = [ "wheel" "adbusers" "input" "networkmanager" "video" ];
               };
             }
             impermanence.nixosModules.impermanence
@@ -93,14 +93,16 @@
                 directories = [
                   "/home"
                   "/etc/nixos"
-                  # "/etc/passwd"
-                  # "/etc/shadow"
                   "/var/log"
                   "/var/lib/bluetooth"
                   "/var/lib/systemd/coredump"
                   "/etc/NetworkManager/system-connections"
                 ];
-                files = [ "/etc/machine-id" ];
+                files = [
+                  "/etc/machine-id"
+                  # "/etc/passwd"
+                  # "/etc/shadow"
+                ];
               };
             }
           ];

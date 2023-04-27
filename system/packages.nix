@@ -5,10 +5,11 @@
     wget
     rnix-lsp
     home-manager
+    fbterm
   ];
   programs = {
     adb.enable = true;
-    # sway.enable = true;
+    hyprland.enable = true;
     clash-verge.enable = true;
     git = {
       enable = true;
