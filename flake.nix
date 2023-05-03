@@ -14,16 +14,27 @@
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     nur.url = "github:nix-community/NUR";
     my-nixpkgs.url = "github:Konecho/my-nixpkgs";
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = inputs @{ self, nixpkgs, nixos-hardware, home-manager, impermanence, nix-doom-emacs, hyprland, nur, ... }:
+  outputs =
+    inputs @{ self
+    , nixpkgs
+    , nixos-hardware
+    , home-manager
+    , impermanence
+    , nix-doom-emacs
+    , nur
+    , hyprland
+    , ...
+    }:
     let
+      system = "x86_64-linux";
+      username = "mei";
+      hostname = "deskmini";
+
       pkgs = import nixpkgs {
-        system = "x86_64-linux";
+        inherit system;
         config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
           "android-studio-stable"
           "microsoft-edge-stable"
@@ -38,75 +49,72 @@
           "steamcmd"
         ];
       };
-      username = "mei";
-      hostname = "deskmini";
+
     in
     {
-      homeConfigurations = {
-        "${username}" = home-manager.lib.homeManagerConfiguration rec {
-          inherit pkgs;
-          modules = [
-            hyprland.homeManagerModules.default
-            nix-doom-emacs.hmModule
-            {
-              home.username = "${username}";
-              # home.homeDirectory = "/home/${username}";
-              imports = [ ./home ];
-            }
-            # impermanence.nixosModules.home-manager.impermanence
-            # {
-            #   home.persistence."/nix/persist/home/${username}" = {
-            #     directories = [
-            #       "downloads"
-            #       "media"
-            #       ".ssh"
-            #       ".vscode"
-            #       ".config/Code"
-            #     ];
-            #     files = [
-            #       ".bash_history"
-            #       ".python_history"
-            #     ];
-            #     allowOther = true;
-            #   };
-            # }
-          ];
-        };
+      homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration rec {
+        inherit pkgs;
+        modules = [
+          hyprland.homeManagerModules.default
+          nix-doom-emacs.hmModule
+          {
+            home.username = "${username}";
+            # home.homeDirectory = "/home/${username}";
+            imports = [ ./home ];
+          }
+          # impermanence.nixosModules.home-manager.impermanence
+          # {
+          #   home.persistence."/nix/persist/home/${username}" = {
+          #     directories = [
+          #       "downloads"
+          #       "media"
+          #       ".ssh"
+          #       ".vscode"
+          #       ".config/Code"
+          #     ];
+          #     files = [
+          #       ".bash_history"
+          #       ".python_history"
+          #     ];
+          #     allowOther = true;
+          #   };
+          # }
+        ];
       };
-      nixosConfigurations = {
-        "${hostname}" = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hardware-configuration.nix
-            {
-              imports = [ ./system ];
-              networking.hostName = "${hostname}";
-              # users.users.root.initialPassword = "admin";
-              users.users."${username}" = {
-                isNormalUser = true;
-                initialPassword = "5112";
-                extraGroups = [ "wheel" "adbusers" "input" "networkmanager" "video" ];
-              };
-            }
-            impermanence.nixosModules.impermanence
-            {
-              environment.persistence."/persist" = {
-                directories = [
-                  "/home"
-                  "/etc/nixos"
-                  "/var/log"
-                  "/var/lib/bluetooth"
-                  "/var/lib/systemd/coredump"
-                  "/etc/NetworkManager/system-connections"
-                ];
-                files = [
-                  "/etc/machine-id"
-                  # "/etc/passwd"
-                  # "/etc/shadow"
-                ];
-              };
-            }
-          ];
-        };
+
+      nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hardware-configuration.nix
+          {
+            imports = [ ./system ];
+            networking.hostName = "${hostname}";
+            # users.users.root.initialPassword = "admin";
+            users.users."${username}" = {
+              isNormalUser = true;
+              initialPassword = "5112";
+              extraGroups = [ "wheel" "adbusers" "input" "networkmanager" "video" ];
+            };
+          }
+          impermanence.nixosModules.impermanence
+          {
+            environment.persistence."/persist" = {
+              directories = [
+                "/home"
+                "/etc/nixos"
+                "/var/log"
+                "/var/lib/bluetooth"
+                "/var/lib/systemd/coredump"
+                "/etc/NetworkManager/system-connections"
+              ];
+              files = [
+                "/etc/machine-id"
+                # "/etc/passwd"
+                # "/etc/shadow"
+              ];
+            };
+          }
+        ];
       };
+
     };
 }

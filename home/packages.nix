@@ -2,15 +2,6 @@
 
 # let maple-font = pkgs.callPackage ./maple-font.nix { }; in
 {
-  # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  #   "microsoft-edge-stable"
-  #   "vscode"
-  #   "obsidian"
-  #   "unrar"
-  #   "steamcmd"
-  #   "steam"
-  #   "steam-original"
-  # ];q
   fonts.fontconfig.enable = true;
   gtk.font = {
     package = pkgs.maple-mono-SC-NF;
