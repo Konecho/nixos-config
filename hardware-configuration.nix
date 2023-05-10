@@ -50,6 +50,12 @@
         neededForBoot = true;
         options = btrfsops ++ [ "subvol=@persist" ];
       };
+      "/backup" = {
+        device = "/dev/disk/by-label/backup";
+        fsType = "btrfs";
+        # neededForBoot = false;
+        options = [ "defaults" ];
+      };
     };
   # fileSystems."/home" = {
   #   device = "/dev/disk/by-label/home";

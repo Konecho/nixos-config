@@ -101,10 +101,9 @@
               directories = [
                 "/home"
                 "/etc/nixos"
-                "/var/log"
-                "/var/lib/bluetooth"
-                "/var/lib/systemd/coredump"
                 "/etc/NetworkManager/system-connections"
+                "/var/log"
+                "/var/lib"
               ];
               files = [
                 "/etc/machine-id"

@@ -27,6 +27,8 @@
     # anbox.enable = true;
     # libvirtd.enable = true;
     docker.enable = true;
+    docker.storageDriver = "btrfs";
     # waydroid.enable = true;
   };
+  services.duplicati = { enable = true; };
 }

@@ -13,6 +13,14 @@
       ## windows manager
       cardboard
 
+      vtm
+      sc-im
+      mc
+      calc
+
+      jdk17
+      udev
+
       swww
       # swaybg
       # swaylock-effects
@@ -23,7 +31,7 @@
       pavucontrol
       xdg-utils # <xdg-open>
 
-      rustdesk
+      # rustdesk
       # steam-tui
       # steamcmd
       # steam
@@ -34,7 +42,7 @@
       # inkscape
       # krita
 
-      # microsoft-edge
+      microsoft-edge
       # obsidian
       # libreoffice
       # onlyoffice-bin
@@ -96,6 +104,7 @@
       just # make
       sd # sed
       du-dust # <dust> du
+      gdu
 
       ## Fonts
       monocraft
