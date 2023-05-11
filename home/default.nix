@@ -40,6 +40,7 @@ rec {
     sessionPath = [ "$HOME/.cargo/bin" ];
     sessionVariables = {
       TERMINAL = "alacritty";
+      DOCKER_HOST = "unix:///run/docker.sock";
       # SWWW_TRANSITION_FPS = 60;
       # SWWW_TRANSITION_STEP = 2;
       # SWWW_TRANSITION_TYPE = "random";

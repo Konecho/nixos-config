@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     home-manager
-    fbterm
+    # fbterm
   ];
   programs = {
     adb.enable = true;
@@ -25,7 +25,10 @@
     docker = {
       enable = true;
       storageDriver = "btrfs";
-      rootless = { enable = true; setSocketVariable = true; };
+      rootless = {
+        enable = true;
+        # setSocketVariable = true;
+      };
     };
     # waydroid.enable = true;
   };

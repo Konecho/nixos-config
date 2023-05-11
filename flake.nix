@@ -93,12 +93,17 @@
           ./hardware-configuration.nix
           {
             imports = [ ./system ];
+            nixpkgs.overlays = [
+              (self: super: rec {
+                mypkgs = my-nixpkgs.packages."${system}";
+              })
+            ];
             networking.hostName = "${hostname}";
             # users.users.root.initialPassword = "admin";
             users.users."${username}" = {
               isNormalUser = true;
               initialPassword = "5112";
-              extraGroups = [ "wheel" "adbusers" "input" "networkmanager" "video" ];
+              extraGroups = [ "wheel" "adbusers" "input" "networkmanager" "video" "docker" ];
             };
           }
           impermanence.nixosModules.impermanence

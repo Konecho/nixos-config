@@ -27,13 +27,14 @@
       vt = 7;
       settings = rec {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember-session --cmd Hyprland --user-menu --time --time-format '%a, %d %h %Y - %H:%M'"; #sway
+          command = "${pkgs.greetd.greetd}/bin/agreety --cmd Hyprland"; #sway
           # user = "mei";
         };
       };
     };
     journald.console = "/dev/tty1";
   };
+  services.gpm.enable = true;
   # programs.regreet = {
   #   enable = true;
   #   settings.default_session = { command = "Hyprland"; user = "mei"; };
