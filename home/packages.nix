@@ -9,35 +9,34 @@
   };
   home.packages = with pkgs;
     [
-      (pkgs.callPackage ./mypkgs/pokemon-wallpaper { })
-      ## windows manager
-      # cardboard
-
+      ## [[nix]]
       nix-init
-      wget
       rnix-lsp
 
+
+      ## [[tui]]
       vtm
       sc-im
       mc
       calc
 
 
+      ## [[desktop]]
+      # cardboard # windows manager
+      mypkgs.pokemon-terminal
       swww
+      kickoff
       # swaybg
       # swaylock-effects
-      kickoff
       # wofi
-      pamixer
 
-      pavucontrol
-      xdg-utils # <xdg-open>
-
-      # rustdesk
       # steam-tui
       # steamcmd
       # steam
 
+
+      ## [[productivity]]
+      # rustdesk
       # blender
       # gimp
       # godot
@@ -45,28 +44,20 @@
       # krita
 
       microsoft-edge
+      firefox
       # obsidian
       # libreoffice
       # onlyoffice-bin
-      firefox
       # thunderbird
 
       # android-studio
       scrcpy
 
-      ## lib for <lf>
-      # unrar
-      # unzip
-      # p7zip # <7z>
-      # w3m
-      # poppler_utils # <pdftotext>
-      # highlight
-      # mediainfo
-      # chafa
-      # timg
 
-      zscroll
-      ## multi-media
+      ## [[multi-media]]
+      xdg-utils # <xdg-open>
+      pamixer
+      pavucontrol
       wf-recorder
       ffmpeg
       yt-dlp
@@ -76,9 +67,8 @@
       # obs-studio
 
 
-      ## programming
+      ## [[programming]]
       # conda
-      ## rust-os-project
       rustup
       gcc
       qemu
@@ -96,7 +86,10 @@
         python-with-packages
       )
 
-      ## terminal
+
+      ## [[terminal]]
+      zscroll
+      wget
       fd # find
       ripgrep # <rg> grep
       procs # ps
@@ -108,13 +101,26 @@
       du-dust # <dust> du
       gdu
 
-      ## Fonts
-      monocraft
-
       imagemagick
       # ueberzug
 
+      ## lib for <lf>
+      # unrar
+      # unzip
+      # p7zip # <7z>
+      # w3m
+      # poppler_utils # <pdftotext>
+      # highlight
+      # mediainfo
+      # chafa
+      # timg
+
+
+      ## [[Fonts]]
+      monocraft
+
       neovide # WINIT_UNIX_BACKEND=x11 neovide
+
     ];
 
 }

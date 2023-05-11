@@ -25,6 +25,7 @@
     , impermanence
     , nix-doom-emacs
     , nur
+    , my-nixpkgs
     , hyprland
     , ...
     }:
@@ -47,6 +48,11 @@
           "steam"
           "steam-run"
           "steamcmd"
+        ];
+        overlays = [
+          (self: super: rec {
+            mypkgs = my-nixpkgs.packages."${system}";
+          })
         ];
       };
 

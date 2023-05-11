@@ -17,7 +17,7 @@
                     </scrollback>
                     <color>
                         <color4>bluedk</color4>
-                        <color15>whitelt</color4>
+                        <color15>whitelt</color15>
                         <default>
                             <bgc>0</bgc>
                             <fgc>15</fgc>
