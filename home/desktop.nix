@@ -47,11 +47,11 @@ rec {
       font.size = 12;
     };
   };
-  home.file.cardboard-config = {
+  home.file.vtm-config = {
     enable = true;
-    executable = true;
-    source = ./styles/cardboardrc;
-    target = ".config/cardboard/cardboardrc";
+    executable = false;
+    source = ./styles/vtm.xml;
+    target = ".config/vtm/settings.xml";
   };
   programs = {
     eww = {

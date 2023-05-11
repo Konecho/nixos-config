@@ -2,8 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    wget
-    rnix-lsp
     home-manager
     fbterm
   ];
@@ -26,8 +24,11 @@
   virtualisation = {
     # anbox.enable = true;
     # libvirtd.enable = true;
-    docker.enable = true;
-    docker.storageDriver = "btrfs";
+    docker = {
+      enable = true;
+      storageDriver = "btrfs";
+      rootless = { enable = true; setSocketVariable = true; };
+    };
     # waydroid.enable = true;
   };
   services.duplicati = { enable = true; };

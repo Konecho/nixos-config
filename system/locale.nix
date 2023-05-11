@@ -28,15 +28,15 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      fira-code
-      fira-code-symbols
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "UbuntuMono"
-          # "Noto"
-        ];
-      })
+      # fira-code
+      # fira-code-symbols
+      # (nerdfonts.override {
+      #   fonts = [
+      #     # "FiraCode"
+      #     # "UbuntuMono"
+      #     # "Noto"
+      #   ];
+      # })
       # sarasa-gothic #更纱黑体
       # source-code-pro
       # hack-font

@@ -11,15 +11,17 @@
     [
       (pkgs.callPackage ./mypkgs/pokemon-wallpaper { })
       ## windows manager
-      cardboard
+      # cardboard
+
+      nix-init
+      wget
+      rnix-lsp
 
       vtm
       sc-im
       mc
       calc
 
-      jdk17
-      udev
 
       swww
       # swaybg
