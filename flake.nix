@@ -103,6 +103,7 @@
             users.users."${username}" = {
               isNormalUser = true;
               initialPassword = "5112";
+              shell = pkgs.fish;
               extraGroups = [ "wheel" "adbusers" "input" "networkmanager" "video" "docker" ];
             };
           }

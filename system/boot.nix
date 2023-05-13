@@ -33,8 +33,20 @@
       };
     };
     journald.console = "/dev/tty1";
+    gpm.enable = true;
+    kmscon = {
+      enable = true;
+      fonts = [{
+        package = pkgs.maple-mono-SC-NF;
+        name = "Maple Mono SC NF";
+      }];
+      extraOptions = "--term xterm-256color";
+      extraConfig = "font-size=14";
+    };
   };
-  services.gpm.enable = true;
+  systemd.services."kmsconvt@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
+
   # programs.regreet = {
   #   enable = true;
   #   settings.default_session = { command = "Hyprland"; user = "mei"; };

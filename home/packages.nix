@@ -64,7 +64,7 @@
       mpv
       mpvpaper
       socat # <echo 'cycle pause' | socat - /tmp/mpv-socket>
-      # obs-studio
+      obs-studio
 
 
       ## [[programming]]
