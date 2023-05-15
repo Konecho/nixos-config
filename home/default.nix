@@ -73,38 +73,17 @@ rec {
     pictures = "$HOME/media/photos";
     videos = "$HOME/media/video";
   };
+
+  home.shellAliases = { man = "batman"; };
   programs = {
     home-manager.enable = true;
 
-    starship.enable = true;
-    navi.enable = true;
-    bat.enable = true; # cat
-    zellij.enable = true; # tmux
-    zoxide.enable = true; # <z> cd
-    bottom.enable = true; # <btm> top
-    mcfly.enable = true; # <ctrl-r>
-    broot.enable = true; # <br> tree-view search 
-
-    # ls
-    lsd = {
-      enable = true;
-      enableAliases = true;
-    };
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
-    # <tldr>
-    tealdeer = {
+    alacritty = {
       enable = true;
       settings = {
-        display = {
-          compact = false;
-          use_pager = true;
-        };
-        updates = {
-          auto_update = true;
-        };
+        opacity = 0.8;
+        font.normal.family = "Maple Mono SC NF";
+        font.size = 12;
       };
     };
     bash = {
@@ -114,6 +93,10 @@ rec {
     };
     fish = {
       enable = true;
+      functions.fish_greeting = ''
+        # ${pkgs.mypkgs.fortunes}/bin/fortune-cn chinese | ${pkgs.pokemonsay}/bin/pokemonsay
+        ${pkgs.mypkgs.fortunes}/bin/fortune-cn chinese | ${pkgs.cowsay}/bin/cowsay
+      '';
       loginShellInit = ''
         # Fish syntax highlighting
         set -g fish_color_autosuggestion '555'  'brblack'
@@ -136,14 +119,49 @@ rec {
         set -g fish_color_search_match 'bryellow'  '--background=brblack'
         set -g fish_color_selection 'white'  '--bold'  '--background=brblack'
         set -g fish_color_user brgreen
-        set -g fish_color_valid_path --underline      
+        set -g fish_color_valid_path --underline
       '';
     };
+    starship.enable = true;
+    navi.enable = true;
+    bat = {
+      enable = true; # cat
+      # https://github.com/eth-p/bat-extras
+      extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch batpipe prettybat ];
+    };
+    zellij.enable = true; # tmux
+    zoxide.enable = true; # <z> cd
+    bottom.enable = true; # <btm> top
+    mcfly.enable = true; # <ctrl-r>
+    broot.enable = true; # <br> tree-view search 
+
     lf = {
       enable = true;
       previewer = {
         keybinding = "i";
         source = "${pkgs.ctpv}/bin/ctpv";
+      };
+    };
+    # ls
+    lsd = {
+      enable = true;
+      enableAliases = true;
+    };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+    # <tldr>
+    tealdeer = {
+      enable = true;
+      settings = {
+        display = {
+          compact = false;
+          use_pager = true;
+        };
+        updates = {
+          auto_update = true;
+        };
       };
     };
   };

@@ -31,22 +31,6 @@ rec {
       '';
     };
   };
-  programs.kitty = {
-    enable = true;
-    font = {
-      size = 12;
-      name = "Maple Mono SC NF Regular";
-    };
-    settings = { background_opacity = "0.8"; window_border_width = "2px"; window_margin_width = 1; };
-  };
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      opacity = 0.8;
-      font.normal.family = "Maple Mono SC NF";
-      font.size = 12;
-    };
-  };
   home.file.vtm-config = {
     enable = true;
     executable = false;

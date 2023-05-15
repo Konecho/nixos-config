@@ -52,6 +52,7 @@
         overlays = [
           (self: super: rec {
             mypkgs = my-nixpkgs.packages."${system}";
+            cowsay = super.neo-cowsay;
           })
         ];
       };

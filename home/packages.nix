@@ -91,6 +91,7 @@
       zscroll
       wget
       fd # find
+      fzf
       ripgrep # <rg> grep
       procs # ps
       comma # , <command>
