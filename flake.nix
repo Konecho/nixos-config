@@ -53,7 +53,9 @@
           (self: super: rec {
             mypkgs = my-nixpkgs.packages."${system}";
             cowsay = super.neo-cowsay;
+            # winfonts = nur.repos.vanilla.Win10_LTSC_2019_fonts;
           })
+          nur.overlay
         ];
       };
 
@@ -89,44 +91,45 @@
         ];
       };
 
-      nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./hardware-configuration.nix
-          {
-            imports = [ ./system ];
-            nixpkgs.overlays = [
-              (self: super: rec {
-                mypkgs = my-nixpkgs.packages."${system}";
-              })
-            ];
-            networking.hostName = "${hostname}";
-            # users.users.root.initialPassword = "admin";
-            users.users."${username}" = {
-              isNormalUser = true;
-              initialPassword = "5112";
-              shell = pkgs.fish;
-              extraGroups = [ "wheel" "adbusers" "input" "networkmanager" "video" "docker" ];
-            };
-          }
-          impermanence.nixosModules.impermanence
-          {
-            environment.persistence."/persist" = {
-              directories = [
-                "/home"
-                "/etc/nixos"
-                "/etc/NetworkManager/system-connections"
-                "/var/log"
-                "/var/lib"
+      nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem
+        {
+          modules = [
+            ./hardware-configuration.nix
+            {
+              imports = [ ./system ];
+              nixpkgs.overlays = [
+                (self: super: rec {
+                  mypkgs = my-nixpkgs.packages."${system}";
+                })
               ];
-              files = [
-                "/etc/machine-id"
-                # "/etc/passwd"
-                # "/etc/shadow"
-              ];
-            };
-          }
-        ];
-      };
+              networking.hostName = "${hostname}";
+              # users.users.root.initialPassword = "admin";
+              users.users."${username}" = {
+                isNormalUser = true;
+                initialPassword = "5112";
+                shell = pkgs.fish;
+                extraGroups = [ "wheel" "adbusers" "input" "networkmanager" "video" "docker" ];
+              };
+            }
+            impermanence.nixosModules.impermanence
+            {
+              environment.persistence."/persist" = {
+                directories = [
+                  "/home"
+                  "/etc/nixos"
+                  "/etc/NetworkManager/system-connections"
+                  "/var/log"
+                  "/var/lib"
+                ];
+                files = [
+                  "/etc/machine-id"
+                  # "/etc/passwd"
+                  # "/etc/shadow"
+                ];
+              };
+            }
+          ];
+        };
 
     };
 }

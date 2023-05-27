@@ -39,7 +39,7 @@ rec {
     echo "------------ END MANUAL IDEMPOTENT SECTION ----------------"
     echo "-------------------------------------------------------------"
   '';
-
+  home.sessionVariables.EDITOR = "hx";
   programs = {
     git = {
       enable = true;

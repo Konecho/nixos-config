@@ -12,6 +12,7 @@
       ## [[nix]]
       nix-init
       rnix-lsp
+      nil
 
 
       ## [[tui]]
@@ -25,7 +26,7 @@
       # cardboard # windows manager
       mypkgs.pokemon-terminal
       mypkgs.shox
-      mypkgs.scutthesis.fonts
+      mypkgs.scutthesis.fonts.windows
       mypkgs.scutthesis.thesis
 
       swww
@@ -82,6 +83,7 @@
           python-packages = python-packages: with python-packages; [
             # pandas
             pip
+            python-lsp-server
             autopep8
             requests
           ];
@@ -89,6 +91,12 @@
         in
         python-with-packages
       )
+
+      ## [[lsp]]
+      nodePackages.bash-language-server
+      cmake-language-server
+      rust-analyzer
+      texlab
 
 
       ## [[terminal]]
@@ -123,6 +131,8 @@
 
       ## [[Fonts]]
       monocraft
+      nur.repos.vanilla.Win10_LTSC_2021_fonts
+      # nur.repos.vanilla.apple-fonts.NY
 
       neovide # WINIT_UNIX_BACKEND=x11 neovide
 

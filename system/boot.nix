@@ -18,6 +18,8 @@
     # };
   };
 
+  boot.tmp = { useTmpfs = true; tmpfsSize = "95%"; };
+
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   boot.kernelParams = [ "console=tty1" ];
 
