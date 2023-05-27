@@ -39,7 +39,7 @@ rec {
     homeDirectory = "/home/${config.home.username}";
     sessionPath = [ "$HOME/.cargo/bin" ];
     sessionVariables = {
-      TERMINAL = "alacritty";
+      TERMINAL = "wezterm";
       DOCKER_HOST = "unix:///run/docker.sock";
       # SWWW_TRANSITION_FPS = 60;
       # SWWW_TRANSITION_STEP = 2;
@@ -77,7 +77,26 @@ rec {
   home.shellAliases = { man = "batman"; };
   programs = {
     home-manager.enable = true;
-
+    wezterm = {
+      enable = true;
+      extraConfig = ''
+        return {
+          color_scheme = 'DanQing (base16)',
+          enable_tab_bar = false,
+          window_decorations = NONE,
+          enable_scroll_bar = true,
+          window_padding = {
+            left = 0,
+            right = "1cell",
+            top = 0,
+            bottom = 0,
+          },
+          font = wezterm.font("Maple Mono SC NF"),
+          harfbuzz_features = {"ss01","ss02","ss03"},
+          font_size = 12.0
+        }
+      '';
+    };
     alacritty = {
       enable = true;
       settings = {

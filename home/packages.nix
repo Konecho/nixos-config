@@ -24,6 +24,10 @@
       ## [[desktop]]
       # cardboard # windows manager
       mypkgs.pokemon-terminal
+      mypkgs.shox
+      mypkgs.scutthesis.fonts
+      mypkgs.scutthesis.thesis
+
       swww
       kickoff
       # swaybg

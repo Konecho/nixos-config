@@ -5,9 +5,15 @@ rec {
     enable = true;
     extraConfig = builtins.readFile ./styles/hyprland.conf;
   };
+  home.pointerCursor = {
+    package = pkgs.comixcursors.Opaque_Orange;
+    name = "ComixCursors-Opaque-Orange";
+    size = 24;
+    gtk.enable = true;
+  };
   gtk = {
     enable = true;
-    cursorTheme = { name = "Vanilla-DMZ"; package = pkgs.vanilla-dmz; };
+    # cursorTheme = { };
     theme = {
       name = "Pop";
       package = pkgs.pop-gtk-theme;

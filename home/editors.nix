@@ -65,6 +65,7 @@ rec {
       # and packages.el files
       # emacsPackage = pkgs.emacs-nox;
     };
+    helix.enable = true;
     vscode = {
       enable = true;
       package = pkgs.vscodium;
