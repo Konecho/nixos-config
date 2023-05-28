@@ -1,5 +1,9 @@
-{ pkgs, config, lib, ... }:
-
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 # let maple-font = pkgs.callPackage ./maple-font.nix { }; in
 {
   fonts.fontconfig.enable = true;
@@ -7,136 +11,131 @@
     package = pkgs.maple-mono-SC-NF;
     name = "Maple Mono SC NF";
   };
-  home.packages = with pkgs;
-    [
-      ## [[nix]]
-      nix-init
-      nil
-      # rnix-lsp
-      # alejandra
+  home.packages = with pkgs; [
+    ## [[nix]]
+    nix-init
+    nil
+    # rnix-lsp
+    # alejandra
 
+    ## [[tui]]
+    vtm
+    sc-im
+    mc
+    calc
 
-      ## [[tui]]
-      vtm
-      sc-im
-      mc
-      calc
+    ## [[desktop]]
+    # cardboard # windows manager
+    mypkgs.pokemon-terminal
+    mypkgs.shox
+    mypkgs.scutthesis.fonts.windows
+    mypkgs.scutthesis.thesis
+    mypkgs.baru
 
+    swww
+    kickoff
+    # swaybg
+    # swaylock-effects
+    # wofi
 
-      ## [[desktop]]
-      # cardboard # windows manager
-      mypkgs.pokemon-terminal
-      mypkgs.shox
-      mypkgs.scutthesis.fonts.windows
-      mypkgs.scutthesis.thesis
+    # steam-tui
+    # steamcmd
+    # steam
 
-      swww
-      kickoff
-      # swaybg
-      # swaylock-effects
-      # wofi
+    ## [[productivity]]
+    # rustdesk
+    # blender
+    # gimp
+    # godot
+    # inkscape
+    # krita
 
-      # steam-tui
-      # steamcmd
-      # steam
+    microsoft-edge
+    firefox
+    # obsidian
+    # libreoffice
+    # onlyoffice-bin
+    # thunderbird
 
+    # android-studio
+    scrcpy
 
-      ## [[productivity]]
-      # rustdesk
-      # blender
-      # gimp
-      # godot
-      # inkscape
-      # krita
+    ## [[multi-media]]
+    xdg-utils # <xdg-open>
+    pamixer
+    pavucontrol
+    wf-recorder
+    ffmpeg
+    yt-dlp
+    mpv
+    mpvpaper
+    socat # <echo 'cycle pause' | socat - /tmp/mpv-socket>
+    obs-studio
 
-      microsoft-edge
-      firefox
-      # obsidian
-      # libreoffice
-      # onlyoffice-bin
-      # thunderbird
+    ## [[programming]]
+    # conda
+    rustup
+    gcc
+    qemu
 
-      # android-studio
-      scrcpy
+    # (
+    #   let
+    #     python-packages = python-packages:
+    #       with python-packages; [
+    #         # pandas
+    #         pip
+    #         python-lsp-server
+    #         autopep8
+    #         requests
+    #         # poetry-core
+    #       ];
+    #     python-with-packages = python3.withPackages python-packages;
+    #   in
+    #     python-with-packages
+    # )
 
+    poetry
+    ## [[lsp]]
+    nodePackages.bash-language-server
+    cmake-language-server
+    #rust-analyzer
+    texlab #latex
+    taplo #toml
 
-      ## [[multi-media]]
-      xdg-utils # <xdg-open>
-      pamixer
-      pavucontrol
-      wf-recorder
-      ffmpeg
-      yt-dlp
-      mpv
-      mpvpaper
-      socat # <echo 'cycle pause' | socat - /tmp/mpv-socket>
-      obs-studio
+    ## [[terminal]]
+    zscroll
+    wget
+    fd # find
+    fzf
+    ripgrep # <rg> grep
+    procs # ps
+    comma # , <command>
 
+    jq
+    just # make
+    sd # sed
+    du-dust # <dust> du
+    gdu
 
-      ## [[programming]]
-      # conda
-      rustup
-      gcc
-      qemu
+    imagemagick
+    # ueberzug
 
-      (
-        let
-          python-packages = python-packages: with python-packages; [
-            # pandas
-            pip
-            python-lsp-server
-            autopep8
-            requests
-          ];
-          python-with-packages = python3.withPackages python-packages;
-        in
-        python-with-packages
-      )
+    ## lib for <lf>
+    # unrar
+    # unzip
+    # p7zip # <7z>
+    # w3m
+    # poppler_utils # <pdftotext>
+    # highlight
+    # mediainfo
+    # chafa
+    # timg
 
-      ## [[lsp]]
-      nodePackages.bash-language-server
-      cmake-language-server
-      rust-analyzer
-      texlab
+    ## [[Fonts]]
+    monocraft
+    nur.repos.vanilla.Win10_LTSC_2021_fonts
+    # nur.repos.vanilla.apple-fonts.NY
 
-
-      ## [[terminal]]
-      zscroll
-      wget
-      fd # find
-      fzf
-      ripgrep # <rg> grep
-      procs # ps
-      comma # , <command>
-
-      jq
-      just # make
-      sd # sed
-      du-dust # <dust> du
-      gdu
-
-      imagemagick
-      # ueberzug
-
-      ## lib for <lf>
-      # unrar
-      # unzip
-      # p7zip # <7z>
-      # w3m
-      # poppler_utils # <pdftotext>
-      # highlight
-      # mediainfo
-      # chafa
-      # timg
-
-
-      ## [[Fonts]]
-      monocraft
-      nur.repos.vanilla.Win10_LTSC_2021_fonts
-      # nur.repos.vanilla.apple-fonts.NY
-
-      neovide # WINIT_UNIX_BACKEND=x11 neovide
-
-    ];
-
+    neovide # WINIT_UNIX_BACKEND=x11 neovide
+  ];
 }

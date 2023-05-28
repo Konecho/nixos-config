@@ -63,14 +63,14 @@
     #   extraPackages = epkgs: with epkgs;[ nix-mode ];
     # };
     doom-emacs = {
-      enable = true;
+      enable = false;
       doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
       # and packages.el files
       # emacsPackage = pkgs.emacs-nox;
     };
     helix = {
       enable = true;
-      languages = [
+      languages.language = [
         {
           name = "nix";
           formatter = {command = "${pkgs.alejandra}/bin/alejandra";};
