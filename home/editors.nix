@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-
-rec {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: rec {
   home.shellAliases.em = "emacs -nw";
   home.shellAliases.neovide = "WINIT_UNIX_BACKEND=x11 neovide";
-  home.activation.symlinks = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.symlinks = lib.hm.dag.entryAfter ["writeBoundary"] ''
     echo "-------------------------------------------------------------"
     echo "------------ START MANUAL IDEMPOTENT SECTION ----------------"
     echo "-------------------------------------------------------------"
@@ -65,7 +68,16 @@ rec {
       # and packages.el files
       # emacsPackage = pkgs.emacs-nox;
     };
-    helix.enable = true;
+    helix = {
+      enable = true;
+      languages = [
+        {
+          name = "nix";
+          formatter = {command = "${pkgs.alejandra}/bin/alejandra";};
+          auto-format = true;
+        }
+      ];
+    };
     vscode = {
       enable = true;
       package = pkgs.vscodium;
@@ -85,7 +97,7 @@ rec {
     };
     neovim = {
       enable = true;
-      coc = { enable = true; };
+      coc = {enable = true;};
       vimAlias = true;
       extraConfig = ''
         syntax on
@@ -115,7 +127,10 @@ rec {
             let g:indent_guides_start_level=2
           '';
         }
-        { plugin = vim-monokai; config = "colo monokai"; }
+        {
+          plugin = vim-monokai;
+          config = "colo monokai";
+        }
         vim-airline-themes
         {
           plugin = vim-airline;
@@ -139,7 +154,7 @@ rec {
             let g:airline_symbols.branch = 'BR'
             let g:airline_symbols.readonly = 'RO'
             let g:airline_symbols.dirty = 'DT'
-            let g:airline_symbols.crypt = 'CR' 
+            let g:airline_symbols.crypt = 'CR'
           '';
         }
       ];

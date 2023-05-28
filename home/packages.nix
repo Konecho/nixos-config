@@ -11,8 +11,9 @@
     [
       ## [[nix]]
       nix-init
-      rnix-lsp
       nil
+      # rnix-lsp
+      # alejandra
 
 
       ## [[tui]]

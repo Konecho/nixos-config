@@ -81,8 +81,12 @@ rec {
       enable = true;
       extraConfig = ''
         return {
+          enable_tab_bar = true,
+          use_fancy_tab_bar = false,
+          -- hide_tab_bar_if_only_one_tab = true,
+
+          -- window_background_opacity = 0.8,
           color_scheme = 'DanQing (base16)',
-          enable_tab_bar = false,
           window_decorations = NONE,
           enable_scroll_bar = true,
           window_padding = {
@@ -91,6 +95,7 @@ rec {
             top = 0,
             bottom = 0,
           },
+
           font = wezterm.font("Maple Mono SC NF"),
           harfbuzz_features = {"ss01","ss02","ss03"},
           font_size = 12.0
