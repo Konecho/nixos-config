@@ -1,6 +1,8 @@
-{ pkgs, config, ... }:
-
-rec {
+{
+  pkgs,
+  config,
+  ...
+}: {
   services.mpd = {
     enable = true;
     musicDirectory = "${config.home.homeDirectory}/media/music";
@@ -15,7 +17,7 @@ rec {
       	name                    "my_fifo"
       	path                    "/tmp/mpd.fifo"
       	format                  "44100:16:2"
-      }    
+      }
     '';
   };
   programs.ncmpcpp = {
@@ -76,7 +78,6 @@ rec {
       current_item_inactive_column_suffix = "red";
       color1 = "white";
       color2 = "red";
-
     };
   };
 }
