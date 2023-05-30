@@ -17,6 +17,13 @@
     # android-studio
     scrcpy
 
-    obs-studio
+    # obs-studio
   ];
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+      v4l2loopback
+    ];
+  };
 }
