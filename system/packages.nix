@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     home-manager
     # fbterm
@@ -22,6 +20,8 @@
   virtualisation = {
     # anbox.enable = true;
     # libvirtd.enable = true;
+    virtualbox.host.enable = true;
+    virtualbox.guest.enable = true;
     docker = {
       enable = true;
       storageDriver = "btrfs";
@@ -32,5 +32,5 @@
     };
     # waydroid.enable = true;
   };
-  services.duplicati = { enable = true; };
+  services.duplicati = {enable = true;};
 }
