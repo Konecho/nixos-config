@@ -37,12 +37,6 @@ rec {
       '';
     };
   };
-  home.file.vtm-config = {
-    enable = true;
-    executable = false;
-    source = ./styles/vtm.xml;
-    target = ".config/vtm/settings.xml";
-  };
   programs = {
     eww = {
       enable = true;
