@@ -19,7 +19,7 @@
     # alejandra
 
     ## [[tui]]
-    vtm
+    # vtm
     sc-im
     mc
     calc

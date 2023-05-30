@@ -48,7 +48,7 @@ rec {
     };
   };
 
-  imports = [ ./desktop.nix ./music.nix ./editors.nix ./packages.nix ];
+  imports = [ ./desktop.nix ./music.nix ./editors ./packages.nix ];
 
   i18n.inputMethod = {
     enabled = "fcitx5";
