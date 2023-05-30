@@ -1,12 +1,10 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
   # time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
-  i18n.supportedLocales = [ "zh_CN.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
+  i18n.supportedLocales = ["zh_CN.UTF-8/UTF-8" "en_US.UTF-8/UTF-8"];
   i18n.defaultLocale = "zh_CN.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
@@ -45,7 +43,7 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        emoji = [ "Noto Color Emoji" ];
+        emoji = ["Noto Color Emoji"];
         monospace = [
           "Noto Sans Mono CJK SC"
           # "DejaVu Sans Mono"

@@ -1,10 +1,7 @@
-{ ... }:
+{...}: {
+  imports = [./network.nix ./locale.nix ./packages.nix ./boot.nix];
 
-{
-  imports = [ ./network.nix ./locale.nix ./packages.nix ./boot.nix ];
-
-  nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.extraOptions = ''
     keep-outputs = true
     keep-derivations = true

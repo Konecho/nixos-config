@@ -33,4 +33,15 @@
     # waydroid.enable = true;
   };
   services.duplicati = {enable = true;};
+  services.kmscon = {
+    enable = true;
+    fonts = [
+      {
+        package = pkgs.maple-mono-SC-NF;
+        name = "Maple Mono SC NF";
+      }
+    ];
+    extraOptions = "--term xterm-256color";
+    extraConfig = "font-size=14";
+  };
 }

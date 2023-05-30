@@ -30,8 +30,10 @@
     ## [[lsp]]
     nodePackages.bash-language-server
     cmake-language-server
+    yaml-language-server
     #rust-analyzer
     texlab #latex
     taplo #toml
+    # pylsp
   ];
 }
