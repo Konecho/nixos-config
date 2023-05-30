@@ -5,7 +5,20 @@
   config,
   ...
 }: {
-  imports = [./nix.nix ./desktop ./music.nix ./editors ./gui.nix ./terminals.nix ./shells.nix ./cli.nix ./tui.nix];
+  imports = [
+    ./desktop
+    ./editors
+
+    ./cli.nix
+    ./games.nix
+    ./gui.nix
+    ./music.nix
+    ./nix.nix
+    ./programming.nix
+    ./shells.nix
+    ./terminals.nix
+    ./tui.nix
+  ];
   home = {
     stateVersion = "22.11";
     # username = "${username}";
