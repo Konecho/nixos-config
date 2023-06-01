@@ -8,10 +8,10 @@
   gtk = {
     enable = true;
     # cursorTheme = { };
-    theme = {
-      name = "Pop";
-      package = pkgs.pop-gtk-theme;
-    };
+    # theme = {
+    #   name = "Pop";
+    #   package = pkgs.pop-gtk-theme;
+    # };
     iconTheme = {
       name = "Numix";
       package = pkgs.numix-solarized-gtk-theme;

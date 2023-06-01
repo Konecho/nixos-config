@@ -16,6 +16,7 @@
     ./nix.nix
     ./programming.nix
     ./shells.nix
+    ./stylix.nix
     ./terminals.nix
     ./tui.nix
   ];

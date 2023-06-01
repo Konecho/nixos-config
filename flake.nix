@@ -15,6 +15,7 @@
     nur.url = "github:nix-community/NUR";
     my-nixpkgs.url = "github:Konecho/my-nixpkgs";
     hyprland.url = "github:hyprwm/Hyprland";
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = inputs @ {
@@ -80,6 +81,7 @@
       modules = [
         inputs.hyprland.homeManagerModules.default
         inputs.nix-doom-emacs.hmModule
+        inputs.stylix.homeManagerModules.stylix
         {
           home.username = "${username}";
           # home.homeDirectory = "/home/${username}";
