@@ -23,7 +23,6 @@
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs
-      v4l2loopback
     ];
   };
 }

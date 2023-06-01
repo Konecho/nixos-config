@@ -21,10 +21,10 @@
       "http://hub-mirror.c.163.com"
     ];
   };
-  services.v2ray = {
-    enable = true;
-    config = builtins.fromJSON (builtins.readFile ./v2ray.json);
-  };
+  # services.v2ray = {
+  #   enable = true;
+  #   config = builtins.fromJSON (builtins.readFile ./v2ray.json);
+  # };
 
   programs.clash-verge.enable = true;
   # services.create_ap = {

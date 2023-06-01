@@ -65,15 +65,15 @@
         sha256 = "sha256-NzJ/kvfzueIfIZdq/Z9vIk0/x516Q36t35QRhFSKbas=";
       }
     ];
-    originPkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+    originPkgs = inputs.nixpkgs.legacyPackages."${system}";
     nixpkgs = originPkgs.applyPatches {
       name = "nixpkgs-patched";
       src = inputs.nixpkgs;
       patches = map originPkgs.fetchpatch remoteNixpkgsPatches;
     };
-    nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
+    # nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
     # Uncomment to use a Nixpkgs without remoteNixpkgsPatches
-    # nixosSystem = inputs.nixpkgs.lib.nixosSystem;
+    nixosSystem = inputs.nixpkgs.lib.nixosSystem;
   in {
     homeConfigurations."${username}" = inputs.home-manager.lib.homeManagerConfiguration rec {
       inherit pkgs;
