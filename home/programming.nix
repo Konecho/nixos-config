@@ -6,21 +6,33 @@
     ## [[python]]
     # conda
     poetry
-    # (
-    #   let
-    #     python-packages = python-packages:
-    #       with python-packages; [
-    #         # pandas
-    #         pip
-    #         python-lsp-server
-    #         autopep8
-    #         requests
-    #         # poetry-core
-    #       ];
-    #     python-with-packages = python3.withPackages python-packages;
-    #   in
-    #     python-with-packages
-    # )
+    (
+      let
+        python-packages = python-packages:
+          with python-packages; [
+            # pandas
+            # pip
+            python-lsp-server
+            autopep8
+            black
+            requests
+            torchWithoutCuda
+            torchvision
+            ignite
+            opencv4
+            pillow
+            pandas
+            scikit-learn
+            numpy
+            einops
+            termplotlib
+            matplotlib
+            # poetry-core
+          ];
+        python-with-packages = python3.withPackages python-packages;
+      in
+        python-with-packages
+    )
 
     ## [[rust]]
     rustup
@@ -34,6 +46,5 @@
     #rust-analyzer
     texlab #latex
     taplo #toml
-    # pylsp
   ];
 }
