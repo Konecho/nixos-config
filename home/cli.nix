@@ -48,7 +48,7 @@
     qrcp
     entr
 
-    zscroll
+    # zscroll
     wget
     fd # find
     fzf
@@ -75,7 +75,6 @@
 
     ## [[multi-media]]
     xdg-utils # <xdg-open>
-    pamixer
     pavucontrol
     wf-recorder
     ffmpeg

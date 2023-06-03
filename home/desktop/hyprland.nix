@@ -103,11 +103,8 @@
     $mod = SUPER
     ## run <nix run n#wev> to test keycode
 
-    # bind = SUPER, Return, exec, alacritty
-    # bind = SUPER SHIFT, Return, exec, alacritty --class="termfloat"
-
-    bind = SUPER, Return, exec, wezterm start
-    bind = SUPER SHIFT, Return, exec, wezterm start --class termfloat
+    bind = SUPER, Return, exec, ${pkgs.wezterm}/bin/wezterm start
+    bind = SUPER SHIFT, Return, exec, ${pkgs.wezterm}/bin/wezterm start --class termfloat
 
     bind = SUPER, D, exec, kickoff
     bind = SUPER SHIFT, Q, killactive,
@@ -165,15 +162,15 @@
     #-----------------------------------------#
     # control volume,brightness,media players #
     #-----------------------------------------#
-    bind=,XF86AudioRaiseVolume,exec, pamixer -i 5
-    bind=,XF86AudioLowerVolume,exec, pamixer -d 5
-    bind=,XF86AudioMute,exec, pamixer -t
-    bind=,XF86AudioMicMute,exec, pamixer --default-source -t
-    bind=,XF86MonBrightnessUp,exec, light -A 5
-    bind=,XF86MonBrightnessDown, exec, light -U 5
-    bind=,XF86AudioPlay,exec, playerctl play-pause
-    bind=,XF86AudioNext,exec, playerctl next
-    bind=,XF86AudioPrev,exec, playerctl previous
+    bind=,XF86AudioRaiseVolume,exec, ${pkgs.pamixer}/bin/pamixer -i 5
+    bind=,XF86AudioLowerVolume,exec, ${pkgs.pamixer}/bin/pamixer -d 5
+    bind=,XF86AudioMute,exec, ${pkgs.pamixer}/bin/pamixer -t
+    bind=,XF86AudioMicMute,exec, ${pkgs.pamixer}/bin/pamixer --default-source -t
+    # bind=,XF86MonBrightnessUp,exec, light -A 5
+    # bind=,XF86MonBrightnessDown, exec, light -U 5
+    bind=,XF86AudioPlay,exec, ${pkgs.playerctl}/bin/playerctl play-pause
+    bind=,XF86AudioNext,exec, ${pkgs.playerctl}/bin/playerctl next
+    bind=,XF86AudioPrev,exec, ${pkgs.playerctl}/bin/playerctl previous
     #---------------#
     # resize window #
     #---------------#
@@ -203,17 +200,12 @@
     # bind = SUPER , G,exec,hyprctl --batch "keyword general:gaps_out 0;keyword general:gaps_in 0"
   '';
   autoStart = ''
-    # exec-once = waybar &
-    # exec-once=eww daemon &
-    # exec-once=eww open bar &
-    exec-once = fcitx5 -d &
-    exec-once = mako &
-    exec-once = clash-verge &
-    exec-once = swww init &
-    exec-once = pokemon -w 615&
-    # exec-once = alacritty --class="termbar" --command="shox" -o "colors.cursor.cursor=CellBackground" -o "colors.cursor.text=CellForeground"
-    exec-once = alacritty --class="termbar" -o "colors.cursor.cursor='0xffffff'" -e bash -c 'tput civis && baru | tr "\n" "\r"'
-    # exec-once = alacritty --class="scratchpad" &
+    exec-once = ${pkgs.fcitx5}/bin/fcitx5 -d &
+    exec-once = ${pkgs.mako}/bin/mako &
+    exec-once = ${pkgs.clash-verge}/bin/clash-verge &
+    exec-once = ${pkgs.swww}/bin/swww init &
+    exec-once = ${pkgs.mypkgs.pokemon-terminal}/bin/pokemon -w 615&
+    exec-once = ${pkgs.alacritty}/bin/alacritty --class="termbar" -o "colors.cursor.cursor='0xffffff'" -e ${pkgs.bash}/bin/bash -c 'tput civis && ${pkgs.mypkgs.baru}/bin/baru | tr "\n" "\r"'
   '';
   winRules = ''
     #`hyprctl clients` get class、title...
