@@ -338,11 +338,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1685430120,
-        "narHash": "sha256-KzIsrJ/EeVhzu02I0ewIZXPyfxRUMJ1ON8obVQyiFCA=",
+        "lastModified": 1685757051,
+        "narHash": "sha256-qtPY2BNFvVjd2E6bNxZvUqBIKuU8wR6or7mA6rX1zPw=",
         "owner": "Konecho",
         "repo": "my-nixpkgs",
-        "rev": "4b5c575b3df8439317df6806e5c64324cfbcbf01",
+        "rev": "1eadd0a06ca11c9af4cecedc690882261df8db4b",
         "type": "github"
       },
       "original": {

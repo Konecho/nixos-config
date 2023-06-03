@@ -1,11 +1,13 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    # rustdesk
+    rustdesk
     # blender
     # gimp
     # godot
     # inkscape
     # krita
+    surf
+    etcher
 
     microsoft-edge
     firefox

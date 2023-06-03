@@ -43,7 +43,11 @@
     };
   };
   home.packages = with pkgs; [
-    ## [[terminal]]
+    pokemonsay
+
+    qrcp
+    entr
+
     zscroll
     wget
     fd # find

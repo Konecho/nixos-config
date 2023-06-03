@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [./network.nix ./locale.nix ./packages.nix ./boot.nix];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -6,6 +6,8 @@
     keep-outputs = true
     keep-derivations = true
   '';
+
+  environment.binsh = "${pkgs.dash}/bin/dash";
 
   hardware.pulseaudio.enable = true;
 

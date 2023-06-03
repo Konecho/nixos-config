@@ -27,6 +27,8 @@
     sessionPath = ["$HOME/.cargo/bin"];
     sessionVariables = {
       DOCKER_HOST = "unix:///run/docker.sock";
+      BROWSER = "surf";
+      GDK_BACKEND = "x11";
       # SWWW_TRANSITION_FPS = 60;
       # SWWW_TRANSITION_STEP = 2;
       # SWWW_TRANSITION_TYPE = "random";

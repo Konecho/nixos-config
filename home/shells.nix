@@ -8,8 +8,16 @@
     fish = {
       enable = true;
       functions.fish_greeting = ''
-        # ${pkgs.mypkgs.fortunes}/bin/fortune-cn chinese | ${pkgs.pokemonsay}/bin/pokemonsay
-        ${pkgs.mypkgs.fortunes}/bin/fortune-cn chinese | ${pkgs.cowsay}/bin/cowsay
+        pwd | ${pkgs.pokemonsay}/bin/pokemonsay -N
+        # ${pkgs.mypkgs.fortunes}/bin/fortune-cn chinese | ${pkgs.mypkgs.arttime}/bin/arttime --nolearn --random all
+      '';
+      functions.nixlf = ''
+        set derv $(nix show-derivation $argv|jq -rs '.[0]|to_entries[].value.outputs.out.path')
+        if [ -d $derv ]
+          lf $derv
+        else
+          echo $(nix show-derivation $argv|jq -s '.[0]|to_entries[].value.outputs')
+        end
       '';
       loginShellInit = ''
         # Fish syntax highlighting
@@ -35,6 +43,17 @@
         set -g fish_color_user brgreen
         set -g fish_color_valid_path --underline
       '';
+      plugins = [
+        {
+          name = "fish-ssh-agent";
+          src = pkgs.fetchFromGitHub {
+            owner = "danhper";
+            repo = "fish-ssh-agent";
+            rev = "fd70a2afdd03caf9bf609746bf6b993b9e83be57";
+            sha256 = "sha256-e94Sd1GSUAxwLVVo5yR6msq0jZLOn2m+JZJ6mvwQdLs=";
+          };
+        }
+      ];
     };
     starship.enable = true;
   };

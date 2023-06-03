@@ -50,10 +50,13 @@
           "steam-run"
           "steamcmd"
         ];
+      config.permittedInsecurePackages = [
+        "electron-12.2.3"
+      ];
       overlays = [
         (self: super: rec {
           mypkgs = inputs.my-nixpkgs.packages."${system}";
-          cowsay = super.neo-cowsay;
+          # pokemonsay = super.pokemonsay.override {cowsay = super.neo-cowsay;};
           # winfonts = nur.repos.vanilla.Win10_LTSC_2019_fonts;
         })
         inputs.nur.overlay
