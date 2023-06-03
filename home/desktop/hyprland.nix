@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   screenWidth = 1440;
   screenHeight = 900;
   # fontsize=12 cellsize=10x21
@@ -6,6 +10,8 @@
   cellHeight = 21;
   gaps = 2;
   border = 3; # 2*(gaps+border)==cellWidth
+  # ~/.config/stylix/palette.html
+  base16 = config.lib.stylix.colors;
   baseConfigs = ''
     monitor=,preferred,auto,1
     monitor=,addreserved,${builtins.toString (screenHeight - ((screenHeight - (gaps + border)) / cellHeight - 1) * cellHeight - 2 * (gaps + border))},0,0,0
@@ -23,8 +29,8 @@
       gaps_out = ${builtins.toString gaps}
       border_size = ${builtins.toString border}
       # 1440x900->1430x890
-      col.active_border = rgb(4b5cc4)
-      col.inactive_border = rgba(177cb0aa)
+      col.active_border = rgb(${base16.base07})
+      col.inactive_border = rgba(${base16.base0F}aa)
       layout = dwindle # master|dwindle
     }
     dwindle {
