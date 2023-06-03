@@ -9,10 +9,10 @@
       package = pkgs.noto-fonts-cjk;
       name = "Noto Serif CJK SC";
     };
-
+    # 无衬线
     sansSerif = {
-      package = pkgs.noto-fonts-cjk;
-      name = "Noto Sans CJK SC";
+      package = pkgs.nur.repos.vanilla.Win10_LTSC_2021_fonts;
+      name = "Microsoft YaHei";
     };
 
     monospace = {

@@ -22,8 +22,10 @@
   virtualisation = {
     # anbox.enable = true;
     # libvirtd.enable = true;
-    # virtualbox.host.enable = true;
-    # virtualbox.guest.enable = true;
+    virtualbox = {
+      host.enable = true;
+      guest.enable = true;
+    };
     docker = {
       enable = true;
       storageDriver = "btrfs";
