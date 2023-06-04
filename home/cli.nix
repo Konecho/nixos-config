@@ -43,6 +43,8 @@
     };
   };
   home.packages = with pkgs; [
+    libnotify # <notify-send>
+
     pokemonsay
 
     qrcp

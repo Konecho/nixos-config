@@ -33,8 +33,8 @@
 
     symlink "$homedir/.vscode/extensions" \
             "$homedir/.vscode-oss/extensions"
-    symlink "$homedir/.config/Code/User/settings.json" \
-            "$homedir/.config/VSCodium/User/settings.json"
+    # symlink "$homedir/.config/Code/User/settings.json" \
+    #         "$homedir/.config/VSCodium/User/settings.json"
 
     echo "-------------------------------------------------------------"
     echo "------------ END MANUAL IDEMPOTENT SECTION ----------------"
@@ -44,18 +44,30 @@
     vscode = {
       enable = true;
       package = pkgs.vscodium;
-      # enableUpdateCheck = false;
-      # userSettings = {
-      #   "workbench.colorTheme" = "Default Light+";
-      #   "nix.enableLanguageServer" = true;
-      #   "editor.fontFamily" = "'FiraCode Nerd Font'";
-      #   "git.enableSmartCommit" = true;
-      #   "git.autofetch" = true;
-      #   "git.confirmSync" = false;
-      #   "explorer.excludeGitIgnore" = true;
-      #   "files.autoSave" = "on";
-      #   "editor.formatOnSave" = true;
-      # };
+      enableUpdateCheck = false;
+      userSettings = {
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nil";
+        "nix.serverSettings" = {
+          "nil" = {
+            "formatting" = {
+              "command" = [
+                "alejandra"
+              ];
+            };
+          };
+        };
+        "git.enableSmartCommit" = true;
+        "git.autofetch" = true;
+        "git.confirmSync" = false;
+        "explorer.excludeGitIgnore" = true;
+        "editor.formatOnSave" = true;
+        "files.autoSave" = "onFocusChange";
+        "[python]" = {
+          "editor.formatOnType" = true;
+        };
+        "workbench.editor.enablePreview" = false;
+      };
       # extensions = with pkgs.vscode-extensions; [ ms-ceintl.vscode-language-pack-zh-hans ];
     };
   };

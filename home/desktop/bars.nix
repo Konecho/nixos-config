@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # mypkgs.shox
-    mypkgs.baru
+    # mypkgs.baru
   ];
 }

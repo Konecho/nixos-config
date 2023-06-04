@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.pointerCursor = {
-    package = pkgs.comixcursors.Opaque_Orange;
-    name = "ComixCursors-Opaque-Orange";
+    package = pkgs.phinger-cursors;
+    name = "phinger-cursors-light";
     size = 24;
     gtk.enable = true;
   };

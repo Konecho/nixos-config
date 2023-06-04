@@ -8,6 +8,7 @@
     # krita
     surf
     etcher
+    telegram-desktop
 
     microsoft-edge
     firefox

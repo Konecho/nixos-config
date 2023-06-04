@@ -29,8 +29,8 @@
       gaps_out = ${builtins.toString gaps}
       border_size = ${builtins.toString border}
       # 1440x900->1430x890
-      col.active_border = rgb(${base16.base07})
-      col.inactive_border = rgba(${base16.base0F}aa)
+      col.active_border = rgb(${base16.base0F})
+      col.inactive_border = rgba(${base16.base07}aa)
       layout = dwindle # master|dwindle
     }
     dwindle {
@@ -97,31 +97,33 @@
       enable_swallow = true
       swallow_regex =
       focus_on_activate = true
+      groupbar_titles_font_size = 12
+      groupbar_gradients = false
     }
   '';
   keyBinds = ''
-    $mod = SUPER
+    $MOD = SUPER
     ## run <nix run n#wev> to test keycode
 
-    bind = SUPER, Return, exec, ${pkgs.wezterm}/bin/wezterm start
-    bind = SUPER SHIFT, Return, exec, ${pkgs.wezterm}/bin/wezterm start --class termfloat
+    bind = $MOD, Return, exec, ${pkgs.wezterm}/bin/wezterm start
+    bind = $MOD SHIFT, Return, exec, ${pkgs.wezterm}/bin/wezterm start --class termfloat
 
-    bind = SUPER, D, exec, kickoff
-    bind = SUPER SHIFT, Q, killactive,
-    bind = SUPER SHIFT, E, exit,
-    bind = SUPER SHIFT, Space, togglefloating,
-    bind = SUPER SHIFT, F ,fullscreen,
+    bind = $MOD, D, exec, kickoff
+    bind = $MOD SHIFT, Q, killactive,
+    bind = $MOD SHIFT, E, exit,
+    bind = $MOD SHIFT, Space, togglefloating,
+    bind = $MOD SHIFT, F ,fullscreen,
 
-    bind = SUPER, P, pseudo, # dwindle
-    bind = SUPER, V, togglesplit, # dwindle
+    bind = $MOD, P, pseudo, # dwindle
+    bind = $MOD, V, togglesplit, # dwindle
 
-    bind = SUPER, K, togglegroup,
-    bind = SUPER, Tab, changegroupactive, f
+    bind = $MOD, K, togglegroup,
+    bind = $MOD, Tab, changegroupactive, f
 
-    bind = SUPER, left, movefocus, l
-    bind = SUPER, right, movefocus, r
-    bind = SUPER, up, movefocus, u
-    bind = SUPER, down, movefocus, d
+    bind = $MOD, left, movefocus, l
+    bind = $MOD, right, movefocus, r
+    bind = $MOD, up, movefocus, u
+    bind = $MOD, down, movefocus, d
 
     # workspaces
     # binds mod + [shift +] {1..10} to [move to] ws {1..10}
@@ -132,33 +134,33 @@
           in
             builtins.toString (x + 1 - (c * 10));
         in ''
-          bind = $mod, ${ws}, workspace, ${toString (x + 1)}
-          bind = $mod CTRL, ${ws}, movetoworkspace, ${toString (x + 1)}
-          bind = $mod SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}
+          bind = $MOD, ${ws}, workspace, ${toString (x + 1)}
+          bind = $MOD CTRL, ${ws}, movetoworkspace, ${toString (x + 1)}
+          bind = $MOD SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}
         ''
       )
       10)}
-    bind = SUPER, L, workspace, +1
-    bind = SUPER, H, workspace, -1
-    bind = SUPER, period, workspace, e+1
-    bind = SUPER, comma, workspace, e-1
-    bind = SUPER CTRL, left, movetoworkspace, -1
-    bind = SUPER CTRL, right, movetoworkspace, +1
-    bind = SUPER, mouse_down, workspace, e+1
-    bind = SUPER, mouse_up, workspace, e-1
+    bind = $MOD, L, workspace, +1
+    bind = $MOD, H, workspace, -1
+    bind = $MOD, period, workspace, e+1
+    bind = $MOD, comma, workspace, e-1
+    bind = $MOD CTRL, left, movetoworkspace, -1
+    bind = $MOD CTRL, right, movetoworkspace, +1
+    bind = $MOD, mouse_down, workspace, e+1
+    bind = $MOD, mouse_up, workspace, e-1
     #-------------------------------#
     # special workspace(scratchpad) #
     #-------------------------------#
-    bind = SUPER, minus, movetoworkspace,special
-    bind = SUPER, equal, togglespecialworkspace
-    bind = SUPER, code:49, togglespecialworkspace
+    bind = $MOD, minus, movetoworkspace,special
+    bind = $MOD, equal, togglespecialworkspace
+    bind = $MOD, code:49, togglespecialworkspace
     #----------------------------------#
     # move window in current workspace #
     #----------------------------------#
-    bind = SUPER SHIFT,left ,movewindow, l
-    bind = SUPER SHIFT,right ,movewindow, r
-    bind = SUPER SHIFT,up ,movewindow, u
-    bind = SUPER SHIFT,down ,movewindow, d
+    bind = $MOD SHIFT,left ,movewindow, l
+    bind = $MOD SHIFT,right ,movewindow, r
+    bind = $MOD SHIFT,up ,movewindow, u
+    bind = $MOD SHIFT,down ,movewindow, d
     #-----------------------------------------#
     # control volume,brightness,media players #
     #-----------------------------------------#
@@ -174,7 +176,7 @@
     #---------------#
     # resize window #
     #---------------#
-    bind=SUPER,R,submap,resize
+    bind=$MOD,R,submap,resize
     submap=resize
     binde=,right,resizeactive,15 0
     binde=,left,resizeactive,-15 0
@@ -194,18 +196,20 @@
     bind=CTRL SHIFT, h, resizeactive,-15 0
     bind=CTRL SHIFT, k, resizeactive, 0 -15
     bind=CTRL SHIFT, j, resizeactive, 0 15
-    bindm = SUPER, mouse:272, movewindow
-    bindm = SUPER, mouse:273, resizewindow
-    # bind = SUPER SHIFT, G,exec,hyprctl --batch "keyword general:gaps_out 5;keyword general:gaps_in 3"
-    # bind = SUPER , G,exec,hyprctl --batch "keyword general:gaps_out 0;keyword general:gaps_in 0"
+    bindm = $MOD, mouse:272, movewindow
+    bindm = $MOD, mouse:273, resizewindow
+    # bind = $MOD SHIFT, G,exec,hyprctl --batch "keyword general:gaps_out 5;keyword general:gaps_in 3"
+    # bind = $MOD , G,exec,hyprctl --batch "keyword general:gaps_out 0;keyword general:gaps_in 0"
   '';
   autoStart = ''
     exec-once = ${pkgs.fcitx5}/bin/fcitx5 -d &
     exec-once = ${pkgs.mako}/bin/mako &
     exec-once = ${pkgs.clash-verge}/bin/clash-verge &
     exec-once = ${pkgs.swww}/bin/swww init &
-    exec-once = ${pkgs.mypkgs.pokemon-terminal}/bin/pokemon -w 615&
-    exec-once = ${pkgs.alacritty}/bin/alacritty --class="termbar" -o "colors.cursor.cursor='0xffffff'" -e ${pkgs.bash}/bin/bash -c 'tput civis && ${pkgs.mypkgs.baru}/bin/baru | tr "\n" "\r"'
+    exec-once = ${pkgs.swww}/bin/swww img ${config.stylix.image} &
+    # exec-once = ${pkgs.mypkgs.pokemon-terminal}/bin/pokemon -w 615 &
+    exec-once = ${pkgs.alacritty}/bin/alacritty --class="termbar" -e ${pkgs.bash}/bin/bash -c 'tput civis && ${pkgs.mypkgs.baru}/bin/baru | tr "\n" "\r"'
+    exec-once = ${pkgs.wezterm}/bin/wezterm start --class termmain
   '';
   winRules = ''
     #`hyprctl clients` get class、title...
@@ -224,6 +228,10 @@
     windowrule=opacity 0.95,title:Telegram
     windowrule=opacity 0.95,title:QQ
 
+    windowrule=workspace 1,termmain
+    windowrule=workspace 2,firefox
+    windowrule=workspace 3,VSCodium
+
     windowrule=workspace 10 silent,title:^(Clash Verge)$
     windowrule=float,title:^(Clash Verge)$
     # windowrule=workspace special silent,class:scratchpad
@@ -231,9 +239,9 @@
     windowrule=float,imv
     windowrule=float,mpv
     windowrule=float,ncmpcpp
-    windowrule=float,termbar
-
     windowrule=float,termfloat
+
+    windowrule=float,termbar
     windowrule=pin,termbar
 
     windowrule=animation slide right,termfloat
