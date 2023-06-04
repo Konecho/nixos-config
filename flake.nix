@@ -41,7 +41,7 @@
           "android-studio-stable"
           "microsoft-edge-stable"
           "vscode"
-          # "obsidian"
+          "obsidian"
           "unrar"
           "libsciter" # rustdesk
           "steam-runtime"
@@ -75,9 +75,9 @@
       src = inputs.nixpkgs;
       patches = map originPkgs.fetchpatch remoteNixpkgsPatches;
     };
-    nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
+    # nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
     # Uncomment to use a Nixpkgs without remoteNixpkgsPatches
-    # nixosSystem = inputs.nixpkgs.lib.nixosSystem;
+    nixosSystem = inputs.nixpkgs.lib.nixosSystem;
   in {
     homeConfigurations."${username}" = inputs.home-manager.lib.homeManagerConfiguration rec {
       inherit pkgs;

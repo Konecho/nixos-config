@@ -12,7 +12,7 @@
 
     microsoft-edge
     firefox
-    # obsidian
+    obsidian
     # libreoffice
     # onlyoffice-bin
     # thunderbird
