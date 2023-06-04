@@ -202,7 +202,7 @@
     # bind = $MOD , G,exec,hyprctl --batch "keyword general:gaps_out 0;keyword general:gaps_in 0"
   '';
   autoStart = ''
-    exec-once = ${pkgs.fcitx5}/bin/fcitx5 -d &
+    exec-once = fcitx5 -d &
     exec-once = ${pkgs.mako}/bin/mako &
     exec-once = ${pkgs.clash-verge}/bin/clash-verge &
     exec-once = ${pkgs.swww}/bin/swww init &
