@@ -87,7 +87,7 @@
         inputs.stylix.homeManagerModules.stylix
         {
           home.username = "${username}";
-          # home.homeDirectory = "/home/${username}";
+          nix.registry.nixpkgs.flake = inputs.nixpkgs;
           imports = [./home];
         }
         # impermanence.nixosModules.home-manager.impermanence
@@ -118,6 +118,7 @@
           ./hardware-configuration.nix
           {
             imports = [./system];
+            # nix.registry.nixpkgs.flake = inputs.nixpkgs;
             nixpkgs.overlays = [
               (self: super: rec {
                 mypkgs = inputs.my-nixpkgs.packages."${system}";
@@ -136,7 +137,7 @@
           {
             environment.persistence."/persist" = {
               directories = [
-                "/home"
+                "/home/mei"
                 "/etc/nixos"
                 "/etc/NetworkManager/system-connections"
                 "/var/log"

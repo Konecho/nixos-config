@@ -37,6 +37,7 @@
     # waydroid.enable = true;
   };
   services.duplicati = {enable = true;};
+  services.fwupd.enable = true;
   services.kmscon = {
     enable = true;
     fonts = [

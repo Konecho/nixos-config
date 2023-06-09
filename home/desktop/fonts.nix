@@ -6,14 +6,25 @@
   # };
   stylix.fonts = {
     serif = {
-      package = pkgs.noto-fonts-cjk;
-      name = "Noto Serif CJK SC";
+      package = pkgs.nur.repos.vanilla.Win10_LTSC_2021_fonts;
+      name = "Microsoft YaHei";
     };
+
     # 无衬线
     sansSerif = {
       package = pkgs.nur.repos.vanilla.Win10_LTSC_2021_fonts;
       name = "Microsoft YaHei";
     };
+
+    # serif = {
+    #   package = pkgs.noto-fonts-cjk;
+    #   name = "Noto Serif CJK SC";
+    # };
+
+    # sansSerif = {
+    #   package = pkgs.noto-fonts-cjk;
+    #   name = "Noto Sans CJK SC";
+    # };
 
     monospace = {
       package = pkgs.maple-mono-SC-NF;
