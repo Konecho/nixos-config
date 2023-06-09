@@ -1,11 +1,17 @@
 {pkgs, ...}: {
-  home.shellAliases = {man = "batman";};
   programs = {
     navi.enable = true;
     bat = {
       enable = true; # cat
       # https://github.com/eth-p/bat-extras
-      extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch batpipe prettybat];
+      extraPackages = with pkgs.bat-extras; [
+        batdiff
+        batman
+        batgrep
+        batwatch
+        batpipe
+        prettybat
+      ];
     };
     zellij.enable = true; # tmux
     zoxide.enable = true; # <z> cd

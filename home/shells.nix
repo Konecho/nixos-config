@@ -1,4 +1,7 @@
 {pkgs, ...}: {
+  home.shellAliases = {
+    man = "batman";
+  };
   programs = {
     bash = {
       enable = true;
@@ -7,18 +10,23 @@
     };
     fish = {
       enable = true;
-      functions.fish_greeting = ''
-        pwd | ${pkgs.pokemonsay}/bin/pokemonsay -N
-        # ${pkgs.mypkgs.fortunes}/bin/fortune-cn chinese | ${pkgs.mypkgs.arttime}/bin/arttime --nolearn --random all
-      '';
-      functions.nixlf = ''
-        set derv $(nix show-derivation $argv|jq -rs '.[0]|to_entries[].value.outputs.out.path')
-        if [ -d $derv ]
-          lf $derv
-        else
-          echo $(nix show-derivation $argv|jq -s '.[0]|to_entries[].value.outputs')
-        end
-      '';
+      functions = {
+        fish_greeting = ''
+          pwd | ${pkgs.pokemonsay}/bin/pokemonsay -N
+          # ${pkgs.mypkgs.fortunes}/bin/fortune-cn chinese | ${pkgs.mypkgs.arttime}/bin/arttime --nolearn --random all
+        '';
+        nixlf = ''
+          set derv $(nix show-derivation $argv|jq -rs '.[0]|to_entries[].value.outputs.out.path')
+          if [ -d $derv ]
+            lf $derv
+          else
+            echo $(nix show-derivation $argv|jq -s '.[0]|to_entries[].value.outputs')
+          end
+        '';
+        gitui = ''
+          ssh-add ~/.ssh/id_ed25519 && ${pkgs.gitui}/bin/gitui
+        '';
+      };
       loginShellInit = ''
         # Fish syntax highlighting
         set -g fish_color_autosuggestion '555'  'brblack'

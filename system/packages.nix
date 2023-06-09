@@ -3,6 +3,12 @@
     home-manager
     # fbterm
   ];
+  services.printing.enable = true;
+  services.printing.drivers = [pkgs.hplip];
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  # for a WiFi printer
+  services.avahi.openFirewall = true;
   programs = {
     adb.enable = true;
     hyprland.enable = true;
