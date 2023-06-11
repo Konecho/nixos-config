@@ -15,7 +15,10 @@
     nur.url = "github:nix-community/NUR";
     my-nixpkgs.url = "github:Konecho/my-nixpkgs";
     hyprland.url = "github:hyprwm/Hyprland";
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs"; # follow ghc
+    };
   };
 
   outputs = inputs @ {
@@ -38,20 +41,23 @@
       inherit system;
       config.allowUnfreePredicate = pkg:
         builtins.elem (inputs.nixpkgs.lib.getName pkg) [
-          "android-studio-stable"
+          # "android-studio-stable"
           "microsoft-edge-stable"
-          "vscode"
+          # "vscode"
+          "wechat-uos"
           "obsidian"
           "unrar"
           "libsciter" # rustdesk
-          "steam-runtime"
-          "steam-original"
-          "steam"
-          "steam-run"
-          "steamcmd"
+          # "steam-runtime"
+          # "steam-original"
+          # "steam"
+          # "steam-run"
+          # "steamcmd"
         ];
       config.permittedInsecurePackages = [
+        "electron-19.0.7"
         "electron-12.2.3"
+        "openssl-1.1.1u"
       ];
       overlays = [
         (self: super: rec {

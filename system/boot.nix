@@ -33,7 +33,7 @@
       vt = 7;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.greetd}/bin/agreety --cmd Hyprland"; #sway
+          command = "${pkgs.greetd.greetd}/bin/agreety --cmd /bin/sh";
           # user = "mei";
         };
       };

@@ -7,18 +7,20 @@
     # inkscape
     # krita
     surf
-    etcher
+    # etcher
     telegram-desktop
+    # nur.repos.xddxdd.wechat-uos
 
     microsoft-edge
     firefox
-    obsidian
+    # obsidian
+    logseq
     # libreoffice
     # onlyoffice-bin
     # thunderbird
 
     # android-studio
-    scrcpy
+    # scrcpy
 
     # obs-studio
   ];

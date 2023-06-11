@@ -1,11 +1,11 @@
 {pkgs, ...}: {
-  home.shellAliases.neovide = "WINIT_UNIX_BACKEND=x11 neovide";
-  home.packages = with pkgs; [
-    neovide # WINIT_UNIX_BACKEND=x11 neovide
-  ];
+  home.shellAliases.neovide = "WINIT_UNIX_BACKEND=x11 ${pkgs.neovide}/bin/neovide";
+  # home.packages = with pkgs; [
+  #   neovide # WINIT_UNIX_BACKEND=x11 neovide
+  # ];
   programs.neovim = {
     enable = true;
-    coc = {enable = true;};
+    coc.enable = true;
     vimAlias = true;
     extraConfig = ''
       syntax on

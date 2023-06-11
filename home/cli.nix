@@ -64,6 +64,8 @@
     procs # ps
     comma # , <command>
 
+    logtop
+
     jq
     just # make
     sd # sed

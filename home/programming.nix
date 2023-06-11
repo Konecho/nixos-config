@@ -1,5 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    ## [[misc]]
+    ghc # Haskell
+
     ## [[my project]]
     mypkgs.scutthesis.thesis
 
