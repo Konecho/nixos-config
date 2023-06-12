@@ -1,57 +1,42 @@
-{pkgs, ...}: let
-  mkBlocks = pathToConfig:
-    pkgs.stdenv.mkDerivation {
-      name = "someblocks";
+{
+  pkgs,
+  config,
+  ...
+}: let
+  # https://git.sr.ht/~raphi/someblocks
+  cfgblocks = pkgs.mypkgs.someblocks.override {
+    conf = ./blocks.def.h;
+  };
 
-      src = pkgs.fetchFromSourcehut {
-        owner = "~raphi";
-        repo = "someblocks";
-        rev = "1.0.1";
-        sha256 = "sha256-pUdiEyhqLx3aMjN0D0y0ykeXF3qjJO0mM8j1gLIf+ww=";
-      };
+  # https://github.com/djpohly/dwl
+  cfgdwl = pkgs.dwl.override {
+    conf = ./dwl.def.h;
+    # conf = fetchurl {
+    #   url = "https://raw.githubusercontent.com/djpohly/dwl/main/config.def.h";
+    #   sha256 = "sha256-yyN7G98GBVPmwOM+QZfh/Uq8tWLSI0J+hgbtcKvIjwM=";
+    # };
+    # patches = [
+    #   (fetchMercurial {
+    #     url = "https://github.com/djpohly/dwl/compare/main...DanielMowitz:bottomstack.patch";
+    #     sha256 = "sha256-L5eNXPEHLM0D4PEjPqyvCAp9DRQYpOXKwUCvdCnJsJQ=";
+    #   })
+    # ];
+  };
 
-      postPatch = "cp ${pathToConfig} blocks.def.h";
-
-      NIX_CFLAGS_COMPILE = [
-        "-Wno-error=unused-result"
-      ];
-
-      installPhase = ''
-        runHook preInstall
-        install -d $out/bin
-        install -m755 someblocks $out/bin
-        runHook postInstall
-      '';
-    };
+  # https://git.sr.ht/~raphi/somebar
+  cfgbar = pkgs.somebar.override {
+    conf = ./bar.def.hpp;
+  };
 in {
-  home.packages = with pkgs; [
-    # https://github.com/djpohly/dwl
-    (dwl.override {
-      conf = ./dwl.def.h;
-      # conf = fetchurl {
-      #   url = "https://raw.githubusercontent.com/djpohly/dwl/main/config.def.h";
-      #   sha256 = "sha256-yyN7G98GBVPmwOM+QZfh/Uq8tWLSI0J+hgbtcKvIjwM=";
-      # };
-      # patches = [
-      #   (fetchMercurial {
-      #     url = "https://github.com/djpohly/dwl/compare/main...DanielMowitz:bottomstack.patch";
-      #     sha256 = "sha256-L5eNXPEHLM0D4PEjPqyvCAp9DRQYpOXKwUCvdCnJsJQ=";
-      #   })
-      # ];
-    })
-
-    # https://git.sr.ht/~raphi/somebar
-    (somebar.override {
-      conf = ./bar.def.hpp;
-    })
-    # somebar
-
-    # https://git.sr.ht/~raphi/someblocks
-    (mkBlocks ./blocks.def.h)
-
-    (writeShellScriptBin "dwlrun" ''
-      exec someblocks &
-      dwl -s "clash-verge & mako & fcitx5 -d & somebar "
+  home.packages = [
+    (pkgs.writeShellScriptBin "dwl" ''
+      exec fcitx5 -d &
+      exec ${pkgs.swww}/bin/swww init &
+      exec ${pkgs.swww}/bin/swww img ${config.stylix.image} &
+      exec ${pkgs.mako}/bin/mako &
+      exec ${pkgs.clash-verge}/bin/clash-verge &
+      exec ${cfgblocks}/bin/someblocks &
+      ${cfgdwl}/bin/dwl -s ${cfgbar}/bin/somebar
       rm $XDG_RUNTIME_DIR/somebar-*
       clear
     '')
