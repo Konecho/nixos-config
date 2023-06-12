@@ -27,6 +27,7 @@
   # };
 
   programs.clash-verge.enable = true;
+  programs.clash-verge.autoStart = true;
   # services.create_ap = {
   #   enable = true;
   #   settings = {

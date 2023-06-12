@@ -3,6 +3,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
   imports = [
@@ -29,9 +30,6 @@
       DOCKER_HOST = "unix:///run/docker.sock";
       BROWSER = "surf";
       GDK_BACKEND = "x11";
-      # SWWW_TRANSITION_FPS = 60;
-      # SWWW_TRANSITION_STEP = 2;
-      # SWWW_TRANSITION_TYPE = "random";
       # XDG_CACHE_HOME = "${home.homeDirectory}/.cache";
     };
   };
@@ -45,6 +43,7 @@
       # rime-data
     ];
   };
+  # systemd.user.services.fcitx5-daemon.Service.ExecStart = lib.mkForce "${config.i18n.inputMethod.package}/bin/fcitx5 -d";
   # xdg.cacheHome = "${home.homeDirectory}/.cache";
   xdg.userDirs = {
     enable = true;

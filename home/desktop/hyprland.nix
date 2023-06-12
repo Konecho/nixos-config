@@ -29,8 +29,8 @@
       gaps_out = ${builtins.toString gaps}
       border_size = ${builtins.toString border}
       # 1440x900->1430x890
-      col.active_border = rgb(${base16.base0F})
-      col.inactive_border = rgba(${base16.base07}aa)
+      col.active_border = rgb(${base16.base0A})
+      col.inactive_border = rgba(${base16.base03}aa)
       layout = dwindle # master|dwindle
     }
     dwindle {
@@ -68,7 +68,7 @@
       dim_inactive = false
       # dim_strength = #0.0 ~ 1.0
       blur_ignore_opacity = false
-      col.shadow = rgba(003472ee)
+      col.shadow = rgba(${base16.base03}ee)
     }
     animations {
       enabled = 1
@@ -202,12 +202,11 @@
     # bind = $MOD , G,exec,hyprctl --batch "keyword general:gaps_out 0;keyword general:gaps_in 0"
   '';
   autoStart = ''
-    exec-once = fcitx5 -d &
-    exec-once = ${pkgs.mako}/bin/mako &
+    # exec-once = fcitx5 -d &
     exec-once = ${pkgs.clash-verge}/bin/clash-verge &
     exec-once = ${pkgs.swww}/bin/swww init &
-    exec-once = ${pkgs.swww}/bin/swww img ${config.stylix.image} &
-    # exec-once = ${pkgs.mypkgs.pokemon-terminal}/bin/pokemon -w 615 &
+    exec = ${pkgs.swww}/bin/swww img ${config.stylix.image} &
+    # exec = ${pkgs.mypkgs.pokemon-terminal}/bin/pokemon -w 615 &
     exec-once = ${pkgs.alacritty}/bin/alacritty --class="termbar" -e ${pkgs.bash}/bin/bash -c 'tput civis && ${pkgs.mypkgs.baru}/bin/baru | tr "\n" "\r"'
     exec-once = ${pkgs.wezterm}/bin/wezterm start --class termmain
   '';
@@ -250,6 +249,7 @@
 in {
   wayland.windowManager.hyprland = {
     enable = true;
+    systemdIntegration = true;
     extraConfig = ''
       ${baseConfigs}
       ${keyBinds}

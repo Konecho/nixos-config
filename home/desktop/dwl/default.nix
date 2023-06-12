@@ -30,11 +30,10 @@
 in {
   home.packages = [
     (pkgs.writeShellScriptBin "dwl" ''
-      exec fcitx5 -d &
+      # exec fcitx5 -d &
       exec ${pkgs.swww}/bin/swww init &
       exec ${pkgs.swww}/bin/swww img ${config.stylix.image} &
-      exec ${pkgs.mako}/bin/mako &
-      exec ${pkgs.clash-verge}/bin/clash-verge &
+      # exec ${pkgs.clash-verge}/bin/clash-verge &
       exec ${cfgblocks}/bin/someblocks &
       ${cfgdwl}/bin/dwl -s ${cfgbar}/bin/somebar
       rm $XDG_RUNTIME_DIR/somebar-*
