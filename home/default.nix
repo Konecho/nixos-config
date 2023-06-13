@@ -43,7 +43,7 @@
       # rime-data
     ];
   };
-  # systemd.user.services.fcitx5-daemon.Service.ExecStart = lib.mkForce "${config.i18n.inputMethod.package}/bin/fcitx5 -d";
+  systemd.user.services.fcitx5-daemon.Service.ExecStart = lib.mkForce "${config.i18n.inputMethod.package}/bin/fcitx5 --keep";
   # xdg.cacheHome = "${home.homeDirectory}/.cache";
   xdg.userDirs = {
     enable = true;

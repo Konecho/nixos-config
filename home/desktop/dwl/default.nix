@@ -27,17 +27,23 @@
   cfgbar = pkgs.somebar.override {
     conf = ./bar.def.hpp;
   };
+
+  dwl-startup = builtins.concatStringsSep " <&- | " [
+    # "${cfgbar}/bin/somebar"
+    "${pkgs.swww}/bin/swww init"
+    "${pkgs.swww}/bin/swww img ${config.stylix.image}"
+    "${pkgs.clash-verge}/bin/clash-verge"
+  ];
 in {
   home.packages = [
     (pkgs.writeShellScriptBin "dwl" ''
-      # exec fcitx5 -d &
-      exec ${pkgs.swww}/bin/swww init &
-      exec ${pkgs.swww}/bin/swww img ${config.stylix.image} &
-      # exec ${pkgs.clash-verge}/bin/clash-verge &
       exec ${cfgblocks}/bin/someblocks &
-      ${cfgdwl}/bin/dwl -s ${cfgbar}/bin/somebar
+      # ${dwl-startup}/bin/dwl-startup &
+      ${cfgdwl}/bin/dwl -s "${cfgbar}/bin/somebar | ${dwl-startup}"
+
+      # ${cfgdwl}/bin/dwl -s "${cfgbar}/bin/somebar"
       rm $XDG_RUNTIME_DIR/somebar-*
-      clear
+      # clear
     '')
   ];
 }
