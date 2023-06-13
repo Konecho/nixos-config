@@ -41,6 +41,7 @@
       inherit system;
       config.allowUnfreePredicate = pkg:
         builtins.elem (inputs.nixpkgs.lib.getName pkg) [
+          # "corefonts" # onlyoffice
           # "android-studio-stable"
           "microsoft-edge-stable"
           # "vscode"
@@ -123,7 +124,14 @@
         modules = [
           ./hardware-configuration.nix
           {
-            imports = [./system];
+            # nixpkgs.config.allowUnfreePredicate = pkg:
+            #   builtins.elem (inputs.nixpkgs.lib.getName pkg) [
+            #     "corefonts" # onlyoffice
+            #   ];
+            imports = [
+              ./system
+              (inputs.nixpkgs + "/nixos/modules/programs/wayland/wayland-session.nix")
+            ];
             # nix.registry.nixpkgs.flake = inputs.nixpkgs;
             nixpkgs.overlays = [
               (self: super: rec {

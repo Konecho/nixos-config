@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     home-manager
+    helix
     # fbterm
   ];
   services.printing.enable = true;
@@ -9,21 +10,25 @@
   services.avahi.nssmdns = true;
   # for a WiFi printer
   services.avahi.openFirewall = true;
+  # services.onlyoffice = {
+  #   enable = true;
+  #   hostname = "localhost";
+  # };
   programs = {
     adb.enable = true;
-    hyprland.enable = true;
-    river.enable = true;
-    river.package = null;
+    # hyprland.enable = true;
+    # river.enable = true;
+    # river.package = null;
     git.enable = true;
     fish.enable = true;
     ssh.knownHosts."github.com".publicKey = "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
 ";
     # dconf.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      vimAlias = true;
-    };
+    # neovim = {
+    #   enable = true;
+    #   defaultEditor = true;
+    #   vimAlias = true;
+    # };
   };
   virtualisation = {
     # anbox.enable = true;

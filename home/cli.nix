@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   programs = {
+    home-manager.enable = true;
     navi.enable = true;
     bat = {
       enable = true; # cat
