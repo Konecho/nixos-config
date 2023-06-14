@@ -31,6 +31,9 @@
             termplotlib
             matplotlib
             # poetry-core
+            pyocd
+            adafruit-nrfutil
+            intelhex
           ];
         python-with-packages = python3.withPackages python-packages;
       in
@@ -49,5 +52,8 @@
     #rust-analyzer
     texlab #latex
     taplo #toml
+
+    nrfconnect
+    segger-jlink
   ];
 }

@@ -54,6 +54,11 @@
 
     pokemonsay
 
+    (nb.overrideAttrs (finalAttrs: previousAttrs: {
+      postInstall = ''
+        installShellCompletion --cmd nb etc/nb-completion.{bash,zsh,fish}
+      '';
+    })) # notebook
     qrcp
     entr
 

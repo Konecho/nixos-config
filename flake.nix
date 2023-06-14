@@ -39,8 +39,11 @@
 
     pkgs = import inputs.nixpkgs {
       inherit system;
+      config.segger-jlink.acceptLicense = true;
       config.allowUnfreePredicate = pkg:
         builtins.elem (inputs.nixpkgs.lib.getName pkg) [
+          "segger-jlink"
+          "nrfconnect"
           # "corefonts" # onlyoffice
           # "android-studio-stable"
           "microsoft-edge-stable"

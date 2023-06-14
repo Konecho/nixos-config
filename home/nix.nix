@@ -36,6 +36,7 @@
   home.packages = with pkgs; [
     ## [[nix]]
     nix-init
+    nix-tree
     nil
     # rnix-lsp
     alejandra
