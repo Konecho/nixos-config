@@ -29,7 +29,6 @@
   };
 
   dwl-startup = builtins.concatStringsSep " <&- | " [
-    # "${cfgbar}/bin/somebar"
     "${pkgs.swww}/bin/swww init"
     "${pkgs.swww}/bin/swww img ${config.stylix.image}"
     "${pkgs.clash-verge}/bin/clash-verge"
@@ -38,12 +37,10 @@ in {
   home.packages = [
     (pkgs.writeShellScriptBin "dwl" ''
       exec ${cfgblocks}/bin/someblocks &
-      # ${dwl-startup}/bin/dwl-startup &
       ${cfgdwl}/bin/dwl -s "${cfgbar}/bin/somebar | ${dwl-startup}"
-
-      # ${cfgdwl}/bin/dwl -s "${cfgbar}/bin/somebar"
       rm $XDG_RUNTIME_DIR/somebar-*
       # clear
     '')
+    pkgs.kickoff
   ];
 }

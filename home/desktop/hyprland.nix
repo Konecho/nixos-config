@@ -108,7 +108,7 @@
     bind = $MOD, Return, exec, ${pkgs.wezterm}/bin/wezterm start
     bind = $MOD SHIFT, Return, exec, ${pkgs.wezterm}/bin/wezterm start --class termfloat
 
-    bind = $MOD, D, exec, kickoff
+    bind = $MOD, D, exec, ${pkgs.kickoff}/bin/kickoff
     bind = $MOD SHIFT, Q, killactive,
     bind = $MOD SHIFT, E, exit,
     bind = $MOD SHIFT, Space, togglefloating,

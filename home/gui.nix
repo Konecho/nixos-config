@@ -6,24 +6,27 @@
     # godot
     # inkscape
     # krita
-    surf
     # etcher
+
+    # [[web browser]]
+    surf
+    microsoft-edge
+    firefox
+
     telegram-desktop
     # nur.repos.xddxdd.wechat-uos
 
-    microsoft-edge
-    firefox
     # obsidian
     logseq
     # libreoffice
     # onlyoffice-bin
+
     # thunderbird
 
     # android-studio
     # scrcpy
-
-    # obs-studio
   ];
+  programs.qutebrowser.enable = true;
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [

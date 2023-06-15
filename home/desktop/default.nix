@@ -4,9 +4,10 @@
     enable = true;
     # font = "monospace 12";
   };
+  services.clipman.enable = true;
   home.packages = with pkgs; [
     ## [[app runner]]
-    kickoff
+    # kickoff
     # wofi
   ];
 }

@@ -2,6 +2,8 @@
   programs = {
     home-manager.enable = true;
     navi.enable = true;
+    noti.enable = true; # <do-something>;noti> or <noti do-somethingdo-somethind>>
+    rbw.enable = true;
     bat = {
       enable = true; # cat
       # https://github.com/eth-p/bat-extras
@@ -14,18 +16,10 @@
         prettybat
       ];
     };
-    zellij.enable = true; # tmux
     zoxide.enable = true; # <z> cd
     bottom.enable = true; # <btm> top
     mcfly.enable = true; # <ctrl-r>
     broot.enable = true; # <br> tree-view search
-    lf = {
-      enable = true;
-      previewer = {
-        keybinding = "i";
-        source = "${pkgs.ctpv}/bin/ctpv";
-      };
-    };
     # ls
     lsd = {
       enable = true;
@@ -59,6 +53,8 @@
         installShellCompletion --cmd nb etc/nb-completion.{bash,zsh,fish}
       '';
     })) # notebook
+    nmap
+
     qrcp
     entr
 
