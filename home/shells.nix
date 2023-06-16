@@ -24,7 +24,8 @@
         '';
         gitui = ''
           git config user.name "$(python ~/scripts/random_pokemon_name.py)"
-          ssh-add ~/.ssh/id_ed25519 && ${pkgs.gitui}/bin/gitui
+          ssh-add ~/.ssh/id_ed25519 2> /dev/null
+          ${pkgs.gitui}/bin/gitui
         '';
       };
       loginShellInit = ''
