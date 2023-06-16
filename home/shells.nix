@@ -13,7 +13,6 @@
       functions = {
         fish_greeting = ''
           pwd | ${pkgs.pokemonsay}/bin/pokemonsay -N
-          # ${pkgs.mypkgs.fortunes}/bin/fortune-cn chinese | ${pkgs.mypkgs.arttime}/bin/arttime --nolearn --random all
         '';
         nixlf = ''
           set derv $(nix show-derivation $argv|jq -rs '.[0]|to_entries[].value.outputs.out.path')
@@ -24,7 +23,7 @@
           end
         '';
         gitui = ''
-          git config user.name "$(python ~/srcs/random_pokemon_name.py)"
+          git config user.name "$(python ~/scripts/random_pokemon_name.py)"
           ssh-add ~/.ssh/id_ed25519 && ${pkgs.gitui}/bin/gitui
         '';
       };
