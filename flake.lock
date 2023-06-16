@@ -351,14 +351,16 @@
     },
     "my-nixpkgs": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1686548014,
-        "narHash": "sha256-az8ywkG/j3PKi6RhUXv89diAaysfh5GidWgVk50cED8=",
+        "lastModified": 1686816681,
+        "narHash": "sha256-hzAjvh7HBt4hup8bsx1MMVB4bcA6zAu0nnsph+hczAo=",
         "owner": "Konecho",
         "repo": "my-nixpkgs",
-        "rev": "62486e01c971c407d89e9ed4f1ac273564033c02",
+        "rev": "399dffde84f0d780c007c80e3b26ac0b2bc98a74",
         "type": "github"
       },
       "original": {
@@ -383,7 +385,7 @@
         "flake-utils": "flake-utils",
         "format-all": "format-all",
         "nix-straight": "nix-straight",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "nose": "nose",
         "ob-racket": "ob-racket",
         "org": "org",
@@ -460,22 +462,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1682109806,
-        "narHash": "sha256-d9g7RKNShMLboTWwukM+RObDWWpHKaqTYXB48clBWXI=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "2362848adf8def2866fabbffc50462e929d7fffb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1682566018,
         "narHash": "sha256-HPzPRFiy2o/7k7mtnwfM1E6NVZHiFbPdmYCMoIpkHO4=",
         "owner": "NixOS",
@@ -489,7 +475,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1686501370,
         "narHash": "sha256-G0WuM9fqTPRc2URKP9Lgi5nhZMqsfHGrdEbrLvAPJcg=",
@@ -639,7 +625,7 @@
         "my-nixpkgs": "my-nixpkgs",
         "nix-doom-emacs": "nix-doom-emacs",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_3",
         "nur": "nur",
         "stylix": "stylix"
       }

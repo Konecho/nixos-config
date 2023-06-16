@@ -15,25 +15,32 @@
           with python-packages; [
             # pandas
             # pip
+            # poetry-core
+
             python-lsp-server
             autopep8
             black
+
             requests
             torchWithoutCuda
             torchvision
             ignite
             opencv4
-            pillow
             pandas
             scikit-learn
             numpy
             einops
+            pillow
             termplotlib
             matplotlib
-            # poetry-core
+
             pyocd
             adafruit-nrfutil
             intelhex
+
+            jupyterlab
+
+            mypkgs.pokebase
           ];
         python-with-packages = python3.withPackages python-packages;
       in

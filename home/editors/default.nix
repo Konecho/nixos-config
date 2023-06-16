@@ -10,7 +10,7 @@
         "\\#*\\#"
       ];
       userName = "NixOS";
-      userEmail = "me@meiro.top";
+      userEmail = "konecho@outlook.com";
     };
   };
 }
