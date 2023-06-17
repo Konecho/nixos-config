@@ -28,7 +28,6 @@
     sessionPath = ["$HOME/.cargo/bin"];
     sessionVariables = {
       DOCKER_HOST = "unix:///run/docker.sock";
-      BROWSER = "surf";
       GDK_BACKEND = "x11";
       # XDG_CACHE_HOME = "${home.homeDirectory}/.cache";
     };

@@ -29,7 +29,7 @@
             ];
           pyEnv = pkgs.python3.withPackages python-packages;
         in ''
-          git config user.name "${pyEnv}/bin/python ~/scripts/random_pokemon_name.py)"
+          git config user.name "$(${pyEnv}/bin/python ~/scripts/random_pokemon_name.py)"
           ssh-add ~/.ssh/id_ed25519 2> /dev/null
           ${pkgs.gitui}/bin/gitui
         '';
