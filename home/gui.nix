@@ -26,7 +26,10 @@
     # android-studio
     # scrcpy
   ];
-  programs.qutebrowser.enable = true;
+  programs.qutebrowser = {
+    enable = true;
+    package = pkgs.qutebrowser-qt6;
+  };
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [

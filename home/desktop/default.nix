@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  imports = [./bars.nix ./fonts.nix ./theme.nix ./hyprland.nix ./dwl];
+  imports = [./bars.nix ./fonts.nix ./theme.nix ./hyprland.nix ./dwl ./qtile];
   services.mako = {
     enable = true;
     # font = "monospace 12";

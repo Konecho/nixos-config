@@ -8,11 +8,15 @@
   # fontsize=12 cellsize=10x21
   cellWidth = 10;
   cellHeight = 21;
-  gaps = 2;
-  border = 3; # 2*(gaps+border)==cellWidth
+  # gaps = 2;
+  # border = 3; # 2*(gaps+border)==cellWidth
+  gaps = 0;
+  border = 0; # 2*(gaps+border)==cellWidth
+
   # ~/.config/stylix/palette.html
   base16 = config.lib.stylix.colors;
-  reservedBarHeight = 21;
+  # reservedBarHeight = 21;
+  reservedBarHeight = 18;
   baseConfigs = ''
     monitor=,preferred,auto,1
     ##### for top bar

@@ -22,8 +22,14 @@
             echo $(nix show-derivation $argv|jq -s '.[0]|to_entries[].value.outputs')
           end
         '';
-        gitui = ''
-          git config user.name "$(python ~/scripts/random_pokemon_name.py)"
+        gitui = let
+          python-packages = python-packages:
+            with python-packages; [
+              pkgs.mypkgs.pokebase
+            ];
+          pyEnv = pkgs.python3.withPackages python-packages;
+        in ''
+          git config user.name "${pyEnv}/bin/python ~/scripts/random_pokemon_name.py)"
           ssh-add ~/.ssh/id_ed25519 2> /dev/null
           ${pkgs.gitui}/bin/gitui
         '';
