@@ -1,6 +1,16 @@
 {pkgs, ...}: {
+  home.sessionVariables.BROWSER = "qutebrowser";
   home.packages = with pkgs; [
     rustdesk
+
+    surf
+    microsoft-edge
+    firefox
+
+    logseq
+
+    telegram-desktop
+
     # blender
     # gimp
     # godot
@@ -8,16 +18,9 @@
     # krita
     # etcher
 
-    # [[web browser]]
-    surf
-    microsoft-edge
-    firefox
-
-    telegram-desktop
     # nur.repos.xddxdd.wechat-uos
 
     # obsidian
-    logseq
     # libreoffice
     # onlyoffice-bin
 
