@@ -12,9 +12,13 @@
   border = 3; # 2*(gaps+border)==cellWidth
   # ~/.config/stylix/palette.html
   base16 = config.lib.stylix.colors;
+  reservedBarHeight = 21;
   baseConfigs = ''
     monitor=,preferred,auto,1
-    monitor=,addreserved,${builtins.toString (screenHeight - ((screenHeight - (gaps + border)) / cellHeight - 1) * cellHeight - 2 * (gaps + border))},0,0,0
+    ##### for top bar
+    # monitor=,addreserved,${builtins.toString (screenHeight - ((screenHeight - (gaps + border)) / cellHeight) * cellHeight - reservedBarHeight - 2 * (gaps + border))},0,0,0
+    ##### for bottom bar
+    monitor=,addreserved,0,${builtins.toString (screenHeight - ((screenHeight - 2 * (gaps + border) - reservedBarHeight) / cellHeight) * cellHeight - 2 * (gaps + border))},0,0
 
     input {
       kb_options = caps:escape
@@ -207,7 +211,19 @@
     exec-once = ${pkgs.swww}/bin/swww init &
     exec = ${pkgs.swww}/bin/swww img ${config.stylix.image} &
     # exec = ${pkgs.mypkgs.pokemon-terminal}/bin/pokemon -w 615 &
-    exec-once = ${pkgs.alacritty}/bin/alacritty --class="termbar" -e ${pkgs.bash}/bin/bash -c 'tput civis && ${pkgs.mypkgs.baru}/bin/baru | tr "\n" "\r"'
+
+    exec-once = ${pkgs.xmobar}/bin/xmobar -b &
+    ##### or use terminal as bar
+    ${builtins.concatStringsSep " " [
+      # "exec-once = ${pkgs.alacritty}/bin/alacritty --class='termbar' "
+      # "-e ${pkgs.bash}/bin/bash"
+      # "-c 'tput civis &&"
+      # "${pkgs.xmobar}/bin/xmobar -T |"
+      # # "${pkgs.mypkgs.baru}/bin/baru |"
+      # "cut -c 1-${builtins.toString ((screenWidth / cellWidth) - 1)} |"
+      # "tr \"\\n\" \"\\r\"'"
+    ]}
+
     exec-once = ${pkgs.wezterm}/bin/wezterm start --class termmain
   '';
   winRules = ''
@@ -242,6 +258,7 @@
 
     windowrule=float,termbar
     windowrule=pin,termbar
+    windowrule=pin,xmobar
 
     windowrule=animation slide right,termfloat
     windowrule=opacity 0.95 0.8,termfloat

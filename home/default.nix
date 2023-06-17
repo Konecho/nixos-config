@@ -12,6 +12,7 @@
 
     ./cli.nix
     ./games.nix
+    ./gpg.nix
     ./gui.nix
     ./music.nix
     ./nix.nix
