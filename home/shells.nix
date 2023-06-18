@@ -14,6 +14,16 @@
         fish_greeting = ''
           pwd | ${pkgs.pokemonsay}/bin/pokemonsay -N
         '';
+        nixinit = ''
+          if [ $(git rev-parse --is-inside-work-tree) = 'true' ]
+            if [ $(pwd) = $(git rev-parse --show-toplevel) ]
+              ${pkgs.sd}/bin/sd "}\n" "$argv = pkgs.callPackage ./pkgs/$argv {};}" ./default.nix
+              mkdir ./pkgs/$argv
+              cd ./pkgs/$argv
+              nix-init
+            end
+          end
+        '';
         nixlf = ''
           set derv $(nix show-derivation $argv|jq -rs '.[0]|to_entries[].value.outputs.out.path')
           if [ -d $derv ]

@@ -6,6 +6,7 @@
     surf
     microsoft-edge
     firefox
+    # hyper
 
     logseq
 

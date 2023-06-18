@@ -5,9 +5,10 @@
   ...
 }: {
   imports = [
-    ./bars.nix
+    # ./bars.nix
     ./fonts.nix
     ./theme.nix
+
     ./hyprland.nix
     ./dwl
     ./qtile

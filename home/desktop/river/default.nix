@@ -14,7 +14,7 @@
     # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
 
     # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
-    riverctl map normal Super+Shift Return spawn wezterm
+    # riverctl map normal Super+Shift Return spawn wezterm
     riverctl map normal Super Return spawn wezterm
     riverctl map normal Super D spawn ${pkgs.kickoff}/bin/kickoff
 
@@ -42,7 +42,7 @@
     riverctl map normal Super+Shift Comma send-to-output previous
 
     # Super+Return to bump the focused view to the top of the layout stack
-    riverctl map normal Super Return zoom
+    riverctl map normal Super+Shift Return zoom
 
     # Super+H and Super+L to decrease/increase the main ratio of rivertile(1)
     riverctl map normal Super H send-layout-cmd rivertile "main-ratio -0.05"
@@ -157,6 +157,7 @@
 
     # Make all views with an app-id that starts with "float" and title "foo" start floating.
     riverctl rule-add float -app-id 'float*' -title 'foo'
+    riverctl rule-add float -title '窗口投影（预览）'
 
     # Make all views with app-id "bar" and any title use client-side decorations
     riverctl rule-add csd -app-id "bar"
@@ -166,6 +167,7 @@
     riverctl default-layout rivertile
     rivertile -view-padding 6 -outer-padding 6 &
   '';
+
   systemd.user.targets.river-session = {
     Unit = {
       Description = "river compositor session";
