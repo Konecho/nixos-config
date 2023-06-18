@@ -13,6 +13,7 @@
       ignores = [
         "*~"
         "\\#*\\#"
+        ".Trash-1000"
       ];
       userName = "NixOS";
       userEmail = "konecho@outlook.com";
