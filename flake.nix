@@ -11,31 +11,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     nur.url = "github:nix-community/NUR";
     my-nixpkgs = {
       url = "github:Konecho/my-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs"; # follow ghc
+      inputs.home-manager.follows = "home-manager"; # follow ghc
     };
   };
 
-  outputs = inputs @ {
-    self,
-    # nixpkgs,
-    # nixos-hardware,
-    # home-manager,
-    # impermanence,
-    # nix-doom-emacs,
-    # nur,
-    # my-nixpkgs,
-    # hyprland,
-    ...
-  }: let
+  outputs = inputs: let
     system = "x86_64-linux";
     username = "mei";
     hostname = "deskmini";
@@ -96,7 +89,7 @@
       inherit pkgs;
       modules = [
         inputs.hyprland.homeManagerModules.default
-        inputs.nix-doom-emacs.hmModule
+        # inputs.nix-doom-emacs.hmModule
         inputs.stylix.homeManagerModules.stylix
         {
           home.username = "${username}";

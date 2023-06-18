@@ -11,6 +11,7 @@
     ./hyprland.nix
     ./dwl
     ./qtile
+    ./river
   ];
   i18n.inputMethod = {
     enabled = "fcitx5";
