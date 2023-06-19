@@ -15,15 +15,20 @@
 
   # ~/.config/stylix/palette.html
   base16 = config.lib.stylix.colors;
+
   # reservedBarHeight = 21;
-  reservedBarHeight = 18;
+  reservedBarHeight = 0;
   reservedHeight = reservedBarHeight + 2 * (gaps + border);
+  reservedTB = screenHeight - ((screenHeight - reservedHeight) / cellHeight) * cellHeight - reservedHeight;
+
   baseConfigs = ''
     monitor=,preferred,auto,1
     ##### for top bar
-    # monitor=,addreserved,${builtins.toString (screenHeight - ((screenHeight - reservedHeight) / cellHeight) * cellHeight - 2 * (gaps + border))},0,0,0
+    # monitor=,addreserved,${builtins.toString (reservedTB + reservedBarHeight)},0,0,0
     ##### for bottom bar
-    monitor=,addreserved,0,${builtins.toString (screenHeight - ((screenHeight - reservedHeight) / cellHeight) * cellHeight - 2 * (gaps + border))},0,0
+    # monitor=,addreserved,0,${builtins.toString (reservedTB + reservedBarHeight)},0,0
+    ##### for no bar
+    monitor=,addreserved,${builtins.toString (reservedTB / 2)},${builtins.toString (reservedTB - reservedTB / 2)},0,0
 
     input {
       kb_options = caps:escape
@@ -234,7 +239,10 @@
     exec = ${pkgs.swww}/bin/swww img ${config.stylix.image} &
     # exec = ${pkgs.mypkgs.pokemon-terminal}/bin/pokemon -w 615 &
 
-    exec-once = ${pkgs.xmobar}/bin/xmobar -b &
+    # exec-once = ${pkgs.xmobar}/bin/xmobar -b &
+    # exec-once=eww daemon &
+    # exec-once=eww open bar &
+
     ##### or use terminal as bar
     ${builtins.concatStringsSep " " [
       # "exec-once = ${pkgs.alacritty}/bin/alacritty --class='termbar' "

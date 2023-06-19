@@ -6,6 +6,7 @@
 }: {
   imports = [
     # ./bars.nix
+    # ./eww
     ./fonts.nix
     ./theme.nix
 
@@ -30,9 +31,18 @@
     # font = "monospace 12";
   };
   services.clipman.enable = true;
+  # programs.eww = {
+  #   enable = true;
+  #   package = pkgs.eww-wayland;
+  #   configDir = ./eww;
+  # };
   home.packages = with pkgs; [
     ## [[app runner]]
     # kickoff
-    # wofi
+    wofi
+    #   lua
+    #   pamixer
+    #   brightnessctl
+    #   (nerdfonts.override {fonts = ["JetBrainsMono"];})
   ];
 }

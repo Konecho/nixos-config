@@ -96,5 +96,7 @@
 
     imagemagick
     # ueberzug
+
+    killall
   ];
 }

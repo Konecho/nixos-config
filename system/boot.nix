@@ -36,7 +36,7 @@ in {
       vt = graphVtNum;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.greetd}/bin/agreety --cmd /bin/sh";
+          command = "${pkgs.greetd.greetd}/bin/agreety --cmd ${pkgs.fish}/bin/fish";
         };
       };
     };
