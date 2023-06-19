@@ -22,42 +22,42 @@
   #   ];
   # };
   fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      # fira-code
-      # fira-code-symbols
-      # (nerdfonts.override {
-      #   fonts = [
-      #     # "FiraCode"
-      #     # "UbuntuMono"
-      #     # "Noto"
-      #   ];
-      # })
-      # sarasa-gothic #更纱黑体
-      # source-code-pro
-      # hack-font
-      # jetbrains-mono
-    ];
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-        emoji = ["Noto Color Emoji"];
-        monospace = [
-          "Noto Sans Mono CJK SC"
-          # "DejaVu Sans Mono"
-        ];
-        sansSerif = [
-          "Noto Sans CJK SC"
-          # "Source Han Sans SC"
-        ];
-        serif = [
-          "Noto Serif CJK SC"
-          # "Source Han Serif SC"
-        ];
-      };
-    };
+    # fontDir.enable = true;
+    # fonts = with pkgs; [
+    #   noto-fonts
+    #   noto-fonts-cjk
+    #   noto-fonts-emoji
+    #   # fira-code
+    #   # fira-code-symbols
+    #   # (nerdfonts.override {
+    #   #   fonts = [
+    #   #     # "FiraCode"
+    #   #     # "UbuntuMono"
+    #   #     # "Noto"
+    #   #   ];
+    #   # })
+    #   # sarasa-gothic #更纱黑体
+    #   # source-code-pro
+    #   # hack-font
+    #   # jetbrains-mono
+    # ];
+    # fontconfig = {
+    #   enable = true;
+    #   defaultFonts = {
+    #     emoji = ["Noto Color Emoji"];
+    #     monospace = [
+    #       "Noto Sans Mono CJK SC"
+    #       # "DejaVu Sans Mono"
+    #     ];
+    #     sansSerif = [
+    #       "Noto Sans CJK SC"
+    #       # "Source Han Sans SC"
+    #     ];
+    #     serif = [
+    #       "Noto Serif CJK SC"
+    #       # "Source Han Serif SC"
+    #     ];
+    #   };
+    # };
   };
 }
