@@ -2,7 +2,7 @@
   imports = [
     # ./emacs.nix
     ./helix.nix
-    ./vim.nix
+    # ./vim.nix
     ./vscode.nix
   ];
   home.sessionVariables.EDITOR = "hx";

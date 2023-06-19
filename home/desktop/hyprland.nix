@@ -8,21 +8,22 @@
   # fontsize=12 cellsize=10x21
   cellWidth = 10;
   cellHeight = 21;
-  # gaps = 2;
-  # border = 3; # 2*(gaps+border)==cellWidth
-  gaps = 0;
-  border = 0; # 2*(gaps+border)==cellWidth
+  gaps = 2;
+  border = 3; # 2*(gaps+border)==cellWidth
+  # gaps = 0;
+  # border = 0; # 2*(gaps+border)==cellWidth
 
   # ~/.config/stylix/palette.html
   base16 = config.lib.stylix.colors;
   # reservedBarHeight = 21;
   reservedBarHeight = 18;
+  reservedHeight = reservedBarHeight + 2 * (gaps + border);
   baseConfigs = ''
     monitor=,preferred,auto,1
     ##### for top bar
-    # monitor=,addreserved,${builtins.toString (screenHeight - ((screenHeight - (gaps + border)) / cellHeight) * cellHeight - reservedBarHeight - 2 * (gaps + border))},0,0,0
+    # monitor=,addreserved,${builtins.toString (screenHeight - ((screenHeight - reservedHeight) / cellHeight) * cellHeight - 2 * (gaps + border))},0,0,0
     ##### for bottom bar
-    monitor=,addreserved,0,${builtins.toString (screenHeight - ((screenHeight - 2 * (gaps + border) - reservedBarHeight) / cellHeight) * cellHeight - 2 * (gaps + border))},0,0
+    monitor=,addreserved,0,${builtins.toString (screenHeight - ((screenHeight - reservedHeight) / cellHeight) * cellHeight - 2 * (gaps + border))},0,0
 
     input {
       kb_options = caps:escape
@@ -56,28 +57,45 @@
       no_gaps_when_only = false
     }
     # cursor_inactive_timeout = 0
+
+    # █▀▄ █▀▀ █▀▀ █▀█ █▀█ ▄▀█ ▀█▀ █ █▀█ █▄░█
+    # █▄▀ ██▄ █▄▄ █▄█ █▀▄ █▀█ ░█░ █ █▄█ █░▀█
+
     decoration {
-      multisample_edges = true
+
+      # █▀█ █▀█ █░█ █▄░█ █▀▄   █▀▀ █▀█ █▀█ █▄░█ █▀▀ █▀█
+      # █▀▄ █▄█ █▄█ █░▀█ █▄▀   █▄▄ █▄█ █▀▄ █░▀█ ██▄ █▀▄
+      rounding = 0
+      # multisample_edges = true
+
+      # █▀█ █▀█ ▄▀█ █▀▀ █ ▀█▀ █▄█
+      # █▄█ █▀▀ █▀█ █▄▄ █ ░█░ ░█░
       active_opacity = 1.0
       inactive_opacity = 1.0
-      fullscreen_opacity = 1.0
-      rounding = 0
-      blur = no
-      blur_size = 3
-      blur_passes = 1
+
+      # █▄▄ █░░ █░█ █▀█
+      # █▄█ █▄▄ █▄█ █▀▄
+      blur = true
+      blur_size = 6
+      blur_passes = 3
       blur_new_optimizations = true
+      blur_xray = true
+      blur_ignore_opacity = true
+
+      # █▀ █░█ ▄▀█ █▀▄ █▀█ █░█░█
+      # ▄█ █▀█ █▀█ █▄▀ █▄█ ▀▄▀▄▀
       drop_shadow = false
-      shadow_range = 4
-      shadow_render_power = 3
       shadow_ignore_window = true
-      # col.shadow =
-      # col.shadow_inactive
-      # shadow_offset
-      dim_inactive = false
-      # dim_strength = #0.0 ~ 1.0
-      blur_ignore_opacity = false
-      col.shadow = rgba(${base16.base03}ee)
+      shadow_offset = 1 2
+      shadow_range = 10
+      shadow_render_power = 5
+      col.shadow = 0x66404040
+
+      #blurls = gtk-layer-shell
+      blurls = waybar
+      blurls = lockscreen
     }
+
     animations {
       enabled = 1
       bezier = overshot, 0.13, 0.99, 0.29, 1.1
@@ -248,6 +266,7 @@
     windowrule=opacity 0.95,title:QQ
 
     windowrule=workspace 1,termmain
+    windowrulev2=opacity 0.80 0.80,class:termmain
     windowrule=workspace 2,firefox
     windowrule=workspace 3,VSCodium
 

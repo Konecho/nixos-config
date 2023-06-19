@@ -1,3 +1,6 @@
+# nvchad broken
+# 若想继续配置，参考：
+# https://github.com/search?q=repo%3Aazuwis%2Fnix-config%20nvchad&type=code
 {pkgs, ...}: {
   home.shellAliases.neovide = "WINIT_UNIX_BACKEND=x11 ${pkgs.neovide}/bin/neovide";
   # home.packages = with pkgs; [
@@ -25,7 +28,37 @@
         let g:neovide_cursor_vfx_mode = "sonicboom"
       endif
     '';
+    # extraLuaConfig = ''
+    #   dofile("${pkgs.vimPlugins.nvchad}/init.lua")
+    # '';
     plugins = with pkgs.vimPlugins; [
+      # cmp-buffer
+      # cmp-nvim-lsp
+      # cmp-nvim-lua
+      # cmp-path
+      # cmp_luasnip
+      # comment-nvim
+      # friendly-snippets
+      # gitsigns-nvim
+      # indent-blankline-nvim
+      # luasnip
+      # nvchad-extensions
+      # nvchad-ui
+      # nvim-autopairs
+      # nvim-cmp
+      # nvim-colorizer-lua
+      # nvim-lspconfig
+      # nvim-tree-lua
+      # nvim-treesitter
+      # nvim-web-devicons
+      # nvterm
+      # telescope-nvim
+      # which-key-nvim
+      # base46 # https://github.com/nvchad/base46/
+      # nvterm # https://github.com/nvchad/nvterm/
+      # nvchad-extensions # https://github.com/nvchad/extensions/
+      # nvchad-ui # https://github.com/nvchad/ui/
+      # nvchad # https://github.com/nvchad/nvchad/
       vim-nix
       rainbow
       {
@@ -67,4 +100,5 @@
       }
     ];
   };
+  stylix.targets.vim.enable = false;
 }

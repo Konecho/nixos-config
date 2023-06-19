@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  logVtNum = 1;
+  graphVtNum = 7;
+in {
   boot.loader = {
     systemd-boot = {
       enable = true;
@@ -25,24 +28,23 @@
   };
 
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  boot.kernelParams = ["console=tty1"];
+  boot.kernelParams = ["console=tty${builtins.toString logVtNum}"];
 
   services = {
     greetd = {
       enable = true;
-      vt = 7;
+      vt = graphVtNum;
       settings = {
         default_session = {
           command = "${pkgs.greetd.greetd}/bin/agreety --cmd /bin/sh";
-          # user = "mei";
         };
       };
     };
-    journald.console = "/dev/tty1";
+    journald.console = "/dev/tty${builtins.toString logVtNum}";
     gpm.enable = true;
   };
-  systemd.services."kmsconvt@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
+  systemd.services."kmsconvt@tty${builtins.toString logVtNum}".enable = false;
+  systemd.services."autovt@tty${builtins.toString logVtNum}".enable = false;
 
   # programs.regreet = {
   #   enable = true;

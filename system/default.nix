@@ -1,5 +1,12 @@
 {pkgs, ...}: {
-  imports = [./network.nix ./locale.nix ./packages.nix ./boot.nix];
+  imports = [
+    ./boot.nix
+    ./locale.nix
+    ./network.nix
+    ./packages.nix
+    ./services.nix
+    ./vm.nix
+  ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.gc = {
@@ -21,10 +28,6 @@
   '';
 
   security.doas.enable = true;
-
-  # To set up Sway using Home Manager, first you must enable Polkit in your nix configuration:
-  # security.polkit.enable = true;
-  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
