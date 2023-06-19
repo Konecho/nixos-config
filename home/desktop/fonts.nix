@@ -1,45 +1,28 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  MAPLE = {
+    package = pkgs.maple-mono-SC-NF;
+    name = "Maple Mono SC NF";
+  };
+  YAHEI = {
+    package = pkgs.nur.repos.vanilla.Win10_LTSC_2021_fonts;
+    name = "Microsoft YaHei";
+  };
+in {
   fonts.fontconfig.enable = true;
-  # gtk.font = {
-  #   package = pkgs.maple-mono-SC-NF;
-  #   name = "Maple Mono SC NF";
-  # };
+  # gtk.font = MAPLE;
   stylix.fonts = {
-    serif = {
-      package = pkgs.nur.repos.vanilla.Win10_LTSC_2021_fonts;
-      name = "Microsoft YaHei";
-    };
-
-    # 无衬线
-    sansSerif = {
-      package = pkgs.nur.repos.vanilla.Win10_LTSC_2021_fonts;
-      name = "Microsoft YaHei";
-    };
-
-    # serif = {
-    #   package = pkgs.noto-fonts-cjk;
-    #   name = "Noto Serif CJK SC";
-    # };
-
-    # sansSerif = {
-    #   package = pkgs.noto-fonts-cjk;
-    #   name = "Noto Sans CJK SC";
-    # };
-
-    monospace = {
-      package = pkgs.maple-mono-SC-NF;
-      name = "Maple Mono SC NF";
-    };
-
+    serif = YAHEI;
+    sansSerif = YAHEI;
+    monospace = MAPLE;
     emoji = {
       package = pkgs.noto-fonts-emoji;
       name = "Noto Color Emoji";
     };
   };
   home.packages = with pkgs; [
-    monocraft
-    nur.repos.vanilla.Win10_LTSC_2021_fonts
+    # monocraft
+    # nur.repos.vanilla.Win10_LTSC_2021_fonts
     # nur.repos.vanilla.apple-fonts.NY
-    mypkgs.scutthesis.fonts.windows
+    # mypkgs.scutthesis.fonts.windows
   ];
 }

@@ -1,5 +1,4 @@
 # <home-manager switch --flake .#mei>
-# <nix run nixpkgs#nyancat> #disfetch #neofetch #hyfetch
 {
   pkgs,
   config,
@@ -28,11 +27,9 @@
     sessionPath = ["$HOME/.cargo/bin"];
     sessionVariables = {
       DOCKER_HOST = "unix:///run/docker.sock";
-      GDK_BACKEND = "x11";
-      # XDG_CACHE_HOME = "${home.homeDirectory}/.cache";
+      # GDK_BACKEND = "x11";
     };
   };
-  # xdg.cacheHome = "${home.homeDirectory}/.cache";
   xdg.userDirs = {
     enable = true;
     createDirectories = true;

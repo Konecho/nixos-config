@@ -6,7 +6,7 @@
     rbw.enable = true;
     bat = {
       enable = true; # cat
-      # https://github.com/eth-p/bat-extras
+      ## https://github.com/eth-p/bat-extras
       extraPackages = with pkgs.bat-extras; [
         batdiff
         batman
@@ -20,7 +20,7 @@
     bottom.enable = true; # <btm> top
     mcfly.enable = true; # <ctrl-r>
     broot.enable = true; # <br> tree-view search
-    # ls
+    ## ls
     lsd = {
       enable = true;
       enableAliases = true;
@@ -29,7 +29,7 @@
       enable = true;
       nix-direnv.enable = true;
     };
-    # <tldr>
+    ## <tldr>
     tealdeer = {
       enable = true;
       settings = {
@@ -46,18 +46,15 @@
   home.packages = with pkgs; [
     libnotify # <notify-send>
 
-    pokemonsay
-
     (nb.overrideAttrs (finalAttrs: previousAttrs: {
       postInstall = ''
         installShellCompletion --cmd nb etc/nb-completion.{bash,zsh,fish}
       '';
     })) # notebook
+
     nmap
-
-    qrcp
-    entr
-
+    qrcp # share file
+    entr # watch file
     # zscroll
     wget
     fd # find
@@ -66,9 +63,9 @@
     procs # ps
     comma # , <command>
 
-    logtop
+    logtop # count line
 
-    jq
+    jq # parse json
     just # make
     sd # sed
     du-dust # <dust> du

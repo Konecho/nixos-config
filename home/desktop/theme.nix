@@ -11,15 +11,6 @@
   };
   gtk = {
     enable = true;
-    # cursorTheme = { };
-    # theme = {
-    #   name = "Pop";
-    #   package = pkgs.pop-gtk-theme;
-    # };
-    # iconTheme = {
-    #   name = "Numix";
-    #   package = pkgs.numix-solarized-gtk-theme;
-    # };
   };
   ## [[mpvpaper]]
   systemd.user.sessionVariables.PATH = "${pkgs.systemd}:${config.home.homeDirectory}/.nix-profile/bin:/run/current-system/sw/bin/";
@@ -36,11 +27,8 @@
   #     '';
   #   };
   # };
-  ## [[swww]]
   home.packages = with pkgs; [
-    swww
-    mypkgs.pokemon-terminal
-    # swaybg
+    swww # wallpaper
     mpv
     # mpvpaper
   ];
