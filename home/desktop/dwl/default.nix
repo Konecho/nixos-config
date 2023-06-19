@@ -36,6 +36,7 @@
 in {
   home.packages = [
     (pkgs.writeShellScriptBin "dwl" ''
+      systemctl --user status dwl-session.target
       exec ${cfgblocks}/bin/someblocks &
       ${cfgdwl}/bin/dwl -s "${cfgbar}/bin/somebar | ${dwl-startup}"
       rm $XDG_RUNTIME_DIR/somebar-*
@@ -43,4 +44,13 @@ in {
     '')
     pkgs.kickoff
   ];
+  systemd.user.targets.dwl-session = {
+    Unit = {
+      Description = "dwl compositor session";
+      Documentation = ["man:systemd.special(7)"];
+      BindsTo = ["graphical-session.target"];
+      Wants = ["graphical-session-pre.target"];
+      After = ["graphical-session-pre.target"];
+    };
+  };
 }

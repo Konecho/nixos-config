@@ -4,18 +4,21 @@
   ...
 }:
 with pkgs; let
-  qtile-package = qtile.unwrapped;
+  # qtile-package = python3.pkgs.qtile.overrideAttrs (f: p: rec {makeWrapperArgs = null;});
+  qtile-package = python3.pkgs.qtile;
   extra-packages = ps:
-    with ps;
-      [qtile-package]
-      ++ [
-        python-lsp-server
-        autopep8
-        black
-        mypy
-        requests
-        qtile-extras
-      ];
+    with ps; [
+      #   qtile-package
+      # ]
+      # ++ [
+      qtile
+      python-lsp-server
+      autopep8
+      black
+      mypy
+      requests
+      qtile-extras
+    ];
   pyEnv = python3.withPackages extra-packages;
   cfgText = ''
     ${builtins.readFile ./config.py}
@@ -36,12 +39,14 @@ in {
   home.packages = [
     (
       writeShellScriptBin "qtile-run" ''
-        ${pyEnv}/bin/qtile start -b wayland --config "${cfgFile}" & waitPID=\$!
+        #!/bin/sh
+        PYTHONPATH=${pyEnv}/${pyEnv.sitePackages}:PYTHONPATH ${pyEnv}/bin/qtile start -b wayland #--config "${cfgFile}"
       ''
     )
     (
       writeShellScriptBin "qtile-check" ''
-        ${pyEnv}/bin/qtile check --config ${cfgFile}
+        #!/bin/sh
+        PYTHONPATH=${pyEnv}/${pyEnv.sitePackages}:PYTHONPATH ${pyEnv}/bin/qtile check #--config ${cfgFile}
       ''
     )
   ];
