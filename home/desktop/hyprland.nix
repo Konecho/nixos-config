@@ -3,6 +3,10 @@
   config,
   ...
 }: let
+  hyprKickoffTab = pkgs.writeScript "kickoff-tab.sh" ''
+    #!/usr/bin/env fish
+    hyprctl clients -j | jq -r '.[] | select(.title != "") | "[\\(.workspace.id % 10)] \\(.title)=hyprctl dispatch workspace \\(.workspace.id)\\n"' | kickoff --from-stdin
+  '';
   screenWidth = 1440;
   screenHeight = 900;
   # fontsize=12 cellsize=10x21
@@ -149,7 +153,8 @@
     bind = $MOD, V, togglesplit, # dwindle
 
     bind = $MOD, K, togglegroup,
-    bind = $MOD, Tab, changegroupactive, f
+    bind = $MOD SHIFT, Tab, changegroupactive, f
+    bind = $MOD, Tab, exec, ${hyprKickoffTab}
 
     bind = $MOD, left, movefocus, l
     bind = $MOD, right, movefocus, r
