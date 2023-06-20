@@ -10,7 +10,8 @@
 
     logseq
 
-    telegram-desktop
+    # telegram-desktop
+    kotatogram-desktop-with-webkit
 
     # blender
     # gimp

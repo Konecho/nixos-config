@@ -1,7 +1,7 @@
 import re
 import subprocess
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
@@ -55,50 +55,71 @@ keys = [
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "d", lazy.spawn("kickoff"), desc="Launcher"),
     Key([mod, "shift"], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
 ]
 
 groups = [Group(i) for i in "123456789"]
-
 for i in groups:
-    keys.extend(
-        [
-            # mod1 + letter of group = switch to group
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
+    keys.extend([
+        # mod1 + letter of group = switch to group
+        Key([mod], i.name, lazy.group[i.name].toscreen(),
+            desc="Switch to group {}".format(i.name),),
+        # mod1 + shift + letter of group = switch to & move focused window to group
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
+            desc="Switch to & move focused window to group {}".format(i.name),),
+        # mod1 + ctrl + letter of group = move focused window to group
+        Key([mod, "control"], i.name, lazy.window.togroup(i.name),
+            desc="move focused window to group {}".format(i.name)),
+    ])
+
+groups.append(
+    ScratchPad(
+        "scratchpad", [
+            # define a drop down terminal
+            # it is placed in the upper third of the screen by default
+            DropDown(
+                "term",
+                "alacritty",
+                opacity=0.88,
+                height=0.55,
+                width=0.80
             ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(
-                    i.name),
+
+            # define another terminal exclusively for qshell at different position
+            DropDown(
+                "clash",
+                "clash-verge",
+                # x=0.05,
+                # y=0.4,
+                width=0.7,
+                height=0.7,
+                opacity=0.9,
+                on_focus_lost_hide=True
             ),
-            # mod1 + ctrl + letter of group = move focused window to group
-            Key([mod, "control"], i.name, lazy.window.togroup(i.name),
-                desc="move focused window to group {}".format(i.name)),
         ]
-    )
+    ))
+
+keys.extend([
+    Key([], "F1", lazy.group["scratchpad"].dropdown_toggle("term")),
+    Key([], "F2", lazy.group["scratchpad"].dropdown_toggle("clash")),
+])
 
 layouts = [
     layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=3),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
-    layout.Stack(num_stacks=2),
-    layout.Bsp(),
+    # layout.Stack(num_stacks=2),
+    # layout.Bsp(),
     layout.Matrix(),
-    layout.MonadTall(),
-    layout.MonadWide(),
-    layout.RatioTile(),
-    layout.Tile(),
-    layout.TreeTab(),
-    layout.VerticalTile(),
-    layout.Zoomy(),
+    # layout.MonadTall(),
+    # layout.MonadWide(),
+    # layout.RatioTile(),
+    # layout.Tile(),
+    # layout.TreeTab(),
+    # layout.VerticalTile(),
+    # layout.Zoomy(),
 ]
 
 widget_defaults = dict(

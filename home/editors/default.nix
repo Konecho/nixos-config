@@ -14,6 +14,7 @@
         "*~"
         "\\#*\\#"
         ".Trash-1000"
+        "*\\__pycache__"
       ];
       userName = "NixOS";
       userEmail = "konecho@outlook.com";
