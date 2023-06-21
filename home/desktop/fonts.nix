@@ -9,7 +9,7 @@
   };
 in {
   fonts.fontconfig.enable = true;
-  # gtk.font = MAPLE;
+  gtk.font = MAPLE;
   home.packages = with pkgs; [
     pkgs.maple-mono-SC-NF
     # monocraft

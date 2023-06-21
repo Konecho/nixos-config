@@ -139,8 +139,11 @@
     $MOD = SUPER
     ## run <nix run n#wev> to test keycode
 
-    bind = $MOD, Return, exec, ${pkgs.wezterm}/bin/wezterm start
-    bind = $MOD SHIFT, Return, exec, ${pkgs.wezterm}/bin/wezterm start --class termfloat
+    # bind = $MOD, Return, exec, ${pkgs.wezterm}/bin/wezterm start
+    bind = $MOD, Return, exec, ${pkgs.alacritty}/bin/alacritty
+
+    # bind = $MOD SHIFT, Return, exec, ${pkgs.wezterm}/bin/wezterm start --class termfloat
+    bind = $MOD SHIFT, Return, exec, ${pkgs.alacritty}/bin/alacritty --class='termfloat'
 
     bind = $MOD, D, exec, ${pkgs.kickoff}/bin/kickoff
     bind = $MOD SHIFT, Q, killactive,

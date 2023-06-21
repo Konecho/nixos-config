@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [./alacritty.nix ./wezterm.nix];
-  home.sessionVariables.TERMINAL = "wezterm";
+  home.sessionVariables.TERMINAL = "alacritty";
   programs = {
     alacritty = {
       enable = true;
