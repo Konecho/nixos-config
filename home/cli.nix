@@ -3,7 +3,7 @@
     home-manager.enable = true;
     navi.enable = true;
     noti.enable = true; # <do-something>;noti> or <noti do-somethingdo-somethind>>
-    rbw.enable = true;
+    # rbw.enable = true;
     bat = {
       enable = true; # cat
       ## https://github.com/eth-p/bat-extras
@@ -44,56 +44,58 @@
     };
   };
   home.packages = with pkgs; [
-    libnotify # <notify-send>
-
     (nb.overrideAttrs (finalAttrs: previousAttrs: {
       postInstall = ''
         installShellCompletion --cmd nb etc/nb-completion.{bash,zsh,fish}
       '';
     })) # notebook
 
+    ## network
+    httpie
     nmap
     qrcp # share file
-    entr # watch file
-    # zscroll
+    socat # <echo 'cycle pause' | socat - /tmp/mpv-socket>
     wget
+    # w3m
+
+    ## file
+    entr # watch file
     fd # find
     fzf
-    ripgrep # <rg> grep
-    procs # ps
-    comma # , <command>
-
-    logtop # count line
-
-    jq # parse json
-    just # make
-    sd # sed
     du-dust # <dust> du
     gdu
-
-    ## lib for <lf>
+    xdg-utils # <xdg-open>
     # unrar
     # unzip
     # p7zip # <7z>
-    # w3m
     # poppler_utils # <pdftotext>
     # highlight
-    # mediainfo
-    # chafa
-    # timg
 
-    ## [[multi-media]]
-    xdg-utils # <xdg-open>
+    ## system
+    libnotify # <notify-send>
+    ripgrep # <rg> grep
+    procs # ps
+    comma # , <command>
+    just # make
+    killall
+
+    ## text
+    logtop # count line
+    jq # parse json
+    sd # sed
+    # zscroll
+
+    ## multi media
     pavucontrol
     wf-recorder
-    ffmpeg
-    yt-dlp
+    # mediainfo
+    # ffmpeg
+    # yt-dlp
 
-    socat # <echo 'cycle pause' | socat - /tmp/mpv-socket>
-
-    imagemagick
+    ## image
+    # chafa
+    # timg
+    # imagemagick
     # ueberzug
-
-    killall
   ];
 }
