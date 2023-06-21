@@ -20,7 +20,7 @@
     ./nix.nix
     ./programming.nix
     ./shells.nix
-    ./stylix.nix
+    # ./stylix.nix
     ./tui.nix
   ];
   nix.package = pkgs.nix; # not common

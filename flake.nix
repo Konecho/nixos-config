@@ -90,7 +90,7 @@
       modules = [
         inputs.hyprland.homeManagerModules.default
         # inputs.nix-doom-emacs.hmModule
-        inputs.stylix.homeManagerModules.stylix
+        # inputs.stylix.homeManagerModules.stylix
         {
           home.username = "${username}";
           nix.registry.nixpkgs.flake = inputs.nixpkgs;

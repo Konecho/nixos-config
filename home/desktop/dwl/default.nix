@@ -30,7 +30,7 @@
 
   dwl-startup = builtins.concatStringsSep " <&- | " [
     "${pkgs.swww}/bin/swww init"
-    "${pkgs.swww}/bin/swww img ${config.stylix.image}"
+    # "${pkgs.swww}/bin/swww img ${config.stylix.image}"
     "${pkgs.clash-verge}/bin/clash-verge"
   ];
 in {

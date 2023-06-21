@@ -21,7 +21,7 @@ with pkgs; let
     @hook.subscribe.startup
     def startup():
         exec_once("${pkgs.swww}/bin/swww init")
-        exec_once("${pkgs.swww}/bin/swww img ${config.stylix.image}")
+
         # exec_once("${pkgs.mypkgs.pokemon-terminal}/bin/pokemon -w 615")
         exec_once("${pkgs.clash-verge}/bin/clash-verge")
         exec_once("${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && systemctl --user start qtile-session.target")

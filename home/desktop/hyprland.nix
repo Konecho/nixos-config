@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   hyprKickoffTab = pkgs.writeScript "kickoff-tab.sh" ''
@@ -18,7 +19,7 @@
   # border = 0; # 2*(gaps+border)==cellWidth
 
   # ~/.config/stylix/palette.html
-  base16 = config.lib.stylix.colors;
+  # base16 = config.lib.stylix.colors;
 
   # reservedBarHeight = 21;
   reservedBarHeight = 0;
@@ -47,8 +48,6 @@
       gaps_out = ${builtins.toString gaps}
       border_size = ${builtins.toString border}
       # 1440x900->1430x890
-      col.active_border = rgb(${base16.base0A})
-      col.inactive_border = rgba(${base16.base03}aa)
       layout = dwindle # master|dwindle
     }
     dwindle {
@@ -241,7 +240,7 @@
     # exec-once = fcitx5 -d &
     exec-once = ${pkgs.clash-verge}/bin/clash-verge &
     exec-once = ${pkgs.swww}/bin/swww init &
-    exec = ${pkgs.swww}/bin/swww img ${config.stylix.image} &
+
     # exec = ${pkgs.mypkgs.pokemon-terminal}/bin/pokemon -w 615 &
 
     # exec-once = ${pkgs.xmobar}/bin/xmobar -b &
