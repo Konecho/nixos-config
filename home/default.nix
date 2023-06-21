@@ -8,9 +8,12 @@
   imports = [
     ./desktop
     ./editors
+    ./terminals
 
     ./cli.nix
+    ./common.nix
     ./games.nix
+    ./git.nix
     ./gpg.nix
     ./gui.nix
     ./music.nix
@@ -18,13 +21,11 @@
     ./programming.nix
     ./shells.nix
     ./stylix.nix
-    ./terminals.nix
     ./tui.nix
   ];
+  nix.package = pkgs.nix; # not common
   home = {
     stateVersion = "22.11";
-    homeDirectory = "/home/${config.home.username}";
-    sessionPath = ["$HOME/.cargo/bin"];
     sessionVariables = {
       DOCKER_HOST = "unix:///run/docker.sock";
       # gtk wayland
@@ -35,17 +36,5 @@
       # firefox / icecat
       MOZ_ENABLE_WAYLAND = "1";
     };
-  };
-  xdg.userDirs = {
-    enable = true;
-    createDirectories = true;
-    desktop = "$HOME/system/desktop";
-    download = "$HOME/downloads";
-    templates = "$HOME/system/templates";
-    publicShare = "$HOME/system/public";
-    documents = "$HOME/documents";
-    music = "$HOME/media/music";
-    pictures = "$HOME/media/photos";
-    videos = "$HOME/media/video";
   };
 }

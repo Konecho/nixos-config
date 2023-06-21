@@ -11,8 +11,8 @@ in {
   fonts.fontconfig.enable = true;
   # gtk.font = MAPLE;
   stylix.fonts = {
-    serif = YAHEI;
-    sansSerif = YAHEI;
+    serif = MAPLE;
+    sansSerif = MAPLE;
     monospace = MAPLE;
     emoji = {
       package = pkgs.noto-fonts-emoji;

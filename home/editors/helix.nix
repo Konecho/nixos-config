@@ -1,6 +1,6 @@
 {pkgs, ...}: {
-  programs.
-    helix = {
+  home.sessionVariables.EDITOR = "hx";
+  programs.helix = {
     enable = true;
     languages.language = [
       {

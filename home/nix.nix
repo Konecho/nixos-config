@@ -3,7 +3,6 @@
   config,
   ...
 }: {
-  nix.package = pkgs.nix;
   nix.settings.tarball-ttl = 43200;
   nix.registry = {
     old = {
