@@ -8,8 +8,8 @@
     #!/usr/bin/env fish
     hyprctl clients -j | jq -r '.[] | select(.title != "") | "[\\(.workspace.id % 10)] \\(.title)=hyprctl dispatch workspace \\(.workspace.id)\\n"' | kickoff --from-stdin
   '';
-  screenWidth = 1440;
-  screenHeight = 900;
+  screenWidth = 1920;
+  screenHeight = 1080;
   # fontsize=12 cellsize=10x21
   cellWidth = 10;
   cellHeight = 21;
@@ -140,10 +140,9 @@
     ## run <nix run n#wev> to test keycode
 
     # bind = $MOD, Return, exec, ${pkgs.wezterm}/bin/wezterm start
-    bind = $MOD, Return, exec, ${pkgs.alacritty}/bin/alacritty
-
-    # bind = $MOD SHIFT, Return, exec, ${pkgs.wezterm}/bin/wezterm start --class termfloat
-    bind = $MOD SHIFT, Return, exec, ${pkgs.alacritty}/bin/alacritty --class='termfloat'
+    bind = $MOD, Return, exec, ${pkgs.alacritty}/bin/alacritty --class='term_main'
+    # bind = $MOD SHIFT, Return, exec, ${pkgs.wezterm}/bin/wezterm start --class term_float
+    bind = $MOD SHIFT, Return, exec, ${pkgs.alacritty}/bin/alacritty --class='term_float'
 
     bind = $MOD, D, exec, ${pkgs.kickoff}/bin/kickoff
     bind = $MOD SHIFT, Q, killactive,
@@ -206,41 +205,32 @@
     bind=,XF86AudioLowerVolume,exec, ${pkgs.pamixer}/bin/pamixer -d 5
     bind=,XF86AudioMute,exec, ${pkgs.pamixer}/bin/pamixer -t
     bind=,XF86AudioMicMute,exec, ${pkgs.pamixer}/bin/pamixer --default-source -t
-    # bind=,XF86MonBrightnessUp,exec, light -A 5
-    # bind=,XF86MonBrightnessDown, exec, light -U 5
+    bind=,XF86MonBrightnessUp,exec, ${pkgs.light}/bin/light -A 5
+    bind=,XF86MonBrightnessDown, exec, ${pkgs.light}/bin/light -U 5
     bind=,XF86AudioPlay,exec, ${pkgs.playerctl}/bin/playerctl play-pause
     bind=,XF86AudioNext,exec, ${pkgs.playerctl}/bin/playerctl next
     bind=,XF86AudioPrev,exec, ${pkgs.playerctl}/bin/playerctl previous
     #---------------#
     # resize window #
     #---------------#
-    bind=$MOD,R,submap,resize
+    bind=$MOD,r,submap,resize
     submap=resize
-    binde=,right,resizeactive,15 0
-    binde=,left,resizeactive,-15 0
-    binde=,up,resizeactive,0 -15
-    binde=,down,resizeactive,0 15
-    binde=,l,resizeactive,15 0
-    binde=,h,resizeactive,-15 0
-    binde=,k,resizeactive,0 -15
-    binde=,j,resizeactive,0 15
+    binde=,right,resizeactive,${builtins.toString cellWidth} 0
+    binde=,left,resizeactive,-${builtins.toString cellWidth} 0
+    binde=,up,resizeactive,0 -${builtins.toString cellHeight}
+    binde=,down,resizeactive,0 ${builtins.toString cellHeight}
+    binde=,l,resizeactive,${builtins.toString cellWidth} 0
+    binde=,h,resizeactive,-${builtins.toString cellWidth} 0
+    binde=,k,resizeactive,0 -${builtins.toString cellHeight}
+    binde=,j,resizeactive,0 ${builtins.toString cellHeight}
     bind=,escape,submap,reset
     submap=reset
-    bind=CTRL SHIFT, left, resizeactive,-15 0
-    bind=CTRL SHIFT, right, resizeactive,15 0
-    bind=CTRL SHIFT, up, resizeactive,0 -15
-    bind=CTRL SHIFT, down, resizeactive,0 15
-    bind=CTRL SHIFT, l, resizeactive, 15 0
-    bind=CTRL SHIFT, h, resizeactive,-15 0
-    bind=CTRL SHIFT, k, resizeactive, 0 -15
-    bind=CTRL SHIFT, j, resizeactive, 0 15
     bindm = $MOD, mouse:272, movewindow
     bindm = $MOD, mouse:273, resizewindow
     # bind = $MOD SHIFT, G,exec,hyprctl --batch "keyword general:gaps_out 5;keyword general:gaps_in 3"
     # bind = $MOD , G,exec,hyprctl --batch "keyword general:gaps_out 0;keyword general:gaps_in 0"
   '';
   autoStart = ''
-    # exec-once = fcitx5 -d &
     exec-once = ${pkgs.clash-verge}/bin/clash-verge &
     exec-once = ${pkgs.swww}/bin/swww init &
 
@@ -261,18 +251,23 @@
       # "tr \"\\n\" \"\\r\"'"
     ]}
 
-    exec-once = ${pkgs.wezterm}/bin/wezterm start --class termmain
+    exec-once = ${pkgs.wezterm}/bin/wezterm start --class term_main
   '';
   winRules = ''
     #`hyprctl clients` get class、title...
     # https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 
+    ## obs
     windowrule=float,title:^(窗口投影（预览）)$
     windowrule=size 1280 720,title:^(窗口投影（预览）)$
     windowrule=center,title:^(窗口投影（预览）)$
 
-    windowrule=size 1200 630,termfloat # fontsize=12 cellsize=10x21
-    windowrule=center,termfloat
+    windowrule=size 1200 630,term_float # fontsize=12 cellsize=10x21
+    windowrule=center,term_float
+    windowrule=float,term_float
+    windowrulev2=opacity 0.80 0.80,class:term_float
+    windowrule=animation slide right,term_float
+    windowrule=opacity 0.95 0.8,term_float
 
     windowrule=size ${builtins.toString (screenWidth - 2 * (border + gaps))} ${builtins.toString cellHeight},termbar
     windowrule=move ${builtins.toString (border + gaps)} ${builtins.toString (border + gaps)},termbar
@@ -280,10 +275,8 @@
     windowrule=opacity 0.95,title:Telegram
     windowrule=opacity 0.95,title:QQ
 
-    windowrule=workspace 1,termmain
-    windowrulev2=opacity 0.80 0.80,class:termmain
-    windowrule=workspace 2,firefox
-    windowrule=workspace 3,VSCodium
+    windowrule=workspace 1,term_main
+    windowrulev2=opacity 0.80 0.80,class:term_main
 
     windowrule=workspace 10 silent,title:^(Clash Verge)$
     windowrule=float,title:^(Clash Verge)$
@@ -292,14 +285,10 @@
     windowrule=float,imv
     windowrule=float,mpv
     windowrule=float,ncmpcpp
-    windowrule=float,termfloat
 
     windowrule=float,termbar
     windowrule=pin,termbar
     windowrule=pin,xmobar
-
-    windowrule=animation slide right,termfloat
-    windowrule=opacity 0.95 0.8,termfloat
   '';
 in {
   wayland.windowManager.hyprland = {

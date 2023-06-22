@@ -11,6 +11,7 @@
     logseq
 
     # telegram-desktop
+    # element-desktop-wayland # matrix
     kotatogram-desktop-with-webkit
 
     # blender
@@ -31,14 +32,20 @@
     # android-studio
     # scrcpy
   ];
-  programs.qutebrowser = {
-    enable = true;
-    package = pkgs.qutebrowser-qt6;
-  };
-  programs.obs-studio = {
-    enable = true;
-    plugins = with pkgs.obs-studio-plugins; [
-      wlrobs
-    ];
+  programs = {
+    qutebrowser = {
+      enable = true;
+      package = pkgs.qutebrowser-qt6;
+    };
+    obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+      ];
+    };
+    # pidgin = {
+    #   enable = true;
+    #   plugins = with pkgs; [purple-matrix purple-discord];
+    # };
   };
 }

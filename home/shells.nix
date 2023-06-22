@@ -45,6 +45,8 @@
         '';
       };
       loginShellInit = ''
+      '';
+      interactiveShellInit = ''
         # Fish syntax highlighting
         set -g fish_color_autosuggestion '555'  'brblack'
         set -g fish_color_cancel -r
@@ -67,6 +69,7 @@
         set -g fish_color_selection 'white'  '--bold'  '--background=brblack'
         set -g fish_color_user brgreen
         set -g fish_color_valid_path --underline
+        ${pkgs.thefuck}/bin/thefuck --alias | source
       '';
       plugins = [
         {

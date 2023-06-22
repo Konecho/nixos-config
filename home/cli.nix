@@ -78,6 +78,7 @@
     comma # , <command>
     just # make
     killall
+    thefuck
 
     ## text
     logtop # count line

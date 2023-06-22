@@ -62,5 +62,7 @@
 
     nrfconnect
     segger-jlink
+
+    gdb
   ];
 }
