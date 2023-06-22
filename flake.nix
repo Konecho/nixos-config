@@ -21,6 +21,10 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    joshuto = {
+      url = "github:kamiyaa/joshuto";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # stylix = {
     #   url = "github:danth/stylix";
     #   inputs.nixpkgs.follows = "nixpkgs"; # follow ghc
@@ -66,6 +70,7 @@
           # winfonts = nur.repos.vanilla.Win10_LTSC_2019_fonts;
         })
         inputs.nur.overlay
+        inputs.joshuto.overlays.default
       ];
     };
     remoteNixpkgsPatches = [

@@ -3,6 +3,7 @@
   config,
   ...
 }: {
+  home.shellAliases.lf = "joshuto";
   home.packages = with pkgs; [
     # vtm
     sc-im # 表格
@@ -50,7 +51,8 @@
         done
 
         # ${pkgs.pistol}/bin/pistol "''${FILE_PATH}" && exit 0
-        pistol "''${FILE_PATH}" && exit 0
+        pistol "''${FILE_PATH}" "''${PREVIEW_WIDTH}" "''${PREVIEW_HEIGHT}" && exit 0
+        # ${pkgs.ctpv}/bin/ctpv "''${FILE_PATH}" && exit 0
         exit 1
       '';
     };
@@ -59,6 +61,7 @@
       associations = [
         {
           mime = "image/*";
+          # command = "${pkgs.exiftool}/bin/exiftool %pistol-filename% && ${pkgs.chafa}/bin/chafa -f symbols %pistol-filename%";
           command = "${pkgs.chafa}/bin/chafa -f symbols %pistol-filename%";
         }
         {
@@ -70,23 +73,27 @@
           command = "${pkgs.catdoc}/bin/catdoc %pistol-filename%";
         }
         {
+          mime = "application/vnd.ms-excel";
+          command = "${pkgs.catdoc}/bin/xls2csv %pistol-filename%";
+        }
+        {
           mime = "application/*";
           command = "${pkgs.hexyl}/bin/hexyl %pistol-filename%";
         }
         {
-          fpath = ".*.md$";
-          command = "sh: ${pkgs.bat}/bin/bat --paging=never --color=always %pistol-filename% | head -8";
+          mime = "text/plain";
+          command = "sh: ${pkgs.bat}/bin/bat --paging=never --color=always --terminal-width=%pistol-extra0% %pistol-filename% | head -%pistol-extra1%";
         }
       ];
     };
     zellij.enable = true; # tmux
-    lf = {
-      enable = true;
-      previewer = {
-        keybinding = "i";
-        source = "${pkgs.pistol}/bin/pistol";
-        # source = "${pkgs.ctpv}/bin/ctpv";
-      };
-    };
+    # lf = {
+    #   enable = true;
+    #   previewer = {
+    #     keybinding = "i";
+    #     source = "${pkgs.pistol}/bin/pistol";
+    #     # source = "${pkgs.ctpv}/bin/ctpv";
+    #   };
+    # };
   };
 }
