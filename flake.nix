@@ -21,11 +21,11 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs"; # follow ghc
-      inputs.home-manager.follows = "home-manager"; # follow ghc
-    };
+    # stylix = {
+    #   url = "github:danth/stylix";
+    #   inputs.nixpkgs.follows = "nixpkgs"; # follow ghc
+    #   inputs.home-manager.follows = "home-manager"; # follow ghc
+    # };
   };
 
   outputs = inputs: let
