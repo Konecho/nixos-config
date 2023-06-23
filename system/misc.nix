@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.gc = {
     automatic = true;
@@ -12,7 +16,7 @@
 
   environment.binsh = "${pkgs.dash}/bin/dash";
 
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = lib.mkDefault true;
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
@@ -31,5 +35,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = lib.mkDefault "22.11"; # Did you read the comment?
 }

@@ -36,6 +36,7 @@
     system = "x86_64-linux";
     username = "mei";
     hostname = "deskmini";
+    hostname2 = "chromebook";
     lib = import ./lib.nix inputs;
 
     pkgs = lib.mkPkgs {inherit system;};
@@ -45,9 +46,42 @@
       modules = [./home];
     };
 
-    nixosConfigurations."${hostname}" = lib.mkSys {
-      inherit hostname username pkgs;
-      modules = [./system ./hardware-configuration.nix];
+    nixosConfigurations = {
+      "${hostname}" = lib.mkSys {
+        inherit hostname username pkgs;
+        modules = [./system ./hardware-configuration.nix];
+      };
+      "${hostname2}" = lib.mkSys {
+        hostname = hostname2;
+        inherit username pkgs;
+        modules = [
+          ./chromebook/hardware-configuration.nix
+          ./chromebook/configuration.nix
+          ./system/lite.nix
+
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.users."${username}" = {
+              home.stateVersion = "23.05";
+              imports = [
+                # ./home/desktop/fcitx.nix
+                # ./home/terminals/alacritty.nix
+                # ./home/tui.nix
+                ./home/desktop/dwl
+                ./home/common.nix
+                ./home/git.nix
+                ./home/shells.nix
+                ./home/editors/helix.nix
+                ./home/cli.nix
+                # ./home/nix.nix
+                # ./home/desktop/fonts.nix
+                # ./home/stylix.nix
+              ];
+            };
+          }
+        ];
+      };
     };
   };
 }
