@@ -56,6 +56,9 @@ inputs: {
               shell = pkgs.fish;
               extraGroups = ["wheel" "adbusers" "input" "networkmanager" "video" "docker" "vboxusers"];
             };
+            environment.persistence."/persist".directories = [
+              "/home/${username}"
+            ];
           }
         ]
         ++ modules;

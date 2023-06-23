@@ -7,7 +7,7 @@
 
   environment.persistence."/persist" = {
     directories = [
-      "/home/mei"
+      # "/home/mei"
       "/etc/nixos"
       "/etc/NetworkManager/system-connections"
       "/var/log"
