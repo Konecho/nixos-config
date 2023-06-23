@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.sessionVariables.BROWSER = "qutebrowser";
   home.packages = with pkgs; [
-    rustdesk
+    # rustdesk
 
     surf
     microsoft-edge

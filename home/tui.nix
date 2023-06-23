@@ -65,8 +65,28 @@
           command = "${pkgs.chafa}/bin/chafa -f symbols %pistol-filename%";
         }
         {
+          mime = "video/*";
+          command = "${pkgs.mediainfo}/bin/mediainfo %pistol-filename%";
+        }
+        {
+          mime = "audio/*";
+          command = "${pkgs.mediainfo}/bin/mediainfo %pistol-filename%";
+        }
+        {
           mime = "application/json";
           command = "sh: ${pkgs.jq}/bin/jq '.' %pistol-filename%";
+        }
+        {
+          mime = "application/zip";
+          command = "${pkgs.unzip}/bin/unzip -l %pistol-filename%";
+        }
+        {
+          mime = "application/pdf";
+          command = "${pkgs.poppler_utils}/bin/pdftotext -l 10 -nopgbrk -q -- %pistol-filename% - | fmt -w %pistol-extra0%";
+        }
+        {
+          fpath = ".*.torrent$";
+          command = "${pkgs.transmission}/bin/transmission-show %pistol-filename%";
         }
         {
           mime = "application/msword";
@@ -82,7 +102,7 @@
         }
         {
           mime = "text/plain";
-          command = "sh: ${pkgs.bat}/bin/bat --paging=never --color=always --terminal-width=%pistol-extra0% %pistol-filename% | head -%pistol-extra1%";
+          command = "sh: ${pkgs.bat}/bin/bat --paging=never --color=always --terminal-width=%pistol-extra0% %pistol-filename%";
         }
       ];
     };

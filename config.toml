@@ -1,0 +1,23 @@
+[pkgs]
+unfree = [
+  "segger-jlink",
+  "nrfconnect",
+  # "corefonts", # onlyoffice
+  # "android-studio-stable",
+  "microsoft-edge-stable",
+  # "vscode",
+  "wechat-uos",
+  "obsidian",
+  "unrar",
+  "libsciter",  # rustdesk
+  # "steam-runtime",
+  # "steam-original",
+  # "steam",
+  # "steam-run",
+  # "steamcmd"
+]
+insecure =[
+            "electron-19.0.7",
+        "electron-12.2.3",
+        "openssl-1.1.1u"
+]
