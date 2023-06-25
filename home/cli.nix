@@ -51,6 +51,21 @@
     # })) # notebook
     nb
 
+    (hydrus.overrideAttrs (f: p: rec {
+      version = "532a";
+      src = fetchFromGitHub {
+        owner = "hydrusnetwork";
+        repo = "hydrus";
+        rev = "refs/tags/v${version}";
+        hash = "sha256-Q/SMB56qTjtRamV8Fq2rixMqvSTbagIpABSV30+3BmA=";
+      };
+      buildInputs = p.buildInputs ++ [pkgs.qt6.qtwayland];
+      buildPhase = ''
+        mv hydrus_client.py client.py
+        mv hydrus_server.py server.py
+      '';
+    }))
+
     ## network
     httpie
     nmap
@@ -71,6 +86,10 @@
     # p7zip # <7z>
     # poppler_utils # <pdftotext>
     # highlight
+
+    ## rename files in editor
+    vimv-rs # <vimv *.mp3>
+    # renameutils # imv deurlname icp icmd qmv qcmd qcp
 
     ## system
     libnotify # <notify-send>

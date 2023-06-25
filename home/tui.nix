@@ -9,7 +9,8 @@
     sc-im # 表格
     mc # 文件管理
     calc
-    # gitui
+
+    termusic
   ];
   programs = {
     gitui = {
