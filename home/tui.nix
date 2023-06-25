@@ -79,31 +79,31 @@
         }
         {
           mime = "application/zip";
-          command = "${pkgs.unzip}/bin/unzip -l %pistol-filename%";
+          command = "sh: ${pkgs.unzip}/bin/unzip -l %pistol-filename%";
         }
         {
           mime = "application/pdf";
-          command = "${pkgs.poppler_utils}/bin/pdftotext -l 10 -nopgbrk -q -- %pistol-filename% - | fmt -w %pistol-extra0%";
+          command = "sh: ${pkgs.poppler_utils}/bin/pdftotext -l 10 -nopgbrk -q -- %pistol-filename% - | fmt -w %pistol-extra0%";
         }
         {
           fpath = ".*.torrent$";
           command = "${pkgs.transmission}/bin/transmission-show %pistol-filename%";
         }
         {
-          mime = "application/msword";
+          fpath = ".*.doc$";
           command = "${pkgs.catdoc}/bin/catdoc %pistol-filename%";
         }
         {
-          mime = "application/vnd.ms-excel";
+          fpath = ".*.xls$";
           command = "${pkgs.catdoc}/bin/xls2csv %pistol-filename%";
-        }
-        {
-          mime = "application/*";
-          command = "${pkgs.hexyl}/bin/hexyl %pistol-filename%";
         }
         {
           mime = "text/plain";
           command = "sh: ${pkgs.bat}/bin/bat --paging=never --color=always --terminal-width=%pistol-extra0% %pistol-filename%";
+        }
+        {
+          mime = "application/*";
+          command = "${pkgs.hexyl}/bin/hexyl -n 1kb %pistol-filename%";
         }
       ];
     };
