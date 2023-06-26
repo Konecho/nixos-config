@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.shellAliases = {
     man = "batman";
+    zellij = ''zellij -s "$(echo $POKEMON|awk -F',' '{print$2}')"'';
   };
   programs = {
     bash = {
@@ -11,8 +12,15 @@
     fish = {
       enable = true;
       functions = {
+        # zellij = ''
+        #   ${pkgs.zellij}/bin/zellij -s "$(echo $POKEMON|awk -F',' '{print$2}') $argv"
+        # '';
         fish_greeting = ''
-          pwd | ${pkgs.pokemonsay}/bin/pokemonsay -N
+          random_pokemon
+          echo $POKEMON|awk -F',' '{print$4}'|tr "'" " "| ${pkgs.pokemonsay}/bin/pokemonsay -N
+        '';
+        random_pokemon = ''
+          set -g POKEMON $(shuf ~/scripts/pmlist.csv -n 1)
         '';
         nixinit = ''
           if [ $(git rev-parse --is-inside-work-tree) = 'true' ]
@@ -32,14 +40,9 @@
             echo $(nix show-derivation $argv|jq -s '.[0]|to_entries[].value.outputs')
           end
         '';
-        gitui = let
-          python-packages = python-packages:
-            with python-packages; [
-              pkgs.mypkgs.pokebase
-            ];
-          pyEnv = pkgs.python3.withPackages python-packages;
-        in ''
-          git config user.name "$(${pyEnv}/bin/python ~/scripts/random_pokemon_name.py)"
+        gitui = ''
+          random_pokemon
+          git config user.name "$(echo $POKEMON|awk -F',' '{print$2}')"
           ssh-add ~/.ssh/id_ed25519 2> /dev/null
           ${pkgs.gitui}/bin/gitui
         '';
