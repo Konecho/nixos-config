@@ -5,7 +5,8 @@
 
     surf
     microsoft-edge
-    firefox
+    # vivaldi
+    firefox-devedition
     # hyper
 
     logseq

@@ -24,6 +24,13 @@
     lsd = {
       enable = true;
       enableAliases = true;
+      settings = {
+        date = "relative";
+        ignore-globs = [
+          ".git"
+          ".hg"
+        ];
+      };
     };
     direnv = {
       enable = true;
@@ -75,6 +82,8 @@
     # w3m
 
     ## file
+    file
+    trashy
     entr # watch file
     fd # find
     fzf

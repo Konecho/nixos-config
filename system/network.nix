@@ -5,7 +5,7 @@
 
   networking.proxy.default = "http://127.0.0.1:7890/"; #1080:=v2ray;7890:=clash
   # networking.proxy.default = "http://192.168.199.156:9080/";
-  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain,.cn";
+  networking.proxy.noProxy = "127.0.0.1,localhost,cache.nixos.org,.cn";
 
   nix.settings.substituters = ["https://mirrors.ustc.edu.cn/nix-channels/store"];
 

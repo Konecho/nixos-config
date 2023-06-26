@@ -251,7 +251,8 @@
       # "tr \"\\n\" \"\\r\"'"
     ]}
 
-    exec-once = ${pkgs.wezterm}/bin/wezterm start --class term_main
+    # exec-once = ${pkgs.wezterm}/bin/wezterm start --class term_main
+    exec-once = ${pkgs.alacritty}/bin/alacritty --class='term_main'
   '';
   winRules = ''
     #`hyprctl clients` get class、title...

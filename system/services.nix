@@ -36,7 +36,10 @@
         destination = "/etc/udev/rules.d/69-canokeys.rules";
       })
     ];
-    duplicati = {enable = true;};
+    duplicati = {
+      enable = true;
+      dataDir = "/db/duplicati";
+    };
     fwupd.enable = true;
     kmscon = {
       enable = true;
@@ -47,7 +50,7 @@
         }
       ];
       extraOptions = "--term xterm-256color";
-      extraConfig = "font-size=14";
+      extraConfig = "font-size=15";
     };
   };
 }

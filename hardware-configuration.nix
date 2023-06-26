@@ -47,6 +47,12 @@
       neededForBoot = true;
       options = btrfsops ++ ["subvol=@persist"];
     };
+    "/db" = {
+      device = "/dev/disk/by-label/btrfs";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = btrfsops ++ ["subvol=@db"];
+    };
     "/thesis" = {
       device = "/dev/disk/by-label/btrfs";
       fsType = "btrfs";

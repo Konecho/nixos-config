@@ -107,7 +107,15 @@
         }
       ];
     };
-    zellij.enable = true; # tmux
+    zellij = {
+      # tmux
+      enable = true;
+      enableFishIntegration = true;
+      settings = {
+        pane_frames = false;
+        default_layout = "compact";
+      };
+    };
     # lf = {
     #   enable = true;
     #   previewer = {
