@@ -13,6 +13,11 @@
         formatter = {command = "${pkgs.shfmt}/bin/shfmt";};
         auto-format = true;
       }
+      {
+        name = "toml";
+        formatter = {command = "${pkgs.taplo}/bin/taplo fmt -";};
+        auto-format = true;
+      }
     ];
   };
 }

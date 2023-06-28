@@ -27,7 +27,16 @@
     tmpfsSize = "95%";
   };
 
+  security.sudo.enable = lib.mkDefault false;
+  security.sudo.execWheelOnly = true;
   security.doas.enable = true;
+  security.doas.extraRules = [
+    {
+      groups = ["wheel"];
+      persist = true;
+      keepEnv = true;
+    }
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -98,7 +98,7 @@
           command = "${pkgs.catdoc}/bin/xls2csv %pistol-filename%";
         }
         {
-          mime = "text/plain";
+          mime = "text/*";
           command = "sh: ${pkgs.bat}/bin/bat --paging=never --color=always --terminal-width=%pistol-extra0% %pistol-filename%";
         }
         {

@@ -1,9 +1,17 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     home-manager
     helix
     # fbterm
     ccid
+    (lib.mkIf (! config.security.sudo.enable
+      && config.security.doas.enable)
+    (writeScriptBin "sudo" ''exec doas "$@"''))
   ];
 
   programs = {
