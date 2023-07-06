@@ -12,6 +12,8 @@
     (lib.mkIf (! config.security.sudo.enable
       && config.security.doas.enable)
     (writeScriptBin "sudo" ''exec doas "$@"''))
+
+    sing-box
   ];
 
   programs = {
