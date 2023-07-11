@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./lite.nix
-    ./gnome.nix
+    # ./gnome.nix
 
     ./services.nix
     ./vm.nix

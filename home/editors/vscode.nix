@@ -6,7 +6,7 @@
 }: {
   programs = {
     vscode = {
-      enable = true;
+      enable = false;
       package = pkgs.vscodium;
       enableUpdateCheck = false;
       userSettings = {

@@ -6,10 +6,11 @@
     surf
     microsoft-edge
     # vivaldi
-    firefox-devedition
+    # firefox-devedition
+    librewolf
     # hyper
 
-    logseq
+    # logseq
 
     # telegram-desktop
     # element-desktop-wayland # matrix

@@ -1,14 +1,14 @@
 {pkgs, ...}: {
   services = {
-    printing = {
-      enable = true;
-      drivers = [pkgs.hplip];
-    };
-    avahi = {
-      enable = true;
-      nssmdns = true;
-      openFirewall = true;
-    };
+    # printing = {
+    #   enable = true;
+    #   drivers = [pkgs.hplip];
+    # };
+    # avahi = {
+    #   enable = true;
+    #   nssmdns = true;
+    #   openFirewall = true;
+    # };
     pcscd.enable = true;
     udev.packages = [
       (pkgs.writeTextFile {

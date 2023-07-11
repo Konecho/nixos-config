@@ -4,7 +4,7 @@
     ghc # Haskell
 
     ## [[my project]]
-    mypkgs.scutthesis.thesis
+    # mypkgs.scutthesis.thesis
 
     ## [[python]]
     # conda
@@ -22,21 +22,22 @@
             black
 
             requests
-            torchWithoutCuda
-            torchvision
-            ignite
-            opencv4
-            pandas
-            scikit-learn
-            numpy
-            einops
-            pillow
-            termplotlib
-            matplotlib
 
-            pyocd
-            adafruit-nrfutil
-            intelhex
+            # torchWithoutCuda
+            # torchvision
+            # ignite
+            # opencv4
+            # pandas
+            # scikit-learn
+            # numpy
+            # einops
+            # pillow
+            # termplotlib
+            # matplotlib
+
+            # pyocd
+            # adafruit-nrfutil
+            # intelhex
 
             jupyterlab
 
@@ -60,8 +61,8 @@
     texlab #latex
     taplo #toml
 
-    nrfconnect
-    segger-jlink
+    # nrfconnect
+    # segger-jlink
 
     gdb
   ];
