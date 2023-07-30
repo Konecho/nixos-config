@@ -3,8 +3,8 @@
   home.packages = with pkgs; [
     # rustdesk
 
-    surf
-    microsoft-edge
+    # surf
+    # microsoft-edge
     # vivaldi
     # firefox-devedition
     librewolf

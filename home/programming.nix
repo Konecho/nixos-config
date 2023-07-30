@@ -8,7 +8,7 @@
 
     ## [[python]]
     # conda
-    poetry
+    # poetry
     (
       let
         python-packages = python-packages:

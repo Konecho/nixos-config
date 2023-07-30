@@ -3,7 +3,10 @@
   config,
   ...
 }: {
-  imports = [./alacritty.nix ./wezterm.nix];
+  imports = [
+    ./alacritty.nix
+    # ./wezterm.nix
+  ];
   home.sessionVariables.TERMINAL = "alacritty";
   programs = {
     alacritty = {

@@ -12,9 +12,9 @@
     ./theme.nix
 
     ./hyprland.nix
-    ./dwl
-    ./qtile
-    ./river
+    # ./dwl
+    # ./qtile
+    # ./river
   ];
   services.mako = {
     enable = true;

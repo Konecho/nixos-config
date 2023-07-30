@@ -73,7 +73,7 @@ inputs: {
       inherit pkgs;
       modules =
         [
-          inputs.hyprland.homeManagerModules.default
+          # inputs.hyprland.homeManagerModules.default
           # inputs.nix-doom-emacs.hmModule
           # inputs.stylix.homeManagerModules.stylix
           {

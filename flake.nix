@@ -17,10 +17,10 @@
       url = "github:Konecho/my-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprland = {
+    #   url = "github:hyprwm/Hyprland";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     joshuto = {
       url = "github:kamiyaa/joshuto";
       inputs.nixpkgs.follows = "nixpkgs";
