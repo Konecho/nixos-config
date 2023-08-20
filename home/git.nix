@@ -11,6 +11,7 @@
       ];
       userName = "NixOS";
       userEmail = "konecho@outlook.com";
+      extraConfig.init.defaultBranch = "main";
     };
   };
 }

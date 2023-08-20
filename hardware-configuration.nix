@@ -34,21 +34,25 @@
     "/boot" = {
       device = "/dev/disk/by-label/boot";
       fsType = "vfat";
+      # device = "/dev/disk/by-label/nixos";
+      # fsType = "btrfs";
+      # neededForBoot = true;
+      # options = btrfsops ++ ["subvol=@boot"];
     };
     "/nix" = {
-      device = "/dev/disk/by-label/btrfs";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       neededForBoot = true;
       options = btrfsops ++ ["subvol=@nix"];
     };
     "/persist" = {
-      device = "/dev/disk/by-label/btrfs";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       neededForBoot = true;
       options = btrfsops ++ ["subvol=@persist"];
     };
     "/db" = {
-      device = "/dev/disk/by-label/btrfs";
+      device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       neededForBoot = true;
       options = btrfsops ++ ["subvol=@db"];

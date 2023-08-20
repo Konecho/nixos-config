@@ -14,7 +14,7 @@
   cellWidth = 10;
   cellHeight = 21;
   gaps = 2;
-  border = 3; # 2*(gaps+border)==cellWidth
+  border = 2; # 2*(gaps+border)==cellWidth
   # gaps = 0;
   # border = 0; # 2*(gaps+border)==cellWidth
 
@@ -47,8 +47,9 @@
       gaps_in = ${builtins.toString gaps}
       gaps_out = ${builtins.toString gaps}
       border_size = ${builtins.toString border}
-      # 1440x900->1430x890
       layout = dwindle # master|dwindle
+      # col.active_border = rgb(ff0000) rgb(ff7f00) rgb(ffff00) rgb(00ff00) rgb(00ffff) rgb(0000ff) rgb(8b00ff) 30deg
+      col.active_border = rgb(ff0000) rgb(000000) rgb(8b00ff) 60deg
     }
     dwindle {
       no_gaps_when_only = false
@@ -99,17 +100,19 @@
       shadow_render_power = 5
       col.shadow = 0x66404040
 
-      #blurls = gtk-layer-shell
-      blurls = waybar
+      # blurls = gtk-layer-shell
+      # blurls = waybar
       blurls = lockscreen
     }
 
     animations {
       enabled = 1
       bezier = overshot, 0.13, 0.99, 0.29, 1.1
+      bezier = linear,0.5,0.5,0.5,0.5
       animation = windows, 1, 4, overshot, slide
       animation = windowsOut, 1, 5, default, popin 80%
       animation = border, 1, 5, default
+      animation = borderangle, 1, 20, linear, loop
       animation = fade, 1, 8, default
       animation = workspaces, 1, 6, overshot, slidevert
     }

@@ -9,6 +9,7 @@
     # firefox-devedition
     librewolf
     # hyper
+    czkawka # duplicates
 
     # logseq
 
