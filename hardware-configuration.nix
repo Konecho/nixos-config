@@ -32,7 +32,7 @@
     ];
   in {
     "/boot" = {
-      device = "/dev/disk/by-label/boot";
+      device = "/dev/disk/by-uuid/4944-6404";
       fsType = "vfat";
       # device = "/dev/disk/by-label/nixos";
       # fsType = "btrfs";

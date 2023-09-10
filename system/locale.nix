@@ -33,25 +33,26 @@
   #   ];
   # };
   fonts = {
-    # fontDir.enable = true;
-    # fonts = with pkgs; [
-    #   noto-fonts
-    #   noto-fonts-cjk
-    #   noto-fonts-emoji
-    #   # fira-code
-    #   # fira-code-symbols
-    #   # (nerdfonts.override {
-    #   #   fonts = [
-    #   #     # "FiraCode"
-    #   #     # "UbuntuMono"
-    #   #     # "Noto"
-    #   #   ];
-    #   # })
-    #   # sarasa-gothic #更纱黑体
-    #   # source-code-pro
-    #   # hack-font
-    #   # jetbrains-mono
-    # ];
+    fontDir.enable = true;
+    packages = with pkgs; [
+      #   noto-fonts
+      #   noto-fonts-cjk
+      #   noto-fonts-emoji
+      #   # fira-code
+      #   # fira-code-symbols
+      #   # (nerdfonts.override {
+      #   #   fonts = [
+      #   #     # "FiraCode"
+      #   #     # "UbuntuMono"
+      #   #     # "Noto"
+      #   #   ];
+      #   # })
+      #   # sarasa-gothic #更纱黑体
+      #   # source-code-pro
+      #   # hack-font
+      #   # jetbrains-mono
+      wqy_zenhei
+    ];
     # fontconfig = {
     #   enable = true;
     #   defaultFonts = {

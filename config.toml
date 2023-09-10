@@ -10,12 +10,12 @@ unfree = [
   "wechat-uos",
   "obsidian",
   "unrar",
-  "libsciter",  # rustdesk
-  # "steam-runtime",
-  # "steam-original",
-  # "steam",
-  # "steam-run",
-  # "steamcmd"
+  "libsciter",      # rustdesk
+  "steam-runtime",
+  "steam-original",
+  "steam",
+  "steam-run",
+  "steamcmd",
 ]
 insecure = [
   # "nodejs-16.20.1", # code-server

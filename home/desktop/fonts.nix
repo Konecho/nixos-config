@@ -20,5 +20,6 @@ in {
     # nur.repos.vanilla.Win10_LTSC_2021_fonts
     # nur.repos.vanilla.apple-fonts.NY
     # mypkgs.scutthesis.fonts.windows
+    wqy_zenhei
   ];
 }

@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     ## [[misc]]
     ghc # Haskell
+    tcl # Tcl/Tk
 
     ## [[my project]]
     # mypkgs.scutthesis.thesis

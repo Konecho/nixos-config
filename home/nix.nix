@@ -51,5 +51,7 @@
     nil
     # rnix-lsp
     alejandra
+
+    nix-output-monitor # nom build/develop/shell
   ];
 }
