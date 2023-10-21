@@ -6,7 +6,7 @@
 }: let
   hyprKickoffTab = pkgs.writeScript "kickoff-tab.sh" ''
     #!/usr/bin/env fish
-    hyprctl clients -j | jq -r '.[] | select(.title != "") | "[\\(.workspace.id % 10)] \\(.title)=hyprctl dispatch workspace \\(.workspace.id)\\n"' | kickoff --from-stdin
+    hyprctl clients -j | jq -r '.[] | select(.title != "") | "[\\(.workspace.id % 10)] \\(.title)=hyprctl dispatch workspace \\(.workspace.id)\\n"' | ${pkgs.kickoff}/bin/kickoff --from-stdin
   '';
   screenWidth = 1920;
   screenHeight = 1080;
@@ -299,7 +299,7 @@
 in {
   wayland.windowManager.hyprland = {
     enable = true;
-    systemdIntegration = true;
+    systemd.enable = true;
     extraConfig = ''
       ${baseConfigs}
       ${keyBinds}

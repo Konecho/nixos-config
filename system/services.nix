@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   services = {
     # printing = {
     #   enable = true;
@@ -54,4 +58,5 @@
       extraConfig = "font-size=15";
     };
   };
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 }

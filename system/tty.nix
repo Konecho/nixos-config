@@ -5,7 +5,7 @@ in {
   boot.kernelParams = ["console=tty${builtins.toString logVtNum}"];
   services = {
     greetd = {
-      enable = true;
+      enable = false;
       vt = graphVtNum;
       settings = {
         default_session = {
