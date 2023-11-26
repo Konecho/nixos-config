@@ -3,7 +3,8 @@
   config,
   ...
 }: {
-  home.shellAliases.lf = "joshuto";
+  home.shellAliases.lf = "yazi";
+  # home.shellAliases.lf = "joshuto";
   home.packages = with pkgs; [
     # vtm
     sc-im # 表格
@@ -11,6 +12,8 @@
     calc
 
     termusic
+
+    yazi
   ];
   programs = {
     gitui = {

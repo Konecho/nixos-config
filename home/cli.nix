@@ -18,7 +18,8 @@
     };
     zoxide.enable = true; # <z> cd
     bottom.enable = true; # <btm> top
-    mcfly.enable = true; # <ctrl-r>
+    # mcfly.enable = true; # <ctrl-r>
+    atuin.enable = true;
     broot.enable = true; # <br> tree-view search
     ## ls
     lsd = {
@@ -128,5 +129,6 @@
     # timg
     # imagemagick
     # ueberzug
+    ueberzugpp
   ];
 }

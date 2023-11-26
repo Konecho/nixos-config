@@ -11,6 +11,7 @@ inputs: {
           mypkgs = inputs.my-nixpkgs.packages."${system}";
           # pokemonsay = super.pokemonsay.override {cowsay = super.neo-cowsay;};
           # winfonts = nur.repos.vanilla.Win10_LTSC_2019_fonts;
+          # gnome = inputs.gnomeNixpkgs.legacyPackages.x86_64-linux.gnome;
         })
         inputs.nur.overlay
         inputs.joshuto.overlays.default

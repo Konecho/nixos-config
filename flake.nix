@@ -5,6 +5,7 @@
   inputs = {
     # flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    # gnomeNixpkgs.url = "github:NixOS/nixpkgs/gnome";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager";

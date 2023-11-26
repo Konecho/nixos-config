@@ -239,7 +239,7 @@
     exec-once = ${pkgs.clash-verge}/bin/clash-verge &
     exec-once = ${pkgs.swww}/bin/swww init &
 
-    # exec = ${pkgs.mypkgs.pokemon-terminal}/bin/pokemon -w 615 &
+    # exec = $ {pkgs.mypkgs.pokemon-terminal}/bin/pokemon -w 615 &
 
     # exec-once = ${pkgs.xmobar}/bin/xmobar -b &
     # exec-once=eww daemon &

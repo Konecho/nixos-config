@@ -12,6 +12,7 @@
     ./theme.nix
 
     ./hyprland.nix
+    ./gnome.nix
     # ./dwl
     # ./qtile
     # ./river

@@ -18,6 +18,7 @@ unfree = [
   "steamcmd",
 ]
 insecure = [
+  "libxls-1.6.2",
   # "nodejs-16.20.1", # code-server
   # "electron-19.0.7",
   # "electron-12.2.3",

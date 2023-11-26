@@ -2,6 +2,8 @@
   home.sessionVariables.BROWSER = "qutebrowser";
   home.packages = with pkgs; [
     # rustdesk
+    motrix
+    obsidian
 
     # surf
     # microsoft-edge
