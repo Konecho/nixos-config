@@ -3,12 +3,15 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # <nmcli device wifi list/connect>
 
-  networking.proxy.default = "http://127.0.0.1:7890/"; #1080:=v2ray;7890:=clash
-  # networking.proxy.default = "http://192.168.199.156:9080/";
+  # networking.proxy.default = "http://127.0.0.1:7890/"; #1080:=v2ray;7890:=clash
+  networking.proxy.default = "http://192.168.2.62:9080/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,cache.nixos.org,.cn";
   networking.proxy.noProxy = "127.0.0.1,localhost,.cn";
 
-  nix.settings.substituters = ["https://mirrors.ustc.edu.cn/nix-channels/store"];
+  nix.settings.substituters = [
+    "https://mirrors.ustc.edu.cn/nix-channels/store/"
+    "https://cache.nixos.org/"
+  ];
 
   # https://github.com/docker/docker-install/issues/150
   # virtualisation.docker.rootless.daemon.settings = {

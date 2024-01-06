@@ -1,10 +1,12 @@
 {pkgs, ...}: {
   boot.loader = {
-    systemd-boot = {
-      enable = true;
-      # consoleMode = "auto";
-    };
-    # efi.canTouchEfiVariables = true;
+    # systemd-boot = {
+    #   enable = true;
+    #   # consoleMode = "auto";
+    grub.efiSupport = true;
+    grub.device = "nodev";
+    # };
+    efi.canTouchEfiVariables = true;
     # efi.efiSysMountPoint = "/boot/efi";
     # grub = {
     #   enable = true;
