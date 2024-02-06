@@ -7,6 +7,7 @@
       enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
         "dash-to-panel@jderose9.github.com"
+        "flypie@schneegans.github.com"
 
         "apps-menu@gnome-shell-extensions.gcampax.github.com"
         "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
@@ -25,8 +26,12 @@
       button-layout = ":minimize,maximize,close";
     };
   };
-  home.packages = with pkgs.gnomeExtensions; [
-    appindicator
-    dash-to-panel
-  ];
+  home.packages = with pkgs.gnomeExtensions;
+    [
+      appindicator
+      dash-to-panel
+    ]
+    ++ (with pkgs.gnome; [
+      sushi
+    ]);
 }

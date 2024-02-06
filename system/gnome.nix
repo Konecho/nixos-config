@@ -11,12 +11,12 @@
     (with pkgs; [
       gnome-photos
       gnome-tour
+      gedit # text editor
     ])
     ++ (with pkgs.gnome; [
       cheese # webcam tool
       gnome-music
       gnome-terminal
-      gedit # text editor
       epiphany # web browser
       geary # email reader
       evince # document viewer
@@ -27,10 +27,10 @@
       hitori # sudoku game
       atomix # puzzle game
     ]);
-  environment.systemPackages = with pkgs; [
-    gnomeExtensions.appindicator
-
-    gnomeExtensions.dash-to-panel
+  environment.systemPackages = with pkgs.gnomeExtensions; [
+    appindicator
+    dash-to-panel
+    fly-pie
   ];
   # services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 

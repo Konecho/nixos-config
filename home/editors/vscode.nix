@@ -31,6 +31,7 @@
           "editor.formatOnType" = true;
         };
         "workbench.editor.enablePreview" = false;
+        "workbench.colorTheme" = "Visual Studio Light";
       };
       # extensions = with pkgs.vscode-extensions; [ ms-ceintl.vscode-language-pack-zh-hans ];
     };

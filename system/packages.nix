@@ -29,6 +29,6 @@
     #   defaultEditor = true;
     #   vimAlias = true;
     # };
-    steam.enable = true;
+    # steam.enable = true;
   };
 }

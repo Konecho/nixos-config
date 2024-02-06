@@ -57,6 +57,7 @@
       extraOptions = "--term xterm-256color";
       extraConfig = "font-size=15";
     };
+    davfs2.enable = true;
   };
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 }
