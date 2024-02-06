@@ -7,7 +7,7 @@
 
   environment.persistence."/persist" = {
     directories = [
-      # "/home/mei"
+      "/home/${username}"
       "/etc/nixos"
       "/etc/NetworkManager/system-connections"
       "/var/log"
@@ -19,4 +19,5 @@
       # "/etc/shadow"
     ];
   };
+
 }

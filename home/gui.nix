@@ -19,6 +19,21 @@
     # element-desktop-wayland # matrix
     kotatogram-desktop-with-webkit
 
+    (hydrus.overrideAttrs (f: p: rec {
+      version = "544";
+      src = fetchFromGitHub {
+        owner = "hydrusnetwork";
+        repo = "hydrus";
+        rev = "refs/tags/v${version}";
+        hash = "sha256-e3VvkdJAQx5heKDJ1Ms6XpXrXWdzv48f8yu0DHfPy1A=";
+      };
+      buildInputs = p.buildInputs ++ [pkgs.qt6.qtwayland];
+      # buildPhase = ''
+      #   mv hydrus_client.py client.py
+      #   mv hydrus_server.py server.py
+      # '';
+    }))
+
     # blender
     # gimp
     # godot

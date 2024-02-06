@@ -40,8 +40,6 @@
   outputs = inputs: let
     system = "x86_64-linux";
     username = "mei";
-    hostname = "deskmini";
-    hostname2 = "chromebook";
     lib = import ./lib.nix inputs;
 
     pkgs = lib.mkPkgs {inherit system;};
@@ -52,16 +50,22 @@
     };
 
     nixosConfigurations = {
-      "${hostname}" = lib.mkSys {
-        inherit hostname username pkgs;
-        modules = [./system ./hardware-configuration.nix];
-      };
-      "${hostname2}" = lib.mkSys {
-        hostname = hostname2;
+      deskmini = lib.mkSys {
+        hostname = "deskmini";
         inherit username pkgs;
         modules = [
-          ./chromebook/hardware-configuration.nix
-          ./chromebook/configuration.nix
+          inputs.impermanence.nixosModules.impermanence
+          (inputs.nixpkgs + "/nixos/modules/programs/wayland/wayland-session.nix")
+          ./system
+          ./hosts/deskmini/hardware-configuration.nix
+        ];
+      };
+      chromebook = lib.mkSys {
+        hostname = "chromebook";
+        inherit username pkgs;
+        modules = [
+          ./hosts/chromebook/hardware-configuration.nix
+          ./hosts/chromebook/configuration.nix
           ./system/lite.nix
 
           inputs.home-manager.nixosModules.home-manager
@@ -93,20 +97,20 @@
         modules = [
           inputs.nixos-wsl.nixosModules.wsl
           ./hosts/wsl
-          ./system/locale.nix
+          # ./system/locale.nix
           ./system/misc.nix
           ./system/packages.nix
           inputs.home-manager.nixosModules.home-manager
           {
-            # home-manager.useGlobalPkgs = true;
-            # home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
             home-manager.users.${username} = {
               home.stateVersion = "23.05";
               imports = [
                 ./home/common.nix
                 ./home/editors/helix.nix
                 ./home/git.nix
-                # ./home/nix.nix
+                ./home/cli.nix
               ];
             };
           }

@@ -42,12 +42,9 @@ inputs: {
     nixosSystem = inputs.nixpkgs.lib.nixosSystem;
   in
     nixosSystem {
+      specialArgs = {inherit inputs username;};
       modules =
         [
-          inputs.impermanence.nixosModules.impermanence
-          (inputs.nixpkgs + "/nixos/modules/programs/wayland/wayland-session.nix")
-          # ./hardware-configuration.nix
-
           {
             nixpkgs.pkgs = pkgs;
             networking.hostName = "${hostname}";
@@ -57,9 +54,6 @@ inputs: {
               shell = pkgs.fish;
               extraGroups = ["wheel" "adbusers" "input" "networkmanager" "video" "docker" "vboxusers"];
             };
-            environment.persistence."/persist".directories = [
-              "/home/${username}"
-            ];
           }
         ]
         ++ modules;
