@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  username,
+  ...
+}: {
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
@@ -19,5 +23,4 @@
       # "/etc/shadow"
     ];
   };
-
 }
