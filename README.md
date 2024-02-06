@@ -30,9 +30,15 @@
 
 use windows proxy in wsl
 ```
-export hostip=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*') #获得网关地址
+export hostip=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
 export proxyPort=7890
 export https_proxy="http://${hostip}:${proxyPort}";
 export http_proxy="http://${hostip}:${proxyPort}";
 export all_proxy="http://${hostip}:${proxyPort}";
+```
+
+fish
+```
+set -g all_proxy "http://$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*'):7890"
+set -g https_proxy "http://$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*'):7890"
 ```

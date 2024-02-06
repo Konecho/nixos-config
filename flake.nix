@@ -93,6 +93,9 @@
         modules = [
           inputs.nixos-wsl.nixosModules.wsl
           ./hosts/wsl
+          ./system/locale.nix
+          ./system/misc.nix
+          ./system/packages.nix
           inputs.home-manager.nixosModules.home-manager
           {
             # home-manager.useGlobalPkgs = true;

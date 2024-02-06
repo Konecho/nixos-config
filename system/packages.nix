@@ -13,7 +13,7 @@
       && config.security.doas.enable)
     (writeScriptBin "sudo" ''exec doas "$@"''))
 
-    sing-box
+    # sing-box
   ];
 
   programs = {
@@ -29,6 +29,6 @@
     #   defaultEditor = true;
     #   vimAlias = true;
     # };
-    steam.enable = true;
+    steam.enable = false;
   };
 }

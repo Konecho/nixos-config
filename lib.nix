@@ -47,7 +47,7 @@ inputs: {
           inputs.impermanence.nixosModules.impermanence
           (inputs.nixpkgs + "/nixos/modules/programs/wayland/wayland-session.nix")
           # ./hardware-configuration.nix
-          ./system
+
           {
             nixpkgs.pkgs = pkgs;
             networking.hostName = "${hostname}";
