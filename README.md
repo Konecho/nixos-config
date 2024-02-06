@@ -23,3 +23,16 @@
 * 复制内容到新子卷
   * `sudo rsync -ah -A -X --info=progress2 /nix/ /mnt/@nix/`
   * `sudo rsync -ah -A -X --info=progress2 /persist/ /mnt/@persist/`
+
+## wsl
+无flake下临时更新flake
+`nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update`
+
+use windows proxy in wsl
+```
+export hostip=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*') #获得网关地址
+export proxyPort=7890
+export https_proxy="http://${hostip}:${proxyPort}";
+export http_proxy="http://${hostip}:${proxyPort}";
+export all_proxy="http://${hostip}:${proxyPort}";
+```

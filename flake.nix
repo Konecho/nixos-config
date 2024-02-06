@@ -31,6 +31,10 @@
     #   inputs.nixpkgs.follows = "nixpkgs"; # follow ghc
     #   inputs.home-manager.follows = "home-manager"; # follow ghc
     # };
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -78,6 +82,28 @@
                 # ./home/nix.nix
                 # ./home/desktop/fonts.nix
                 # ./home/stylix.nix
+              ];
+            };
+          }
+        ];
+      };
+      wsl = lib.mkSys {
+        hostname = "wsl";
+        inherit username pkgs;
+        modules = [
+          inputs.nixos-wsl.nixosModules.wsl
+          ./hosts/wsl
+          inputs.home-manager.nixosModules.home-manager
+          {
+            # home-manager.useGlobalPkgs = true;
+            # home-manager.useUserPackages = true;
+            home-manager.users.${username} = {
+              home.stateVersion = "23.05";
+              imports = [
+                ./home/common.nix
+                ./home/editors/helix.nix
+                ./home/git.nix
+                # ./home/nix.nix
               ];
             };
           }
