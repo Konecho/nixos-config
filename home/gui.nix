@@ -44,8 +44,8 @@
     # nur.repos.xddxdd.wechat-uos
 
     # obsidian
-    # libreoffice
-    # onlyoffice-bin
+    # libreoffice-qt
+    onlyoffice-bin
 
     # thunderbird
 

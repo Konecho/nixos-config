@@ -83,6 +83,7 @@
     # p7zip # <7z>
     # poppler_utils # <pdftotext>
     # highlight
+    # unoconv # doc to docx
 
     ## rename files in editor
     vimv-rs # <vimv *.mp3>

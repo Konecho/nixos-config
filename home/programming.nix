@@ -41,6 +41,7 @@
             # intelhex
 
             jupyterlab
+            python-docx
 
             mypkgs.pokebase
           ];

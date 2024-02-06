@@ -27,10 +27,10 @@
       hitori # sudoku game
       atomix # puzzle game
     ]);
-  environment.systemPackages = with pkgs; [
-    gnomeExtensions.appindicator
-
-    gnomeExtensions.dash-to-panel
+  environment.systemPackages = with pkgs.gnomeExtensions; [
+    appindicator
+    dash-to-panel
+    fly-pie
   ];
   # services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
