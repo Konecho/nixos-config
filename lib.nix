@@ -14,7 +14,7 @@ inputs: {
           # gnome = inputs.gnomeNixpkgs.legacyPackages.x86_64-linux.gnome;
         })
         inputs.nur.overlay
-        inputs.joshuto.overlays.default
+        # inputs.joshuto.overlays.default
       ];
     };
 

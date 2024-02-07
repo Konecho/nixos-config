@@ -22,10 +22,10 @@
     #   url = "github:hyprwm/Hyprland";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    joshuto = {
-      url = "github:kamiyaa/joshuto";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # joshuto = {
+    #   url = "github:kamiyaa/joshuto";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # stylix = {
     #   url = "github:danth/stylix";
     #   inputs.nixpkgs.follows = "nixpkgs"; # follow ghc
@@ -97,7 +97,7 @@
         modules = [
           inputs.nixos-wsl.nixosModules.wsl
           ./hosts/wsl
-          # ./system/locale.nix
+          ./system/locale.nix
           ./system/misc.nix
           ./system/packages.nix
           inputs.home-manager.nixosModules.home-manager
@@ -110,7 +110,9 @@
                 ./home/common.nix
                 ./home/editors/helix.nix
                 ./home/git.nix
+                ./home/shells.nix
                 ./home/cli.nix
+                ./home/tui.nix
               ];
             };
           }
