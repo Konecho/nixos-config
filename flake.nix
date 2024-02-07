@@ -35,6 +35,10 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vscode-server={
+      url = "github:nix-community/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -96,6 +100,7 @@
         inherit username pkgs;
         modules = [
           inputs.nixos-wsl.nixosModules.wsl
+          inputs.vscode-server.nixosModules.default
           ./hosts/wsl
           ./system/locale.nix
           ./system/misc.nix

@@ -6,7 +6,7 @@ unfree = [
   # "android-studio-stable",
   "microsoft-edge-stable",
   "vivaldi",
-  # "vscode",
+  "vscode",
   "wechat-uos",
   "obsidian",
   "unrar",
