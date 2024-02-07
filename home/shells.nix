@@ -12,16 +12,6 @@
     fish = {
       enable = true;
       functions = {
-        # zellij = ''
-        #   ${pkgs.zellij}/bin/zellij -s "$(echo $POKEMON|awk -F',' '{print$2}') $argv"
-        # '';
-        fish_greeting = ''
-          random_pokemon
-          echo $POKEMON|awk -F',' '{print$4}'|tr "'" " "| ${pkgs.pokemonsay}/bin/pokemonsay -N
-        '';
-        random_pokemon = ''
-          set -g POKEMON $(shuf ~/scripts/pmlist.csv -n 1)
-        '';
         nixinit = ''
           if [ $(git rev-parse --is-inside-work-tree) = 'true' ]
             if [ $(pwd) = $(git rev-parse --show-toplevel) ]
@@ -41,8 +31,8 @@
           end
         '';
         gitui = ''
-          random_pokemon
-          git config user.name "$(echo $POKEMON|awk -F',' '{print$2}')"
+          # random_pokemon
+          # git config user.name "$(echo $POKEMON|awk -F',' '{print$2}')"
           ssh-add ~/.ssh/id_ed25519 2> /dev/null
           ${pkgs.gitui}/bin/gitui
         '';
