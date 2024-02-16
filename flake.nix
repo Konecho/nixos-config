@@ -14,6 +14,7 @@
     impermanence.url = "github:nix-community/impermanence";
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     nur.url = "github:nix-community/NUR";
+    ags.url = "github:Aylur/ags";
     my-nixpkgs = {
       url = "github:Konecho/my-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,7 +36,7 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    vscode-server={
+    vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -50,7 +51,9 @@
   in {
     homeConfigurations."${username}" = lib.mkUsr {
       inherit pkgs username;
-      modules = [./home];
+      modules = [
+        ./home
+      ];
     };
 
     nixosConfigurations = {
@@ -58,7 +61,6 @@
         hostname = "deskmini";
         inherit username pkgs;
         modules = [
-          inputs.impermanence.nixosModules.impermanence
           (inputs.nixpkgs + "/nixos/modules/programs/wayland/wayland-session.nix")
           ./system
           ./hosts/deskmini/hardware-configuration.nix
@@ -83,10 +85,8 @@
                 # ./home/tui.nix
                 ./home/desktop/dwl
                 ./home/common.nix
-                ./home/git.nix
-                ./home/shells.nix
                 ./home/editors/helix.nix
-                ./home/cli.nix
+                ./home/commandline
                 # ./home/nix.nix
                 # ./home/desktop/fonts.nix
                 # ./home/stylix.nix
@@ -114,10 +114,10 @@
               imports = [
                 ./home/common.nix
                 ./home/editors/helix.nix
-                ./home/git.nix
-                ./home/shells.nix
-                ./home/cli.nix
-                ./home/tui.nix
+                ./home/commandline/git.nix
+                ./home/commandline/shells.nix
+                ./home/commandline/cli.nix
+                ./home/commandline/tui.nix
               ];
             };
           }

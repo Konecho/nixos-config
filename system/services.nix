@@ -60,4 +60,5 @@
     davfs2.enable = true;
   };
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  # services.xserver.displayManager.startx.enable = true;
 }

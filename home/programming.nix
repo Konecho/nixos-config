@@ -4,9 +4,6 @@
     ghc # Haskell
     tcl # Tcl/Tk
 
-    ## [[my project]]
-    # mypkgs.scutthesis.thesis
-
     ## [[python]]
     # conda
     # poetry

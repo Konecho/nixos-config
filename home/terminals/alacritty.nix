@@ -7,7 +7,7 @@
     alacritty = {
       enable = true;
       settings = {
-        opacity = 0.8;
+        # opacity = 0.8;
         font.normal.family = "Maple Mono SC NF";
         font.size = 12;
       };

@@ -1,11 +1,13 @@
-inputs: {
+inputs: let
+  toml-config = builtins.fromTOML (builtins.readFile ./config.toml);
+in {
   mkPkgs = {system}:
     import inputs.nixpkgs {
       inherit system;
-      config.segger-jlink.acceptLicense = true;
+      config.segger-jlink.acceptLicense = builtins.elem "segger-jlink" (toml-config.pkgs.unfree);
       config.allowUnfreePredicate = pkg:
-        builtins.elem (inputs.nixpkgs.lib.getName pkg) ((builtins.fromTOML (builtins.readFile ./config.toml)).pkgs.unfree);
-      config.permittedInsecurePackages = (builtins.fromTOML (builtins.readFile ./config.toml)).pkgs.insecure;
+        builtins.elem (inputs.nixpkgs.lib.getName pkg) (toml-config.pkgs.unfree);
+      config.permittedInsecurePackages = toml-config.pkgs.insecure;
       overlays = [
         (self: super: rec {
           mypkgs = inputs.my-nixpkgs.packages."${system}";
@@ -66,6 +68,7 @@ inputs: {
   }:
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
+      extraSpecialArgs = {inherit inputs;};
       modules =
         [
           # inputs.hyprland.homeManagerModules.default

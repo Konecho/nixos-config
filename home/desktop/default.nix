@@ -11,8 +11,9 @@
     ./fcitx.nix
     ./theme.nix
 
-    ./hyprland.nix
+    # ./hyprland.nix
     ./gnome.nix
+
     # ./dwl
     # ./qtile
     # ./river
