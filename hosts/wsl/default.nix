@@ -16,6 +16,10 @@
     ];
   };
   networking.proxy.default = "http://192.168.80.1:7890";
+  nix.settings.substituters = [
+    "https://mirrors.ustc.edu.cn/nix-channels/store/"
+    "https://cache.nixos.org/"
+  ];
   environment.systemPackages = with pkgs; [
     wsl-open
     nil

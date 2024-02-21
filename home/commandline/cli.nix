@@ -93,7 +93,7 @@
     libnotify # <notify-send>
     ripgrep # <rg> grep
     procs # ps
-    comma # , <command>
+    # comma # , <command> # moved to nix.nix
     just # make
     killall
     thefuck

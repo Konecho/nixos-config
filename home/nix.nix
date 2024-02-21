@@ -1,13 +1,17 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }: {
-  nix.settings.tarball-ttl = 43200;
-  nix.settings.substituters = [
-    "https://mirrors.ustc.edu.cn/nix-channels/store/"
-    "https://cache.nixos.org/"
+  imports = [
+    inputs.nix-index-database.hmModules.nix-index
   ];
+  nix.settings.tarball-ttl = 43200;
+  # nix.settings.substituters = [
+  #   "https://mirrors.ustc.edu.cn/nix-channels/store/"
+  #   "https://cache.nixos.org/"
+  # ];
   nix.registry = {
     old = {
       from = {
@@ -26,7 +30,7 @@
         id = "n";
         type = "indirect";
       };
-      flake = config.nix.registry.nixpkgs.flake;
+      flake = inputs.nixpkgs;
       # to = {
       #   owner = "NixOS";
       #   ref = "nixpkgs-unstable";
@@ -48,6 +52,8 @@
     };
   };
   programs.home-manager.enable = true;
+  programs.nix-index.enable = true;
+  programs.nix-index-database.comma.enable = true;
   home.packages = with pkgs; [
     ## [[nix]]
     nix-init

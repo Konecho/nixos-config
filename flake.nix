@@ -40,6 +40,10 @@
       url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -107,12 +111,14 @@
           ./system/packages.nix
           inputs.home-manager.nixosModules.home-manager
           {
+            home-manager.extraSpecialArgs = {inherit inputs;};
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${username} = {
               home.stateVersion = "23.05";
               imports = [
                 ./home/common.nix
+                ./home/nix.nix
                 ./home/editors/helix.nix
                 ./home/commandline/git.nix
                 ./home/commandline/shells.nix
