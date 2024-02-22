@@ -1,9 +1,15 @@
 {
   config,
+  inputs,
   pkgs,
   username,
   ...
 }: {
+  imports = [
+    inputs.nixos-wsl.nixosModules.wsl
+    inputs.vscode-server.nixosModules.default
+  ];
+
   wsl = {
     enable = true;
     defaultUser = "${username}";
@@ -16,14 +22,9 @@
     ];
   };
   networking.proxy.default = "http://192.168.80.1:7890";
-  nix.settings.substituters = [
-    "https://mirrors.ustc.edu.cn/nix-channels/store/"
-    "https://cache.nixos.org/"
-  ];
+
   environment.systemPackages = with pkgs; [
     wsl-open
-    nil
-    alejandra
     obsidian
 
     wget # for nix-ld code-server

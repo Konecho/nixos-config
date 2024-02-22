@@ -25,6 +25,7 @@ in {
     username,
     pkgs,
     modules,
+    hm-modules ? null,
   }: let
     # remoteNixpkgsPatches = [
     #   {
@@ -58,6 +59,22 @@ in {
             };
           }
         ]
+        ++ (
+          if (hm-modules != null)
+          then [
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = {inherit inputs;};
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${username} = {
+                home.stateVersion = "23.05";
+                imports = hm-modules;
+              };
+            }
+          ]
+          else []
+        )
         ++ modules;
     };
 

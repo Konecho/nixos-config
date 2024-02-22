@@ -1,15 +1,18 @@
-{...}: {
-  imports = [
-    ./boot.nix
-    ./locale.nix
-    ./misc.nix
-    ./network.nix
-    ./packages.nix
-    ./tmpfs-as-root.nix
-    ./tty.nix
-    ./gnome.nix
-
-    ./services.nix
-    ./vm.nix
-  ];
+{lib, ...}: {
+  imports = let
+    scanPaths = path:
+      builtins.map
+      (f: (path + "/${f}"))
+      (builtins.attrNames
+        (lib.attrsets.filterAttrs
+          (
+            path: _type:
+              (_type == "directory") # include directories
+              || (
+                (path != "default.nix") # ignore default.nix
+                && (lib.strings.hasSuffix ".nix" path) # include .nix files
+              )
+          )
+          (builtins.readDir path)));
+  in (scanPaths ./.);
 }

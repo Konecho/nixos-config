@@ -3,6 +3,18 @@
   lib,
   ...
 }: {
+  programs = {
+    adb.enable = true;
+    # hyprland.enable = true;
+    # river.enable = true;
+    # river.package = null;
+    # dconf.enable = true;
+    # neovim = {
+    #   enable = true;
+    #   defaultEditor = true;
+    #   vimAlias = true;
+    # };
+  };
   services = {
     # printing = {
     #   enable = true;
