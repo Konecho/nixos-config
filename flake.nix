@@ -14,7 +14,7 @@
     impermanence.url = "github:nix-community/impermanence";
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     nur.url = "github:nix-community/NUR";
-    ags.url = "github:Aylur/ags";
+    # ags.url = "github:Aylur/ags";
     my-nixpkgs = {
       url = "github:Konecho/my-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,6 +44,11 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "";
+    };
   };
 
   outputs = inputs: let
@@ -63,7 +68,7 @@
     nixosConfigurations = {
       deskmini = lib.mkSys {
         hostname = "deskmini";
-        inherit username pkgs;
+        inherit username pkgs system;
         modules = [
           (inputs.nixpkgs + "/nixos/modules/programs/wayland/wayland-session.nix")
           ./system
@@ -72,7 +77,7 @@
       };
       chromebook = lib.mkSys {
         hostname = "chromebook";
-        inherit username pkgs;
+        inherit username pkgs system;
         modules = [
           ./hosts/chromebook/hardware-configuration.nix
           ./hosts/chromebook/configuration.nix
@@ -101,13 +106,14 @@
       };
       wsl = lib.mkSys {
         hostname = "wsl";
-        inherit username pkgs;
+        inherit username pkgs system;
         modules = [
           ./hosts/wsl
           ./system/core.nix
           ./system/locale.nix
           ./system/misc.nix
           ./system/nix.nix
+          ./system/age
         ];
         hm-modules = [
           ./home/common.nix

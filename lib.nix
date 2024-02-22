@@ -24,6 +24,7 @@ in {
     hostname,
     username,
     pkgs,
+    system,
     modules,
     hm-modules ? null,
   }: let
@@ -45,7 +46,7 @@ in {
     nixosSystem = inputs.nixpkgs.lib.nixosSystem;
   in
     nixosSystem {
-      specialArgs = {inherit inputs username;};
+      specialArgs = {inherit inputs username system;};
       modules =
         [
           {
