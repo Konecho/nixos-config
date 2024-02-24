@@ -13,7 +13,7 @@ in {
         };
       };
     };
-    xserver.tty = graphVtNum;
+    # xserver.tty = graphVtNum;
     journald.console = "/dev/tty${builtins.toString logVtNum}";
     gpm.enable = true; # enables mouse support in virtual consoles.
   };

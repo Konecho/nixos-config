@@ -1,10 +1,11 @@
 {
   # sudo nixos-rebuild switch
   description = "A flake";
-
+  # nix flake lock --update-input nixpkgs-stable
   inputs = {
     # flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-23.11";
     # gnomeNixpkgs.url = "github:NixOS/nixpkgs/gnome";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
@@ -49,6 +50,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
+
+    nixgl.url = "github:guibou/nixGL";
   };
 
   outputs = inputs: let
@@ -123,6 +126,7 @@
           ./home/commandline/shells.nix
           ./home/commandline/cli.nix
           ./home/commandline/tui.nix
+          ./home/desktop/fonts.nix
         ];
       };
     };

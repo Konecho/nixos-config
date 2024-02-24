@@ -11,10 +11,15 @@ in {
       overlays = [
         (self: super: rec {
           mypkgs = inputs.my-nixpkgs.packages."${system}";
+          mesa = inputs.nixpkgs-stable.legacyPackages."${system}".mesa; # to fix errors below in <glxinfo>
+          ## MESA: error: ZINK: failed to choose pdev
+          ## glx: failed to create drisw screen
+          ## failed to load driver: zink
           # pokemonsay = super.pokemonsay.override {cowsay = super.neo-cowsay;};
           # winfonts = nur.repos.vanilla.Win10_LTSC_2019_fonts;
           # gnome = inputs.gnomeNixpkgs.legacyPackages.x86_64-linux.gnome;
         })
+        inputs.nixgl.overlay
         inputs.nur.overlay
         # inputs.joshuto.overlays.default
       ];
