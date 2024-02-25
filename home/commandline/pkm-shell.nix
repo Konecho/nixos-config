@@ -10,14 +10,16 @@
         # '';
         fish_greeting = ''
           random_pokemon
-          echo $POKEMON|awk -F',' '{print$4}'|tr "'" " "| ${pkgs.pokemonsay}/bin/pokemonsay -N
+          echo $POKEMON|awk -F',' '{print$4}'|tr "'" " "| ${pkgs.pokemonsay}/bin/pokemonsay -N -D $POKEMON_NATIONAL_DEX_NUMBER
         '';
         random_pokemon = ''
-          set -g POKEMON $(shuf ~/scripts/pmlist.csv -n 1)
+          # 898
+          set -g POKEMON_NATIONAL_DEX_NUMBER $(shuf -n 1 -i 1-898)
+          set -g POKEMON $(sed -n {$POKEMON_NATIONAL_DEX_NUMBER}p ${./pmlist.csv})
         '';
         gitui = ''
           # random_pokemon
-          # git config user.name "$(echo $POKEMON|awk -F',' '{print$2}')"
+          git config user.name "$(echo $POKEMON|awk -F',' '{print$2}')"
           ssh-add ~/.ssh/id_ed25519 2> /dev/null
           ${pkgs.gitui}/bin/gitui
         '';

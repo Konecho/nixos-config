@@ -3,6 +3,7 @@
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.excludePackages = [pkgs.xterm];
   services.gnome = {
     core-os-services.enable = true;
     core-shell.enable = true;
@@ -10,11 +11,17 @@
   environment.gnome.excludePackages =
     (with pkgs; [
       gnome-photos
+      gnome-console
       gnome-tour
       gedit # text editor
     ])
     ++ (with pkgs.gnome; [
       cheese # webcam tool
+      gnome-contacts
+      gnome-maps
+      gnome-weather
+      simple-scan
+      yelp
       gnome-music
       gnome-terminal
       epiphany # web browser
