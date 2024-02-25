@@ -4,6 +4,13 @@
   - 子文件夹根据需要创建
 - system —— nixos配置，不继续创建子文件夹
 
+# 对比
+
+```
+cd /nix/var/nix/profiles
+nix-diff $(nix-store -qd system-1139-link system-1140-link)
+```
+
 # 迁移助手
 
 * 首先列出磁盘

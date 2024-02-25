@@ -60,6 +60,18 @@
     lib = import ./lib.nix inputs;
 
     pkgs = lib.mkPkgs {inherit system;};
+    pkgs-fix-gl = lib.mkPkgs {
+      inherit system;
+      overlays = [
+        (self: super: rec {
+          mesa = inputs.nixpkgs-stable.legacyPackages."${system}".mesa; # to fix errors below in <glxinfo>
+          ## MESA: error: ZINK: failed to choose pdev
+          ## glx: failed to create drisw screen
+          ## failed to load driver: zink
+        })
+        inputs.nixgl.overlay
+      ];
+    };
   in {
     homeConfigurations."${username}" = lib.mkUsr {
       inherit pkgs username;
@@ -109,7 +121,8 @@
       };
       wsl = lib.mkSys {
         hostname = "wsl";
-        inherit username pkgs system;
+        pkgs = pkgs-fix-gl;
+        inherit username system;
         modules = [
           ./hosts/wsl
           ./system/core.nix

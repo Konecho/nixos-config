@@ -1,28 +1,28 @@
 inputs: let
   toml-config = builtins.fromTOML (builtins.readFile ./config.toml);
 in {
-  mkPkgs = {system}:
+  mkPkgs = {
+    system,
+    overlays ? [],
+  }:
     import inputs.nixpkgs {
       inherit system;
       config.segger-jlink.acceptLicense = builtins.elem "segger-jlink" (toml-config.pkgs.unfree);
       config.allowUnfreePredicate = pkg:
         builtins.elem (inputs.nixpkgs.lib.getName pkg) (toml-config.pkgs.unfree);
       config.permittedInsecurePackages = toml-config.pkgs.insecure;
-      overlays = [
-        (self: super: rec {
-          mypkgs = inputs.my-nixpkgs.packages."${system}";
-          mesa = inputs.nixpkgs-stable.legacyPackages."${system}".mesa; # to fix errors below in <glxinfo>
-          ## MESA: error: ZINK: failed to choose pdev
-          ## glx: failed to create drisw screen
-          ## failed to load driver: zink
-          # pokemonsay = super.pokemonsay.override {cowsay = super.neo-cowsay;};
-          # winfonts = nur.repos.vanilla.Win10_LTSC_2019_fonts;
-          # gnome = inputs.gnomeNixpkgs.legacyPackages.x86_64-linux.gnome;
-        })
-        inputs.nixgl.overlay
-        inputs.nur.overlay
-        # inputs.joshuto.overlays.default
-      ];
+      overlays =
+        [
+          (self: super: rec {
+            mypkgs = inputs.my-nixpkgs.packages."${system}";
+            # pokemonsay = super.pokemonsay.override {cowsay = super.neo-cowsay;};
+            # winfonts = nur.repos.vanilla.Win10_LTSC_2019_fonts;
+            # gnome = inputs.gnomeNixpkgs.legacyPackages.x86_64-linux.gnome;
+          })
+          inputs.nur.overlay
+          # inputs.joshuto.overlays.default
+        ]
+        ++ overlays;
     };
 
   mkSys = {
@@ -57,11 +57,23 @@ in {
           {
             nixpkgs.pkgs = pkgs;
             networking.hostName = "${hostname}";
-            users.users."${username}" = {
-              isNormalUser = true;
-              initialPassword = "5112";
-              shell = pkgs.fish;
-              extraGroups = ["wheel" "adbusers" "input" "networkmanager" "video" "docker" "vboxusers"];
+
+            users = {
+              users."${username}" = {
+                isNormalUser = true;
+                # mkpasswd -m sha-512
+                hashedPassword = "$6$uiElHlBCyxUEkWFo$FqTxpsOFPhU0ak3V9.xGTvHblsRxQOffE6zfUGJMflt9B.11NqiokVB.yETtBU0hJn5Z.SNS6IFrlUj6hToAO/";
+                shell = pkgs.fish;
+                extraGroups = ["wheel" "adbusers" "input" "networkmanager" "video" "docker" "vboxusers"];
+              };
+              mutableUsers = false;
+
+              extraUsers = {
+                root = {
+                  initialHashedPassword = "!";
+                  # hashedPassword = "!";
+                };
+              };
             };
           }
         ]
