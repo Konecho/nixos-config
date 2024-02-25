@@ -34,11 +34,16 @@
       hitori # sudoku game
       atomix # puzzle game
     ]);
-  environment.systemPackages = with pkgs.gnomeExtensions; [
-    appindicator
-    dash-to-panel
-    fly-pie
-  ];
+  environment.systemPackages = with pkgs.gnomeExtensions;
+    [
+      appindicator
+      dash-to-panel
+      fly-pie
+    ]
+    ++ (with pkgs; [
+      alacritty
+      (writeScriptBin "xdg-terminal-exec" ''exec ${alacritty}/bin/alacritty -e "$@"'')
+    ]);
   # services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
   # services.gnome.gnome-settings-daemon.enable = true;

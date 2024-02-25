@@ -5,6 +5,7 @@ unfree = [
   # "corefonts", # onlyoffice
   # "android-studio-stable",
   "microsoft-edge-stable",
+  "google-chrome",
   "vivaldi",
   "vscode",
   "wechat-uos",

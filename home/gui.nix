@@ -7,6 +7,7 @@
 
     # surf
     # microsoft-edge
+    google-chrome
     # vivaldi
     # firefox-devedition
     librewolf
