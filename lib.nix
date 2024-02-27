@@ -1,5 +1,6 @@
 inputs: let
   toml-config = builtins.fromTOML (builtins.readFile ./config.toml);
+  rootPath = ./.;
 in {
   mkPkgs = {
     system,
@@ -51,7 +52,7 @@ in {
     nixosSystem = inputs.nixpkgs.lib.nixosSystem;
   in
     nixosSystem {
-      specialArgs = {inherit inputs username system;};
+      specialArgs = {inherit inputs username system rootPath;};
       modules =
         [
           {
@@ -82,7 +83,7 @@ in {
           then [
             inputs.home-manager.nixosModules.home-manager
             {
-              home-manager.extraSpecialArgs = {inherit inputs;};
+              home-manager.extraSpecialArgs = {inherit inputs rootPath;};
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${username} = {
@@ -103,7 +104,7 @@ in {
   }:
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = {inherit inputs;};
+      extraSpecialArgs = {inherit inputs rootPath;};
       modules =
         [
           # inputs.hyprland.homeManagerModules.default

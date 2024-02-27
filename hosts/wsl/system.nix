@@ -4,12 +4,21 @@
   pkgs,
   system,
   username,
+  rootPath,
   ...
 }: {
-  imports = [
-    inputs.nixos-wsl.nixosModules.wsl
-    inputs.vscode-server.nixosModules.default
-  ];
+  imports =
+    [
+      inputs.nixos-wsl.nixosModules.wsl
+      inputs.vscode-server.nixosModules.default
+    ]
+    ++ (map (path: rootPath + path) [
+      /system/core.nix
+      /system/locale.nix
+      /system/misc.nix
+      /system/nix.nix
+      /system/age
+    ]);
   # services.xserver.enable=true;
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = with pkgs; [mesa.drivers];

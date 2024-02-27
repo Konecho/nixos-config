@@ -95,22 +95,10 @@
         pkgs = pkgs-fix-gl;
         inherit username system;
         modules = [
-          ./hosts/wsl
-          ./system/core.nix
-          ./system/locale.nix
-          ./system/misc.nix
-          ./system/nix.nix
-          ./system/age
+          ./hosts/wsl/system.nix
         ];
         hm-modules = [
-          ./home/common.nix
-          ./home/nix.nix
-          ./home/editors/helix.nix
-          ./home/commandline/git.nix
-          ./home/commandline/shells.nix
-          ./home/commandline/cli.nix
-          ./home/commandline/tui.nix
-          ./home/desktop/fonts.nix
+          ./hosts/wsl/home.nix
         ];
       };
     };
