@@ -90,35 +90,6 @@
           ./hosts/deskmini/hardware-configuration.nix
         ];
       };
-      chromebook = lib.mkSys {
-        hostname = "chromebook";
-        inherit username pkgs system;
-        modules = [
-          ./hosts/chromebook/hardware-configuration.nix
-          ./hosts/chromebook/configuration.nix
-          ./system/lite.nix
-
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.users."${username}" = {
-              home.stateVersion = "23.05";
-              imports = [
-                # ./home/desktop/fcitx.nix
-                # ./home/terminals/alacritty.nix
-                # ./home/tui.nix
-                ./home/desktop/dwl
-                ./home/common.nix
-                ./home/editors/helix.nix
-                ./home/commandline
-                # ./home/nix.nix
-                # ./home/desktop/fonts.nix
-                # ./home/stylix.nix
-              ];
-            };
-          }
-        ];
-      };
       wsl = lib.mkSys {
         hostname = "wsl";
         pkgs = pkgs-fix-gl;
