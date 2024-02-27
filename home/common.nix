@@ -5,6 +5,7 @@
   lib,
   ...
 }: {
+  nix.package = pkgs.nix; # not common
   home = {
     stateVersion = "22.11";
     homeDirectory = "/home/${config.home.username}";

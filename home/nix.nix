@@ -13,7 +13,6 @@
   #   "https://cache.nixos.org/"
   # ];
 
-  # nix.package = pkgs.nix; # not common
   nix.registry = {
     old = {
       from = {
