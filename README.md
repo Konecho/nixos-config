@@ -1,17 +1,18 @@
-# 目录规范
+## 结构
 
-- home —— 所有home-manager配置
-  - 子文件夹根据需要创建
-- system —— nixos配置，不继续创建子文件夹
+- `home`,`system`: 主电脑的home-manager配置与系统配置
+- `hosts`: 不同主机的个性化配置，通过`imports`copy一部分主电脑配置
+- `home`,`system`去掉`default.nix`以防止不小心全引用，用scanPath以排除法进行全引用
+- 
 
-# 对比
+## 对比
 
 ```
 cd /nix/var/nix/profiles
 nix-diff $(nix-store -qd system-1139-link system-1140-link)
 ```
 
-# 迁移助手
+## 迁移助手
 
 * 首先列出磁盘
   * `lsblk`

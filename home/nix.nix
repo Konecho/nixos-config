@@ -12,6 +12,8 @@
   #   "https://mirrors.ustc.edu.cn/nix-channels/store/"
   #   "https://cache.nixos.org/"
   # ];
+
+  # nix.package = pkgs.nix; # not common
   nix.registry = {
     old = {
       from = {

@@ -6,10 +6,18 @@
   ...
 }: {
   home = {
-    # stateVersion = "22.11";
+    stateVersion = "22.11";
     homeDirectory = "/home/${config.home.username}";
     sessionPath = ["$HOME/.cargo/bin"];
     sessionVariables = {
+      DOCKER_HOST = "unix:///run/docker.sock";
+      # gtk wayland
+      # GDK_BACKEND = "x11";
+      GDK_BACKEND = "wayland";
+      # qt wayland
+      QT_QPA_PLATFORM = "wayland";
+      # firefox / icecat
+      MOZ_ENABLE_WAYLAND = "1";
     };
   };
   xdg.userDirs = {

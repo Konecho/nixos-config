@@ -87,7 +87,6 @@ in {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${username} = {
-                home.stateVersion = "23.05";
                 imports = hm-modules;
               };
             }
@@ -134,4 +133,21 @@ in {
         ]
         ++ modules;
     };
+  scanPath = {
+    path,
+    excludeFiles ? [],
+  }:
+    builtins.map
+    (f: (path + "/${f}"))
+    (builtins.attrNames
+      (inputs.nixpkgs.lib.attrsets.filterAttrs
+        (
+          path: _type:
+            !(builtins.elem path (["default.nix"] ++ excludeFiles)) # ignore default.nix
+            && (
+              (_type == "directory") # include directories
+              || (inputs.nixpkgs.lib.strings.hasSuffix ".nix" path) # include .nix files
+            )
+        )
+        (builtins.readDir path)));
 }

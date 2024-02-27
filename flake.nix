@@ -75,20 +75,22 @@
   in {
     homeConfigurations."${username}" = lib.mkUsr {
       inherit pkgs username;
-      modules = [
-        ./home
-      ];
+      modules = lib.scanPath {
+        path = ./home;
+        excludeFiles = ["stylix"];
+      };
     };
 
     nixosConfigurations = {
       deskmini = lib.mkSys {
         hostname = "deskmini";
         inherit username pkgs system;
-        modules = [
-          (inputs.nixpkgs + "/nixos/modules/programs/wayland/wayland-session.nix")
-          ./system
-          ./hosts/deskmini/hardware-configuration.nix
-        ];
+        modules =
+          [
+            (inputs.nixpkgs + "/nixos/modules/programs/wayland/wayland-session.nix")
+            ./hosts/deskmini/hardware-configuration.nix
+          ]
+          ++ (lib.scanPath {path = ./system;});
       };
       wsl = lib.mkSys {
         hostname = "wsl";
