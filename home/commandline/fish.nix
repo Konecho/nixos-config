@@ -21,6 +21,14 @@
             echo $(nix show-derivation $argv|jq -s '.[0]|to_entries[].value.outputs')
           end
         '';
+        nixrun = ''
+          cd $(mktemp -d)
+          echo $(pwd)
+          wget $argv -O package.nix
+          cp ${./flake_template.nix} ./flake.nix
+          NIXPKGS_ALLOW_UNFREE=1 nix run --impure .
+          cd -
+        '';
         gitui = ''
           ssh-add ~/.ssh/id_ed25519 2> /dev/null
           ${pkgs.gitui}/bin/gitui
