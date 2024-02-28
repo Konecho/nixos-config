@@ -52,6 +52,11 @@
     };
 
     nixgl.url = "github:guibou/nixGL";
+    ags.url = "github:Aylur/ags";
+    asztal = {
+      url = "github:Aylur/dotfiles";
+      flake = false;
+    };
   };
 
   outputs = inputs: let
