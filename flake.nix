@@ -52,11 +52,16 @@
     };
 
     nixgl.url = "github:guibou/nixGL";
-    ags.url = "github:Aylur/ags";
-    asztal = {
-      url = "github:Aylur/dotfiles";
-      flake = false;
-    };
+
+    # # 成功copy配置
+    # ags.url = "github:Aylur/ags";
+    # asztal = {
+    #   url = "github:Aylur/dotfiles";
+    #   flake = false;
+    # };
+    # hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    # matugen.url = "github:InioX/matugen";
   };
 
   outputs = inputs: let

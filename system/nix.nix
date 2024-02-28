@@ -13,11 +13,12 @@
     keep-outputs = true
     keep-derivations = true
   '';
-
   nix.settings.substituters = [
     "https://mirrors.ustc.edu.cn/nix-channels/store/"
     "https://cache.nixos.org/"
   ];
+  nix.settings.extra-substituters = ["https://hyprland.cachix.org"];
+  nix.settings.extra-trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

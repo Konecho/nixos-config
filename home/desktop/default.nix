@@ -13,28 +13,29 @@
 
     # ./hyprland.nix
     ./gnome.nix
+    # ./ags.nix
 
     # ./dwl
     # ./qtile
     # ./river
   ];
-  services.mako = {
-    enable = true;
-    # font = "monospace 12";
-  };
-  services.clipman.enable = true;
+  # services.mako = {
+  #   enable = true;
+  #   # font = "monospace 12";
+  # };
+  # services.clipman.enable = true;
   # programs.eww = {
   #   enable = true;
   #   package = pkgs.eww-wayland;
   #   configDir = ./eww;
   # };
-  home.packages = with pkgs; [
-    ## [[app runner]]
-    # kickoff
-    wofi
-    #   lua
-    #   pamixer
-    #   brightnessctl
-    #   (nerdfonts.override {fonts = ["JetBrainsMono"];})
-  ];
+  # home.packages = with pkgs; [
+  #   ## [[app runner]]
+  #   # kickoff
+  #   wofi
+  #   #   lua
+  #   #   pamixer
+  #   #   brightnessctl
+  #   #   (nerdfonts.override {fonts = ["JetBrainsMono"];})
+  # ];
 }

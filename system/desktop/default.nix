@@ -1,3 +1,6 @@
 {...}: {
-  imports = [./gnome.nix];
+  imports = [
+    ./gnome.nix
+    # ./ags.nix
+  ];
 }

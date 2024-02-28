@@ -1,14 +1,18 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   logVtNum = 1;
   graphVtNum = 7;
 in {
   boot.kernelParams = ["console=tty${builtins.toString logVtNum}"];
   services = {
     greetd = {
-      enable = false;
+      # enable = false;
       vt = graphVtNum;
       settings = {
-        default_session = {
+        default_session = lib.mkDefault {
           command = "${pkgs.greetd.greetd}/bin/agreety --cmd ${pkgs.fish}/bin/fish";
         };
       };
