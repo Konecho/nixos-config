@@ -1,10 +1,5 @@
 {pkgs, ...}: {
   programs = {
-    bash = {
-      # enable = true;
-      # profileExtra = "";
-      historyIgnore = ["l" "ls" "z" "cd" "exit"];
-    };
     fish = {
       enable = true;
       functions = {
@@ -27,8 +22,6 @@
           end
         '';
         gitui = ''
-          # random_pokemon
-          # git config user.name "$(echo $POKEMON|awk -F',' '{print$2}')"
           ssh-add ~/.ssh/id_ed25519 2> /dev/null
           ${pkgs.gitui}/bin/gitui
         '';

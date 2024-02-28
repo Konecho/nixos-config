@@ -12,11 +12,10 @@
     calc
 
     termusic
-
-    yazi # ranger/lf/joshuto replacement
   ];
   programs = {
-    gitui = {
+    yazi = {
+      # ranger/lf/joshuto replacement
       enable = true;
     };
     pistol = {

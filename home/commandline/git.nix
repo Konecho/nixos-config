@@ -13,5 +13,8 @@
       userEmail = "konecho@outlook.com";
       extraConfig.init.defaultBranch = "main";
     };
+    gitui = {
+      enable = true;
+    };
   };
 }

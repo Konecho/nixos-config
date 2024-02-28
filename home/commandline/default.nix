@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./cli.nix
-    ./shells.nix
+    ./fish.nix
     ./pkm-shell.nix
     ./tui.nix
     ./git.nix
