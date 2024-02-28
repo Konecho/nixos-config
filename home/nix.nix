@@ -2,11 +2,13 @@
   pkgs,
   config,
   inputs,
+  lib,
   ...
 }: {
   imports = [
     inputs.nix-index-database.hmModules.nix-index
   ];
+  nix.package = lib.mkDefault pkgs.nix; # not common
   nix.settings.tarball-ttl = 43200;
   # nix.settings.substituters = [
   #   "https://mirrors.ustc.edu.cn/nix-channels/store/"

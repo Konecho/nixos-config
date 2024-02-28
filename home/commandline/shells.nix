@@ -1,11 +1,7 @@
 {pkgs, ...}: {
-  home.shellAliases = {
-    man = "batman";
-    zellij = ''zellij -s "$(echo $POKEMON|awk -F',' '{print$2}')"'';
-  };
   programs = {
     bash = {
-      enable = true;
+      # enable = true;
       # profileExtra = "";
       historyIgnore = ["l" "ls" "z" "cd" "exit"];
     };

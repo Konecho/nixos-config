@@ -1,6 +1,11 @@
-{pkgs, ...}: {
-  home.shellAliases = {
-    zellij = ''zellij -s "$(echo $POKEMON|awk -F',' '{print$2}')"'';
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
+  home.shellAliases = lib.mkIf (config.programs.zellij.enable) {
+    zellij =  ''zellij -s "$(echo $POKEMON|awk -F',' '{print$2}')"'';
   };
   programs = {
     fish = {
@@ -17,11 +22,9 @@
           set -g POKEMON_NATIONAL_DEX_NUMBER $(shuf -n 1 -i 1-898)
           set -g POKEMON $(sed -n {$POKEMON_NATIONAL_DEX_NUMBER}p ${./pmlist.csv})
         '';
-        gitui = ''
+        gitui = lib.mkBefore ''
           # random_pokemon
           git config user.name "$(echo $POKEMON|awk -F',' '{print$2}')"
-          ssh-add ~/.ssh/id_ed25519 2> /dev/null
-          ${pkgs.gitui}/bin/gitui
         '';
       };
     };

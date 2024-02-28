@@ -118,4 +118,8 @@
     # ueberzug
     ueberzugpp
   ];
+  home.shellAliases = {
+    man = "batman";
+    cat = "bat";
+  };
 }
