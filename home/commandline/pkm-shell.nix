@@ -17,7 +17,7 @@
         '';
         z = ''
           ${pkgs.zoxide}/bin/__zoxide_z $argv
-          config_local_git    
+          config_local_git
         '';
         random_pokemon = ''
           # 898
@@ -26,9 +26,9 @@
           config_local_git
         '';
         config_local_git = ''
-          if [ $(git rev-parse --is-inside-work-tree) = 'true' ]
+          if [ $(git rev-parse --is-inside-work-tree &| echo ) = 'true' ]
               git config user.name "$(echo $POKEMON|awk -F',' '{print$2}')"
-          end           
+          end
         '';
         # global config is locked by nix
         gitui = lib.mkBefore ''

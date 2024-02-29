@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}: {
   boot.loader = {
     # systemd-boot = {
     #   enable = true;
@@ -21,5 +26,6 @@
     # };
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  # boot.kernelPackages = inputs.nixpkgs-stable.legacyPackages."${system}".linuxPackages_xanmod_latest;
 }
