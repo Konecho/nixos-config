@@ -21,7 +21,7 @@
     ]);
   # services.xserver.enable=true;
   hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = with pkgs; [mesa.drivers];
+  # hardware.opengl.extraPackages = with pkgs; [mesa.drivers];
   wsl = {
     enable = true;
     defaultUser = "${username}";
@@ -34,17 +34,25 @@
     ];
     usbip = {
       enable = true;
-      autoAttach = [];
+      autoAttach = ["1-10" "2-2"];
     };
-    # useWindowsDriver = true;
+    useWindowsDriver = true;
+    docker-desktop.enable = true;
+    # wslConf.user.default = "${username}";
   };
+  users.groups.plugdev.members = ["${username}"];
+  # users.users."${username}".extraGroups = ["plugdev"]; # not work
   networking.proxy.default = "http://192.168.80.1:7890";
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", GROUP="plugdev", TAG+="uaccess"
+    ATTRS{product}=="*CMSIS-DAP*", MODE="660", GROUP="plugdev", TAG+="uaccess"
+  '';
 
   environment.systemPackages = with pkgs; [
     wsl-open
-    obsidian
+    # obsidian
 
-    nixgl.nixGLIntel
+    # nixgl.nixGLIntel
     glxinfo
 
     wget # for nix-ld code-server

@@ -53,6 +53,8 @@
 
     nixgl.url = "github:guibou/nixGL";
 
+    NvChad.url = "github:NvChad/nix";
+
     # # 成功copy配置
     # ags.url = "github:Aylur/ags";
     # asztal = {
@@ -104,7 +106,8 @@
       };
       wsl = lib.mkSys {
         hostname = "wsl";
-        pkgs = pkgs-fix-gl;
+        # pkgs = pkgs-fix-gl;
+        inherit pkgs;
         inherit username system;
         modules = [
           ./hosts/wsl/system.nix

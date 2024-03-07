@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "NvChad": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1709124965,
+        "narHash": "sha256-U2JYGQVbTmJFykpRtVZbNGUc6FIkJctDJMOKBTqylAU=",
+        "owner": "NvChad",
+        "repo": "nix",
+        "rev": "33a2b8fb24b5b00e50e33c5f2a4ffb2314f893fc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NvChad",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "agenix": {
       "inputs": {
         "darwin": [],
@@ -189,7 +207,7 @@
     "nixgl": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1685908677,
@@ -245,15 +263,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1660551188,
-        "narHash": "sha256-a1LARMMYQ8DPx1BgoI/UN4bXe12hhZkCNqdxNi6uS0g=",
-        "owner": "nixos",
+        "lastModified": 1701282334,
+        "narHash": "sha256-MxCVrXY6v4QmfTwIysjjaX0XUhqBbxTWWB4HXtDYsdk=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "441dc5d512153039f19ef198e662e4f3dbb9fd65",
+        "rev": "057f9aecfb71c4437d2b27d3323df7f93c010b7e",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
+        "ref": "23.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -274,6 +293,21 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1660551188,
+        "narHash": "sha256-a1LARMMYQ8DPx1BgoI/UN4bXe12hhZkCNqdxNi6uS0g=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "441dc5d512153039f19ef198e662e4f3dbb9fd65",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1709150264,
         "narHash": "sha256-HofykKuisObPUfj0E9CJVfaMhawXkYx3G8UIFR/XQ38=",
@@ -305,6 +339,7 @@
     },
     "root": {
       "inputs": {
+        "NvChad": "NvChad",
         "agenix": "agenix",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
@@ -313,7 +348,7 @@
         "nixgl": "nixgl",
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-stable": "nixpkgs-stable",
         "nur": "nur",
         "vscode-server": "vscode-server"

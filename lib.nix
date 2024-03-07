@@ -65,7 +65,7 @@ in {
                 # mkpasswd -m sha-512
                 hashedPassword = "$6$uiElHlBCyxUEkWFo$FqTxpsOFPhU0ak3V9.xGTvHblsRxQOffE6zfUGJMflt9B.11NqiokVB.yETtBU0hJn5Z.SNS6IFrlUj6hToAO/";
                 shell = pkgs.fish;
-                extraGroups = ["wheel" "adbusers" "input" "networkmanager" "video" "docker" "vboxusers"];
+                extraGroups = ["wheel" "adbusers" "input" "networkmanager" "video" "docker" "vboxusers" "plugdev"];
               };
               mutableUsers = false;
 
