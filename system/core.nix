@@ -30,4 +30,6 @@
     git.enable = true;
     fish.enable = true;
   };
+
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 }

@@ -36,9 +36,9 @@
     ]);
   environment.systemPackages = with pkgs.gnomeExtensions;
     [
-      appindicator
-      dash-to-panel
-      fly-pie
+      # appindicator
+      # dash-to-panel
+      # fly-pie
     ]
     ++ (with pkgs; [
       alacritty

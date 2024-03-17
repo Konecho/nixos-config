@@ -80,4 +80,8 @@
       color2 = "red";
     };
   };
+  home.packages = with pkgs; [
+    waylyrics
+    netease-cloud-music-gtk
+  ];
 }
