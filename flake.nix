@@ -55,6 +55,8 @@
 
     NvChad.url = "github:NvChad/nix";
 
+    niri.url = "github:sodiboo/niri-flake";
+
     # # 成功copy配置
     # ags.url = "github:Aylur/ags";
     # asztal = {

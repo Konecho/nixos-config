@@ -1,7 +1,8 @@
 {...}: {
   imports = [
-    ./gnome.nix
+    # ./gnome.nix
     # ./kde.nix
     # ./ags.nix
+    ./niri.nix
   ];
 }

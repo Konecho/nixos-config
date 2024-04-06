@@ -11,7 +11,7 @@ in {
     greetd = {
       # enable = false;
       vt = graphVtNum;
-      settings = {
+      settings = lib.mkDefault {
         default_session = lib.mkDefault {
           command = "${pkgs.greetd.greetd}/bin/agreety --cmd ${pkgs.fish}/bin/fish";
         };

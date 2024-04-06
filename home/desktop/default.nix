@@ -13,6 +13,7 @@
 
     # ./hyprland.nix
     ./gnome.nix
+    ./niri.nix
     # ./ags.nix
 
     # ./dwl
