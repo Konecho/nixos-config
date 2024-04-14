@@ -48,9 +48,10 @@ in {
     git.hooks.pre-commit =
       pkgs.writeShellScript "pre-commit-script.sh"
       ''
-        ID=$(date +'%H*30+%M//2'|xargs -I {} calc {}+720-test\({} |xargs)*720\)p
-        PKM=$(sed -n $ID ${pm-csv})
-        # echo $PKM
+        id=$(date +'%H*30+%M//2'|xargs calc|tr -d '[:space:]')
+        if [ $id -eq 0 ]; then id=720; fi
+        PKM=$(sed -n $id"p" ${pm-csv})
+        echo $PKM
         git config user.name "$(echo $PKM|awk -F',' '{print$2}')"
         git config --list
       '';
