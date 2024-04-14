@@ -2,8 +2,11 @@
   pkgs,
   lib,
   config,
+  rootPath,
   ...
-}: {
+}: let
+  pm-csv = rootPath + /data/pmlist.csv;
+in {
   home.shellAliases = lib.mkIf (config.programs.zellij.enable) {
     zellij = ''zellij -s "$(echo $POKEMON|awk -F',' '{print$2}')"'';
   };
@@ -21,9 +24,14 @@
         '';
         random_pokemon = ''
           # set -g POKEMON_NATIONAL_DEX_NUMBER $(shuf -n 1 -i 1-898)
-          set -g POKEMON_NATIONAL_DEX_NUMBER $(date +'%H*30+%M//2'|xargs -I {} calc {}+720-test\({}\)*720)
 
-          set -g POKEMON $(sed -n {$POKEMON_NATIONAL_DEX_NUMBER}p ${./pmlist.csv})
+          set __DATE $(date +'%H*30+%M//2'|xargs calc|tr -d '[:space:]')
+          if [ $__DATE = 0 ]
+            set __DATE 720
+          end
+          set -g POKEMON_NATIONAL_DEX_NUMBER $__DATE
+
+          set -g POKEMON $(sed -n {$POKEMON_NATIONAL_DEX_NUMBER}p ${pm-csv})
           config_local_git
         '';
         config_local_git = ''
@@ -40,8 +48,8 @@
     git.hooks.pre-commit =
       pkgs.writeShellScript "pre-commit-script.sh"
       ''
-        ID=$(date +'%H*30+%M//2'|xargs -I {} calc {}+720-test\({}\)*720)p
-        PKM=$(sed -n $ID ${./pmlist.csv})
+        ID=$(date +'%H*30+%M//2'|xargs -I {} calc {}+720-test\({} |xargs)*720\)p
+        PKM=$(sed -n $ID ${pm-csv})
         # echo $PKM
         git config user.name "$(echo $PKM|awk -F',' '{print$2}')"
         git config --list

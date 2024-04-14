@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  rootPath,
+  ...
+}: {
   programs = {
     fish = {
       enable = true;
@@ -25,7 +29,7 @@
           cd $(mktemp -d)
           echo $(pwd)
           wget $argv -O package.nix
-          cp ${./flake_template.nix} ./flake.nix
+          cp ${rootPath + /data/flake_template.nix} ./flake.nix
           NIXPKGS_ALLOW_UNFREE=1 nix run --impure .
           cd -
         '';
