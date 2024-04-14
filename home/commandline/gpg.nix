@@ -7,7 +7,7 @@
   services.gpg-agent = {
     enable = true;
     # enableScDaemon = false;
-    pinentryFlavor = "curses";
+    pinentryPackage = pkgs.pinentry-curses;
   };
   programs.gpg = {
     enable = true;

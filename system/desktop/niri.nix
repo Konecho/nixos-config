@@ -3,10 +3,11 @@
   pkgs,
   ...
 }: {
-  imports = [inputs.niri.nixosModules.niri];
-  programs.niri.enable = true;
-  environment.systemPackages = [
-    pkgs.greetd.tuigreet
+  # imports = [inputs.niri.nixosModules.niri];
+  # programs.niri.enable = true;
+  environment.systemPackages = with pkgs; [
+    greetd.tuigreet
+    niri
   ];
   services.greetd = {
     enable = true;
@@ -21,5 +22,10 @@
         user = "greeter";
       };
     };
+  };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gnome];
+    configPackages = [pkgs.niri];
   };
 }
