@@ -32,6 +32,7 @@
         };
         "workbench.editor.enablePreview" = false;
         "workbench.colorTheme" = "Visual Studio Light";
+        "editor.wordWrap" = "bounded";
       };
       # extensions = with pkgs.vscode-extensions; [ ms-ceintl.vscode-language-pack-zh-hans ];
     };

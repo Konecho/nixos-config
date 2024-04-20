@@ -44,7 +44,7 @@
 
     # obsidian
     # libreoffice-qt
-    onlyoffice-bin
+    # onlyoffice-bin
 
     # thunderbird
 

@@ -18,7 +18,9 @@
 
     # ./dwl
     # ./qtile
-    # ./river
+    ./river
+
+    ./wl-utils.nix
   ];
   # services.mako = {
   #   enable = true;

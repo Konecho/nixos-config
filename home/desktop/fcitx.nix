@@ -4,6 +4,13 @@
   config,
   ...
 }: {
+  home.sessionVariables = {
+    # QT_IM_MODULE = lib.mkForce "wayland";
+    # GTK_IM_MODULE = "fcitx";
+    # XMODIFIERS = "@im=fcitx5";
+    SDL_IM_MODULE = "fcitx5";
+    GLFW_IM_MODULE = "ibus";
+  };
   i18n.inputMethod = {
     enabled = "fcitx5";
     # fcitx.engines = with pkgs.fcitx-engines; [ rime ];
