@@ -9,6 +9,7 @@
     # microsoft-edge
     google-chrome
     # vivaldi
+    firefox
     # firefox-devedition
     librewolf
     # hyper

@@ -6,10 +6,29 @@
         normal = {
           "Super Q" = "close";
           "Super+Shift E" = "exit";
+          # Super+Return to bump the focused view to the top of the layout stack
+          "Super+Shift Return" = "zoom";
+
+          # Super+J and Super+K to focus the next/previous view in the layout stack
           "Super J" = "focus-view next";
           "Super K" = "focus-view previous";
+          # Super+Shift+J and Super+Shift+K to swap the focused view with the next/previous view in the layout stack
           "Super+Shift J" = "swap next";
           "Super+Shift K" = "swap previous";
+
+          # Super+Period and Super+Comma to focus the next/previous output
+          "Super Period" = "focus-output next";
+          "Super Comma" = "focus-output previous";
+          # Super+Shift+{Period,Comma} to send the focused view to the next/previous output
+          "Super+Shift Period" = "send-to-output next";
+          "Super+Shift Comma" = "send-to-output previous";
+
+          # Super+H and Super+L to decrease/increase the main ratio of rivertile(1)
+          "Super H" = "send-layout-cmd rivertile \"main-ratio -0.05\"";
+          "Super L" = "send-layout-cmd rivertile \"main-ratio +0.05\"";
+          # Super+Shift+H and Super+Shift+L to increment/decrement the main count of rivertile(1)
+          "Super+Shift H" = "send-layout-cmd rivertile \"main-count +1\"";
+          "Super+Shift L" = "send-layout-cmd rivertile \"main-count -1\"";
         };
       };
     };
@@ -20,17 +39,6 @@
 
       riverctl map normal Super Return spawn ${pkgs.alacritty}/bin/alacritty
       riverctl map normal Super D spawn ${pkgs.kickoff}/bin/kickoff
-
-      # Super+Return to bump the focused view to the top of the layout stack
-      riverctl map normal Super+Shift Return zoom
-
-      # Super+H and Super+L to decrease/increase the main ratio of rivertile(1)
-      riverctl map normal Super H send-layout-cmd rivertile "main-ratio -0.05"
-      riverctl map normal Super L send-layout-cmd rivertile "main-ratio +0.05"
-
-      # Super+Shift+H and Super+Shift+L to increment/decrement the main count of rivertile(1)
-      riverctl map normal Super+Shift H send-layout-cmd rivertile "main-count +1"
-      riverctl map normal Super+Shift L send-layout-cmd rivertile "main-count -1"
 
       # Super+Alt+{H,J,K,L} to move views
       riverctl map normal Super+Alt H move left 100
