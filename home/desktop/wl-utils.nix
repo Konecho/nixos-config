@@ -7,8 +7,10 @@
     wl-clipboard
     grim
     slurp
-    kickoff
     rofi
+    alacritty
+    wezterm
+    chafa
     (
       writeShellScriptBin "screenshot-to-clipboard" ''
         #!/bin/sh
@@ -24,16 +26,30 @@
         	riverctl rule-add -app-id "alacritty" float
         	riverctl rule-add -app-id "alacritty" position $x $y
         	riverctl rule-add -app-id "alacritty" dimensions $w $h
-        	alacritty --class="alacritty"
+        	alacritty --class="alacritty" &
           riverctl rule-add -app-id "alacritty" position
           riverctl rule-add -app-id "alacritty" dimensions
         }
       ''
     )
+    # (
+    #   writeShellScriptBin "select-clipboard" ''
+    #     #!/bin/sh
+    #     rofi -modi clipboard:${writeScript "cliphist-rofi-img" (builtins.readFile (rootPath + /data/cliphist-rofi-img))} -show clipboard -show-icons
+    #   ''
+    # )
     (
       writeShellScriptBin "select-clipboard" ''
         #!/bin/sh
-        rofi -modi clipboard:${writeScript "data/cliphist-rofi-img.sh" (builtins.readFile (rootPath + /data/cliphist-rofi-img.sh))} -show clipboard -show-icons
+        riverctl rule-add -app-id "clipboard-float" float
+        wezterm start --class clipboard-float -e bash ${writeScript "cliphist-fzf-sixel" (builtins.readFile (rootPath + /data/cliphist-fzf-sixel))} &
+      ''
+    )
+    (
+      writeShellScriptBin "app-launcher" ''
+        #!/bin/sh
+        riverctl rule-add -app-id "term-float" float
+        wezterm start --class term-float -e bash ${writeScript "fzfmenu" (builtins.readFile (rootPath + /data/fzfmenu))} &
       ''
     )
   ];

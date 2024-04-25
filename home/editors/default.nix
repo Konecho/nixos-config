@@ -4,5 +4,6 @@
     ./helix.nix
     # ./vim.nix
     ./vscode.nix
+    ./eaf.nix
   ];
 }
