@@ -7,45 +7,25 @@
     ## [[python]]
     # conda
     # poetry
-    (
-      let
-        python-packages = python-packages:
-          with python-packages; [
-            # pandas
-            # pip
-            # poetry-core
+    # (
+    #   let
+    #     python-packages = python-packages:
+    #       with python-packages; [
+    #         python-lsp-server
+    #         autopep8
+    #         black
 
-            python-lsp-server
-            autopep8
-            black
+    #         requests
 
-            requests
+    #         jupyterlab
+    #         python-docx
 
-            # torchWithoutCuda
-            # torchvision
-            # ignite
-            # opencv4
-            # pandas
-            # scikit-learn
-            # numpy
-            # einops
-            # pillow
-            # termplotlib
-            # matplotlib
-
-            # pyocd
-            # adafruit-nrfutil
-            # intelhex
-
-            jupyterlab
-            python-docx
-
-            mypkgs.pokebase
-          ];
-        python-with-packages = python3.withPackages python-packages;
-      in
-        python-with-packages
-    )
+    #         mypkgs.pokebase
+    #       ];
+    #     python-with-packages = python3.withPackages python-packages;
+    #   in
+    #     python-with-packages
+    # )
 
     ## [[rust]]
     rustup

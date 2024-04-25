@@ -97,6 +97,7 @@
     just # make
     killall
     thefuck
+    sysz
 
     ## text
     logtop # count line

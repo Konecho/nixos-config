@@ -38,7 +38,8 @@
       riverctl map normal Super Print spawn screenshot-to-clipboard
 
       riverctl map normal Super Return spawn ${pkgs.alacritty}/bin/alacritty
-      riverctl map normal Super D spawn ${pkgs.kickoff}/bin/kickoff
+      # riverctl map normal Super D spawn ${pkgs.kickoff}/bin/kickoff
+      riverctl map normal Super D spawn "rofi -show run"
 
       # Super+Alt+{H,J,K,L} to move views
       riverctl map normal Super+Alt H move left 100
@@ -160,6 +161,8 @@
     '';
     extraSessionVariables = {
       MOZ_ENABLE_WAYLAND = "1";
+      GDK_BACKEND = "wayland";
+      QT_QPA_PLATFORM = "wayland";
     };
   };
 

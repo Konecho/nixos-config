@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./alacritty.nix
-    # ./wezterm.nix
+    ./wezterm.nix
   ];
   home.sessionVariables.TERMINAL = "alacritty";
 }

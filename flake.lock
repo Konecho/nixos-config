@@ -153,11 +153,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1707190980,
-        "narHash": "sha256-yDN00jJU46O1zNTDZ3PZIPfQKxZZkuAJdctAu7fFiH4=",
+        "lastModified": 1713791768,
+        "narHash": "sha256-Odmo7ahysyZhCiX3hogwAiLFn30TeJw3ZP0LOfHWBwA=",
         "owner": "Konecho",
         "repo": "my-nixpkgs",
-        "rev": "4d2de1662f0708e10a1283239adcc572880336c0",
+        "rev": "e03970511e83796f8ba773fb0c01f1293ef54c15",
         "type": "github"
       },
       "original": {

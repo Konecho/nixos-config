@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  username,
+  ...
+}: {
   imports = [
     # ./gnome.nix
     # ./kde.nix
@@ -16,11 +20,12 @@
         command = builtins.concatStringsSep " " [
           "tuigreet"
           ''--time --time-format="%F %T"''
-          "--remember"
+          "--asterisks "
+          "--power-shutdown 'shutdown -h now'"
           # "--cmd niri-session"
           "--cmd river"
         ];
-        user = "greeter";
+        user = username;
       };
     };
   };
