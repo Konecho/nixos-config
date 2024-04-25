@@ -37,7 +37,7 @@
       autoAttach = ["1-10" "2-2"];
     };
     useWindowsDriver = true;
-    docker-desktop.enable = true;
+    # docker-desktop.enable = true;
     # wslConf.user.default = "${username}";
   };
   users.groups.plugdev.members = ["${username}"];

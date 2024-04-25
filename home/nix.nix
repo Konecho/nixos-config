@@ -62,6 +62,7 @@
     nix-tree
     nix-diff
     nil # lsp
+    nixd
     # rnix-lsp
     alejandra # formatter
 
