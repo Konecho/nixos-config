@@ -105,7 +105,7 @@ in {
   }:
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = {inherit inputs rootPath;};
+      extraSpecialArgs = {inherit inputs rootPath username;};
       modules =
         [
           # inputs.hyprland.homeManagerModules.default

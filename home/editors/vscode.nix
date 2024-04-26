@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  username,
   ...
 }: {
   programs = {
@@ -11,13 +12,28 @@
       enableUpdateCheck = false;
       userSettings = {
         "nix.enableLanguageServer" = true;
-        "nix.serverPath" = "nil";
+        "nix.serverPath" = "nixd";
         "nix.serverSettings" = {
           "nil" = {
             "formatting" = {
               "command" = [
                 "alejandra"
               ];
+            };
+          };
+          "nixd" = {
+            "formatting" = {
+              "command" = [
+                "alejandra"
+              ];
+            };
+            "options" = {
+              "nixos" = {
+                "expr" = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.deskmini.options";
+              };
+              "home-manager" = {
+                "expr" = "(builtins.getFlake \"/etc/nixos\").homeConfigurations.${username}.options";
+              };
             };
           };
         };
