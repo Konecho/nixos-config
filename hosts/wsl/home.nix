@@ -1,6 +1,7 @@
 {
   pkgs,
   rootPath,
+  lib,
   ...
 }: {
   imports = map (path: rootPath + path) [
@@ -15,4 +16,5 @@
     julia
     usbutils # lsusb
   ];
+  home.homeDirectory = "/home";
 }

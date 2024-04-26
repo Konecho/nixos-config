@@ -62,6 +62,8 @@ in {
             users = {
               users."${username}" = {
                 isNormalUser = true;
+                createHome = true;
+                home = "/home";
                 # mkpasswd -m sha-512
                 hashedPassword = "$6$uiElHlBCyxUEkWFo$FqTxpsOFPhU0ak3V9.xGTvHblsRxQOffE6zfUGJMflt9B.11NqiokVB.yETtBU0hJn5Z.SNS6IFrlUj6hToAO/";
                 shell = pkgs.fish;
