@@ -5,21 +5,21 @@
   ...
 }: {
   imports = [
-    # ./bars.nix
-    # ./eww
     ./fonts.nix
     ./fcitx.nix
     ./theme.nix
 
-    # ./hyprland.nix
-    ./gnome.nix
-    ./niri.nix
+    # ./gnome.nix
     # ./ags.nix
 
+    # ./hyprland.nix
     # ./dwl
     # ./qtile
+    ./niri.nix
     ./river
 
+    # ./bars.nix
+    # ./eww
     ./wl-utils.nix
   ];
   # services.mako = {

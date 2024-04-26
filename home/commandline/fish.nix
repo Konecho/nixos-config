@@ -81,9 +81,13 @@
     starship = {
       enable = true;
       enableTransience = true;
-      # settings =
-      #   (builtins.fromTOML (builtins.readFile "${pkgs.starship}/share/starship/presets/plain-text-symbols.toml"))
-      #   // {add_newline = false;};
+      settings =
+        (
+          removeAttrs (builtins.fromTOML (builtins.readFile "${pkgs.starship}/share/starship/presets/plain-text-symbols.toml"))
+          ["os"]
+        )
+        // {
+        };
     };
   };
 }
