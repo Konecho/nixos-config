@@ -7,7 +7,7 @@
 }: {
   home = {
     stateVersion = "22.11";
-    homeDirectory = lib.mkDefault "/home/${config.home.username}";
+    homeDirectory = lib.mkDefault "/home";
     sessionPath = ["$HOME/.cargo/bin"];
     sessionVariables = {
       DOCKER_HOST = "unix:///run/docker.sock";

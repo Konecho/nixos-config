@@ -1,73 +1,91 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  withModifier = modifier: attrs: (lib.mapAttrs' (name: value: {
+      name = modifier + " " + name;
+      value = value;
+    })
+    attrs);
+in {
   wayland.windowManager.river = {
     enable = true;
     settings = {
-      map = {
-        normal = {
-          "Super Q" = "close";
-          "Super+Shift E" = "exit";
-          # Super+Return to bump the focused view to the top of the layout stack
-          "Super+Shift Return" = "zoom";
+      spawn = [
+        "clash-verge"
+        "alacritty -e btm"
+        "wl-paste --watch cliphist store"
+      ];
+      map.normal =
+        (withModifier "Super" {
+          Q = "close";
+          Space = "toggle-float";
+          F = "toggle-fullscreen";
+          T = "spawn draw-terminal";
+          V = "spawn select-clipboard";
+          Print = "spawn screenshot-to-clipboard";
+          Return = "spawn ${pkgs.alacritty}/bin/alacritty";
+          D = ''spawn "rofi -show run"'';
 
-          # Super+J and Super+K to focus the next/previous view in the layout stack
-          "Super J" = "focus-view next";
-          "Super K" = "focus-view previous";
-          # Super+Shift+J and Super+Shift+K to swap the focused view with the next/previous view in the layout stack
-          "Super+Shift J" = "swap next";
-          "Super+Shift K" = "swap previous";
-
-          # Super+Period and Super+Comma to focus the next/previous output
-          "Super Period" = "focus-output next";
-          "Super Comma" = "focus-output previous";
-          # Super+Shift+{Period,Comma} to send the focused view to the next/previous output
-          "Super+Shift Period" = "send-to-output next";
-          "Super+Shift Comma" = "send-to-output previous";
-
-          # Super+H and Super+L to decrease/increase the main ratio of rivertile(1)
-          "Super H" = "send-layout-cmd rivertile \"main-ratio -0.05\"";
-          "Super L" = "send-layout-cmd rivertile \"main-ratio +0.05\"";
-          # Super+Shift+H and Super+Shift+L to increment/decrement the main count of rivertile(1)
-          "Super+Shift H" = "send-layout-cmd rivertile \"main-count +1\"";
-          "Super+Shift L" = "send-layout-cmd rivertile \"main-count -1\"";
-        };
+          # focus the next/previous view in the layout stack
+          J = "focus-view next";
+          K = "focus-view previous";
+          # decrease/increase the main ratio of rivertile(1)
+          H = "send-layout-cmd rivertile \"main-ratio -0.05\"";
+          L = "send-layout-cmd rivertile \"main-ratio +0.05\"";
+          # focus the next/previous output
+          Period = "focus-output next";
+          Comma = "focus-output previous";
+          # change layout orientation
+          Up = ''send-layout-cmd rivertile "main-location top"'';
+          Right = ''send-layout-cmd rivertile "main-location right"'';
+          Down = ''send-layout-cmd rivertile "main-location bottom"'';
+          Left = ''send-layout-cmd rivertile "main-location left"'';
+        })
+        // (withModifier "Super+Shift" {
+          E = "exit";
+          # bump the focused view to the top of the layout stack
+          Return = "zoom";
+          # swap the focused view with the next/previous view in the layout stack
+          J = "swap next";
+          K = "swap previous";
+          # increment/decrement the main count of rivertile(1)
+          H = "send-layout-cmd rivertile \"main-count +1\"";
+          L = "send-layout-cmd rivertile \"main-count -1\"";
+          # send the focused view to the next/previous output
+          Period = "send-to-output next";
+          Comma = "send-to-output previous";
+        })
+        // (withModifier "Super+Alt" {
+          # move views
+          H = "move left 100";
+          J = "move down 100";
+          K = "move up 100";
+          L = "move right 100";
+        })
+        // (withModifier "Super+Alt+Shift" {
+          # resize views
+          H = "resize horizontal -100";
+          J = "resize vertical 100";
+          K = "resize vertical -100";
+          L = "resize horizontal 100";
+        })
+        // (withModifier "Super+Alt+Control" {
+          # snap views to screen edges
+          H = "snap left";
+          J = "snap down";
+          K = "snap up";
+          L = "snap right";
+        });
+      map-pointer.normal = withModifier "Super" {
+        # Mouse Button
+        BTN_LEFT = "move-view";
+        BTN_RIGHT = "resize-view";
+        BTN_MIDDLE = "toggle-float";
       };
     };
     extraConfig = ''
-      riverctl map normal Super T spawn draw-terminal
-      riverctl map normal Super V spawn select-clipboard
-      riverctl map normal Super Print spawn screenshot-to-clipboard
-
-      riverctl map normal Super Return spawn ${pkgs.alacritty}/bin/alacritty
-      # riverctl map normal Super D spawn ${pkgs.kickoff}/bin/kickoff
-      riverctl map normal Super D spawn "rofi -show run"
-
-      # Super+Alt+{H,J,K,L} to move views
-      riverctl map normal Super+Alt H move left 100
-      riverctl map normal Super+Alt J move down 100
-      riverctl map normal Super+Alt K move up 100
-      riverctl map normal Super+Alt L move right 100
-
-      # Super+Alt+Control+{H,J,K,L} to snap views to screen edges
-      riverctl map normal Super+Alt+Control H snap left
-      riverctl map normal Super+Alt+Control J snap down
-      riverctl map normal Super+Alt+Control K snap up
-      riverctl map normal Super+Alt+Control L snap right
-
-      # Super+Alt+Shift+{H,J,K,L} to resize views
-      riverctl map normal Super+Alt+Shift H resize horizontal -100
-      riverctl map normal Super+Alt+Shift J resize vertical 100
-      riverctl map normal Super+Alt+Shift K resize vertical -100
-      riverctl map normal Super+Alt+Shift L resize horizontal 100
-
-      # Super + Left Mouse Button to move views
-      riverctl map-pointer normal Super BTN_LEFT move-view
-
-      # Super + Right Mouse Button to resize views
-      riverctl map-pointer normal Super BTN_RIGHT resize-view
-
-      # Super + Middle Mouse Button to toggle float
-      riverctl map-pointer normal Super BTN_MIDDLE toggle-float
-
       for i in $(seq 1 9)
       do
           tags=$((1 << ($i - 1)))
@@ -91,18 +109,6 @@
       riverctl map normal Super 0 set-focused-tags $all_tags
       riverctl map normal Super+Shift 0 set-view-tags $all_tags
 
-      # Super+Space to toggle float
-      riverctl map normal Super Space toggle-float
-
-      # Super+F to toggle fullscreen
-      riverctl map normal Super F toggle-fullscreen
-
-      # Super+{Up,Right,Down,Left} to change layout orientation
-      riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
-      riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
-      riverctl map normal Super Down  send-layout-cmd rivertile "main-location bottom"
-      riverctl map normal Super Left  send-layout-cmd rivertile "main-location left"
-
       # Declare a passthrough mode. This mode has only a single mapping to return to
       # normal mode. This makes it useful for testing a nested wayland compositor
       riverctl declare-mode passthrough
@@ -113,8 +119,7 @@
       # Super+F11 to return to normal mode
       riverctl map passthrough Super F11 enter-mode normal
 
-      # Various media key mapping examples for both normal and locked mode which do
-      # not have a modifier
+      # Various media key mapping examples for both normal and locked mode which do not have a modifier
       for mode in normal locked
       do
           # Eject the optical drive (well if you still have one that is)
@@ -156,8 +161,8 @@
       riverctl default-layout rivertile
       rivertile -view-padding 6 -outer-padding 6 &
 
-      pkill wl-paste
-      wl-paste --watch cliphist store & disown
+      # pkill wl-paste
+      # wl-paste --watch cliphist store & disown
     '';
     extraSessionVariables = {
       MOZ_ENABLE_WAYLAND = "1";

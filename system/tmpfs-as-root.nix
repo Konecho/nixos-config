@@ -13,7 +13,7 @@
 
   environment.persistence."/persist" = {
     directories = [
-      "/home/${username}"
+      "/home"
       "/etc/nixos"
       "/etc/NetworkManager/system-connections"
       "/var/log"

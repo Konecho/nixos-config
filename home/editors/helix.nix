@@ -8,6 +8,7 @@
         name = "nix";
         formatter = {command = "${pkgs.alejandra}/bin/alejandra";};
         auto-format = true;
+        language-servers = ["nixd"];
       }
       {
         name = "bash";
@@ -30,16 +31,23 @@
         language-servers = ["rime-ls"];
       }
     ];
-    languages.language-server.rime-ls = {
-      command = "${pkgs.mypkgs.rime-ls}/bin/rime_ls";
-      config.shared_data_dir = "/usr/share/rime-data";
-      config.user_data_dir = "~/.local/share/rime-ls";
-      config.log_dir = "~/.local/share/rime-ls";
-      config.max_candidates = 9;
-      config.trigger_characters = [];
-      config.schema_trigger_character = "&";
-      config.max_tokens = 4;
-      config.always_incomplete = true;
+    languages.language-server = {
+      nixd = {
+        command = "${pkgs.nixd}/bin/nixd";
+        config.home-manager.expr = "(builtins.getFlake \"/etc/nixos\").homeConfigurations.mei.options";
+        config.nixos.expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.deskmini.options";
+      };
+      rime-ls = {
+        command = "${pkgs.mypkgs.rime-ls}/bin/rime_ls";
+        config.shared_data_dir = "/usr/share/rime-data";
+        config.user_data_dir = "~/.local/share/rime-ls";
+        config.log_dir = "~/.local/share/rime-ls";
+        config.max_candidates = 9;
+        config.trigger_characters = [];
+        config.schema_trigger_character = "&";
+        config.max_tokens = 4;
+        config.always_incomplete = true;
+      };
     };
 
     settings.editor.lsp = {
