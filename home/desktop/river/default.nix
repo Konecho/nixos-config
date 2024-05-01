@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  rootPath,
   ...
 }: let
   withModifier = modifier: attrs: (lib.mapAttrs' (name: value: {
@@ -14,8 +15,10 @@ in {
     settings = {
       spawn = [
         "clash-verge"
-        "alacritty -e btm"
-        "wl-paste --watch cliphist store"
+        # "alacritty -e btm"
+        # "wl-paste --watch cliphist store"
+        "sandbar-status"
+        "sandbar-bar"
       ];
       map.normal =
         (withModifier "Super" {
@@ -161,20 +164,22 @@ in {
       riverctl default-layout rivertile
       rivertile -view-padding 6 -outer-padding 6 &
 
-      # pkill wl-paste
-      # wl-paste --watch cliphist store & disown
+      pkill wl-paste
+      wl-paste --watch cliphist store & disown
     '';
     extraSessionVariables = {
       MOZ_ENABLE_WAYLAND = "1";
       GDK_BACKEND = "wayland";
       QT_QPA_PLATFORM = "wayland";
     };
+    systemd.variables = ["-all"];
+    systemd.extraCommands = [
+      "systemctl --user restart river-session.target"
+      "systemctl --user restart fcitx5-session.target"
+    ];
   };
-
-  systemd.user.targets.tray = {
-    Unit = {
-      Description = "Home Manager System Tray";
-      Requires = ["graphical-session-pre.target"];
-    };
-  };
+  home.packages = with pkgs; [
+    sandbar
+    pamixer
+  ];
 }

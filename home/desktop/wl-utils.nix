@@ -52,6 +52,12 @@
         wezterm start --class term-float -e bash ${writeScript "fzfmenu" (builtins.readFile (rootPath + /data/fzfmenu))} &
       ''
     )
+    (
+      writeShellScriptBin "sandbar-status" (builtins.readFile (rootPath + /data/sandbar/status))
+    )
+    (
+      writeShellScriptBin "sandbar-bar" (builtins.readFile (rootPath + /data/sandbar/bar))
+    )
   ];
   services.cliphist.enable = true;
 }

@@ -39,7 +39,7 @@
       };
       rime-ls = {
         command = "${pkgs.mypkgs.rime-ls}/bin/rime_ls";
-        config.shared_data_dir = "/usr/share/rime-data";
+        config.shared_data_dir = "${pkgs.rime-data}/share/rime-data";
         config.user_data_dir = "~/.local/share/rime-ls";
         config.log_dir = "~/.local/share/rime-ls";
         config.max_candidates = 9;

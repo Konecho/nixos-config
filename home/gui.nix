@@ -4,6 +4,7 @@
     # rustdesk
     motrix
     obsidian
+    clash-verge-rev
 
     # surf
     # microsoft-edge

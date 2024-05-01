@@ -14,8 +14,8 @@
   #   config = builtins.fromJSON (builtins.readFile ./v2ray.json);
   # };
 
-  programs.clash-verge.enable = true;
-  programs.clash-verge.autoStart = true;
+  # programs.clash-verge.enable = true;
+  # programs.clash-verge.autoStart = true;
 
   programs.ssh.knownHosts."github.com".publicKey = "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
 ";

@@ -16,6 +16,7 @@ in {
     noto-fonts-cjk
     noto-fonts-emoji
     noto-fonts-extra
+    cascadia-code
     # monocraft
     # nur.repos.vanilla.Win10_LTSC_2021_fonts
     # nur.repos.vanilla.apple-fonts.NY
