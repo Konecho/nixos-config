@@ -10,13 +10,18 @@
     })
     attrs);
 in {
+  home.packages = with pkgs; [
+    grim
+    slurp
+    rofi
+  ];
   wayland.windowManager.river = {
     enable = true;
     settings = {
       spawn = [
         "clash-verge"
-        # "alacritty -e btm"
-        # "wl-paste --watch cliphist store"
+        # "'alacritty -e btm'"
+        # "'wl-paste --watch cliphist store &'"
         "sandbar-status"
         "sandbar-bar"
       ];
@@ -25,9 +30,9 @@ in {
           Q = "close";
           Space = "toggle-float";
           F = "toggle-fullscreen";
-          T = "spawn draw-terminal";
-          V = "spawn select-clipboard";
-          Print = "spawn screenshot-to-clipboard";
+          T = "spawn river-slurp-term";
+          V = "spawn 'wezterm start --class float-clipboard -e cliphist-fzf-sixel &'";
+          Print = ''spawn 'grim -g "$(slurp)" - | wl-copy --type image/png' '';
           Return = "spawn ${pkgs.alacritty}/bin/alacritty";
           D = ''spawn "rofi -show run"'';
 
@@ -87,6 +92,15 @@ in {
         BTN_RIGHT = "resize-view";
         BTN_MIDDLE = "toggle-float";
       };
+      rule-add = {
+        "-app-id" = {
+          "'bar'" = "csd";
+          "'float*'" = "float";
+        };
+        "-title" = {
+          "'窗口投影（预览）'" = "float";
+        };
+      };
     };
     extraConfig = ''
       for i in $(seq 1 9)
@@ -145,19 +159,12 @@ in {
       done
 
       # Set background and border color
-      riverctl background-color 0x002b36
+      riverctl background-color 0x66ccff
       riverctl border-color-focused 0x93a1a1
       riverctl border-color-unfocused 0x586e75
 
       # Set keyboard repeat rate
       riverctl set-repeat 50 300
-
-      # Make all views with an app-id that starts with "float" and title "foo" start floating.
-      riverctl rule-add float -app-id 'float*' -title 'foo'
-      riverctl rule-add float -title '窗口投影（预览）'
-
-      # Make all views with app-id "bar" and any title use client-side decorations
-      riverctl rule-add csd -app-id "bar"
 
       # Set the default layout generator to be rivertile and start it.
       # River will send the process group of the init executable SIGTERM on exit.
@@ -178,8 +185,4 @@ in {
       "systemctl --user restart fcitx5-session.target"
     ];
   };
-  home.packages = with pkgs; [
-    sandbar
-    pamixer
-  ];
 }

@@ -52,11 +52,6 @@
     };
   };
   home.packages = with pkgs; [
-    # (nb.overrideAttrs (finalAttrs: previousAttrs: {
-    #   postInstall = ''
-    #     installShellCompletion --cmd nb etc/nb-completion.{bash,zsh,fish}
-    #   '';
-    # })) # notebook
     nb
 
     # hydrus

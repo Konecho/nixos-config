@@ -20,7 +20,7 @@
   environment.systemPackages = with pkgs; [
     home-manager
     helix
-    # fbterm
+
     (lib.mkIf (! config.security.sudo.enable
       && config.security.doas.enable)
     (writeScriptBin "sudo" ''exec doas "$@"''))
@@ -30,6 +30,4 @@
     git.enable = true;
     fish.enable = true;
   };
-
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 }

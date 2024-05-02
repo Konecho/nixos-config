@@ -1,8 +1,4 @@
-{
-  pkgs,
-  username,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     # ./gnome.nix
     # ./kde.nix
@@ -25,7 +21,6 @@
           # "--cmd niri-session"
           "--cmd river"
         ];
-        user = username;
       };
     };
   };

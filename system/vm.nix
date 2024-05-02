@@ -2,10 +2,8 @@
   environment.systemPackages = with pkgs; [
     wl-clipboard # waydroid copy&paste
   ];
-
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
   virtualisation = {
-    # anbox.enable = true;
-    # libvirtd.enable = true;
     # virtualbox = {
     #   host.enable = true;
     #   # guest.enable = true;

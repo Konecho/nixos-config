@@ -4,7 +4,6 @@
   ...
 }: {
   home.shellAliases.lf = "yazi";
-  # home.shellAliases.lf = "joshuto";
   home.packages = with pkgs; [
     # vtm
     sc-im # 表格
