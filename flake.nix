@@ -3,36 +3,19 @@
   description = "A flake";
   # nix flake lock --update-input nixpkgs-stable
   inputs = {
-    # flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-23.11";
-    # gnomeNixpkgs.url = "github:NixOS/nixpkgs/gnome";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
-    # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     nur.url = "github:nix-community/NUR";
-    # ags.url = "github:Aylur/ags";
     my-nixpkgs = {
       url = "github:Konecho/my-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # hyprland = {
-    #   url = "github:hyprwm/Hyprland";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # joshuto = {
-    #   url = "github:kamiyaa/joshuto";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # stylix = {
-    #   url = "github:danth/stylix";
-    #   inputs.nixpkgs.follows = "nixpkgs"; # follow ghc
-    #   inputs.home-manager.follows = "home-manager"; # follow ghc
-    # };
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,22 +33,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
-
     nixgl.url = "github:guibou/nixGL";
-
-    # NvChad.url = "github:NvChad/nix";
-
-    # niri.url = "github:sodiboo/niri-flake";
-
-    # # 成功copy配置
-    # ags.url = "github:Aylur/ags";
-    # asztal = {
-    #   url = "github:Aylur/dotfiles";
-    #   flake = false;
-    # };
-    # hyprland.url = "github:hyprwm/Hyprland";
-    # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-    # matugen.url = "github:InioX/matugen";
+    pokesprite = {
+      url = "github:msikma/pokesprite";
+      flake = false;
+    };
   };
 
   outputs = inputs: let

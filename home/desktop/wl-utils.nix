@@ -20,6 +20,8 @@
     (write "river-slurp-term")
     slurp
     alacritty
+    (write "catimg-pokemon")
+    catimg
   ]);
   services.cliphist.enable = true;
 }
