@@ -5,7 +5,7 @@
   };
   CC = {
     package = pkgs.cascadia-code;
-    name = "Cascadia Code PL";
+    name = "Cascadia Code NF";
   };
   YH = {
     package = pkgs.nur.repos.vanilla.Win10_LTSC_2021_fonts;

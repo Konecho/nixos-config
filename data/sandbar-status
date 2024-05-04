@@ -1,7 +1,8 @@
 #!/bin/sh
 
 cpu() {
-    cpu="$(grep -o "^[^ ]*" /proc/loadavg)"
+    # cpu="$(grep -o "^[^ ]*" /proc/loadavg)"
+    cpu="$(vmstat 1 1 | awk 'NR==3{print 100-$15}')"
 }
 
 memory() {

@@ -19,12 +19,6 @@
     disfetch
   ];
   programs.fuzzel.enable = true;
-  services.mako.enable = true;
-  # programs.waybar = {
-  #   enable = true;
-  #   # settings.mainBar.layer = "top";
-  #   systemd.enable = true;
-  # };
   xdg.portal = {
     enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-gnome];

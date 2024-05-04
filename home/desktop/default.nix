@@ -8,6 +8,7 @@
     ./fonts.nix
     ./fcitx.nix
     ./theme.nix
+    ./mako.nix
 
     # ./gnome.nix
     # ./ags.nix
