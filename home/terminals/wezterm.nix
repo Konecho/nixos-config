@@ -43,7 +43,7 @@ in {
         return {
           enable_tab_bar = true,
           use_fancy_tab_bar = false,
-          -- hide_tab_bar_if_only_one_tab = true,
+          hide_tab_bar_if_only_one_tab = true,
 
           -- window_background_opacity = 0.8,
           -- color_scheme = 'Solarized Dark Higher Contrast (Gogh)',

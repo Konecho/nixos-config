@@ -57,6 +57,7 @@
     nix-diff
     nil # lsp
     nixd
+    nvd
     # rnix-lsp
     alejandra # formatter
 

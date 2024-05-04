@@ -10,11 +10,5 @@
         show_banner: false,
       }
     '';
-    loginFile.text = ''
-      def greet [] {
-        catimg-pokemon -f ${inputs.pokesprite}
-      }
-      greet
-    '';
   };
 }

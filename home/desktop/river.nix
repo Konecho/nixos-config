@@ -20,8 +20,8 @@ in {
     settings = {
       spawn = [
         "clash-verge"
-        # "'alacritty -e btm'"
-        # "'wl-paste --watch cliphist store &'"
+        "mako"
+        "'wl-paste --watch cliphist store'"
         "sandbar-status"
         "sandbar-bar"
       ];
@@ -172,8 +172,14 @@ in {
       riverctl default-layout rivertile
       rivertile -view-padding 6 -outer-padding 6 &
 
-      pkill wl-paste
-      wl-paste --watch cliphist store & disown
+      # pkill wl-paste
+      # wl-paste --watch cliphist store & disown
+
+      # pkill mako
+      # mako & disown
+
+      # pkill sandbar-bar
+      # sandbar-bar & disown
     '';
     extraSessionVariables = {
       MOZ_ENABLE_WAYLAND = "1";

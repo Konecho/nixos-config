@@ -6,19 +6,18 @@
   ...
 }: {
   home.shellAliases = lib.mkIf (config.programs.zellij.enable) {
-    zellij = ''zellij -s "$(echo $POKEMON|awk -F',' '{print$2}')"'';
+    zellij = ''zellij -s "$(cat $XDG_RUNTIME_DIR/pokemon)"'';
   };
   programs = {
-    fish = {
-      functions = {
-        fish_greeting = ''
-          catimg-pokemon -f ${inputs.pokesprite}
-        '';
-        z = ''
-          ${pkgs.zoxide}/bin/__zoxide_z $argv
-        '';
-      };
-    };
+    fish.functions.fish_greeting = ''
+      catimg-pokemon -f ${inputs.pokesprite}
+    '';
+    nushell.configFile.text = lib.mkAfter ''
+      def greet [] {
+        catimg-pokemon -f ${inputs.pokesprite}
+      }
+      greet
+    '';
     git.hooks.pre-commit =
       pkgs.writeShellScript "pre-commit-script.sh"
       ''

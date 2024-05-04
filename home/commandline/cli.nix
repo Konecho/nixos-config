@@ -1,8 +1,23 @@
 {pkgs, ...}: {
+  home.shellAliases = {
+    man = "batman";
+    cat = "bat";
+  };
   programs = {
     home-manager.enable = true;
+    starship = {
+      enable = true;
+      enableTransience = true;
+      settings =
+        (
+          removeAttrs (builtins.fromTOML (builtins.readFile "${pkgs.starship}/share/starship/presets/plain-text-symbols.toml"))
+          ["os"]
+        )
+        // {
+        };
+    };
     navi.enable = true;
-    noti.enable = true; # <do-something>;noti> or <noti do-somethingdo-somethind>>
+    noti.enable = true; # <do-something>;noti> or <noti do-something>
     # rbw.enable = true;
     bat = {
       enable = true; # cat
@@ -18,7 +33,6 @@
     };
     zoxide.enable = true; # <z> cd
     bottom.enable = true; # <btm> top
-    # mcfly.enable = true; # <ctrl-r>
     atuin.enable = true;
     broot.enable = true; # <br> tree-view search
     ## ls
@@ -114,8 +128,4 @@
     # ueberzug
     ueberzugpp
   ];
-  home.shellAliases = {
-    man = "batman";
-    cat = "bat";
-  };
 }
