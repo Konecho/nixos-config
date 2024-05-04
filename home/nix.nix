@@ -34,12 +34,6 @@
         type = "indirect";
       };
       flake = inputs.nixpkgs;
-      # to = {
-      #   owner = "NixOS";
-      #   ref = "nixpkgs-unstable";
-      #   repo = "nixpkgs";
-      #   type = "github";
-      # };
     };
     m = {
       from = {

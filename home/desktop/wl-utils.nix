@@ -22,6 +22,7 @@
     alacritty
     (write "catimg-pokemon")
     catimg
+    imagemagick
   ]);
   services.cliphist.enable = true;
 }

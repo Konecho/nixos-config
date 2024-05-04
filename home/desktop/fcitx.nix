@@ -8,15 +8,16 @@
     # QT_IM_MODULE = lib.mkForce "wayland";
     # GTK_IM_MODULE = "fcitx";
     # XMODIFIERS = "@im=fcitx5";
-    SDL_IM_MODULE = "fcitx5";
-    GLFW_IM_MODULE = "ibus";
+    # SDL_IM_MODULE = "fcitx5";
+    # GLFW_IM_MODULE = "ibus";
   };
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    # enabled = "fcitx5";
     # fcitx.engines = with pkgs.fcitx-engines; [ rime ];
     # fcitx5.enableRimeData = true;
     fcitx5.addons = with pkgs; [
       fcitx5-chinese-addons
+      fcitx5-gtk
       # fcitx5-rime
       # rime-data
 
@@ -25,5 +26,5 @@
       # fcitx5-mozc
     ];
   };
-  systemd.user.services.fcitx5-daemon.Service.ExecStart = lib.mkForce "${config.i18n.inputMethod.package}/bin/fcitx5 --keep";
+  # systemd.user.services.fcitx5-daemon.Service.ExecStart = lib.mkForce "${config.i18n.inputMethod.package}/bin/fcitx5 --keep";
 }

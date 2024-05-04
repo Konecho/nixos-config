@@ -3,6 +3,11 @@
 shiny=false
 female=false
 
+odd_minute=$(date +'%M\%2' | xargs calc | tr -d '[:space:]')
+if [ "$odd_minute" = 1 ]; then
+	shiny=true
+fi
+
 while getopts "sf" opt; do
 	case $opt in
 	s)
@@ -32,7 +37,7 @@ if ! [ -d "$path"/pokemon-gen8 ]; then
 	echo "Error: Path"
 	exit 1
 fi
-cd $path || exit 1
+cd "$path" || exit 1
 
 DATE=$(date +'%H*30+%M//2' | xargs calc | tr -d '[:space:]')
 if [ "$DATE" = 0 ]; then
@@ -53,13 +58,18 @@ if $shiny; then
 fi
 if $female; then
 	SPRITE=$(find "$findpath"/female -maxdepth 1 -type f -name "${SLUG}*")
-	if [ -z $SPRITE ]; then
+	if [ -z "$SPRITE" ]; then
 		SPRITE=$(find "$findpath" -maxdepth 1 -type f -name "${SLUG}*")
 	fi
 else
 	SPRITE=$(find "$findpath" -maxdepth 1 -type f -name "${SLUG}*")
 fi
-# echo $SPRITE
-# chafa $SPRITE
-catimg "$SPRITE"
+
+for i in $SPRITE; do
+	echo "$i"
+	convert -trim "$i" "$XDG_RUNTIME_DIR"/pokemon.png
+	# chafa $i
+	catimg "$XDG_RUNTIME_DIR"/pokemon.png
+done
+
 echo "$NAME" >"$XDG_RUNTIME_DIR"/pokemon

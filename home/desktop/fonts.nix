@@ -1,15 +1,19 @@
 {pkgs, ...}: let
-  MAPLE = {
+  MP = {
     package = pkgs.maple-mono-SC-NF;
     name = "Maple Mono SC NF";
   };
-  YAHEI = {
+  CC = {
+    package = pkgs.cascadia-code;
+    name = "Cascadia Code PL";
+  };
+  YH = {
     package = pkgs.nur.repos.vanilla.Win10_LTSC_2021_fonts;
     name = "Microsoft YaHei";
   };
 in {
   fonts.fontconfig.enable = true;
-  gtk.font = MAPLE;
+  gtk.font = MP;
   home.packages = with pkgs; [
     maple-mono-SC-NF
     noto-fonts
@@ -23,4 +27,5 @@ in {
     # mypkgs.scutthesis.fonts.windows
     wqy_zenhei
   ];
+  programs.alacritty.settings.font.normal.family = CC.name;
 }

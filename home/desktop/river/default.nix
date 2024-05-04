@@ -99,6 +99,7 @@ in {
         };
         "-title" = {
           "'窗口投影（预览）'" = "float";
+          "Waylyrics" = "float";
         };
       };
     };
@@ -159,9 +160,9 @@ in {
       done
 
       # Set background and border color
-      riverctl background-color 0x66ccff
-      riverctl border-color-focused 0x93a1a1
-      riverctl border-color-unfocused 0x586e75
+      riverctl background-color 0x223e36
+      riverctl border-color-focused 0x2bae85
+      riverctl border-color-unfocused 0x83cbac
 
       # Set keyboard repeat rate
       riverctl set-repeat 50 300

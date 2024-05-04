@@ -16,6 +16,10 @@
     # LC_NUMERIC = "zh_CN.UTF-8";
     # LC_TIME = "zh_CN.UTF-8";
   };
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.waylandFrontend = true;
+  };
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
