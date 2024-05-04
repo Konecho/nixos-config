@@ -9,48 +9,6 @@
     vscode = {
       enable = true;
       package = pkgs.vscodium;
-      enableUpdateCheck = false;
-      userSettings = {
-        "nix.enableLanguageServer" = true;
-        "nix.serverPath" = "nixd";
-        "nix.serverSettings" = {
-          "nil" = {
-            "formatting" = {
-              "command" = [
-                "alejandra"
-              ];
-            };
-          };
-          "nixd" = {
-            "formatting" = {
-              "command" = [
-                "alejandra"
-              ];
-            };
-            "options" = {
-              "nixos" = {
-                "expr" = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.deskmini.options";
-              };
-              "home-manager" = {
-                "expr" = "(builtins.getFlake \"/etc/nixos\").homeConfigurations.${username}.options";
-              };
-            };
-          };
-        };
-        "git.enableSmartCommit" = true;
-        "git.autofetch" = true;
-        "git.confirmSync" = false;
-        "explorer.excludeGitIgnore" = true;
-        "editor.formatOnSave" = true;
-        "files.autoSave" = "onFocusChange";
-        "[python]" = {
-          "editor.formatOnType" = true;
-        };
-        "workbench.editor.enablePreview" = false;
-        "workbench.colorTheme" = "Visual Studio Light";
-        "editor.wordWrap" = "bounded";
-      };
-      # extensions = with pkgs.vscode-extensions; [ ms-ceintl.vscode-language-pack-zh-hans ];
     };
   };
   # home.activation.symlinks = lib.hm.dag.entryAfter ["writeBoundary"] ''

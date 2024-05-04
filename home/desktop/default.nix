@@ -15,7 +15,7 @@
     # ./hyprland.nix
 
     ./niri.nix
-    ./river
+    ./river.nix
 
     ./wl-utils.nix
   ];

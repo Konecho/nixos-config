@@ -35,7 +35,7 @@
     };
     Service = {
       Type = "simple";
-      ExecStart = "${pkgs.nwg-wrapper}/bin/nwg-wrapper -s /etc/nixos/home/desktop/nwg-widget.py -r 60000 -p right -mr 200";
+      ExecStart = "${pkgs.nwg-wrapper}/bin/nwg-wrapper -s /etc/nixos/data/nwg-widget.py -r 60000 -p right -mr 200";
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;
