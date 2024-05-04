@@ -15,6 +15,7 @@
       default_session = {
         command = builtins.concatStringsSep " " [
           "tuigreet"
+          "--remember"
           ''--time --time-format="%F %T"''
           "--asterisks "
           "--power-shutdown 'shutdown -h now'"

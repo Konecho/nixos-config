@@ -16,6 +16,7 @@
         // {
         };
     };
+    thefuck.enable = true;
     navi.enable = true;
     noti.enable = true; # <do-something>;noti> or <noti do-something>
     # rbw.enable = true;

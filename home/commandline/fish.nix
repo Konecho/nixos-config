@@ -53,9 +53,12 @@
       set -g fish_color_selection 'white'  '--bold'  '--background=brblack'
       set -g fish_color_user brgreen
       set -g fish_color_valid_path --underline
-      ${pkgs.thefuck}/bin/thefuck --alias | source
     '';
     plugins = [
+      {
+        name = "autopair";
+        inherit (pkgs.fishPlugins.autopair) src;
+      }
       {
         name = "fish-ssh-agent";
         src = pkgs.fetchFromGitHub {

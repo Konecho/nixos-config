@@ -1,7 +1,5 @@
 {
-  # sudo nixos-rebuild switch
   description = "A flake";
-  # nix flake lock --update-input nixpkgs-stable
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-23.11";

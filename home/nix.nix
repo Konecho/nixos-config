@@ -54,6 +54,7 @@
   home.packages = with pkgs; [
     nix-init
     nix-tree
+    nix-melt
     nix-diff
     nil # lsp
     nixd
