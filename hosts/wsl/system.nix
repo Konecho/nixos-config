@@ -30,13 +30,15 @@
     extraBin = with pkgs; [
       {src = "${coreutils}/bin/uname";}
       {src = "${coreutils}/bin/dirname";}
-      {src = "${coreutils}/bin/readlink";}
+      {src = "${coreutils}/bin/cat";}
+      {src = "${linuxPackages.usbip}/bin/usbip";}
     ];
     usbip = {
       enable = true;
-      autoAttach = ["1-10" "2-2"];
+      autoAttach = ["1-10" "2-2" "2-1"];
     };
-    useWindowsDriver = true;
+    interop.register = true;
+    # useWindowsDriver = true;
     # docker-desktop.enable = true;
     # wslConf.user.default = "${username}";
   };
@@ -44,8 +46,11 @@
   # users.users."${username}".extraGroups = ["plugdev"]; # not work
   networking.proxy.default = "http://192.168.80.1:7890";
   services.udev.extraRules = ''
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", GROUP="plugdev", TAG+="uaccess"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", GROUP="plugdev", TAG+="uaccess"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", GROUP="plugdev", TAG+="uaccess"
     ATTRS{product}=="*CMSIS-DAP*", MODE="660", GROUP="plugdev", TAG+="uaccess"
+    KERNEL=="ttyS*",MODE="0666"
+    KERNEL=="ttyUSB*",MODE="0666"
   '';
 
   environment.systemPackages = with pkgs; [
@@ -53,7 +58,7 @@
     # obsidian
 
     # nixgl.nixGLIntel
-    glxinfo
+    # glxinfo
 
     wget # for nix-ld code-server
   ];

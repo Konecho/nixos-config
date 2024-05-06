@@ -13,8 +13,8 @@
     /home/desktop/fonts.nix
   ];
   home.packages = with pkgs; [
-    julia
     usbutils # lsusb
   ];
-  home.homeDirectory = "/home";
+  # prevent build
+  programs.helix.languages.language-server.rime-ls.command = lib.mkForce "rime_ls";
 }
