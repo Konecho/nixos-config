@@ -11,6 +11,10 @@
         language-servers = ["nixd"];
       }
       {
+        name = "python";
+        auto-format = true;
+      }
+      {
         name = "bash";
         formatter = {command = "${pkgs.shfmt}/bin/shfmt";};
         auto-format = true;

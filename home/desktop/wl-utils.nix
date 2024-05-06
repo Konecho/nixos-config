@@ -7,6 +7,9 @@
     write = name: (
       writeShellScriptBin name (builtins.readFile (rootPath + "/data/${name}"))
     );
+    writePy = name: (
+      writers.writePython3Bin name {} (builtins.readFile (rootPath + "/data/${name}"))
+    );
   in [
     (write "hello")
     (write "sandbar-status")
@@ -20,9 +23,13 @@
     (write "river-slurp-term")
     slurp
     alacritty
-    (write "catimg-pokemon")
+    (writePy "catimg-pokemon.py")
     catimg
     imagemagick
+
+    # wayland
+    lswt
+    wbg
   ]);
   services.cliphist.enable = true;
 }

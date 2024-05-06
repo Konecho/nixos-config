@@ -89,5 +89,23 @@
         ];
       };
     };
+
+    devShells.${system}.default = pkgs.mkShell {
+      packages = with pkgs; [
+        (
+          let
+            python-packages = python-packages:
+              with python-packages; [
+                python-lsp-server
+                autopep8
+                black
+                requests
+              ];
+            python-with-packages = python3.withPackages python-packages;
+          in
+            python-with-packages
+        )
+      ];
+    };
   };
 }

@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  imports = [./commandline/pkm-shell.nix];
   home.sessionVariables.BROWSER = "qutebrowser";
   home.packages = with pkgs; [
     # rustdesk

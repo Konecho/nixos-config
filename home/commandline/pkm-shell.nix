@@ -10,11 +10,11 @@
   };
   programs = {
     fish.functions.fish_greeting = ''
-      catimg-pokemon -f ${inputs.pokesprite}
+      catimg-pokemon.py -f ${inputs.pokesprite}
     '';
     nushell.configFile.text = lib.mkAfter ''
       def greet [] {
-        catimg-pokemon -f ${inputs.pokesprite}
+        catimg-pokemon.py -f ${inputs.pokesprite}
       }
       greet
     '';
