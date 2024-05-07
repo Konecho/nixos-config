@@ -3,6 +3,25 @@
   programs.helix = {
     enable = true;
     defaultEditor = true;
+    settings.editor = {
+      cursorline = true;
+      rulers = [120];
+      cursor-shape = {
+        insert = "bar";
+      };
+      bufferline = "multiple";
+      statusline = {
+        left = ["mode" "version-control" "file-modification-indicator" "diagnostics" "spinner"];
+        right = ["position" "primary-selection-length" "file-encoding" "file-line-ending" "file-type"];
+      };
+      indent-guides = {
+        # "▏", "┆", "┊", "⸽", "╎"
+        character = "╎";
+
+        render = true;
+        skip-levels = 1;
+      };
+    };
     languages.language = [
       {
         name = "nix";
