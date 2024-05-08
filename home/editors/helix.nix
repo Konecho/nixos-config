@@ -17,35 +17,28 @@
       indent-guides = {
         # "▏", "┆", "┊", "⸽", "╎"
         character = "╎";
-
         render = true;
         skip-levels = 1;
       };
+      auto-format = true;
     };
     languages.language = [
       {
         name = "nix";
         formatter = {command = "${pkgs.alejandra}/bin/alejandra";};
-        auto-format = true;
         language-servers = ["nixd"];
       }
       {
         name = "python";
-        auto-format = true;
+        formatter = {command = "${pkgs.black}/bin/black";};
       }
       {
         name = "bash";
         formatter = {command = "${pkgs.shfmt}/bin/shfmt";};
-        auto-format = true;
       }
       {
         name = "toml";
         formatter = {command = "${pkgs.taplo}/bin/taplo fmt -";};
-        auto-format = true;
-      }
-      {
-        name = "rust";
-        auto-format = true;
       }
       {
         name = "markdown";

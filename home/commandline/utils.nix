@@ -11,21 +11,8 @@
       writers.writePython3Bin name {} (builtins.readFile (rootPath + "/data/${name}"))
     );
   in [
-    (write "sandbar-status")
-    pamixer
-    (write "sandbar-bar")
-    sandbar
-    (write "cliphist-fzf-sixel")
-    wl-clipboard
-    chafa
-    wezterm
-    (write "river-slurp-term")
-    slurp
-    alacritty
-
-    # wayland
-    lswt
-    wbg
+    (writePy "catimg-pokemon.py")
+    catimg
+    imagemagick
   ]);
-  services.cliphist.enable = true;
 }
