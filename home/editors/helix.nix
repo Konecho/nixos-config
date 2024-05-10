@@ -11,7 +11,7 @@
       };
       bufferline = "multiple";
       statusline = {
-        left = ["mode" "version-control" "file-modification-indicator" "diagnostics" "spinner"];
+        left = ["mode" "spinner" "version-control" "file-modification-indicator" "diagnostics"];
         right = ["position" "primary-selection-length" "file-encoding" "file-line-ending" "file-type"];
       };
       indent-guides = {
@@ -69,6 +69,6 @@
       display-messages = true;
       display-inlay-hints = true;
     };
-    settings.theme = "github_light";
+    settings.theme = "github_dark";
   };
 }
