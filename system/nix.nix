@@ -18,6 +18,10 @@
   nix.settings.substituters = [
     "https://mirrors.ustc.edu.cn/nix-channels/store/"
     "https://cache.nixos.org/"
+    "https://konecho.cachix.org"
+  ];
+  nix.settings.trusted-public-keys = [
+    "konecho.cachix.org-1:WdZC2zag05oLTaBVQ9X8dI3dw5Lso7DqGRI92hTg+Mc="
   ];
 
   # This value determines the NixOS release from which the default

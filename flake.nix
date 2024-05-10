@@ -12,7 +12,7 @@
     nur.url = "github:nix-community/NUR";
     my-nixpkgs = {
       url = "github:Konecho/my-nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";

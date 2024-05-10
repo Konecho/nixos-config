@@ -1,7 +1,6 @@
 run:
     just -l
 update *input:
-    nix flake update
     if [ -z {{input}} ];then nix flake update;else nix flake lock --update-input {{input}};fi
 home:
     home-manager build --flake . -b backup |& nom

@@ -22,23 +22,23 @@
       };
       auto-format = true;
     };
-    languages.language = [
+    languages.language = with pkgs; [
       {
         name = "nix";
-        formatter = {command = "${pkgs.alejandra}/bin/alejandra";};
+        formatter = {command = "${alejandra}/bin/alejandra";};
         language-servers = ["nixd"];
       }
       {
         name = "python";
-        formatter = {command = "${pkgs.black}/bin/black";};
+        formatter = {command = "${black}/bin/black";};
       }
       {
         name = "bash";
-        formatter = {command = "${pkgs.shfmt}/bin/shfmt";};
+        formatter = {command = "${shfmt}/bin/shfmt";};
       }
       {
         name = "toml";
-        formatter = {command = "${pkgs.taplo}/bin/taplo fmt -";};
+        formatter = {command = "${taplo}/bin/taplo fmt -";};
       }
       {
         name = "markdown";
@@ -47,15 +47,15 @@
         language-servers = ["rime-ls"];
       }
     ];
-    languages.language-server = {
+    languages.language-server = with pkgs; {
       nixd = {
-        command = "${pkgs.nixd}/bin/nixd";
+        command = "${nixd}/bin/nixd";
         config.home-manager.expr = "(builtins.getFlake \"/etc/nixos\").homeConfigurations.mei.options";
         config.nixos.expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.deskmini.options";
       };
       rime-ls = {
-        command = "${pkgs.mypkgs.rime-ls}/bin/rime_ls";
-        config.shared_data_dir = "${pkgs.rime-data}/share/rime-data";
+        command = "${mypkgs.rime-ls}/bin/rime_ls";
+        config.shared_data_dir = "${rime-data}/share/rime-data";
         config.user_data_dir = "~/.local/share/rime-ls";
         config.log_dir = "~/.local/share/rime-ls";
         config.max_candidates = 9;

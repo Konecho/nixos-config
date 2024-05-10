@@ -15,6 +15,4 @@
   home.packages = with pkgs; [
     usbutils # lsusb
   ];
-  # prevent build
-  programs.helix.languages.language-server.rime-ls.command = lib.mkForce "rime_ls";
 }
