@@ -16,37 +16,38 @@
       };
       indent-guides = {
         # "▏", "┆", "┊", "⸽", "╎"
-        character = "╎";
+        character = "┊";
         render = true;
         skip-levels = 1;
       };
       auto-format = true;
     };
-    languages.language = with pkgs; [
-      {
-        name = "nix";
-        formatter = {command = "${alejandra}/bin/alejandra";};
-        language-servers = ["nixd"];
-      }
-      {
-        name = "python";
-        formatter = {command = "${black}/bin/black";};
-      }
-      {
-        name = "bash";
-        formatter = {command = "${shfmt}/bin/shfmt";};
-      }
-      {
-        name = "toml";
-        formatter = {command = "${taplo}/bin/taplo fmt -";};
-      }
-      {
-        name = "markdown";
-        scope = "source.markdown";
-        file-types = ["md" "markdown"];
-        language-servers = ["rime-ls"];
-      }
-    ];
+    languages.language = with pkgs;
+      builtins.map (x: x // {auto-format = true;}) [
+        {
+          name = "nix";
+          formatter = {command = "${alejandra}/bin/alejandra";};
+          language-servers = ["nixd"];
+        }
+        {
+          name = "python";
+          formatter = {command = "${black}/bin/black";};
+        }
+        {
+          name = "bash";
+          formatter = {command = "${shfmt}/bin/shfmt";};
+        }
+        {
+          name = "toml";
+          formatter = {command = "${taplo}/bin/taplo fmt -";};
+        }
+        {
+          name = "markdown";
+          scope = "source.markdown";
+          file-types = ["md" "markdown"];
+          language-servers = ["rime-ls"];
+        }
+      ];
     languages.language-server = with pkgs; {
       nixd = {
         command = "${nixd}/bin/nixd";
@@ -69,6 +70,6 @@
       display-messages = true;
       display-inlay-hints = true;
     };
-    settings.theme = "github_dark";
+    # settings.theme = "monokai_pro_machine";
   };
 }

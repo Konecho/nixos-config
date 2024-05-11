@@ -46,7 +46,7 @@ in {
           hide_tab_bar_if_only_one_tab = true,
 
           -- window_background_opacity = 0.8,
-          -- color_scheme = 'Solarized Dark Higher Contrast (Gogh)',
+          -- color_scheme = 'cyberpunk',
           window_decorations = NONE,
           enable_scroll_bar = true,
           window_padding = {

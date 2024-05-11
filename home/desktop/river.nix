@@ -33,7 +33,8 @@ in {
           T = "spawn river-slurp-term";
           V = "spawn 'wezterm start --class float-clipboard -e cliphist-fzf-sixel &'";
           Print = ''spawn 'grim -g "$(slurp)" - | wl-copy --type image/png' '';
-          Return = "spawn ${pkgs.alacritty}/bin/alacritty";
+          # Return = "spawn ${pkgs.alacritty}/bin/alacritty";
+          Return = "spawn wezterm";
           D = ''spawn "rofi -show run"'';
 
           # focus the next/previous view in the layout stack
