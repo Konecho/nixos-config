@@ -13,7 +13,7 @@
   };
 in {
   fonts.fontconfig.enable = true;
-  gtk.font = MP;
+  # gtk.font = MP;
   home.packages = with pkgs; [
     maple-mono-SC-NF
     noto-fonts
@@ -26,6 +26,7 @@ in {
     # nur.repos.vanilla.apple-fonts.NY
     # mypkgs.scutthesis.fonts.windows
     wqy_zenhei
+    mypkgs.teranoptia
   ];
-  programs.alacritty.settings.font.normal.family = CC.name;
+  # programs.alacritty.settings.font.normal.family = CC.name;
 }

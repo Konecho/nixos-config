@@ -32,6 +32,7 @@
       inputs.darwin.follows = "";
     };
     nixgl.url = "github:guibou/nixGL";
+    stylix.url = "github:danth/stylix";
     pokesprite = {
       url = "github:msikma/pokesprite";
       flake = false;
@@ -61,7 +62,7 @@
       inherit pkgs username;
       modules = lib.scanPath {
         path = ./home;
-        excludeFiles = ["stylix"];
+        # excludeFiles = ["stylix"];
       };
     };
 
