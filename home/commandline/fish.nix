@@ -22,7 +22,7 @@
     };
     loginShellInit = ''
     '';
-    interactiveShellInit = ''
+    interactiveShellInit = lib.mkAfter ''
       # Fish syntax highlighting
       set -g fish_color_autosuggestion '555'  'brblack'
       set -g fish_color_cancel -r

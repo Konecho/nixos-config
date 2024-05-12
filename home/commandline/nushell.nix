@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   inputs,
   ...
 }: {
@@ -10,5 +11,6 @@
         show_banner: false,
       }
     '';
+    shellAliases = config.home.shellAliases;
   };
 }

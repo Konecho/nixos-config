@@ -1,8 +1,8 @@
 #!/bin/sh
 
-DERV=$(nix show-derivation "$@" | jq -rs '.[0]|to_entries[].value.outputs.out.path')
+DERV=$(nix derivation show "$@" | jq -rs '.[0]|to_entries[].value.outputs.out.path')
 if [ -d "$DERV" ]; then
     yazi "$DERV"
 else
-    nix show-derivation "$@" | jq -s '.[0]|to_entries[].value.outputs'
+    nix derivation show "$@" | jq -s '.[0]|to_entries[].value.outputs'
 fi
