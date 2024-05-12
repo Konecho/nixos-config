@@ -81,7 +81,10 @@
     };
   };
   home.packages = with pkgs; [
+    termusic
     waylyrics
     netease-cloud-music-gtk
+
+    pavucontrol
   ];
 }

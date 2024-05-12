@@ -20,7 +20,7 @@
 
     # hyper
 
-    # telegram-desktop
+    telegram-desktop
     # element-desktop-wayland # matrix
     kotatogram-desktop-with-webkit
 
@@ -36,24 +36,6 @@
     #     hash = "sha256-qVoA8IZYLUJ6Li/M8ORjkfntc06oMVD7739F79sFLjM=";
     #   };
     # }))
-
-    # blender
-    # gimp
-    # godot
-    # inkscape
-    # krita
-    # etcher
-
-    # nur.repos.xddxdd.wechat-uos
-
-    # obsidian
-    # libreoffice-qt
-    # onlyoffice-bin
-
-    # thunderbird
-
-    # android-studio
-    # scrcpy
   ];
   programs = {
     qutebrowser = {

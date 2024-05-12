@@ -14,5 +14,8 @@
     (writePy "catimg-pokemon.py")
     catimg
     imagemagick
+    (write "nixlf")
+    yazi
+    jq
   ]);
 }

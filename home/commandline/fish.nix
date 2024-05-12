@@ -7,17 +7,9 @@
   programs.fish = {
     enable = true;
     functions = {
-      nixlf = ''
-        set derv $(nix show-derivation $argv|jq -rs '.[0]|to_entries[].value.outputs.out.path')
-        if [ -d $derv ]
-          lf $derv
-        else
-          echo $(nix show-derivation $argv|jq -s '.[0]|to_entries[].value.outputs')
-        end
-      '';
       nixrun = ''
         cd $(mktemp -d)
-        echo $(pwd)
+        pwd
         wget $argv -O package.nix
         cp ${rootPath + /data/flake_template.nix} ./flake.nix
         NIXPKGS_ALLOW_UNFREE=1 nix run --impure .
