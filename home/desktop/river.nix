@@ -11,9 +11,13 @@
     attrs);
 in {
   home.packages = with pkgs; [
+    wezterm
     grim
     slurp
     rofi
+    playerctl
+    pamixer
+    light
   ];
   wayland.windowManager.river = {
     enable = true;
@@ -23,7 +27,8 @@ in {
         "mako"
         "'wl-paste --watch cliphist store'"
         "sandbar-status"
-        "sandbar-bar"
+        # "sandbar-bar"
+        "stylix"
       ];
       map.normal =
         (withModifier "Super" {
@@ -160,11 +165,6 @@ in {
           riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 5'
       done
 
-      # Set background and border color
-      riverctl background-color 0x223e36
-      riverctl border-color-focused 0x2bae85
-      riverctl border-color-unfocused 0x83cbac
-
       # Set keyboard repeat rate
       riverctl set-repeat 50 300
 
@@ -172,15 +172,6 @@ in {
       # River will send the process group of the init executable SIGTERM on exit.
       riverctl default-layout rivertile
       rivertile -view-padding 6 -outer-padding 6 &
-
-      # pkill wl-paste
-      # wl-paste --watch cliphist store & disown
-
-      # pkill mako
-      # mako & disown
-
-      # pkill sandbar-bar
-      # sandbar-bar & disown
     '';
     extraSessionVariables = {
       MOZ_ENABLE_WAYLAND = "1";

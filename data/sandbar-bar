@@ -5,23 +5,12 @@ FIFO="$XDG_RUNTIME_DIR/sandbar"
 mkfifo "$FIFO"
 
 while cat "$FIFO"; do :; done | sandbar \
-    -font "Maple Mono SC NF" \
-    -active-fg-color "#83cbac" \
-    -active-bg-color "#223e36" \
-    -inactive-fg-color "#223e36" \
-    -inactive-bg-color "#83cbac" \
-    -urgent-fg-color "#223e36" \
-    -urgent-bg-color "#ce5777" \
-    -title-fg-color "#83cbac" \
-    -title-bg-color "#223e36"
-# -font "Maple Mono SC NF"
-
-# -font "Maple Mono SC NF" \
-# -active-fg-color "#000000" \
-# -active-bg-color "#98971a" \
-# -inactive-fg-color "#ebdbb2" \
-# -inactive-bg-color "#000000" \
-# -urgent-fg-color "#000000" \
-# -urgent-bg-color "#cc241d" \
-# -title-fg-color "#000000" \
-# -title-bg-color "#98971a"
+	-font "Maple Mono SC NF" \
+	-active-fg-color "#83cbac" \
+	-active-bg-color "#223e36" \
+	-inactive-fg-color "#223e36" \
+	-inactive-bg-color "#83cbac" \
+	-urgent-fg-color "#223e36" \
+	-urgent-bg-color "#ce5777" \
+	-title-fg-color "#83cbac" \
+	-title-bg-color "#223e36"

@@ -1,6 +1,27 @@
 # polarity = "light"; # “either”, “light”, “dark”
-pkgs: {
+pkgs: let
+  fetchPixiv = {
+    url,
+    sha256,
+    ...
+  } @ attrs:
+    pkgs.fetchurl (attrs
+      // {
+        inherit url sha256;
+        netrcPhase = ''
+          curlOpts="$curlOpts --referer "https://www.pixiv.net/""
+        '';
+      });
+in {
   light = [
+    (fetchPixiv {
+      url = "https://i.pximg.net/img-original/img/2024/05/07/23/02/42/118530334_p0.png";
+      sha256 = "sha256-5E/ZbcOtB8019sGO5oA+G5fIV5N34fffkIvpmstWmnU=";
+    })
+    (pkgs.fetchurl {
+      url = "https://cdn.donmai.us/original/c8/8f/__sky_striker_ace_raye_and_sky_striker_ace_roze_yu_gi_oh_drawn_by_hsin__c88fc0854b81bf712988523733200729.jpg";
+      sha256 = "sha256-Pj2GPfHCzPzqXYPJE/jbkLbI3PRSPyfWMxANDDNe+eI=";
+    })
     (pkgs.fetchurl {
       url = "https://cdn.donmai.us/original/dd/f7/__original_drawn_by_saraki__ddf7eb23c8813687539b0faa01ebeb18.jpg";
       sha256 = "sha256-MATV8oxRL1iLsWsVLTvT6AcSf3v5ha2FZCyBOXoIhrQ=";
@@ -13,7 +34,6 @@ pkgs: {
       url = "https://cdn.donmai.us/original/5e/0b/__hatsune_miku_vocaloid_drawn_by_stuko__5e0b2a3416a5ed0ee19b5b1293091cbf.png";
       sha256 = "sha256-syTB7G5w4X3gNb0SUCyzBOPc/QyXXjclXMd3lni6ztc=";
     })
-    # pkgs.mypkgs.pokemon-terminal + "/lib/python3.10/site-packages/pokemonterminal/Images/Generation VI - Kalos/679.jpg";
     (builtins.path {
       path = "${pkgs.mypkgs.pokemon-terminal}/lib/python3.10/site-packages/pokemonterminal/Images/Generation V - Unova/591.jpg";
     })

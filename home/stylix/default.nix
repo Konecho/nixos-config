@@ -4,13 +4,17 @@
   config,
   inputs,
   ...
-}: {
-  imports = [inputs.stylix.homeManagerModules.stylix];
-  # https://danth.github.io/stylix/options/hm.html
+}: let
+  polarity = "light"; # “either”, “light”, “dark”
+in {
+  imports = [
+    inputs.stylix.homeManagerModules.stylix
+    ./utils.nix
+  ];
+  programs.vscode.userSettings = lib.mkForce {};
 
-  stylix = let
-    polarity = "dark"; # “either”, “light”, “dark”
-  in {
+  # https://danth.github.io/stylix/options/hm.html
+  stylix = {
     image = builtins.head (builtins.getAttr polarity (import ./wallpapers.nix pkgs));
 
     cursor = {
