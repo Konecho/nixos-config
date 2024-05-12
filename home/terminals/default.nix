@@ -3,5 +3,5 @@
     ./alacritty.nix
     ./wezterm.nix
   ];
-  home.sessionVariables.TERMINAL = "alacritty";
+  home.sessionVariables.TERMINAL = "wezterm";
 }

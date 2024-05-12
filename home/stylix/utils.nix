@@ -37,9 +37,16 @@ in {
     (
       pkgs.writeShellScriptBin "stylix-bg" ''
         #!/bin/sh
-        wbg ${config.stylix.image}
+        ${pkgs.wbg}/bin/wbg ${config.stylix.image}
       ''
     )
+    (
+      pkgs.writeShellScriptBin "stylix-nwg" ''
+        #!/bin/sh
+        ${pkgs.nwg-wrapper}/bin/nwg-wrapper -s /etc/nixos/data/nwg-widget.py -r 60000 -p right -mr 200
+      ''
+    )
+    pkgs.ansifilter
     (
       pkgs.writeShellScriptBin "stylix" ''
         #!/bin/sh

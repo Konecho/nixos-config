@@ -19,7 +19,7 @@
     thefuck.enable = true;
     navi.enable = true;
     noti.enable = true; # <do-something>;noti> or <noti do-something>
-    aria2.enable=true;
+    aria2.enable = true;
     # rbw.enable = true;
     bat = {
       enable = true; # cat
@@ -129,5 +129,8 @@
     # imagemagick
     # ueberzug
     ueberzugpp
+
+    python3
+    rustup
   ];
 }

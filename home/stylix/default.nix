@@ -4,29 +4,25 @@
   config,
   inputs,
   ...
-}: let
-  polarity = "light"; # “either”, “light”, “dark”
-in {
+}: {
   imports = [
     inputs.stylix.homeManagerModules.stylix
     ./utils.nix
+    ./wallpapers.nix
   ];
   programs.vscode.userSettings = lib.mkForce {};
 
   # https://danth.github.io/stylix/options/hm.html
   stylix = {
-    image = builtins.head (builtins.getAttr polarity (import ./wallpapers.nix pkgs));
-
     cursor = {
       package = pkgs.phinger-cursors;
       name = "phinger-cursors-${
-        if polarity == "light"
+        if config.stylix.polarity == "light"
         then "light"
         else "dark"
       }";
       size = 24;
     };
-    inherit polarity;
     opacity = {terminal = 0.85;};
     fonts = let
       MAPLE = {

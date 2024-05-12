@@ -4,8 +4,11 @@
   home.packages = with pkgs; [
     # rustdesk
     motrix
-    obsidian
     clash-verge-rev
+
+    obsidian
+    czkawka # duplicates
+    # logseq
 
     # surf
     # microsoft-edge
@@ -14,10 +17,8 @@
     firefox
     # firefox-devedition
     librewolf
-    # hyper
-    czkawka # duplicates
 
-    # logseq
+    # hyper
 
     # telegram-desktop
     # element-desktop-wayland # matrix
