@@ -57,7 +57,7 @@
     wsl-open
     # obsidian
 
-    # nixgl.nixGLIntel
+    nixgl.nixGLIntel
     # glxinfo
 
     wget # for nix-ld code-server

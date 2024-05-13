@@ -15,4 +15,9 @@
   home.packages = with pkgs; [
     usbutils # lsusb
   ];
+  programs.helix.settings.theme = "base16";
+  programs.helix.themes.base16 = {
+    inherits = "github_light";
+    "ui.background" = {};
+  };
 }
