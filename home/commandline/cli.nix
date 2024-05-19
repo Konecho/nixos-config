@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs = {
     home-manager.enable = true;
     starship = {
@@ -13,10 +17,16 @@
         };
     };
     thefuck.enable = true;
+    rbw = {
+      enable = true;
+      settings.email = config.programs.git.userEmail;
+      # settings.pinentry = pkgs.pinentry-rofi;
+      settings.pinentry = pkgs.pinentry-curses;
+    };
+    rofi.enable = true;
     navi.enable = true;
     noti.enable = true; # <do-something>;noti> or <noti do-something>
     aria2.enable = true;
-    # rbw.enable = true;
     atuin.enable = true; # <ctrl+r>
     broot.enable = true; # <br> tree-view search
     direnv = {

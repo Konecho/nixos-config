@@ -10,17 +10,17 @@
     })
     attrs);
 in {
+  programs.rofi.enable = true;
+  programs.fuzzel.enable = true;
+  programs.zathura.enable = true;
   home.packages = with pkgs; [
-    wezterm
     grim
     slurp
-    # rofi
-    fuzzel
     playerctl
     pamixer
     light
+    ydotool
   ];
-  programs.fuzzel.enable = true;
   wayland.windowManager.river = {
     enable = true;
     settings = {
@@ -42,7 +42,7 @@ in {
           Print = ''spawn 'grim -g "$(slurp)" - | wl-copy --type image/png' '';
           # Return = "spawn ${pkgs.alacritty}/bin/alacritty";
           Return = "spawn wezterm";
-          D = ''spawn fuzzel'';
+          D = "spawn fuzzel";
 
           # focus the next/previous view in the layout stack
           J = "focus-view next";

@@ -50,6 +50,7 @@
         obs-pipewire-audio-capture
       ];
     };
+    zathura.enable = true;
     # pidgin = {
     #   enable = true;
     #   plugins = with pkgs; [purple-matrix purple-discord];

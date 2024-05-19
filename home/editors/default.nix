@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./helix.nix
-    ./vscode.nix
   ];
   home.packages = with pkgs; [
     ## [[lsp]]
@@ -13,4 +12,13 @@
     texlab #latex
     taplo #toml
   ];
+  programs = {
+    vscode = {
+      enable = true;
+      # symlink to share vscode and codium settings
+      # "~/.vscode/extensions" "~/.vscode-oss/extensions"
+      # "~/.config/Code/User/settings.json" "~/.config/VSCodium/User/settings.json"
+      package = pkgs.vscodium;
+    };
+  };
 }

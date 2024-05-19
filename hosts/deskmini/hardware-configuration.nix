@@ -45,6 +45,12 @@
       neededForBoot = true;
       options = btrfsops ++ ["subvol=@nix"];
     };
+    "/gnu" = {
+      device = "/dev/disk/by-label/nixos";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = btrfsops ++ ["subvol=@gnu"];
+    };
     "/persist" = {
       device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
@@ -57,12 +63,12 @@
       neededForBoot = true;
       options = btrfsops ++ ["subvol=@db"];
     };
-    # "/thesis" = {
-    #   device = "/dev/disk/by-label/btrfs";
-    #   fsType = "btrfs";
-    #   neededForBoot = false;
-    #   options = btrfsops ++ ["subvol=@thesis"];
-    # };
+    "/tmp" = {
+      device = "/dev/disk/by-label/nixos";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = btrfsops ++ ["subvol=@tmp"];
+    };
     "/backup" = {
       device = "/dev/disk/by-label/backup";
       fsType = "btrfs";

@@ -9,10 +9,10 @@
     DefaultTimeoutStopSec=10s
   '';
 
-  boot.tmp = {
-    useTmpfs = true;
-    tmpfsSize = "95%";
-  };
+  # boot.tmp = {
+  #   useTmpfs = true;
+  #   tmpfsSize = "95%";
+  # };
 
   xdg.portal.config.common.default = "*";
 }

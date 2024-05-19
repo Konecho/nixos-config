@@ -23,7 +23,6 @@
       ''
         if [ -f $XDG_RUNTIME_DIR/pokemon ]; then
           git config user.name "$(cat $XDG_RUNTIME_DIR/pokemon)"
-          git config --list
         fi
       '';
   };

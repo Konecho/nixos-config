@@ -7,8 +7,7 @@
   programs.pistol.associations = with pkgs; [
     {
       mime = "image/*";
-      # command = "${exiftool}/bin/exiftool %pistol-filename% && ${chafa}/bin/chafa -f symbols %pistol-filename%";
-      command = "${chafa}/bin/chafa -f symbols %pistol-filename%";
+      command = "${exiftool}/bin/exiftool %pistol-filename% && ${chafa}/bin/chafa -f symbols %pistol-filename%";
     }
     {
       mime = "video/*";
@@ -51,6 +50,4 @@
       command = "${hexyl}/bin/hexyl -n 1kb %pistol-filename%";
     }
   ];
-  lf.previewer.source = "${pkgs.pistol}/bin/pistol";
-  # source = "${pkgs.ctpv}/bin/ctpv";
 }

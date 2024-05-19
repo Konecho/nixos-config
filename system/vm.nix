@@ -1,8 +1,5 @@
 {pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    wl-clipboard # waydroid copy&paste
-  ];
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  # boot.binfmt.emulatedSystems = ["aarch64-linux"];
   virtualisation = {
     # virtualbox = {
     #   host.enable = true;
@@ -23,12 +20,5 @@
         ];
       };
     };
-    # waydroid.enable = true;
-    lxd.enable = true;
   };
-  # https://github.com/docker/docker-install/issues/150
-  # virtualisation.docker.rootless.daemon.settings = {
-  #   "http-proxy" = "";
-  #   "https-proxy" = "";
-  # };
 }

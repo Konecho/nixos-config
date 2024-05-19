@@ -16,12 +16,9 @@ in {
         [
           (self: super: rec {
             mypkgs = inputs.my-nixpkgs.packages."${system}";
-            # pokemonsay = super.pokemonsay.override {cowsay = super.neo-cowsay;};
             # winfonts = nur.repos.vanilla.Win10_LTSC_2019_fonts;
-            # gnome = inputs.gnomeNixpkgs.legacyPackages.x86_64-linux.gnome;
           })
           inputs.nur.overlay
-          # inputs.joshuto.overlays.default
         ]
         ++ overlays;
     };
@@ -108,30 +105,10 @@ in {
       extraSpecialArgs = {inherit inputs rootPath username;};
       modules =
         [
-          # inputs.hyprland.homeManagerModules.default
-          # inputs.nix-doom-emacs.hmModule
-          # inputs.stylix.homeManagerModules.stylix
           {
             home.username = "${username}";
             nix.registry.nixpkgs.flake = inputs.nixpkgs;
           }
-          # impermanence.nixosModules.home-manager.impermanence
-          # {
-          #   home.persistence."/nix/persist/home/${username}" = {
-          #     directories = [
-          #       "downloads"
-          #       "media"
-          #       ".ssh"
-          #       ".vscode"
-          #       ".config/Code"
-          #     ];
-          #     files = [
-          #       ".bash_history"
-          #       ".python_history"
-          #     ];
-          #     allowOther = true;
-          #   };
-          # }
         ]
         ++ modules;
     };
