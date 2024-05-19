@@ -22,7 +22,7 @@
 
     telegram-desktop
     # element-desktop-wayland # matrix
-    kotatogram-desktop-with-webkit
+    # kotatogram-desktop-with-webkit
 
     qt6.qtwayland
     hydrus
@@ -55,5 +55,10 @@
     #   enable = true;
     #   plugins = with pkgs; [purple-matrix purple-discord];
     # };
+  };
+  services.mako = {
+    enable = true;
+    anchor = "top-center";
+    defaultTimeout = 5;
   };
 }

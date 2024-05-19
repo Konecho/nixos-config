@@ -1,8 +1,6 @@
 {pkgs, ...}: {
   imports = [
     # ./gnome.nix
-    # ./kde.nix
-    # ./ags.nix
     # ./niri.nix
     ./river.nix
   ];
@@ -15,8 +13,10 @@
       default_session = {
         command = builtins.concatStringsSep " " [
           "tuigreet"
-          "--remember"
-          ''--time --time-format="%F %T"''
+          "--user-menu"
+          "--user-menu-min-uid 1000"
+          "--user-menu-max-uid 1000"
+          # ''--time --time-format="%F %T"''
           "--asterisks "
           "--power-shutdown 'shutdown -h now'"
           # "--cmd niri-session"
