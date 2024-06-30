@@ -60,5 +60,7 @@
     enable = true;
     anchor = "top-center";
     defaultTimeout = 5;
+    width = 450;
+    height = 300;
   };
 }

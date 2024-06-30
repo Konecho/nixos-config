@@ -3,12 +3,9 @@
   lib,
   config,
   ...
-}: {
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    # fcitx.engines = with pkgs.fcitx-engines; [ rime ];
-    # fcitx5.enableRimeData = true;
-    fcitx5.addons = with pkgs; [
+}: let
+  fcitx5Package = pkgs.libsForQt5.fcitx5-with-addons.override {
+    addons = with pkgs; [
       fcitx5-chinese-addons
       fcitx5-gtk
       # fcitx5-rime
@@ -19,5 +16,12 @@
       # fcitx5-mozc
     ];
   };
-  # systemd.user.services.fcitx5-daemon.Service.ExecStart = lib.mkForce "${config.i18n.inputMethod.package}/bin/fcitx5 --keep";
+in {
+  home.packages = [
+    fcitx5Package
+  ];
+  home.sessionVariables = {
+    XMODIFIERS = "@im=fcitx";
+    QT_PLUGIN_PATH = "${fcitx5Package}/${pkgs.qt6.qtbase.qtPluginPrefix}";
+  };
 }

@@ -26,6 +26,7 @@
     spawn-at-startup = [
       {command = ["clash-verge"];}
       {command = ["mako"];}
+      {command = ["fcitx5 -r -d"];}
     ];
     prefer-no-csd = true;
     screenshot-path = "~/media/photos/screenshots/niri %Y-%m-%d %H-%M-%S.png";
