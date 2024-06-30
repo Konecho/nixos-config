@@ -27,7 +27,8 @@
       {command = ["clash-verge"];}
       {command = ["mako"];}
     ];
-    screenshot-path = config.xdg.userDirs.pictures + "/screenshots/niri %Y-%m-%d %H-%M-%S.png";
+    prefer-no-csd = true;
+    screenshot-path = "~/media/photos/screenshots/niri %Y-%m-%d %H-%M-%S.png";
     binds = let
       withModifierSpawn = modifier: attrs: (lib.mapAttrs' (name: value: {
           name = modifier + "+" + name;
@@ -38,6 +39,7 @@
       (withModifierSpawn "Mod" {
         "D" = "fuzzel";
         "T" = "wezterm";
+        "Return" = "wezterm";
       })
       // (
         let

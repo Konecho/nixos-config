@@ -38,7 +38,7 @@ img = Path(os.environ["XDG_RUNTIME_DIR"]) / "pokemon.png"
 name = Path(os.environ["XDG_RUNTIME_DIR"]) / "pokemon"
 cnname = index[f"{id:03}"]["name"]["chs"]
 
-os.system(f"convert -trim {select.as_posix()} {img.as_posix()}")
+os.system(f"magick {select.as_posix()} -trim {img.as_posix()}")
 if not os.environ.get("NAME") == "wsl":
     os.system(f"catimg {img.as_posix()}")
 os.system(f'echo "{cnname}" > {name.as_posix()}')
