@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
     # ./gnome.nix
-    # ./niri.nix
+    ./niri.nix
     ./river.nix
   ];
   environment.systemPackages = with pkgs; [

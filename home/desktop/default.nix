@@ -11,7 +11,7 @@
 
     # ./gnome.nix
 
-    # ./niri.nix
+    ./niri.nix
     ./river.nix
 
     ./wl-utils.nix

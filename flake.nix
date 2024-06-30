@@ -37,6 +37,7 @@
       url = "github:msikma/pokesprite";
       flake = false;
     };
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs = inputs: let

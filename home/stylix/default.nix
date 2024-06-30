@@ -14,9 +14,19 @@
 
   # https://danth.github.io/stylix/options/hm.html
   stylix = {
+    enable = true;
+    # cursor = {
+    #   package = pkgs.phinger-cursors;
+    #   name = "phinger-cursors-${
+    #     if config.stylix.polarity == "light"
+    #     then "light"
+    #     else "dark"
+    #   }";
+    #   size = 24;
+    # };
     cursor = {
-      package = pkgs.phinger-cursors;
-      name = "phinger-cursors-${
+      package = pkgs.graphite-cursors;
+      name = "graphite-${
         if config.stylix.polarity == "light"
         then "light"
         else "dark"
