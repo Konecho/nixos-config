@@ -29,6 +29,17 @@
     ];
     prefer-no-csd = true;
     screenshot-path = "~/media/photos/screenshots/niri %Y-%m-%d %H-%M-%S.png";
+    window-rules = [
+      {
+        geometry-corner-radius = {
+          bottom-left = 12.0;
+          bottom-right = 12.0;
+          top-left = 12.0;
+          top-right = 12.0;
+        };
+        clip-to-geometry = true;
+      }
+    ];
     binds = let
       withModifierSpawn = modifier: attrs: (lib.mapAttrs' (name: value: {
           name = modifier + "+" + name;
