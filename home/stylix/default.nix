@@ -47,5 +47,6 @@
       };
     };
     targets.vim.enable = false;
+    targets.fish.enable = false;
   };
 }

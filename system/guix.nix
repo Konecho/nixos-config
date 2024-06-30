@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   services.guix = {
-    enable = true;
+    enable = false;
     storeDir = "/gnu/store";
     stateDir = "/gnu/var";
     extraArgs = [

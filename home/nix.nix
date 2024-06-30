@@ -61,6 +61,7 @@
     nvd
     # rnix-lsp
     alejandra # formatter
+    cachix
 
     nix-output-monitor # nom build/develop/shell
   ];

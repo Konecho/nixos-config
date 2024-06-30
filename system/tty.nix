@@ -2,31 +2,34 @@
   pkgs,
   lib,
   ...
-}: let
-  logVtNum = 1;
-  graphVtNum = 7;
-in {
-  boot.kernelParams = ["console=tty${builtins.toString logVtNum}"];
-  services = {
-    greetd = {
-      # enable = false;
-      vt = graphVtNum;
-      settings = lib.mkDefault {
-        default_session = lib.mkDefault {
-          command = "${pkgs.greetd.greetd}/bin/agreety --cmd ${pkgs.fish}/bin/fish";
-        };
-      };
-    };
-    # xserver.tty = graphVtNum;
-    journald.console = "/dev/tty${builtins.toString logVtNum}";
-    gpm.enable = true; # enables mouse support in virtual consoles.
-  };
-  systemd.services."kmsconvt@tty${builtins.toString logVtNum}".enable = false;
-  systemd.services."autovt@tty${builtins.toString logVtNum}".enable = false;
+}: {
+  services.greetd.vt = 1;
+  boot.kernelParams = ["console=tty2"];
+  services.journald.console = "/dev/tty3";
 
-  # programs.regreet = {
+  services.greetd.settings.default_session.command = lib.mkDefault "${pkgs.greetd.greetd}/bin/agreety --cmd ${pkgs.fish}/bin/fish";
+
+  services.gpm.enable = true; # enables mouse support in virtual consoles.
+
+  # systemd.services = {
+  #   "kmsconvt@tty1".enable = false;
+  #   "kmsconvt@tty2".enable = false;
+  #   "kmsconvt@tty3".enable = false;
+  #   "autovt@tty1".enable = false;
+  #   "autovt@tty2".enable = false;
+  #   "autovt@tty3".enable = false;
+  # };
+  # services.kmscon = {
   #   enable = true;
-  #   settings.default_session = { command = "Hyprland"; user = "mei"; };
+  #   hwRender = true;
+  #   fonts = [
+  #     {
+  #       package = pkgs.maple-mono-SC-NF;
+  #       name = "Maple Mono SC NF";
+  #     }
+  #   ];
+  #   extraOptions = "--term xterm-256color";
+  #   extraConfig = "font-size=15";
   # };
 }
 ## <sudo chvt N> to switch

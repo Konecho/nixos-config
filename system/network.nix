@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   networking.networkmanager.enable = true; # <nmcli device wifi list/connect>
 
   networking.proxy.default = "http://127.0.0.1:7890/"; #1080:=v2ray;7890:=clash
@@ -14,4 +14,18 @@
 ";
 
   networking.firewall.enable = false;
+
+  # services.mihomo = {
+  #   enable = true;
+  #   # webui = "";
+  #   configFile = pkgs.writeTextFile {
+  #     name = "config.yaml";
+  #     text = ''
+  #       mixed-port: 7890
+  #       external-controller: 127.0.0.1:9090
+  #     '';
+  #   };
+  #   # authentication:
+  #   # - "user:supersecret"
+  # };
 }

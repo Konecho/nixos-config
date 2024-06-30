@@ -72,7 +72,7 @@
         inherit username pkgs system;
         modules =
           [
-            (inputs.nixpkgs + "/nixos/modules/programs/wayland/wayland-session.nix")
+            # (inputs.nixpkgs + "/nixos/modules/programs/wayland/wayland-session.nix")
             ./hosts/deskmini/hardware-configuration.nix
           ]
           ++ (lib.scanPath {path = ./system;});
