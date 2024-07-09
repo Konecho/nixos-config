@@ -98,6 +98,7 @@
         "Mod+Page_Up".action = focus-workspace-up;
         "Mod+U".action = focus-workspace-down;
         "Mod+I".action = focus-workspace-up;
+
         "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;
         "Mod+Ctrl+Page_Up".action = move-column-to-workspace-up;
         "Mod+Ctrl+U".action = move-column-to-workspace-down;
@@ -116,6 +117,9 @@
           cooldown-ms = 150;
           action = focus-workspace-up;
         };
+        "Mod+WheelScrollRight".action = focus-column-right;
+        "Mod+WheelScrollLeft".action = focus-column-left;
+
         "Mod+Ctrl+WheelScrollDown" = {
           cooldown-ms = 150;
           action = move-column-to-workspace-down;
@@ -124,12 +128,12 @@
           cooldown-ms = 150;
           action = move-column-to-workspace-up;
         };
-        "Mod+WheelScrollRight".action = focus-column-right;
-        "Mod+WheelScrollLeft".action = focus-column-left;
         "Mod+Ctrl+WheelScrollRight".action = move-column-right;
         "Mod+Ctrl+WheelScrollLeft".action = move-column-left;
+
         "Mod+Shift+WheelScrollDown".action = focus-column-right;
         "Mod+Shift+WheelScrollUp".action = focus-column-left;
+
         "Mod+Ctrl+Shift+WheelScrollDown".action = move-column-right;
         "Mod+Ctrl+Shift+WheelScrollUp".action = move-column-left;
 
@@ -147,9 +151,11 @@
         "Mod+Equal".action.set-column-width = "+10%";
         "Mod+Shift+Minus".action.set-window-height = "-10%";
         "Mod+Shift+Equal".action.set-window-height = "+10%";
+
         "Print".action = screenshot;
         "Ctrl+Print".action = screenshot-screen;
         "Alt+Print".action = screenshot-window;
+
         "Mod+Shift+E".action = quit;
         "Mod+Shift+P".action = power-off-monitors;
       });
