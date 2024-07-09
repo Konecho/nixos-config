@@ -73,7 +73,22 @@
     calc
     termusic
 
-    python3
+    (
+      let
+        python-packages = python-packages:
+          with python-packages; [
+            python-lsp-server
+            autopep8
+            black
+            requests
+
+            ptpython
+          ];
+        python-with-packages = python3.withPackages python-packages;
+      in
+        python-with-packages
+    )
+
     rustup
     just
   ];
