@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   dconf.settings = {
     "org/gnome/shell" = {
       disable-user-extensions = false;
@@ -63,8 +59,8 @@
       ];
     };
   };
-  home.packages = with pkgs.gnomeExtensions;
-    [
+  home.packages =
+    (with pkgs.gnomeExtensions; [
       appindicator
       dash-to-panel
       clipboard-indicator
@@ -78,7 +74,7 @@
       dash-to-dock
       hide-top-bar #
       panel-date-format
-    ]
+    ])
     ++ (with pkgs.gnome; [
       sushi
     ])

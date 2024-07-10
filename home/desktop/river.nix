@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  rootPath,
   ...
 }: let
   withModifier = modifier: attrs: (lib.mapAttrs' (name: value: {
@@ -37,7 +36,7 @@ in {
           Q = "close";
           Space = "toggle-float";
           F = "toggle-fullscreen";
-          T = "spawn river-slurp-term";
+          T = "spawn 'slurp | river-slurp-term'";
           V = "spawn 'wezterm start --class float-clipboard -e cliphist-fzf-sixel &'";
           Print = ''spawn 'grim -g "$(slurp)" - | wl-copy --type image/png' '';
           # Return = "spawn ${pkgs.alacritty}/bin/alacritty";

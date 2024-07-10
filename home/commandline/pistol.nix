@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   programs.pistol.enable = true;
   programs.pistol.associations = with pkgs; [
     {

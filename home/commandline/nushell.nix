@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  inputs,
-  ...
-}: {
+{config, ...}: {
   programs.nushell = {
     enable = true;
     configFile.text = ''

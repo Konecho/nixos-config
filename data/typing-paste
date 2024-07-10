@@ -1,8 +1,0 @@
-#!/bin/sh
-
-path="$(mktemp -d)"/temp.md
-wezterm start --class float-typing -- hx "$path"
-
-if [ -f "$path" ]; then
-    ydotool type -f "$path"
-fi

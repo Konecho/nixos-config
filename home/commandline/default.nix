@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./cli.nix
-    ./riir.nix
+    ./rust-utils.nix
     # ./lowfreq.nix
     ./fish.nix
     ./nushell.nix

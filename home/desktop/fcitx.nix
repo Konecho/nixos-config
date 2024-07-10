@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
+{pkgs, ...}: let
   fcitx5Package = pkgs.libsForQt5.fcitx5-with-addons.override {
     addons = with pkgs; [
       fcitx5-chinese-addons

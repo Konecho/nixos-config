@@ -17,16 +17,18 @@ parser.add_argument("-f", action="store_true")
 parser.add_argument("-s", action="store_true")
 args = parser.parse_args()
 
-f = Path(args.pokesprite) / "data/pokemon.json"
+f = Path(args.pokesprite) / "data" / "pokemon.json"
 if not f.exists:
     os.exit(1)
 index = json.load(f.open())
 # print(index[f'{id:03}'])
 
-
-f = Path(args.pokesprite) / "pokemon-gen8"
-f = f / "shiny" if args.s or minutes % 2 == 1 else f / "regular"
-f = f / "female" if args.f else f
+f = (
+    Path(args.pokesprite)
+    / "pokemon-gen8"
+    / ("shiny" if args.s or minutes % 2 == 1 else "regular")
+    / ("female" if args.f else "")
+)
 
 select = list(f.glob(index[f"{id:03}"]["slug"]["eng"] + "*"))
 if args.f and len(select) == 0:

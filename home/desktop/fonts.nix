@@ -1,19 +1,5 @@
-{pkgs, ...}: let
-  MP = {
-    package = pkgs.maple-mono-SC-NF;
-    name = "Maple Mono SC NF";
-  };
-  CC = {
-    package = pkgs.cascadia-code;
-    name = "Cascadia Code NF";
-  };
-  YH = {
-    package = pkgs.nur.repos.vanilla.Win10_LTSC_2021_fonts;
-    name = "Microsoft YaHei";
-  };
-in {
+{pkgs, ...}: {
   fonts.fontconfig.enable = true;
-  # gtk.font = MP;
   home.packages = with pkgs; [
     maple-mono-SC-NF
     noto-fonts

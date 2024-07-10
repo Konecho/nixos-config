@@ -12,16 +12,10 @@
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
-  # programs.niri.settings = null;
   home.packages = with pkgs; [
     # niri
     cage
   ];
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = [pkgs.xdg-desktop-portal-gnome];
-  #   configPackages = [pkgs.niri];
-  # };
   programs.niri.settings = {
     spawn-at-startup = [
       {command = ["clash-verge"];}
@@ -96,18 +90,10 @@
 
         "Mod+Page_Down".action = focus-workspace-down;
         "Mod+Page_Up".action = focus-workspace-up;
-        "Mod+U".action = focus-workspace-down;
-        "Mod+I".action = focus-workspace-up;
-
         "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;
         "Mod+Ctrl+Page_Up".action = move-column-to-workspace-up;
-        "Mod+Ctrl+U".action = move-column-to-workspace-down;
-        "Mod+Ctrl+I".action = move-column-to-workspace-up;
-
         "Mod+Shift+Page_Down".action = move-workspace-down;
         "Mod+Shift+Page_Up".action = move-workspace-up;
-        "Mod+Shift+U".action = move-workspace-down;
-        "Mod+Shift+I".action = move-workspace-up;
 
         "Mod+WheelScrollDown" = {
           cooldown-ms = 150;
