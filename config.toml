@@ -3,7 +3,7 @@ unfree = [
   "segger-jlink",
   "nrfconnect",
   # "corefonts", # onlyoffice
-  # "android-studio-stable",
+  "android-studio-stable",
   "microsoft-edge-stable",
   "google-chrome",
   "vivaldi",
@@ -11,7 +11,7 @@ unfree = [
   "wechat-uos",
   "obsidian",
   "unrar",
-  "libsciter",      # rustdesk
+  "libsciter",             # rustdesk
   "steam-runtime",
   "steam-original",
   "steam",

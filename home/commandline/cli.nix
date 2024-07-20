@@ -77,7 +77,7 @@
       let
         python-packages = python-packages:
           with python-packages; [
-            python-lsp-server
+            # python-lsp-server
             autopep8
             black
             requests

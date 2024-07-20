@@ -16,12 +16,12 @@
           "--user-menu"
           "--user-menu-min-uid 1000"
           "--user-menu-max-uid 1001"
-          # "--time"
-          ''--time --time-format="%x, %A, %H:%M"''
+          "--time"
+          # ''--time --time-format="%x, %A, %H:%M"''
           "--asterisks "
           "--power-shutdown 'shutdown -h now'"
-          # "--cmd niri-session"
-          "--cmd river"
+          "--cmd niri-session"
+          # "--cmd river"
         ];
       };
     };
