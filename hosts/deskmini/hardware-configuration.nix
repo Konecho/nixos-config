@@ -2,6 +2,7 @@
   config,
   lib,
   modulesPath,
+  username,
   ...
 }: {
   imports = [
@@ -65,11 +66,17 @@
       neededForBoot = true;
       options = btrfsops ++ ["subvol=@tmp"];
     };
+    # "/backup" = {
+    #   device = "/dev/disk/by-label/backup";
+    #   fsType = "btrfs";
+    #   # neededForBoot = false;
+    #   options = ["defaults"];
+    # };
     "/backup" = {
-      device = "/dev/disk/by-label/backup";
-      fsType = "btrfs";
-      # neededForBoot = false;
-      options = ["defaults"];
+      device = "/dev/disk/by-uuid/1E86F54E4D9F5874";
+      fsType = "ntfs-3g";
+      neededForBoot = false;
+      options = ["rw" "uid=${username}"];
     };
   };
   swapDevices = [];

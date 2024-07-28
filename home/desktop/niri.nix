@@ -15,6 +15,7 @@
   home.packages = with pkgs; [
     # niri
     cage
+    xwayland-run
   ];
   programs.niri.settings = {
     spawn-at-startup = [
@@ -33,6 +34,10 @@
           top-right = 12.0;
         };
         clip-to-geometry = true;
+      }
+      {
+        matches = [{title = "Xwayland";}];
+        open-maximized = true;
       }
     ];
     binds = let

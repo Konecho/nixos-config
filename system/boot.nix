@@ -55,7 +55,7 @@ in {
     grub.device = "nodev";
     efi.canTouchEfiVariables = true;
   };
-
+  boot.supportedFilesystems = ["ntfs"];
   # boot.kernelPackages = customKernel;
   # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 }
