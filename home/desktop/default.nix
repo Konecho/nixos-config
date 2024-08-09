@@ -4,8 +4,6 @@
     ./fcitx.nix
     ./theme.nix
 
-    # ./gnome.nix
-
     ./niri.nix
     ./river.nix
 

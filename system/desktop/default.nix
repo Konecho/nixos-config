@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    # ./gnome.nix
     ./niri.nix
     ./river.nix
     ./cosmic.nix
