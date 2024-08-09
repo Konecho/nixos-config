@@ -10,5 +10,7 @@
     ./river.nix
 
     ./wl-utils.nix
+
+    ./gbar.nix
   ];
 }

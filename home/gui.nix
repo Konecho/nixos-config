@@ -5,6 +5,7 @@
     # rustdesk
     motrix
     clash-verge-rev
+    clash-nyanpasu
 
     obsidian
     czkawka # duplicates
@@ -36,7 +37,7 @@
     #     hash = "sha256-qVoA8IZYLUJ6Li/M8ORjkfntc06oMVD7739F79sFLjM=";
     #   };
     # }))
-    android-studio
+    # android-studio
   ];
   programs = {
     qutebrowser = {

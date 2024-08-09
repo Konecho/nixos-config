@@ -38,6 +38,7 @@
       flake = false;
     };
     niri.url = "github:sodiboo/niri-flake";
+    gBar.url = "github:scorpion-26/gBar";
   };
 
   outputs = inputs: let
