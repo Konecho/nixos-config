@@ -39,6 +39,10 @@
     };
     niri.url = "github:sodiboo/niri-flake";
     gBar.url = "github:scorpion-26/gBar";
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let

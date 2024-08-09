@@ -1,8 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     # ./gnome.nix
     ./niri.nix
     ./river.nix
+    ./cosmic.nix
   ];
   environment.systemPackages = with pkgs; [
     greetd.tuigreet
@@ -10,7 +15,7 @@
   services.greetd = {
     enable = true;
     settings = {
-      default_session = {
+      default_session = lib.mkDefault {
         command = builtins.concatStringsSep " " [
           "tuigreet"
           "--user-menu"
