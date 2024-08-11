@@ -1,16 +1,16 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./niri.nix
     ./river.nix
     # ./cosmic.nix
   ];
   environment.systemPackages = with pkgs; [
-    # greetd.tuigreet
-    mypkgs.tuigreet
+    (greetd.tuigreet.overrideAttrs (f: p: {
+      postPatch = ''
+        mkdir -p contrib/locales/zh-CN
+        ln -s ${./tuigreet.zh-CN.ftl} contrib/locales/zh-CN/tuigreet.ftl
+      '';
+    }))
   ];
   services.greetd = {
     enable = true;
