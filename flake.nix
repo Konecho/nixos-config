@@ -43,6 +43,10 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ironbar = {
+      url = "github:JakeStanger/ironbar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let

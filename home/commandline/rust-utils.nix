@@ -12,8 +12,10 @@
     # ps = "procs";
     # sed = "sd";
     # rm = "trash put";
+    # cut = "hck";
   };
   home.packages = with pkgs; [
+    hck
     fd
     du-dust
     ripgrep

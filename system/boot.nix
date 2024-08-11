@@ -10,7 +10,7 @@
     rev = "0d0015730edd2190dee7233f87dd72c423bb75e9";
     hash = "sha256-2PifENv3HD9a1q+uPsMnFp5RHdGcV4qOyX4e5dmDHK4=";
   };
-  version = "6.6.31";
+  version = "6.6.44";
   versionX = lib.versions.major version;
   versionX_X = lib.versions.majorMinor version;
   # TODO lock dependency version
@@ -27,7 +27,7 @@
 
         src = fetchurl {
           url = "mirror://kernel/linux/kernel/v${versionX}.x/linux-${version}.tar.xz";
-          sha256 = "sha256:080wwrc231fbf43hvvygddmdxdspyw23jc5vnd6fr5ccdybgzv6n";
+          sha256 = "sha256-kyGClpNJFWNv5roI4SWUhCTMJw/YlIUCwKuRCHqfzNg=";
         };
 
         kernelPatches = [
@@ -56,6 +56,6 @@ in {
     efi.canTouchEfiVariables = true;
   };
   boot.supportedFilesystems = ["ntfs"];
-  # boot.kernelPackages = customKernel;
+  boot.kernelPackages = customKernel;
   # boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 }

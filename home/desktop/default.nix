@@ -9,6 +9,6 @@
 
     ./wl-utils.nix
 
-    ./gbar.nix
+    ./ironbar.nix
   ];
 }
