@@ -40,6 +40,12 @@
         open-maximized = true;
       }
     ];
+    input = {
+      focus-follows-mouse = {
+        enable = true;
+        max-scroll-amount = "20%";
+      };
+    };
     binds = let
       withModifierSpawn = modifier: attrs: (lib.mapAttrs' (name: value: {
           name = modifier + "+" + name;
