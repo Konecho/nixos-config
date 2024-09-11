@@ -14,13 +14,12 @@
     ]
     ++ (map (path: rootPath + path) [
       /system/core.nix
-      /system/locale.nix
       /system/misc.nix
       /system/nix.nix
       /system/age
     ]);
   # services.xserver.enable=true;
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   # hardware.opengl.extraPackages = with pkgs; [mesa.drivers];
   wsl = {
     enable = true;

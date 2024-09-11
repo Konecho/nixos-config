@@ -41,6 +41,6 @@ name = Path(os.environ["XDG_RUNTIME_DIR"]) / "pokemon"
 cnname = index[f"{id:03}"]["name"]["chs"]
 
 os.system(f"magick {select.as_posix()} -trim {img.as_posix()}")
-if not os.environ.get("NAME") == "wsl":
+if os.environ.get("WSL_DISTRO_NAME") is None:
     os.system(f"catimg {img.as_posix()}")
 os.system(f'echo "{cnname}" > {name.as_posix()}')
