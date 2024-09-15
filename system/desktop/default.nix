@@ -6,10 +6,10 @@
   ];
   environment.systemPackages = with pkgs; [
     (greetd.tuigreet.overrideAttrs (f: p: {
-      postPatch = ''
-        mkdir -p contrib/locales/zh-CN
-        ln -s ${./tuigreet.zh-CN.ftl} contrib/locales/zh-CN/tuigreet.ftl
-      '';
+      # postPatch = ''
+      #   mkdir -p contrib/locales/zh-CN
+      #   ln -s ${./tuigreet.zh-CN.ftl} contrib/locales/zh-CN/tuigreet.ftl
+      # '';
     }))
   ];
   services.greetd = {
@@ -22,7 +22,8 @@
           "--user-menu-min-uid 1000"
           "--user-menu-max-uid 1001"
           "--time"
-          ''--time-format="%x, %A, %H:%M"''
+          # ''--time-format="%x, %A, %H:%M"''
+          ''--time-format="%H:%M"''
           "--asterisks"
           "--power-shutdown 'shutdown -h now'"
           "--cmd"

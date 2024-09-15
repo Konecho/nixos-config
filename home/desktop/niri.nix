@@ -16,12 +16,15 @@
     # niri
     cage
     xwayland-run
+    xwayland-satellite
+    gamescope
   ];
   programs.niri.settings = {
     spawn-at-startup = [
       {command = ["clash-verge"];}
       {command = ["mako"];}
       {command = ["fcitx5 -r -d"];}
+      {command = ["wpaperd & disown"];}
     ];
     prefer-no-csd = true;
     screenshot-path = "~/media/photos/screenshots/niri %Y-%m-%d %H-%M-%S.png";

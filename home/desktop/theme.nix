@@ -21,6 +21,7 @@
   #     '';
   #   };
   # };
+  programs.wpaperd.enable = true;
   home.packages = with pkgs; [
     swww # wallpaper
     mpv
