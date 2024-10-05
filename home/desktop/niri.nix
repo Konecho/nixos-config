@@ -22,9 +22,11 @@
   programs.niri.settings = {
     spawn-at-startup = [
       {command = ["clash-verge"];}
+      {command = ["wezterm"];}
       {command = ["mako"];}
       {command = ["fcitx5 -r -d"];}
-      {command = ["wpaperd & disown"];}
+      {command = ["wpaperd"];}
+      {command = ["xwayland-satellite"];}
     ];
     prefer-no-csd = true;
     screenshot-path = "~/media/photos/screenshots/niri %Y-%m-%d %H-%M-%S.png";

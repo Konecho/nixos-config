@@ -6,5 +6,6 @@
       extraConfig = builtins.readFile ./wezterm.lua;
     };
     alacritty.enable = true;
+    kitty.enable = true;
   };
 }

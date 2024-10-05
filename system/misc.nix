@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  hardware.pulseaudio.enable = lib.mkDefault true;
+  hardware.pulseaudio.enable = lib.mkDefault false;
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s

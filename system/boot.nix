@@ -50,11 +50,16 @@
 
   customKernel = pkgs.recurseIntoAttrs (pkgs.linuxPackagesFor linux);
 in {
-  boot.loader = {
-    grub.efiSupport = true;
-    grub.device = "nodev";
-    efi.canTouchEfiVariables = true;
+  # boot.loader.grub = {
+  #   efiSupport = true;
+  #   device = "nodev";
+  #   # configurationLimit = 8;
+  # };
+  boot.loader.systemd-boot = {
+    enable = true;
+    configurationLimit = 8;
   };
+  boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs"];
   # boot.kernelPackages = customKernel;
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
