@@ -2,7 +2,8 @@
 unfree = [
   "segger-jlink",
   "nrfconnect",
-  # "corefonts", # onlyoffice
+  "corefonts",             # onlyoffice
+  "vista-fonts",
   "android-studio-stable",
   "microsoft-edge-stable",
   "google-chrome",

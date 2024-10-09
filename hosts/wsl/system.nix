@@ -64,4 +64,8 @@
 
   programs.nix-ld.enable = true;
   services.vscode-server.enable = true;
+  fonts.fontconfig.enable = true;
+  qt.enable = true;
+  qt.platformTheme = "lxqt";
+  qt.style = "adwaita";
 }

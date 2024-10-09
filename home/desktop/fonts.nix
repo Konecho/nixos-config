@@ -10,9 +10,8 @@
     # monocraft
     # nur.repos.vanilla.Win10_LTSC_2021_fonts
     # nur.repos.vanilla.apple-fonts.NY
-    # mypkgs.scutthesis.fonts.windows
     wqy_zenhei
-    mypkgs.teranoptia
+    corefonts
+    vistafonts
   ];
-  # programs.alacritty.settings.font.normal.family = CC.name;
 }
