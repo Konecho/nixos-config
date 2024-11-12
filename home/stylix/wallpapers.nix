@@ -53,6 +53,10 @@
     ];
     dark = [
       (fetchPixiv {
+        url = "https://i.pximg.net/img-original/img/2024/01/19/20/06/51/115301769_p0.jpg";
+        sha256 = "sha256-TlkMJQ+jpiYroyB0/p44qiCM9ef/hbtGjAjVwxnWwfA=";
+      })
+      (fetchPixiv {
         url = "https://i.pximg.net/img-original/img/2024/10/03/00/01/48/122979717_p0.jpg";
         sha256 = "sha256-GeJZ28E9Y2cLYWkejIsr8iUlflbK4A5AY5HojlTUNLo=";
       })

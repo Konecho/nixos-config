@@ -15,10 +15,10 @@
     pamixer
     (write "sandbar-bar")
     sandbar
-    (write "cliphist-fzf-sixel")
-    wl-clipboard
-    chafa
-    wezterm
+    # (write "cliphist-fzf-sixel")
+    # wl-clipboard
+    # chafa
+    # wezterm
     (write "river-slurp-term")
     slurp
     alacritty
