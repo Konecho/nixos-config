@@ -34,7 +34,7 @@
     ];
     usbip = {
       enable = true;
-      autoAttach = ["1-10" "2-2" "2-1"];
+      autoAttach = ["1-10" "2-2" "2-1" "1-4"];
     };
     interop.register = true;
     # useWindowsDriver = true;
@@ -45,8 +45,9 @@
   # users.users."${username}".extraGroups = ["plugdev"]; # not work
   networking.proxy.default = "http://192.168.80.1:7890";
   services.udev.extraRules = ''
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", GROUP="plugdev", TAG+="uaccess"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", GROUP="plugdev", TAG+="uaccess"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", MODE="0666"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", MODE="0666"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6014", MODE="0666"
     ATTRS{product}=="*CMSIS-DAP*", MODE="660", GROUP="plugdev", TAG+="uaccess"
     KERNEL=="ttyS*",MODE="0666"
     KERNEL=="ttyUSB*",MODE="0666"
@@ -62,7 +63,12 @@
     wget # for nix-ld code-server
   ];
 
-  programs.nix-ld.enable = true;
+  nix.gc.automatic = true;
+  nix.gc.dates = "12:30";
+  programs.nix-ld = {
+    enable = true;
+    package = pkgs.nix-ld-rs; # only for NixOS 24.05
+  };
   services.vscode-server.enable = true;
   fonts.fontconfig.enable = true;
   qt.enable = true;

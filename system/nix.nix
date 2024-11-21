@@ -6,11 +6,6 @@
 }: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-  nix.gc = {
-    automatic = false;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
   nix.extraOptions = ''
     keep-outputs = true
     keep-derivations = true
@@ -25,9 +20,5 @@
   nix.settings.trusted-public-keys = [
     "konecho.cachix.org-1:WdZC2zag05oLTaBVQ9X8dI3dw5Lso7DqGRI92hTg+Mc="
   ];
-  system.switch = {
-    enable = false;
-    enableNg = true;
-  };
   system.stateVersion = lib.mkDefault "22.11";
 }
