@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
   programs = {
@@ -17,12 +18,6 @@
         };
     };
     thefuck.enable = true;
-    rbw = {
-      enable = true;
-      settings.email = config.programs.git.userEmail;
-      # settings.pinentry = pkgs.pinentry-rofi;
-      settings.pinentry = pkgs.pinentry-curses;
-    };
     rofi.enable = true;
     navi.enable = true;
     noti.enable = true; # <do-something>;noti> or <noti do-something>
