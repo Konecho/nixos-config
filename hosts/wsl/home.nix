@@ -10,10 +10,7 @@
     /home/editors/helix.nix
     # /home/editors/nvchad.nix
 
-    /home/commandline/cli.nix
-    /home/commandline/rust-utils.nix
-    /home/commandline/fish.nix
-    /home/commandline/pkm-shell.nix
+    /home/commandline/default.nix
 
     /home/desktop/fonts.nix
   ];

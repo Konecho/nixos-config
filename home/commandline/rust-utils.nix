@@ -3,7 +3,6 @@
     man = "batman";
     cat = "bat";
     top = "btm";
-    lf = "yazi";
     tmux = "zellij";
     # cd = "z";
     # find = "fd";
@@ -55,10 +54,6 @@
         pane_frames = false;
         default_layout = "compact";
       };
-    };
-    # ranger/lf/joshuto replacement
-    yazi = {
-      enable = true;
     };
   };
 }

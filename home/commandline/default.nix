@@ -1,13 +1,14 @@
 {...}: {
   imports = [
     ./cli.nix
-    ./rust-utils.nix
-    # ./lowfreq.nix
     ./fish.nix
-    ./nushell.nix
-    ./pkm-shell.nix
-    ./git.nix
     ./gpg.nix
+    # ./lowfreq.nix
+    ./nushell.nix
+    # ./pistol.nix
+    ./pkm-shell.nix
+    ./rust-utils.nix
     ./scripts.nix
+    ./yazi.nix
   ];
 }
