@@ -3,6 +3,7 @@
     ./niri.nix
     ./river.nix
     # ./cosmic.nix
+    ./ghostty.nix
   ];
   environment.systemPackages = with pkgs; [
     (greetd.tuigreet.overrideAttrs (f: p: {

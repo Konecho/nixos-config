@@ -17,5 +17,7 @@
     gitui = {
       enable = true;
     };
+
+    # sudo git config --global --add safe.directory "$PWD"
   };
 }

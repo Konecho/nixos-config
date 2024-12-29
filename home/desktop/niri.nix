@@ -51,6 +51,13 @@
         max-scroll-amount = "20%";
       };
     };
+    outputs."HDMI-A-1" = {
+      mode = {
+        height = 1080;
+        width = 1920;
+      };
+      scale = 1.25;
+    };
     binds = let
       withModifierSpawn = modifier: attrs: (lib.mapAttrs' (name: value: {
           name = modifier + "+" + name;
