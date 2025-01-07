@@ -3,7 +3,7 @@
 
   networking.proxy.default = "http://127.0.0.1:7890/"; #1080:=v2ray;7890:=clash
 
-  networking.proxy.noProxy = "127.0.0.1,localhost,.cn";
+  networking.proxy.noProxy = "127.0.0.1,.local,localhost,.cn";
 
   # services.v2ray = {
   #   enable = true;

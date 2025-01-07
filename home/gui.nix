@@ -7,7 +7,6 @@
     clash-verge-rev
     clash-nyanpasu
 
-    obsidian
     czkawka # duplicates
     # logseq
 

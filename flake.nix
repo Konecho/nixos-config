@@ -41,11 +41,11 @@
     gBar.url = "github:scorpion-26/gBar";
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     ironbar = {
       url = "github:JakeStanger/ironbar";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     ghostty = {
       url = "github:ghostty-org/ghostty";

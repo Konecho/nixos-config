@@ -4,7 +4,9 @@
   lib,
   config,
   ...
-}: {
+}: let
+  TERM = config.home.sessionVariables.TERMINAL;
+in {
   imports = [
     inputs.niri.homeModules.config
     inputs.niri.homeModules.stylix
@@ -22,7 +24,7 @@
   programs.niri.settings = {
     spawn-at-startup = [
       {command = ["clash-verge"];}
-      {command = ["wezterm"];}
+      # {command = ["wezterm start -e btm"];}
       {command = ["mako"];}
       {command = ["fcitx5 -r -d"];}
       {command = ["wpaperd"];}
@@ -67,8 +69,8 @@
     in
       (withModifierSpawn "Mod" {
         "D" = "fuzzel";
-        "T" = "wezterm";
-        "Return" = "wezterm";
+        "T" = TERM;
+        "Return" = TERM;
       })
       // (
         let

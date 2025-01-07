@@ -18,7 +18,7 @@ in {
             mypkgs = inputs.my-nixpkgs.packages."${system}";
             # winfonts = nur.repos.vanilla.Win10_LTSC_2019_fonts;
           })
-          inputs.nur.overlay
+          inputs.nur.overlays.default
         ]
         ++ overlays;
     };

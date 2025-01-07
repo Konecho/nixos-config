@@ -25,7 +25,7 @@
 
     # wayland
     lswt
-    wbg
+    # wbg
   ]);
   services.cliphist.enable = true;
 }

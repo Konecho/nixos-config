@@ -34,12 +34,12 @@ in {
         riverctl border-color-unfocused 0x${base16.base03}
       ''
     )
-    (
-      pkgs.writeShellScriptBin "stylix-bg" ''
-        #!/bin/sh
-        ${pkgs.wbg}/bin/wbg ${config.stylix.image}
-      ''
-    )
+    # (
+    #   pkgs.writeShellScriptBin "stylix-bg" ''
+    #     #!/bin/sh
+    #     ${pkgs.wbg}/bin/wbg ${config.stylix.image}
+    #   ''
+    # )
     (
       pkgs.writeShellScriptBin "stylix-nwg" ''
         #!/bin/sh

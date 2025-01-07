@@ -54,7 +54,7 @@
             " {memory_used}/{memory_total} GB ({memory_percent}%)"
             # "| {swap_used} / {swap_total} GB ({swap_percent}%)"
             # "󰋊 {disk_used:/nix}/{disk_total:/nix} GB ({disk_percent:/nix}%)"
-            "󰓢 {net_up:enp3s0}/{net_down:enp3s0} Mbps"
+            "󰓢 {net_up:wlp4s0}/{net_down:wlp4s0} Mbps"
             "󰖡 {load_average:5}"
             # "󰥔 {uptime}"
           ];
