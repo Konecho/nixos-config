@@ -15,6 +15,10 @@
   #   (fetchPixiv {url = "";sha256 = "";})
   images = {
     light = [
+      (pkgs.fetchurl {
+        url = "https://pbs.twimg.com/media/GhYgRg8aQAAuh6n.jpg";
+        sha256 = "sha256-iX/oUWKbkWRFWHCeJCjRj0DrxNX+toH4+QMCl4NdcKo=";
+      })
       (fetchPixiv {
         url = "https://i.pximg.net/img-original/img/2024/04/28/21/39/34/118242824_p0.png";
         sha256 = "sha256-0QgFLaTo6Da7HWk9sTUQGWCabgKelgA/qs40Cp8/gLw=";
@@ -76,7 +80,7 @@
   };
 in {
   stylix = rec {
-    polarity = "dark"; # “either”, “light”, “dark”
+    polarity = "light"; # “either”, “light”, “dark”
     image = builtins.head (builtins.getAttr polarity images);
   };
 }
