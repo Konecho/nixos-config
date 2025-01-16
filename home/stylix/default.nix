@@ -7,7 +7,6 @@
 }: {
   imports = [
     inputs.stylix.homeManagerModules.stylix
-    ./utils.nix
     ./wallpapers.nix
   ];
   programs.vscode.userSettings = lib.mkForce {};

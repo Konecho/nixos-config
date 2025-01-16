@@ -26,5 +26,8 @@
     swww # wallpaper
     mpv
     # mpvpaper
+
+    lswt
+    # wbg
   ];
 }

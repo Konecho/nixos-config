@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./niri.nix
-    ./river.nix
     # ./cosmic.nix
   ];
   environment.systemPackages = with pkgs; [
@@ -28,7 +27,6 @@
           "--power-shutdown 'shutdown -h now'"
           "--cmd"
           "niri-session"
-          # "river"
         ];
       };
     };

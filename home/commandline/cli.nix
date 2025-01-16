@@ -15,6 +15,11 @@
           ["os"]
         )
         // {
+          character = {
+            error_symbol = "[x_x](bold red)";
+            success_symbol = "[>_<](bold green)";
+            vimcmd_symbol = "[0.0](bold green)";
+          };
         };
     };
     thefuck.enable = true;
