@@ -6,7 +6,7 @@
   ...
 }: {
   home.shellAliases = lib.mkIf (config.programs.zellij.enable) {
-    zellij = ''zellij -s "$(cat $XDG_RUNTIME_DIR/pokemon)"'';
+    zl = ''zellij -s "$(cat $XDG_RUNTIME_DIR/pokemon)"'';
   };
   programs = {
     fish.functions.fish_greeting = ''

@@ -9,6 +9,7 @@
     taplo # toml
     markdown-oxide
   ];
+  programs.gitui.enable = true;
   programs.helix = {
     enable = true;
     defaultEditor = true;
@@ -78,6 +79,13 @@
     settings.editor.lsp = {
       display-messages = true;
       display-inlay-hints = true;
+    };
+    settings.keys.normal.backspace = {
+      b = ":run-shell-command zellij run -f -- just build";
+      f = ":run-shell-command zellij run -fc -- broot";
+      g = ":run-shell-command zellij run -fc -- gitui";
+      r = ":run-shell-command zellij run -f -- just run";
+      t = ":run-shell-command zellij run -f -- just test";
     };
     # settings.theme = "monokai_pro_machine";
   };
