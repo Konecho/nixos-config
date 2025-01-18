@@ -1,5 +1,14 @@
 {pkgs, ...}: {
   home.sessionVariables.EDITOR = "hx";
+  home.packages = with pkgs; [
+    ## 非配置语言在自己项目的flake环境里开启
+    nodePackages.bash-language-server
+    yaml-language-server
+    ruff # python
+    vscode-langservers-extracted # css/html/json/markdown
+    taplo # toml
+    markdown-oxide
+  ];
   programs.helix = {
     enable = true;
     defaultEditor = true;
@@ -45,7 +54,7 @@
           name = "markdown";
           scope = "source.markdown";
           file-types = ["md" "markdown"];
-          language-servers = ["rime-ls"];
+          # language-servers = ["rime-ls"];
         }
       ];
     languages.language-server = with pkgs; {
