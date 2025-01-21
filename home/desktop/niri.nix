@@ -21,6 +21,7 @@ in {
     xwayland-satellite
     gamescope
   ];
+  programs.fuzzel.enable = true;
   programs.niri.settings = {
     spawn-at-startup = [
       {command = ["clash-verge"];}

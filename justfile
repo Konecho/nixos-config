@@ -1,15 +1,16 @@
 run:
-    just -l
+    doas git config --global --add safe.directory "$PWD"
+    doas nixos-rebuild switch --flake .
 update *input:
     if [ -z {{input}} ];then nix flake update;else nix flake lock --update-input {{input}};fi
 home:
     home-manager build --flake . -b backup |& nom
     nvd diff $NIX_USER_PROFILE_DIR/profile result
     home-manager switch --flake . -b backup
-sys:
+sys:build run
+build:
     nixos-rebuild build --flake . |& nom
     nvd diff /run/current-system result
-    doas nixos-rebuild switch --flake .
 clean:
     yazi /nix/var/nix/profiles
     nix store gc
