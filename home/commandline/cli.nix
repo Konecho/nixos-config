@@ -31,6 +31,7 @@
     broot.enable = true; # <br> tree-view search
     direnv = {
       enable = true;
+      silent = true;
       nix-direnv.enable = true;
     };
     ## <tldr>
@@ -65,6 +66,7 @@
     # [system]
     sysz
     jq
+    usbutils # <lsusb>
 
     # [tui]
     vtm
@@ -89,6 +91,8 @@
         python-with-packages
     )
 
+    # [development]
+    devenv
     rustup
     just
   ];
