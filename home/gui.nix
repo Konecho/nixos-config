@@ -3,16 +3,16 @@
   home.sessionVariables.BROWSER = "qutebrowser";
   home.packages = with pkgs; [
     # rustdesk
-    motrix
-    clash-verge-rev
+    # motrix
+    # clash-verge-rev
     clash-nyanpasu
 
-    czkawka # duplicates
+    # czkawka # duplicates
     # logseq
 
     # surf
     # microsoft-edge
-    google-chrome
+    # google-chrome
     # vivaldi
     firefox
     # firefox-devedition
@@ -51,17 +51,10 @@
         obs-pipewire-audio-capture
       ];
     };
-    zathura.enable = true;
+    zathura.enable = true; # pdf viewer
     # pidgin = {
     #   enable = true;
     #   plugins = with pkgs; [purple-matrix purple-discord];
     # };
-  };
-  services.mako = {
-    enable = true;
-    anchor = "top-center";
-    defaultTimeout = 5;
-    width = 450;
-    height = 300;
   };
 }

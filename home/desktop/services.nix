@@ -3,6 +3,30 @@
   config,
   ...
 }: {
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+  home.packages = with pkgs; [
+    # niri
+    cage
+    xwayland-run
+    xwayland-satellite
+    gamescope
+
+    mpv
+    # mpvpaper
+
+    lswt
+  ];
+  programs.wpaperd.enable = true;
+  programs.fuzzel.enable = true;
+  services.mako = {
+    enable = true;
+    anchor = "top-center";
+    defaultTimeout = 5;
+    width = 450;
+    height = 300;
+  };
   gtk = {
     enable = true;
   };
@@ -21,13 +45,4 @@
   #     '';
   #   };
   # };
-  programs.wpaperd.enable = true;
-  home.packages = with pkgs; [
-    swww # wallpaper
-    mpv
-    # mpvpaper
-
-    lswt
-    # wbg
-  ];
 }

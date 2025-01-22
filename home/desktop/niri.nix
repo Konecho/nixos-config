@@ -11,17 +11,6 @@ in {
     inputs.niri.homeModules.config
     inputs.niri.homeModules.stylix
   ];
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
-  home.packages = with pkgs; [
-    # niri
-    cage
-    xwayland-run
-    xwayland-satellite
-    gamescope
-  ];
-  programs.fuzzel.enable = true;
   programs.niri.settings = {
     spawn-at-startup = [
       {command = ["clash-verge"];}

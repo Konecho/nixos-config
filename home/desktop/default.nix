@@ -2,7 +2,7 @@
   imports = [
     ./fonts.nix
     ./fcitx.nix
-    ./theme.nix
+    ./services.nix
 
     ./niri.nix
 

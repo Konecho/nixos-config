@@ -6,6 +6,10 @@
       # fcitx5-rime
       # rime-data
 
+      fcitx5-chinese-addons
+      fcitx5-pinyin-moegirl
+      fcitx5-pinyin-minecraft
+
       ## japanese
       fcitx5-anthy
       # fcitx5-mozc
