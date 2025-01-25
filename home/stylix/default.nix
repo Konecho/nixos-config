@@ -32,7 +32,9 @@
       }";
       size = 24;
     };
-    opacity = {terminal = 0.85;};
+    opacity = {
+      terminal = 0.85;
+    };
     fonts = let
       MAPLE = {
         package = pkgs.maple-mono-SC-NF;

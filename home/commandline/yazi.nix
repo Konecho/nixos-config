@@ -61,7 +61,10 @@
           desc = "Maximize or restore the preview pane";
         }
         {
-          on = ["c" "m"];
+          on = [
+            "c"
+            "m"
+          ];
           run = "plugin chmod";
           desc = "Chmod on selected files";
         }

@@ -34,7 +34,12 @@
     ];
     usbip = {
       enable = true;
-      autoAttach = ["1-10" "2-2" "2-1" "1-4"];
+      autoAttach = [
+        "1-10"
+        "2-2"
+        "2-1"
+        "1-4"
+      ];
     };
     interop.register = true;
     # useWindowsDriver = true;

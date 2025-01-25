@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   networking.networkmanager.enable = true; # <nmcli device wifi list/connect>
 
-  networking.proxy.default = "http://127.0.0.1:7890/"; #1080:=v2ray;7890:=clash
+  networking.proxy.default = "http://127.0.0.1:7890/"; # 1080:=v2ray;7890:=clash
 
   networking.proxy.noProxy = "127.0.0.1,.local,localhost,.cn";
 

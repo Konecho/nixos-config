@@ -10,10 +10,9 @@
       enable = true;
       enableTransience = true;
       settings =
-        (
-          removeAttrs (builtins.fromTOML (builtins.readFile "${pkgs.starship}/share/starship/presets/plain-text-symbols.toml"))
-          ["os"]
-        )
+        (removeAttrs (builtins.fromTOML (
+          builtins.readFile "${pkgs.starship}/share/starship/presets/plain-text-symbols.toml"
+        )) ["os"])
         // {
           character = {
             error_symbol = "[x_x](bold red)";

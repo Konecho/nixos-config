@@ -53,7 +53,9 @@ in {
     binds = let
       withModifierSpawn = modifier: attrs: (lib.mapAttrs' (name: value: {
           name = modifier + "+" + name;
-          value = {action.spawn = value;};
+          value = {
+            action.spawn = value;
+          };
         })
         attrs);
     in
@@ -68,12 +70,14 @@ in {
             if (num == 0)
             then {}
             else
-              ({
+              (
+                {
                   "Mod+${builtins.toString num}".action.focus-workspace = num;
                   "Mod+Shift+${builtins.toString num}".action.move-window-to-workspace = num;
                   "Mod+Ctrl+${builtins.toString num}".action.move-column-to-workspace = num;
                 }
-                // mkWorkspaceBinds (num - 1));
+                // mkWorkspaceBinds (num - 1)
+              );
         in (mkWorkspaceBinds 9)
       )
       // (with config.lib.niri.actions; {

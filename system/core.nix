@@ -21,9 +21,9 @@
     home-manager
     helix
 
-    (lib.mkIf (! config.security.sudo.enable
-      && config.security.doas.enable)
-    (writeScriptBin "sudo" ''exec doas "$@"''))
+    (lib.mkIf (!config.security.sudo.enable && config.security.doas.enable) (
+      writeScriptBin "sudo" ''exec doas "$@"''
+    ))
   ];
 
   programs = {

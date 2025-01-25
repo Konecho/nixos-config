@@ -5,7 +5,10 @@
   username,
   ...
 }: {
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   nix.extraOptions = ''
     keep-outputs = true

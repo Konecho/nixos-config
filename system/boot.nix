@@ -19,9 +19,9 @@
     buildLinux,
     ...
   } @ args:
-    buildLinux (args
-      // rec
-      {
+    buildLinux (
+      args
+      // rec {
         inherit version;
         modDirVersion = version;
 
@@ -45,7 +45,8 @@
 
         extraMeta.branch = versionX_X;
       }
-      // (args.argsOverride or {}));
+      // (args.argsOverride or {})
+    );
   linux = pkgs.callPackage linuxPackage {};
 
   customKernel = pkgs.recurseIntoAttrs (pkgs.linuxPackagesFor linux);

@@ -5,13 +5,15 @@
     sha256,
     ...
   } @ attrs:
-    pkgs.fetchurl (attrs
+    pkgs.fetchurl (
+      attrs
       // {
         inherit url sha256;
         netrcPhase = ''
           curlOpts="$curlOpts --referer "https://www.pixiv.net/""
         '';
-      });
+      }
+    );
   #   (fetchPixiv {url = "";sha256 = "";})
   images = {
     light = [

@@ -51,6 +51,7 @@
     nix-tree
     nix-melt
     nix-diff
+    nixfmt-rfc-style
     nil # lsp
     nixd
     nvd

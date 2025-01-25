@@ -21,8 +21,20 @@
       };
       bufferline = "multiple";
       statusline = {
-        left = ["mode" "spinner" "version-control" "file-modification-indicator" "diagnostics"];
-        right = ["position" "primary-selection-length" "file-encoding" "file-line-ending" "file-type"];
+        left = [
+          "mode"
+          "spinner"
+          "version-control"
+          "file-modification-indicator"
+          "diagnostics"
+        ];
+        right = [
+          "position"
+          "primary-selection-length"
+          "file-encoding"
+          "file-line-ending"
+          "file-type"
+        ];
       };
       indent-guides = {
         # "▏", "┆", "┊", "⸽", "╎"
@@ -36,25 +48,36 @@
       builtins.map (x: x // {auto-format = true;}) [
         {
           name = "nix";
-          formatter = {command = "${alejandra}/bin/alejandra";};
+          formatter = {
+            command = "${alejandra}/bin/alejandra";
+          };
           language-servers = ["nixd"];
         }
         {
           name = "python";
-          formatter = {command = "${black}/bin/black";};
+          formatter = {
+            command = "${black}/bin/black";
+          };
         }
         {
           name = "bash";
-          formatter = {command = "${shfmt}/bin/shfmt";};
+          formatter = {
+            command = "${shfmt}/bin/shfmt";
+          };
         }
         {
           name = "toml";
-          formatter = {command = "${taplo}/bin/taplo fmt -";};
+          formatter = {
+            command = "${taplo}/bin/taplo fmt -";
+          };
         }
         {
           name = "markdown";
           scope = "source.markdown";
-          file-types = ["md" "markdown"];
+          file-types = [
+            "md"
+            "markdown"
+          ];
           # language-servers = ["rime-ls"];
         }
       ];
