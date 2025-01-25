@@ -974,6 +974,21 @@
         "type": "github"
       }
     },
+    "preservation": {
+      "locked": {
+        "lastModified": 1735322114,
+        "narHash": "sha256-b0ftF6cGH0JoZin93bmycx5qvM4fx6jCR8eM0q6k64s=",
+        "owner": "nix-community",
+        "repo": "preservation",
+        "rev": "089ffe54b44db2b6418dd024a7266c8c9343f805",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "preservation",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -993,6 +1008,7 @@
         "nixpkgs-stable": "nixpkgs-stable_4",
         "nur": "nur",
         "pokesprite": "pokesprite",
+        "preservation": "preservation",
         "stylix": "stylix",
         "vscode-server": "vscode-server"
       }

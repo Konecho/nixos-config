@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
+    preservation.url = "github:nix-community/preservation";
     nur.url = "github:nix-community/NUR";
     my-nixpkgs = {
       url = "github:Konecho/my-nixpkgs";
