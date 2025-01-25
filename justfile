@@ -1,6 +1,10 @@
 run:
     doas git config --global --add safe.directory "$PWD"
     doas nixos-rebuild switch --flake .
+run-offline:
+    doas git config --global --add safe.directory "$PWD"
+    # doas nixos-rebuild switch --flake . --option substitute false
+    doas nixos-rebuild switch --flake . --option binary-caches ""
 update *input:
     if [ -z {{input}} ];then nix flake update;else nix flake lock --update-input {{input}};fi
 home:
