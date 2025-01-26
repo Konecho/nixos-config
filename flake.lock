@@ -520,11 +520,11 @@
         "tgt": "tgt"
       },
       "locked": {
-        "lastModified": 1734947928,
-        "narHash": "sha256-QlXgB8RaN92I44P5zZZiEcf5O8EWP6mIhGYyyUNWmg4=",
+        "lastModified": 1737859711,
+        "narHash": "sha256-Oce7OP+7he+P3mfjTo+9JyCgpSHAVQn7DCAiz5TgqdA=",
         "owner": "Konecho",
         "repo": "my-nixpkgs",
-        "rev": "aece32b9be127d20397ec520dfbebc452ea8d3b2",
+        "rev": "289bcdc7895439e012fd89def2ca80def9b67506",
         "type": "github"
       },
       "original": {

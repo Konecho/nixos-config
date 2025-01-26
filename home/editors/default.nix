@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./helix.nix
   ];
@@ -9,6 +13,7 @@
       # "~/.vscode/extensions" "~/.vscode-oss/extensions"
       # "~/.config/Code/User/settings.json" "~/.config/VSCodium/User/settings.json"
       package = pkgs.vscodium;
+      userSettings = lib.mkForce {};
     };
   };
 }

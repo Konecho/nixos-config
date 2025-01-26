@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   config,
   inputs,
   ...
@@ -9,28 +8,27 @@
     inputs.stylix.homeManagerModules.stylix
     ./wallpapers.nix
   ];
-  programs.vscode.userSettings = lib.mkForce {};
 
   # https://danth.github.io/stylix/options/hm.html
   stylix = {
     enable = true;
-    # cursor = {
-    #   package = pkgs.phinger-cursors;
-    #   name = "phinger-cursors-${
-    #     if config.stylix.polarity == "light"
-    #     then "light"
-    #     else "dark"
-    #   }";
-    #   size = 24;
-    # };
     cursor = {
-      package = pkgs.graphite-cursors;
-      name = "graphite-${
-        if config.stylix.polarity == "light"
-        then "light"
-        else "dark"
-      }";
       size = 24;
+      #   package = pkgs.phinger-cursors;
+      #   name = "phinger-cursors-${
+      #     if config.stylix.polarity == "light"
+      #     then "light"
+      #     else "dark"
+      #   }";
+      package = pkgs.mypkgs.neuro-sama-cursor;
+      name = "Neuro-sama";
+      # cursor = {
+      # package = pkgs.graphite-cursors;
+      # name = "graphite-${
+      #   if config.stylix.polarity == "light"
+      #   then "light"
+      #   else "dark"
+      # }";
     };
     opacity = {
       terminal = 0.85;
@@ -57,7 +55,6 @@
         name = "Noto Color Emoji";
       };
     };
-    targets.vim.enable = false;
-    targets.fish.enable = false;
+    # targets.fish.enable = false;
   };
 }

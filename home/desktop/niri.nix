@@ -13,7 +13,7 @@ in {
   ];
   programs.niri.settings = {
     spawn-at-startup = [
-      {command = ["clash-verge"];}
+      # {command = ["clash-verge"];}
       # {command = ["wezterm start -e btm"];}
       {command = ["mako"];}
       {command = ["fcitx5 -r -d"];}
