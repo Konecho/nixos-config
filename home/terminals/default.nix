@@ -5,7 +5,7 @@
       enable = true;
       extraConfig = builtins.readFile ./wezterm.lua;
     };
-    alacritty.enable = true;
+    # alacritty.enable = true;
     ghostty = {
       enable = true;
       settings = {

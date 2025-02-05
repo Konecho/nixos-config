@@ -12,8 +12,14 @@ in {
     inputs.niri.homeModules.stylix
   ];
   programs.niri.settings = {
+    environment = {
+      GDK_BACKEND = "wayland"; # gtk wayland
+      QT_QPA_PLATFORM = "wayland"; # qt wayland
+      MOZ_ENABLE_WAYLAND = "1"; # firefox / icecat
+      DISPLAY = ":0"; # xwayland-satellite
+    };
     spawn-at-startup = [
-      # {command = ["clash-verge"];}
+      {command = ["clash-nyanpasu"];}
       # {command = ["wezterm start -e btm"];}
       {command = ["mako"];}
       {command = ["fcitx5 -r -d"];}

@@ -40,6 +40,7 @@
         {
           file = "/etc/machine-id";
           inInitrd = true;
+          how = "symlink";
         }
       ];
       directories = [
@@ -60,5 +61,19 @@
       ];
       users.${username} = {};
     };
+  };
+  # A work round for systemd-machine-id-commit.
+  # See https://github.com/NixOS/nixpkgs/issues/351151 and issues in preservation and
+  # impermanence.
+  systemd.suppressedSystemUnits = ["systemd-machine-id-commit.service"];
+  systemd.services.systemd-machine-id-commit = {
+    unitConfig.ConditionPathIsMountPoint = [
+      ""
+      "/persist/etc/machine-id"
+    ];
+    serviceConfig.ExecStart = [
+      ""
+      "systemd-machine-id-setup --commit --root /persist"
+    ];
   };
 }
