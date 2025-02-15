@@ -42,6 +42,7 @@
           inInitrd = true;
           how = "symlink";
         }
+        "/etc/ly/save.ini"
       ];
       directories = [
         {

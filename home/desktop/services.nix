@@ -3,15 +3,14 @@
   config,
   ...
 }: {
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
   home.packages = with pkgs; [
     # niri
     cage
     xwayland-run
     xwayland-satellite
     gamescope
+
+    activate-linux
 
     mpv
     # mpvpaper
@@ -27,6 +26,16 @@
     width = 450;
     height = 300;
   };
+  programs.niri.settings.spawn-at-startup = [
+    {command = ["clash-nyanpasu"];}
+    {command = ["activate-linux"];}
+    # {command = ["wezterm start -e btm"];}
+    {command = ["mako"];}
+    {command = ["fcitx5 -r -d"];}
+    {command = ["wpaperd"];}
+    {command = ["xwayland-satellite"];}
+  ];
+
   gtk = {
     enable = true;
   };

@@ -13,19 +13,12 @@ in {
   ];
   programs.niri.settings = {
     environment = {
+      NIXOS_OZONE_WL = "1";
       GDK_BACKEND = "wayland"; # gtk wayland
       QT_QPA_PLATFORM = "wayland"; # qt wayland
       MOZ_ENABLE_WAYLAND = "1"; # firefox / icecat
       DISPLAY = ":0"; # xwayland-satellite
     };
-    spawn-at-startup = [
-      {command = ["clash-nyanpasu"];}
-      # {command = ["wezterm start -e btm"];}
-      {command = ["mako"];}
-      {command = ["fcitx5 -r -d"];}
-      {command = ["wpaperd"];}
-      {command = ["xwayland-satellite"];}
-    ];
     prefer-no-csd = true;
     screenshot-path = "~/media/photos/screenshots/niri %Y-%m-%d %H-%M-%S.png";
     window-rules = [
