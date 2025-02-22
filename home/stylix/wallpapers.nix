@@ -1,4 +1,20 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  rootPath,
+  lib,
+  ...
+}: let
+  # get file url & hash
+  file = rootPath + /data/wallpapers.md;
+  linesOf = file: (lib.strings.splitString "\n" (builtins.readFile file));
+  nonBlankLines = lib.filter (line: line != "" && lib.strings.hasPrefix "![" line) (linesOf file);
+  line = builtins.head (lib.lists.reverseList nonBlankLines);
+
+  nline = lib.strings.removePrefix "![" (lib.strings.removeSuffix ")" line);
+  infos = lib.strings.splitString "](" nline;
+  url = builtins.elemAt infos 1;
+  sha256 = builtins.elemAt infos 0;
+  #
   isPixiv = url: (builtins.substring 0 20 url) == "https://i.pximg.net/";
   fetchPixiv = attrs:
     pkgs.fetchurl (
@@ -9,9 +25,12 @@
     then (fetchPixiv attrs)
     else (pkgs.fetchurl attrs)
   );
+  # image = fetchImage {
+  #   url = "";
+  #   sha256 = "sha256-Pj2GPfHCzPzqXYPJE/jbkLbI3PRSPyfWMxANDDNe+eI=";
+  # };
   image = fetchImage {
-    url = "https://cdn.donmai.us/original/c8/8f/__sky_striker_ace_raye_and_sky_striker_ace_roze_yu_gi_oh_drawn_by_hsin__c88fc0854b81bf712988523733200729.jpg";
-    sha256 = "sha256-Pj2GPfHCzPzqXYPJE/jbkLbI3PRSPyfWMxANDDNe+eI=";
+    inherit url sha256;
   };
   theme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
   wallpaper = pkgs.runCommand "image.png" {} ''

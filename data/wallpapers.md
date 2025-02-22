@@ -14,3 +14,5 @@
 ![sha256-7Rp30eB/8DiSIdjyg1Y6Et+LAX93g27xLyNfhpJFqLQ=](https://i.pximg.net/img-original/img/2023/01/27/23/28/32/104860495_p0.jpg)
 ![sha256-55O9ufOistbm/6NYFuSEOOm9p1NUfzSS1js+F8vvTzU=](https://cdn.donmai.us/original/6b/78/__hakurei_reimu_touhou_drawn_by_kieta__6b7858c3798b5d0d1afb9f67bf43e2d5.jpg)
 ![sha256-enQo3wqhgf0FEPHj2coOCvo7DuZv+x5rL/WIo4qPI50=](https://www.pixelstalk.net/wp-content/uploads/2016/05/Epic-Anime-Awesome-Wallpapers.jpg)
+![sha256-Pj2GPfHCzPzqXYPJE/jbkLbI3PRSPyfWMxANDDNe+eI=](https://cdn.donmai.us/original/c8/8f/__sky_striker_ace_raye_and_sky_striker_ace_roze_yu_gi_oh_drawn_by_hsin__c88fc0854b81bf712988523733200729.jpg)
+![sha256-CVqto76FFy7c+0l+U64LVfwctwRgd2fnNkOQwirVLlw=](https://i.pximg.net/img-original/img/2024/03/13/00/00/20/116866058_p0.png)

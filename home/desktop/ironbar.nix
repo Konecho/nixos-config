@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  system,
   ...
 }: {
   imports = [inputs.ironbar.homeManagerModules.default];
@@ -139,7 +140,7 @@
       ];
     };
     style = "";
-    package = pkgs.ironbar;
+    package = inputs.ironbar.packages.x86_64-linux.default;
     # features = ["feature" "another_feature"];
   };
 }

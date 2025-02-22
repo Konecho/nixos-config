@@ -17,5 +17,5 @@
   nixpkgs.overlays = [inputs.niri.overlays.niri];
   programs.niri.enable = true;
   # will build from source
-  # programs.niri.package = pkgs.niri-unstable;
+  programs.niri.package = pkgs.niri-unstable;
 }
