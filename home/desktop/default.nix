@@ -8,5 +8,4 @@
 
     ./ironbar.nix
   ];
-  services.cliphist.enable = true;
 }

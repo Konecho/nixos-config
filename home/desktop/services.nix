@@ -26,6 +26,7 @@
     width = 450;
     height = 300;
   };
+  services.cliphist.enable = true;
   programs.niri.settings.spawn-at-startup = [
     {command = ["clash-nyanpasu"];}
     {command = ["activate-linux"];}

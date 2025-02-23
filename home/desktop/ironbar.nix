@@ -18,18 +18,28 @@
       position = "bottom";
       icon_theme = "Paper";
       start = [
+        # {
+        #   type = "launcher";
+        #   favorites = [
+        #     # "librewolf",
+        #     # "vscodium",
+        #     # "wezterm",
+        #   ];
+        #   show_names = false;
+        #   show_icons = true;
+        # }
         {
-          type = "launcher";
-          favorites = [
-            # "librewolf",
-            # "vscodium",
-            # "wezterm",
-          ];
-          show_names = false;
-          show_icons = true;
+          type = "workspaces";
+          # name_map."1" = "";
+          # name_map."2" = "";
+          # name_map."3" = "";
+          # favorites = ["1" "2" "3"];
+          # all_monitors = false;
+          # sort = "name";
         }
         {
           type = "focused";
+          truncate = "end";
         }
       ];
       end = [
@@ -55,8 +65,8 @@
             " {memory_used}/{memory_total} GB ({memory_percent}%)"
             # "| {swap_used} / {swap_total} GB ({swap_percent}%)"
             # "󰋊 {disk_used:/nix}/{disk_total:/nix} GB ({disk_percent:/nix}%)"
-            "󰓢 {net_up:wlp4s0}/{net_down:wlp4s0} Mbps"
-            "󰖡 {load_average:5}"
+            "󰓢 {net_up@wlp4s0}/{net_down@wlp4s0} Mbps"
+            "󰖡 {load_average_1}"
             # "󰥔 {uptime}"
           ];
           interval = {
