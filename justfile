@@ -1,20 +1,24 @@
-run:
-    doas git config --global --add safe.directory "$PWD"
-    doas nixos-rebuild switch --flake .
-run-offline:
-    doas git config --global --add safe.directory "$PWD"
+NIX_FLAGS := "--max-jobs 1 --cores 1"
+
+run:git-fix switch-sys
+run-offline:git-fix
     # doas nixos-rebuild switch --flake . --option substitute false
     doas nixos-rebuild switch --flake . --option binary-caches ""
+git-fix:
+    doas git config --global --add safe.directory "$PWD"
 update *input:
     if [ -z {{input}} ];then nix flake update;else nix flake lock --update-input {{input}};fi
-home:
-    home-manager build --flake . -b backup |& nom
+build-home:
+    home-manager build --flake . {{NIX_FLAGS}}|& nom
     nvd diff $NIX_USER_PROFILE_DIR/profile result
-    home-manager switch --flake . -b backup
-sys:build run
-build:
-    nixos-rebuild build --flake . |& nom
+home:
+    home-manager switch --flake . -b backup {{NIX_FLAGS}}
+sys:build-sys switch-sys
+build-sys:
+    nixos-rebuild build --flake . {{NIX_FLAGS}}|& nom
     nvd diff /run/current-system result
+switch-sys:
+    doas nixos-rebuild switch --flake . {{NIX_FLAGS}}
 clean:
     yazi /nix/var/nix/profiles
     nix store gc
@@ -25,4 +29,4 @@ wsl-hostip:
     cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*'
 # 无flake下临时更新flake
 enable-flake:
-    nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update
+    nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update {{NIX_FLAGS}}

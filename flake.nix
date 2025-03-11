@@ -39,11 +39,11 @@
       flake = false;
     };
     niri.url = "github:sodiboo/niri-flake";
-    gBar.url = "github:scorpion-26/gBar";
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # gBar.url = "github:scorpion-26/gBar";
+    # nixos-cosmic = {
+    #   url = "github:lilyinstarlight/nixos-cosmic";
+    #   # inputs.nixpkgs.follows = "nixpkgs";
+    # };
     ironbar = {
       url = "github:JakeStanger/ironbar";
       # inputs.nixpkgs.follows = "nixpkgs";
