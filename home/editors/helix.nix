@@ -87,17 +87,17 @@
         config.home-manager.expr = "(builtins.getFlake \"/etc/nixos\").homeConfigurations.mei.options";
         config.nixos.expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.deskmini.options";
       };
-      rime-ls = {
-        command = "${mypkgs.rime-ls}/bin/rime_ls";
-        config.shared_data_dir = "${rime-data}/share/rime-data";
-        config.user_data_dir = "~/.local/share/rime-ls";
-        config.log_dir = "~/.local/share/rime-ls";
-        config.max_candidates = 9;
-        config.trigger_characters = [];
-        config.schema_trigger_character = "&";
-        config.max_tokens = 4;
-        config.always_incomplete = true;
-      };
+      # rime-ls = {
+      #   command = "${mypkgs.rime-ls}/bin/rime_ls";
+      #   config.shared_data_dir = "${rime-data}/share/rime-data";
+      #   config.user_data_dir = "~/.local/share/rime-ls";
+      #   config.log_dir = "~/.local/share/rime-ls";
+      #   config.max_candidates = 9;
+      #   config.trigger_characters = [];
+      #   config.schema_trigger_character = "&";
+      #   config.max_tokens = 4;
+      #   config.always_incomplete = true;
+      # };
     };
     settings.editor.lsp = {
       display-messages = true;

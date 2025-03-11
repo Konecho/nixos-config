@@ -13,7 +13,7 @@
       # "~/.vscode/extensions" "~/.vscode-oss/extensions"
       # "~/.config/Code/User/settings.json" "~/.config/VSCodium/User/settings.json"
       package = pkgs.vscodium;
-      userSettings = lib.mkForce {};
+      profiles.default.userSettings = lib.mkForce {};
     };
   };
 }

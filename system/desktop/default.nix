@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./ly.nix
     ./niri.nix
     # ./cosmic.nix
     ./stylix.nix

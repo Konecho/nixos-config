@@ -56,5 +56,6 @@
       };
     };
     # targets.fish.enable = false;
+    targets.vscode.enable = false;
   };
 }

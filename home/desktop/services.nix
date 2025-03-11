@@ -17,7 +17,7 @@
 
     lswt
   ];
-  programs.wpaperd.enable = true;
+  services.wpaperd.enable = true;
   programs.fuzzel.enable = true;
   services.mako = {
     enable = true;

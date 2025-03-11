@@ -1,4 +1,6 @@
-NIX_FLAGS := "--max-jobs 1 --cores 1"
+# NIX_FLAGS := "--max-jobs 1 --cores 1"
+# NIX_FLAGS := "--option binary-caches \"https://mirrors.ustc.edu.cn/nix-channels/store/\""
+NIX_FLAGS := ""
 
 run:git-fix switch-sys
 run-offline:git-fix
