@@ -56,6 +56,7 @@
       };
     };
     # targets.fish.enable = false;
-    targets.vscode.enable = false;
+    # targets.vscode.enable = false;
+    targets.vscode.profileNames = ["stylix"];
   };
 }
