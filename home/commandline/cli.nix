@@ -48,35 +48,16 @@
     };
   };
   home.packages = with pkgs; [
-    # [network]
-    httpie
-    nmap
-    qrcp
-    socat # <echo 'cycle pause' | socat - /tmp/mpv-socket>
     wget
-
-    # [file]
     file
-    entr
     fzf
-    gdu
     xdg-utils # <xdg-open>
-
-    # [system]
     sysz
-    jq
     usbutils # <lsusb>
 
-    # [tui]
-    vtm
-    sc-im # 表格
-    mc # 文件管理
     calc
-    termusic
-
+    jq
     (python3.withPackages (py: with py; [requests ptpython]))
-
-    # [development]
     devenv
     rustup
     just

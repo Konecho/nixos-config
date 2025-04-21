@@ -9,6 +9,8 @@
     # rename files in editor
     vimv-rs # <vimv *.mp3>
     # renameutils # imv deurlname icp icmd qmv qcmd qcp
+    entr
+    gdu
 
     # [archive]
     unrar
@@ -31,5 +33,16 @@
     mediainfo
     ffmpeg
     yt-dlp
+
+    # [network]
+    httpie
+    nmap
+    qrcp
+    socat # <echo 'cycle pause' | socat - /tmp/mpv-socket>
+
+    # [tui]
+    vtm
+    sc-im # 表格
+    mc # 文件管理
   ];
 }
