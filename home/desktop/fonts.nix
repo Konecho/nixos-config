@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    maple-mono-SC-NF
+    maple-mono.NF-CN
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji

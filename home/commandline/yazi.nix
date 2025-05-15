@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
@@ -25,18 +29,8 @@
       ];
     };
     plugins = let
-      yazi-plugins = pkgs.fetchFromGitHub {
-        owner = "yazi-rs";
-        repo = "plugins";
-        rev = "beb586aed0d41e6fdec5bba7816337fdad905a33";
-        hash = "sha256-enIt79UvQnKJalBtzSEdUkjNHjNJuKUWC4L6QFb3Ou4=";
-      };
-      yazi-starship = pkgs.fetchFromGitHub {
-        owner = "Rolv-Apneseth";
-        repo = "starship.yazi";
-        rev = "d1cd0a38aa6a2c2e86e62a466f43e415f781031e";
-        sha256 = "sha256-XiEsykudwYmwSNDO41b5layP1DqVa89e6Emv9Qf0mz0=";
-      };
+      yazi-plugins = inputs.yazi-plugins;
+      yazi-starship = inputs.yazi-starship;
     in {
       chmod = "${yazi-plugins}/chmod.yazi";
       full-border = "${yazi-plugins}/full-border.yazi";

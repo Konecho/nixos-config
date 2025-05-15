@@ -3,7 +3,7 @@
     man = "batman";
     cat = "bat";
     top = "btm";
-    tmux = "zellij";
+    # tmux = "zellij";
     # cd = "z";
     # find = "fd";
     # du = "dust";
@@ -39,7 +39,6 @@
     bottom.enable = true;
     lsd = {
       enable = true;
-      enableAliases = true;
       settings = {
         date = "relative";
         ignore-globs = [
