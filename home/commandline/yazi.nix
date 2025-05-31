@@ -8,7 +8,7 @@
     enableZshIntegration = true;
     shellWrapperName = "lf";
     settings = {
-      manager = {
+      mgr = {
         show_hidden = true;
       };
       preview = {
@@ -47,7 +47,7 @@
     '';
 
     keymap = {
-      manager.prepend_keymap = [
+      mgr.prepend_keymap = [
         {
           on = "T";
           run = "plugin max-preview";
