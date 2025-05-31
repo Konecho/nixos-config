@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    inputs.stylix.homeManagerModules.stylix
+    inputs.stylix.homeModules.stylix
     ./wallpapers.nix
   ];
 
@@ -35,7 +35,7 @@
     };
     fonts = let
       MAPLE = {
-        package = pkgs.maple-mono-SC-NF;
+        package = pkgs.maple-mono.NF-CN;
         name = "Maple Mono SC NF";
       };
       CC = {

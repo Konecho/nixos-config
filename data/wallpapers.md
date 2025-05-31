@@ -20,3 +20,5 @@
 ![sha256-zSjxD9NYwyFWsr6JRXaVfHz5abd912M8jvnQV3FV7WI=](https://i.pximg.net/img-original/img/2025/03/11/20/19/31/128103096_p0.jpg)
 # arrona
 ![sha256-JW3wlpNLnlHktpisXs5Xfr6p3jeKYscal8XP8sbsg4M=](https://i.pximg.net/img-original/img/2022/12/24/00/00/46/103842593_p0.jpg)
+# ranko
+![sha256-ujS49JpUqZMdruPZ4ohXOo+QNMT9nbV9hh9OHkNudj8=](https://pbs.twimg.com/media/CgFY9CcUMAAgBdk.jpg)

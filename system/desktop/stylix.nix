@@ -18,7 +18,7 @@
     };
     fonts = let
       MAPLE = {
-        package = pkgs.maple-mono-SC-NF;
+        package = pkgs.maple-mono.NF-CN;
         name = "Maple Mono SC NF";
       };
     in {

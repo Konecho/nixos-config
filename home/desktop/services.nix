@@ -21,10 +21,12 @@
   programs.fuzzel.enable = true;
   services.mako = {
     enable = true;
-    anchor = "top-center";
-    defaultTimeout = 5;
-    width = 450;
-    height = 300;
+    settings = {
+      anchor = "top-center";
+      default-timeout = 5;
+      width = 450;
+      height = 300;
+    };
   };
   services.cliphist.enable = true;
   programs.niri.settings.spawn-at-startup = [
