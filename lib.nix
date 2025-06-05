@@ -88,6 +88,7 @@ in {
               home-manager.users.${username} = {
                 imports = hm-modules;
               };
+              home-manager.backupFileExtension = "bak";
             }
           ]
           else []

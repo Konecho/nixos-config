@@ -13,6 +13,7 @@
       userName = "NixOS";
       userEmail = "konecho@outlook.com";
       extraConfig.init.defaultBranch = "main";
+      extraConfig.safe.directory = "/etc/nixos";
     };
     gitui = {
       enable = true;
