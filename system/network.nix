@@ -22,7 +22,7 @@
   networking = {
     networkmanager.enable = true; # <nmcli device wifi list/connect>
 
-    proxy.default = "http://127.0.0.1:7890/"; # 1080:=v2ray;7890:=clash
+    # proxy.default = "http://127.0.0.1:7890/"; # 1080:=v2ray;7890:=clash
 
     proxy.noProxy = "127.0.0.1,.local,localhost,.cn";
 

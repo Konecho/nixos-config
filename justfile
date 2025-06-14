@@ -6,6 +6,10 @@ run:git-fix switch-sys
 run-offline:git-fix
     # doas nixos-rebuild switch --flake . --option substitute false
     doas nixos-rebuild switch --flake . --option binary-caches ""
+build-no-proxy:
+    all_proxy= http_proxy= https_proxy= nixos-rebuild build
+    # doas nix-env -p /nix/var/nix/profiles/system --set /nix/store/xxxx
+    # doas xxxxxx/bin/switch-to-configuration switch
 git-fix:
     doas git config --global --add safe.directory "$PWD"
 update *input:
@@ -19,7 +23,7 @@ sys:build-sys switch-sys
 build-sys:
     nixos-rebuild build --flake . {{NIX_FLAGS}}|& nom
     nvd diff /run/current-system result
-switch-sys:
+switch-sys:git-fix
     doas nixos-rebuild switch --flake . {{NIX_FLAGS}}
 clean:
     yazi /nix/var/nix/profiles

@@ -19,7 +19,7 @@ return {
     bottom = 0,
   },
 
-  font = wezterm.font("Maple Mono SC NF"),
+  font = wezterm.font("Maple Mono NF CN"),
   harfbuzz_features = { "ss01", "ss02", "ss03" },
   font_size = 12.0,
 

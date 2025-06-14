@@ -35,8 +35,10 @@
     };
     fonts = let
       MAPLE = {
+        # package = pkgs.maple-mono.CN;
+        # name = "Maple Mono CN";
         package = pkgs.maple-mono.NF-CN;
-        name = "Maple Mono SC NF";
+        name = "Maple Mono NF CN";
       };
       CC = {
         package = pkgs.cascadia-code;

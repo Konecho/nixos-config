@@ -23,8 +23,8 @@
   #   hwRender = true;
   #   fonts = [
   #     {
-  #       package = pkgs.maple-mono-SC-NF;
-  #       name = "Maple Mono SC NF";
+  #       package = pkgs.maple-mono.NF-CN;
+  #       name = "Maple Mono NF CN";
   #     }
   #   ];
   #   extraOptions = "--term xterm-256color";

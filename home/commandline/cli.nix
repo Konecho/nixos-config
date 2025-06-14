@@ -21,7 +21,7 @@
           };
         };
     };
-    thefuck.enable = true;
+    # thefuck.enable = true;
     rofi.enable = true;
     navi.enable = true;
     noti.enable = true; # <do-something>;noti> or <noti do-something>
