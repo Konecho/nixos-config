@@ -7,8 +7,7 @@ from datetime import datetime
 
 now = datetime.now()
 minutes = now.hour * 60 + now.minute
-id = minutes // 2
-id = 720 if id == 0 else id
+id = (minutes // 2) % 720
 # print(minutes)
 
 parser = argparse.ArgumentParser()
@@ -18,8 +17,8 @@ parser.add_argument("-s", action="store_true")
 args = parser.parse_args()
 
 f = Path(args.pokesprite) / "data" / "pokemon.json"
-if not f.exists:
-    os.exit(1)
+assert f.exists()
+
 index = json.load(f.open())
 # print(index[f'{id:03}'])
 
