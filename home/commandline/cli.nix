@@ -50,7 +50,6 @@
   home.packages = with pkgs; [
     wget
     file
-    fzf
     xdg-utils # <xdg-open>
     sysz
     usbutils # <lsusb>
@@ -59,7 +58,5 @@
     jq
     (python3.withPackages (py: with py; [requests ptpython]))
     devenv
-    rustup
-    just
   ];
 }

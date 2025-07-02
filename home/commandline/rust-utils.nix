@@ -21,6 +21,8 @@
     procs
     sd
     trashy
+    just
+    rustup
   ];
   programs = {
     bat = {
@@ -33,6 +35,14 @@
         batwatch
         batpipe
         prettybat
+      ];
+    };
+    skim = {
+      # <sk> replace fzf
+      enable = true;
+      changeDirWidgetCommand = "fd --type d";
+      changeDirWidgetOptions = [
+        "--preview 'lsd --tree {} | head -200'"
       ];
     };
     zoxide.enable = true;
