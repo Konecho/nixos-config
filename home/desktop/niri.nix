@@ -11,6 +11,10 @@ in {
     inputs.niri.homeModules.config
     inputs.niri.homeModules.stylix
   ];
+  # programs.niri.settings.xwayland-satellite = {
+  #   enable = true;
+  #   # path = pkgs.xwayland-satellite-unstable;
+  # };
   programs.niriswitcher = {
     enable = true;
     settings = {
@@ -67,7 +71,7 @@ in {
         height = 1080;
         width = 1920;
       };
-      scale = 1.25;
+      # scale = 1.25;
     };
     binds = let
       withModifierSpawn = modifier: attrs: (lib.mapAttrs' (name: value: {

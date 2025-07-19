@@ -11,7 +11,7 @@ build-no-proxy:
     # doas nix-env -p /nix/var/nix/profiles/system --set /nix/store/xxxx
     # doas xxxxxx/bin/switch-to-configuration switch
 git-fix:
-    doas git config --global --add safe.directory "$PWD"
+    # doas git config --global --add safe.directory "$PWD"
 update *input:
     if [ -z {{input}} ];then nix flake update;else nix flake lock --update-input {{input}};fi
 build-home:
@@ -23,7 +23,7 @@ sys:build-sys switch-sys
 build-sys:
     nixos-rebuild build --flake . {{NIX_FLAGS}}|& nom
     nvd diff /run/current-system result
-switch-sys:git-fix
+switch-sys: # git-fix
     doas nixos-rebuild switch --flake . {{NIX_FLAGS}}
 clean:
     yazi /nix/var/nix/profiles

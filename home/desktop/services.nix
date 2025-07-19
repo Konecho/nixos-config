@@ -5,10 +5,10 @@
 }: {
   home.packages = with pkgs; [
     # niri
-    cage
-    xwayland-run
-    xwayland-satellite
-    gamescope
+    # cage
+    # xwayland-run
+    # xwayland-satellite
+    # gamescope
 
     activate-linux
 
