@@ -5,7 +5,7 @@
     # rustdesk
     # motrix
     # clash-verge-rev
-    clash-nyanpasu
+    # clash-nyanpasu
 
     # czkawka # duplicates
     # logseq
@@ -25,7 +25,7 @@
     # kotatogram-desktop-with-webkit
 
     qt6.qtwayland
-    hydrus
+    # hydrus
     ## sometime need an middle version for conversion
     # (hydrus.overrideAttrs (f: p: rec {
     #   version = "558";

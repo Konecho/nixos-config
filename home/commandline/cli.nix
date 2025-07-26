@@ -22,7 +22,7 @@
         };
     };
     # thefuck.enable = true;
-    rofi.enable = true;
+    # rofi.enable = true;
     navi.enable = true;
     noti.enable = true; # <do-something>;noti> or <noti do-something>
     aria2.enable = true;
@@ -54,7 +54,7 @@
     sysz
     usbutils # <lsusb>
 
-    calc
+    # calc
     jq
     (python3.withPackages (py: with py; [requests ptpython]))
     devenv

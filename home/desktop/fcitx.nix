@@ -23,6 +23,7 @@ in {
     type = "fcitx5";
 
     fcitx5.addons = addons;
+    fcitx5.waylandFrontend = true;
   };
   # home.sessionVariables = {
   #   XMODIFIERS = "@im=fcitx";

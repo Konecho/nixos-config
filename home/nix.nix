@@ -43,11 +43,18 @@
       };
     };
   };
-  programs.home-manager.enable = true;
-  programs.nix-index.enable = true;
-  programs.nix-index-database.comma.enable = true;
+  programs = {
+    home-manager.enable = true;
+    nix-init.enable = true;
+    nix-index.enable = true;
+    nix-index-database.comma.enable = true;
+    nix-your-shell.enable = true;
+    nh = {
+      enable = true;
+      flake = /etc/nixos;
+    };
+  };
   home.packages = with pkgs; [
-    nix-init
     nix-tree
     nix-melt
     nix-diff

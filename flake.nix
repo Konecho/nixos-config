@@ -115,5 +115,6 @@
         hello
       ];
     };
+    formatter.${system} = pkgs.alejandra;
   };
 }
