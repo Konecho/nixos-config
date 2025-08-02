@@ -2,8 +2,8 @@
 # NIX_FLAGS := "--option binary-caches \"https://mirrors.ustc.edu.cn/nix-channels/store/\""
 NIX_FLAGS := ""
 
-run:git-fix switch-sys
-run-offline:git-fix
+run: switch-sys
+run-offline: # git-fix
     # doas nixos-rebuild switch --flake . --option substitute false
     doas nixos-rebuild switch --flake . --option binary-caches ""
 build-no-proxy:
@@ -11,7 +11,7 @@ build-no-proxy:
     # doas nix-env -p /nix/var/nix/profiles/system --set /nix/store/xxxx
     # doas xxxxxx/bin/switch-to-configuration switch
 git-fix:
-    # doas git config --global --add safe.directory "$PWD"
+    doas git config --global --add safe.directory "$PWD"
 update *input:
     if [ -z {{input}} ];then nix flake update;else nix flake lock --update-input {{input}};fi
 build-home:
@@ -36,3 +36,12 @@ wsl-hostip:
 # 无flake下临时更新flake
 enable-flake:
     nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update {{NIX_FLAGS}}
+acitvate-proxy-on-daemon:
+    #!/bin/sh
+    doas mkdir /run/systemd/system/nix-daemon.service.d/
+    cat <<EOF >/run/systemd/system/nix-daemon.service.d/override.conf
+    [Service]
+    Environment="https_proxy=http://localhost:7890"
+    EOF
+    doas systemctl daemon-reload
+    doas systemctl restart nix-daemon
