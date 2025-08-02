@@ -4,6 +4,11 @@
   ...
 }: {
   # hardware.pulseaudio.enable = lib.mkDefault false;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {General = {Experimental = true;};};
+  };
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
