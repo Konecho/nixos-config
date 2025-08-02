@@ -30,11 +30,10 @@
   };
   services.cliphist.enable = true;
   programs.niri.settings.spawn-at-startup = [
-    # {command = ["clash-nyanpasu"];}
-    {command = ["activate-linux -d"];}
+    {command = ["activate-linux" "-d"];}
     # {command = ["wezterm start -e btm"];}
     {command = ["mako"];}
-    # {command = ["fcitx5 -r -d"];}
+    {command = ["fcitx5" "-r" "-d"];}
     {command = ["wpaperd"];}
     {command = ["xwayland-satellite"];}
   ];
