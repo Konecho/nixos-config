@@ -151,6 +151,8 @@ in {
         };
         "Mod+WheelScrollRight".action = focus-column-right;
         "Mod+WheelScrollLeft".action = focus-column-left;
+        "Mod+Shift+WheelScrollDown".action = focus-column-right;
+        "Mod+Shift+WheelScrollUp".action = focus-column-left;
 
         "Mod+Ctrl+WheelScrollDown" = {
           cooldown-ms = 150;
@@ -162,22 +164,23 @@ in {
         };
         "Mod+Ctrl+WheelScrollRight".action = move-column-right;
         "Mod+Ctrl+WheelScrollLeft".action = move-column-left;
-
-        "Mod+Shift+WheelScrollDown".action = focus-column-right;
-        "Mod+Shift+WheelScrollUp".action = focus-column-left;
-
         "Mod+Ctrl+Shift+WheelScrollDown".action = move-column-right;
         "Mod+Ctrl+Shift+WheelScrollUp".action = move-column-left;
 
         #     "Mod+Tab".action = focus-workspace-previous;
-
         "Mod+Comma".action = consume-window-into-column;
         "Mod+Period".action = expel-window-from-column;
+        "Mod+BracketLeft".action = consume-or-expel-window-left;
+        "Mod+BracketRight".action = consume-or-expel-window-right;
 
         "Mod+R".action = switch-preset-column-width;
         "Mod+F".action = maximize-column;
         "Mod+Shift+F".action = fullscreen-window;
         "Mod+C".action = center-column;
+
+        "Mod+Space".action = toggle-overview;
+        "Mod+V".action = toggle-window-floating;
+        "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
 
         "Mod+Minus".action.set-column-width = "-10%";
         "Mod+Equal".action.set-column-width = "+10%";
