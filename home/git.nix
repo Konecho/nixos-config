@@ -1,4 +1,7 @@
-{...}: {
+{...}: let
+  email = "konecho@outlook.com";
+  name = "NixOS";
+in {
   programs = {
     git = {
       enable = true;
@@ -10,15 +13,20 @@
         "*\\__pycache__"
         ".direnv"
       ];
-      userName = "NixOS";
-      userEmail = "konecho@outlook.com";
+      userName = name;
+      userEmail = email;
       extraConfig.init.defaultBranch = "main";
       extraConfig.safe.directory = "/etc/nixos";
     };
     gitui = {
       enable = true;
     };
-
+    jujutsu = {
+      enable = true;
+      settings.user = {
+        inherit email name;
+      };
+    };
     # sudo git config --global --add safe.directory "$PWD"
   };
 }

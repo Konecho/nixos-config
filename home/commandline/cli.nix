@@ -28,6 +28,7 @@
     aria2.enable = true;
     atuin.enable = true; # <ctrl+r>
     broot.enable = true; # <br> tree-view search
+    carapace.enable = true;
     direnv = {
       enable = true;
       silent = true;
