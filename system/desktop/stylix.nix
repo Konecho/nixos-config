@@ -11,6 +11,7 @@
   ];
   stylix = {
     enable = true;
+    targets.grub.enable = false;
     cursor = {
       package = pkgs.graphite-cursors;
       name = "graphite-dark";

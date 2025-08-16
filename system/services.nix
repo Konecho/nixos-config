@@ -10,6 +10,7 @@
     openssh.enable = true;
     fwupd.enable = true;
     # davfs2.enable = true;
+    lanraragi.enable = true;
     duplicati = {
       enable = true;
       dataDir = "/db/duplicati";

@@ -56,6 +56,7 @@
       url = "github:Rolv-Apneseth/starship.yazi";
       flake = false;
     };
+    minegrub-theme.url = "github:Lxtharia/minegrub-theme";
   };
 
   outputs = inputs: let

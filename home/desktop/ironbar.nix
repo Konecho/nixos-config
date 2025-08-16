@@ -78,6 +78,9 @@
           };
         }
         {
+          type = "tray";
+        }
+        {
           type = "volume";
           format = "{icon} {percentage}%";
           max_volume = 100;
@@ -137,7 +140,7 @@
                 {
                   "type" = "label";
                   "name" = "uptime";
-                  "label" = "Uptime: {{uptime|hck -d'[，\\s]' -f 6}}";
+                  "label" = "Uptime: {{uptime|hck -d'[\\s]' -f 2}}";
                 }
               ];
             }

@@ -65,6 +65,7 @@ in {
         enable = true;
         max-scroll-amount = "20%";
       };
+      keyboard.numlock = true;
     };
     outputs."HDMI-A-1" = {
       mode = {

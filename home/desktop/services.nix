@@ -17,7 +17,15 @@
 
     lswt
   ];
-  services.wpaperd.enable = true;
+  services.wpaperd = {
+    enable = true;
+    settings = {
+      HDMI-A-1 = {
+        path = "/home/media/photos/wallpapers";
+        duration = "2m";
+      };
+    };
+  };
   programs.fuzzel.enable = true;
   services.mako = {
     enable = true;

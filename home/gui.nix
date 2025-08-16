@@ -20,7 +20,7 @@
 
     # hyper
 
-    telegram-desktop
+    # telegram-desktop
     # element-desktop-wayland # matrix
     # kotatogram-desktop-with-webkit
 
