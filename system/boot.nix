@@ -68,6 +68,7 @@ in {
     configurationLimit = 30;
     efiSupport = true;
     #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+    useOSProber = true;
     device = "nodev";
     minegrub-theme = {
       enable = true;
