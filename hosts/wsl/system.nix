@@ -27,10 +27,12 @@
     # 创建软件的桌面快捷方式
     # startMenuLaunchers = true;
     extraBin = with pkgs; [
-      # {src = "${coreutils}/bin/uname";}
-      # {src = "${coreutils}/bin/dirname";}
-      # {src = "${coreutils}/bin/cat";}
-      # {src = "${linuxPackages.usbip}/bin/usbip";}
+      {src = "${coreutils}/bin/uname";}
+      {src = "${coreutils}/bin/dirname";}
+      {src = "${coreutils}/bin/readlink";}
+      {src = "${coreutils}/bin/cat";}
+      {src = "${coreutils}/bin/sed";}
+      {src = "/run/current-system/sw/bin/sed";}
     ];
     usbip = {
       enable = true;
@@ -41,6 +43,18 @@
     # useWindowsDriver = true;
     # docker-desktop.enable = true;
     # wslConf.user.default = "${username}";
+  };
+  systemd.user = {
+    paths.vscode-remote-workaround = {
+      wantedBy = ["default.target"];
+      pathConfig.PathChanged = "%h/.vscode-server/bin";
+    };
+    services.vscode-remote-workaround.script = ''
+      for i in ~/.vscode-server/bin/*; do
+        echo "Fixing vscode-server in $i..."
+        ln -sf ${pkgs.nodejs}/bin/node $i/node
+      done
+    '';
   };
   users.groups.plugdev.members = ["${username}"];
   # users.users."${username}".extraGroups = ["plugdev"]; # not work
@@ -101,7 +115,7 @@
   };
   services.vscode-server = {
     enable = true;
-    enableFHS = true;
+    # enableFHS = true;
   };
   fonts.fontconfig.enable = true;
   # qt.enable = true;
