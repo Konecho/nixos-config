@@ -18,6 +18,10 @@
   programs.helix.themes.base16 = {
     inherits = "github_light";
     "ui.background" = {};
+    "ui.statusline.normal" = {
+      bg = "blue";
+      fg = "white";
+    };
   };
   home.pointerCursor = {
     gtk.enable = true;

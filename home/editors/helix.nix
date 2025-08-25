@@ -1,13 +1,13 @@
 {pkgs, ...}: {
-  home.sessionVariables.EDITOR = "hx";
-  home.packages = with pkgs; [
-    ## 非配置语言在自己项目的flake环境里开启
+  programs.helix.extraPackages = with pkgs; [
     nodePackages.bash-language-server
     yaml-language-server
     ruff # python
     vscode-langservers-extracted # css/html/json/markdown
     taplo # toml
+    marksman
     markdown-oxide
+    shellcheck
   ];
   programs.gitui.enable = true;
   programs.helix = {
@@ -36,6 +36,7 @@
           "file-type"
         ];
       };
+      color-modes = true;
       indent-guides = {
         # "▏", "┆", "┊", "⸽", "╎"
         character = "┊";
