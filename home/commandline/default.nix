@@ -3,6 +3,7 @@
     ./cli.nix
     ./fish.nix
     ./gpg.nix
+    ./helix.nix
     # ./lowfreq.nix
     ./nushell.nix
     # ./pistol.nix

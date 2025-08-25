@@ -8,7 +8,6 @@
     /home/common.nix
     /home/nix.nix
     /home/git.nix
-    /home/editors/helix.nix
 
     /home/commandline/default.nix
 
