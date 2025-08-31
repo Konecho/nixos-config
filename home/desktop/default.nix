@@ -6,6 +6,6 @@
 
     ./niri.nix
 
-    ./ironbar.nix
+    # ./ironbar.nix
   ];
 }

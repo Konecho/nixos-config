@@ -36,12 +36,21 @@ wsl-hostip:
 # 无flake下临时更新flake
 enable-flake:
     nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update {{NIX_FLAGS}}
+# fish shell git proxy
+# set -gx HTTPS_PROXY http://192.168.2.158:7890
+# doas just xxx
 acitvate-proxy-on-daemon:
     #!/bin/sh
-    doas mkdir /run/systemd/system/nix-daemon.service.d/
+    mkdir -p /run/systemd/system/nix-daemon.service.d/
     cat <<EOF >/run/systemd/system/nix-daemon.service.d/override.conf
     [Service]
-    Environment="https_proxy=http://localhost:7890"
+    Environment="https_proxy=http://192.168.2.158:7890"
     EOF
-    doas systemctl daemon-reload
-    doas systemctl restart nix-daemon
+    systemctl daemon-reload
+    systemctl restart nix-daemon
+deacitvate-proxy-on-daemon:
+    #!/bin/sh
+    rm /run/systemd/system/nix-daemon.service.d/override.conf
+    systemctl daemon-reload
+    systemctl restart nix-daemon
+    

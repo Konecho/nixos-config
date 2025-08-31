@@ -44,6 +44,7 @@
     #   url = "github:lilyinstarlight/nixos-cosmic";
     #   # inputs.nixpkgs.follows = "nixpkgs";
     # };
+    dank.url = "github:AvengeMedia/DankMaterialShell";
     ironbar = {
       url = "github:JakeStanger/ironbar";
       # inputs.nixpkgs.follows = "nixpkgs";

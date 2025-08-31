@@ -10,10 +10,19 @@ in {
   imports = [
     inputs.niri.homeModules.config
     inputs.niri.homeModules.stylix
+    inputs.dank.homeModules.dankMaterialShell
   ];
+  programs.dankMaterialShell = {
+    enable = true;
+    enableKeybinds = true;
+    # 空格：启动器；V：剪贴板；M：进程；逗号：设置；Alt+L：锁屏
+    enableSystemd = true;
+    enableSpawn = true;
+  };
+
   # programs.niri.settings.xwayland-satellite = {
   #   enable = true;
-  #   # path = pkgs.xwayland-satellite-unstable;
+  #   path = pkgs.xwayland-satellite-unstable;
   # };
   programs.niriswitcher = {
     enable = true;
@@ -168,8 +177,8 @@ in {
         "Mod+Ctrl+Shift+WheelScrollDown".action = move-column-right;
         "Mod+Ctrl+Shift+WheelScrollUp".action = move-column-left;
 
-        #     "Mod+Tab".action = focus-workspace-previous;
-        "Mod+Comma".action = consume-window-into-column;
+        # "Mod+Tab".action = focus-workspace-previous;
+        # "Mod+Comma".action = consume-window-into-column;
         "Mod+Period".action = expel-window-from-column;
         "Mod+BracketLeft".action = consume-or-expel-window-left;
         "Mod+BracketRight".action = consume-or-expel-window-right;
@@ -179,9 +188,9 @@ in {
         "Mod+Shift+F".action = fullscreen-window;
         "Mod+C".action = center-column;
 
-        "Mod+Space".action = toggle-overview;
-        "Mod+V".action = toggle-window-floating;
-        "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
+        # "Mod+Space".action = toggle-overview;
+        "Mod+T".action = toggle-window-floating;
+        "Mod+Shift+T".action = switch-focus-between-floating-and-tiling;
 
         "Mod+Minus".action.set-column-width = "-10%";
         "Mod+Equal".action.set-column-width = "+10%";
