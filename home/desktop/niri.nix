@@ -11,11 +11,12 @@ in {
     inputs.niri.homeModules.config
     inputs.niri.homeModules.stylix
     inputs.dank.homeModules.dankMaterialShell
+    ./niriswitcher.nix
   ];
   programs.dankMaterialShell = {
     enable = true;
     enableKeybinds = true;
-    # 空格：启动器；V：剪贴板；M：进程；逗号：设置；Alt+L：锁屏
+    # 空格=启动器；V=剪贴板；M=进程；逗号=设置；Alt+L=锁屏
     enableSystemd = true;
     enableSpawn = true;
   };
@@ -24,26 +25,6 @@ in {
   #   enable = true;
   #   path = pkgs.xwayland-satellite-unstable;
   # };
-  programs.niriswitcher = {
-    enable = true;
-    settings = {
-      keys = {
-        modifier = "Mod";
-        switch = {
-          next = "Tab";
-          prev = "Shift+Tab";
-        };
-      };
-      center_on_focus = true;
-      appearance = {
-        system_theme = "dark";
-        icon_size = 64;
-      };
-    };
-  };
-  programs.niri.settings.spawn-at-startup = [
-    {command = ["niriswitcher"];}
-  ];
   programs.niri.settings = {
     environment = {
       NIXOS_OZONE_WL = "1";
@@ -94,12 +75,7 @@ in {
     in
       (withModifierSpawn "Mod" {
         "D" = "fuzzel";
-        "T" = TERM;
         "Return" = TERM;
-        "Tab" = ["niriswitcherctl" "show" "--window"];
-        "Shift+Tab" = ["niriswitcherctl" "show" "--window"];
-        "Grave" = ["niriswitcherctl" "show" "--workspace"];
-        "Shift+Grave" = ["niriswitcherctl" "show" "--workspace"];
       })
       // (
         let
@@ -177,7 +153,6 @@ in {
         "Mod+Ctrl+Shift+WheelScrollDown".action = move-column-right;
         "Mod+Ctrl+Shift+WheelScrollUp".action = move-column-left;
 
-        # "Mod+Tab".action = focus-workspace-previous;
         # "Mod+Comma".action = consume-window-into-column;
         "Mod+Period".action = expel-window-from-column;
         "Mod+BracketLeft".action = consume-or-expel-window-left;
