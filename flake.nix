@@ -58,6 +58,10 @@
       flake = false;
     };
     minegrub-theme.url = "github:Lxtharia/minegrub-theme";
+    minecraft-plymouth-theme = {
+      url = "github:nikp123/minecraft-plymouth-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let

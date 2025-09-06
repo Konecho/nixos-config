@@ -96,11 +96,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1756579471,
-        "narHash": "sha256-fy6Djz2vZRDoGJaJ3gCEmgKG6Ab0AJ/mk7gUktawlP4=",
+        "lastModified": 1756958902,
+        "narHash": "sha256-+NBU8FpsOtxy1s7AFzJzMF8+5MF3VWXni+3HQVO/0qI=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "a8901895307f665a53f75783c9dcdb8e118591e0",
+        "rev": "eecbd8c7333dd2f3780fe8c974006f88fe21aa8b",
         "type": "github"
       },
       "original": {
@@ -364,6 +364,26 @@
       "original": {
         "owner": "JakeStanger",
         "repo": "ironbar",
+        "type": "github"
+      }
+    },
+    "minecraft-plymouth-theme": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756707869,
+        "narHash": "sha256-MhcK2bvHz72Ki6GlYycBvHuGgbTaxUIac8otcnl35+E=",
+        "owner": "nikp123",
+        "repo": "minecraft-plymouth-theme",
+        "rev": "e99a891eab720d95f214e51aeb86e8495279ce15",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nikp123",
+        "repo": "minecraft-plymouth-theme",
         "type": "github"
       }
     },
@@ -862,6 +882,7 @@
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
         "ironbar": "ironbar",
+        "minecraft-plymouth-theme": "minecraft-plymouth-theme",
         "minegrub-theme": "minegrub-theme",
         "my-nixpkgs": "my-nixpkgs",
         "niri": "niri",
