@@ -11,6 +11,7 @@ return {
   -- window_background_opacity = 0.8,
   -- color_scheme = 'cyberpunk',
   window_decorations = NONE,
+  -- window_decorations = "RESIZE",
   enable_scroll_bar = true,
   window_padding = {
     left = 0,

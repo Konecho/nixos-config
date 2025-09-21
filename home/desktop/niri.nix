@@ -16,10 +16,9 @@ in {
     enable = true;
     enableKeybinds = true;
     # 空格：启动器；V：剪贴板；M：进程；逗号：设置；Alt+L：锁屏
-    enableSystemd = true;
+    # enableSystemd = true;
     enableSpawn = true;
   };
-
   # programs.niri.settings.xwayland-satellite = {
   #   enable = true;
   #   path = pkgs.xwayland-satellite-unstable;
@@ -67,6 +66,11 @@ in {
       {
         matches = [{title = "Xwayland";}];
         open-maximized = true;
+      }
+      {
+        matches = [{app-id = "io.github.waylyrics.Waylyrics";}];
+        open-floating = true;
+        open-focused = false;
       }
     ];
     input = {

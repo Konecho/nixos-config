@@ -13,7 +13,7 @@ build-no-proxy:
 git-fix:
     doas git config --global --add safe.directory "$PWD"
 update *input:
-    if [ -z {{input}} ];then nix flake update;else nix flake lock --update-input {{input}};fi
+    if [ -z {{input}} ];then nix flake update;else nix flake update {{input}};fi
 build-home:
     home-manager build --flake . {{NIX_FLAGS}}|& nom
     nvd diff $NIX_USER_PROFILE_DIR/profile result

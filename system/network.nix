@@ -34,6 +34,10 @@
 
     firewall.enable = false;
   };
+  services.dae = {
+    enable = true;
+    configFile = "/home/config.dae";
+  };
   services.dnscrypt-proxy2 = {
     enable = true;
     # Settings reference:
