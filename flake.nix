@@ -57,9 +57,20 @@
       url = "github:Rolv-Apneseth/starship.yazi";
       flake = false;
     };
-    minegrub-theme.url = "github:Lxtharia/minegrub-theme";
+    minegrub-theme = {
+      url = "github:Lxtharia/minegrub-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    minegrub-world-sel-theme = {
+      url = "github:Lxtharia/minegrub-world-sel-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     minecraft-plymouth-theme = {
       url = "github:nikp123/minecraft-plymouth-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    minesddm = {
+      url = "github:Davi-S/sddm-theme-minesddm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

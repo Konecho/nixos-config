@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   imports = [
-    ./ly.nix
+    # ./ly.nix
     ./niri.nix
     # ./cosmic.nix
-    ./stylix.nix
+    # ./stylix.nix
   ];
   # programs.regreet.enable = true;
   # services.greetd.enable = true;

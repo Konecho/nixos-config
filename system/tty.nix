@@ -5,8 +5,8 @@
 }: {
   # services.greetd.vt = 2;
   # services.displayManager.ly.settings.tty = 2;
-  boot.kernelParams = ["console=tty1"];
-  services.journald.console = "/dev/tty3";
+  # boot.kernelParams = ["console=tty1"];
+  # services.journald.console = "/dev/tty3";
 
   services.gpm.enable = true; # enables mouse support in virtual consoles.
 
