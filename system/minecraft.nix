@@ -2,8 +2,14 @@
   inputs,
   pkgs,
   config,
+  lib,
   ...
-}: {
+}: let
+  timestamp = inputs.nixpkgs.lastModified;
+  mctime =
+    lib.readFile (pkgs.runCommand "mctimestamp" {}
+      "date -d @${builtins.toString timestamp} '+%d/%m/%Y, %I:%M %p' |tr -d '\n' > $out");
+in {
   imports = [
     inputs.minegrub-theme.nixosModules.default
     inputs.minegrub-world-sel-theme.nixosModules.default
@@ -25,7 +31,7 @@
       customIcons = [
         {
           name = "nixos";
-          lineTop = "NixOS (24/9/2025, 16:43)";
+          lineTop = "NixOS (${mctime})";
           lineBottom = "Survival Mode, No Cheats, Version: ${config.system.nixos.release}";
           # Icon: you can use an icon from the remote repo, or load from a local file
           imgName = "nixos";
