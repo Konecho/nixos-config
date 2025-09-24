@@ -55,15 +55,6 @@ in {
     screenshot-path = "~/media/photos/screenshots/niri %Y-%m-%d %H-%M-%S.png";
     window-rules = [
       {
-        geometry-corner-radius = {
-          bottom-left = 12.0;
-          bottom-right = 12.0;
-          top-left = 12.0;
-          top-right = 12.0;
-        };
-        clip-to-geometry = true;
-      }
-      {
         matches = [{title = "Xwayland";}];
         open-maximized = true;
       }
@@ -80,13 +71,6 @@ in {
       };
       keyboard.numlock = true;
     };
-    outputs."HDMI-A-1" = {
-      mode = {
-        height = 1080;
-        width = 1920;
-      };
-      # scale = 1.25;
-    };
     binds = let
       withModifierSpawn = modifier: attrs: (lib.mapAttrs' (name: value: {
           name = modifier + "+" + name;
@@ -98,7 +82,6 @@ in {
     in
       (withModifierSpawn "Mod" {
         "D" = "fuzzel";
-        "T" = TERM;
         "Return" = TERM;
         "Tab" = ["niriswitcherctl" "show" "--window"];
         "Shift+Tab" = ["niriswitcherctl" "show" "--window"];
