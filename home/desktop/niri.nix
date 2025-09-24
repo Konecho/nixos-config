@@ -15,6 +15,7 @@ in {
   programs.dankMaterialShell = {
     enable = true;
     enableKeybinds = true;
+    enableClipboard = true;
     # 空格：启动器；V：剪贴板；M：进程；逗号：设置；Alt+L：锁屏
     # enableSystemd = true;
     enableSpawn = true;
