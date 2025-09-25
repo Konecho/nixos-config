@@ -1,10 +1,11 @@
 {
   pkgs,
+  username,
   lib,
   ...
 }: {
   programs.adb.enable = true;
-
+  users.groups.adbusers.members = [username];
   services = {
     udisks2.enable = true;
     openssh.enable = true;
