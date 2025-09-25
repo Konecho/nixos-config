@@ -11,6 +11,7 @@ in {
     inputs.niri.homeModules.config
     inputs.niri.homeModules.stylix
     inputs.dank.homeModules.dankMaterialShell
+    ./niriswitcher.nix
   ];
   programs.dankMaterialShell = {
     enable = true;
@@ -24,26 +25,6 @@ in {
   #   enable = true;
   #   path = pkgs.xwayland-satellite-unstable;
   # };
-  programs.niriswitcher = {
-    enable = true;
-    settings = {
-      keys = {
-        modifier = "Mod";
-        switch = {
-          next = "Tab";
-          prev = "Shift+Tab";
-        };
-      };
-      center_on_focus = true;
-      appearance = {
-        system_theme = "dark";
-        icon_size = 64;
-      };
-    };
-  };
-  programs.niri.settings.spawn-at-startup = [
-    {command = ["niriswitcher"];}
-  ];
   programs.niri.settings = {
     environment = {
       NIXOS_OZONE_WL = "1";
@@ -84,10 +65,6 @@ in {
       (withModifierSpawn "Mod" {
         "D" = "fuzzel";
         "Return" = TERM;
-        "Tab" = ["niriswitcherctl" "show" "--window"];
-        "Shift+Tab" = ["niriswitcherctl" "show" "--window"];
-        "Grave" = ["niriswitcherctl" "show" "--workspace"];
-        "Shift+Grave" = ["niriswitcherctl" "show" "--workspace"];
       })
       // (
         let
