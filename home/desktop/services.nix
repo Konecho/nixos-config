@@ -28,7 +28,7 @@
   };
   programs.fuzzel.enable = true;
   services.mako = {
-    enable = true;
+    # enable = true;
     settings = {
       anchor = "top-center";
       default-timeout = 5;
@@ -36,14 +36,14 @@
       height = 300;
     };
   };
-  services.cliphist.enable = true;
+  # services.cliphist.enable = true;
   programs.niri.settings.spawn-at-startup = [
-    {command = ["activate-linux" "-d"];}
+    # {command = ["activate-linux" "-d"];}
     # {command = ["wezterm start -e btm"];}
-    {command = ["mako"];}
+    # {command = ["mako"];}
     {command = ["fcitx5" "-r" "-d"];}
-    {command = ["wpaperd"];}
-    {command = ["xwayland-satellite"];}
+    # {command = ["wpaperd"];}
+    # {command = ["xwayland-satellite"];}
   ];
 
   gtk = {

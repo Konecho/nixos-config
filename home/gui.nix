@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     # rustdesk
     # motrix
-    # clash-verge-rev
+    clash-verge-rev
     # clash-nyanpasu
 
     # czkawka # duplicates

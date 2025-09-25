@@ -19,7 +19,7 @@ build-home:
     nvd diff $NIX_USER_PROFILE_DIR/profile result
 home:
     home-manager switch --flake . -b backup {{NIX_FLAGS}}
-sys:build-sys switch-sys
+sys:build-sys git-fix switch-sys
 build-sys:
     nixos-rebuild build --flake . {{NIX_FLAGS}}|& nom
     nvd diff /run/current-system result

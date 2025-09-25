@@ -20,9 +20,9 @@
     {command = ["niriswitcher"];}
   ];
   programs.niri.settings.binds = {
-    "Mod+Tab" = ["niriswitcherctl" "show" "--window"];
-    "Mod+Shift+Tab" = ["niriswitcherctl" "show" "--window"];
-    "Mod+Grave" = ["niriswitcherctl" "show" "--workspace"];
-    "Mod+Shift+Grave" = ["niriswitcherctl" "show" "--workspace"];
+    "Mod+Tab".action.spawn = ["niriswitcherctl" "show" "--window"];
+    "Mod+Shift+Tab".action.spawn = ["niriswitcherctl" "show" "--window"];
+    "Mod+Grave".action.spawn = ["niriswitcherctl" "show" "--workspace"];
+    "Mod+Shift+Grave".action.spawn = ["niriswitcherctl" "show" "--workspace"];
   };
 }
