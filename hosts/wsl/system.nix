@@ -18,6 +18,9 @@
       /system/nix.nix
       # /system/age
     ]);
+  nixpkgs.overlays = [
+    inputs.nixgl.overlay
+  ];
   # services.xserver.enable=true;
   hardware.graphics.enable = true;
   # hardware.opengl.extraPackages = with pkgs; [mesa.drivers];

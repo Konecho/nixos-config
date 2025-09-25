@@ -2,7 +2,6 @@
   description = "A flake";
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-23.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -39,16 +38,7 @@
       flake = false;
     };
     niri.url = "github:sodiboo/niri-flake";
-    # gBar.url = "github:scorpion-26/gBar";
-    # nixos-cosmic = {
-    #   url = "github:lilyinstarlight/nixos-cosmic";
-    #   # inputs.nixpkgs.follows = "nixpkgs";
-    # };
     dank.url = "github:AvengeMedia/DankMaterialShell";
-    ironbar = {
-      url = "github:JakeStanger/ironbar";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
     yazi-plugins = {
       url = "github:yazi-rs/plugins";
       flake = false;
@@ -83,20 +73,7 @@
     system = "x86_64-linux";
     username = "mei";
     lib = import ./lib.nix inputs;
-
     pkgs = lib.mkPkgs {inherit system;};
-    pkgs-fix-gl = lib.mkPkgs {
-      inherit system;
-      overlays = [
-        (self: super: rec {
-          # mesa = inputs.nixpkgs-stable.legacyPackages."${system}".mesa; # to fix errors below in <glxinfo>
-          ## MESA: error: ZINK: failed to choose pdev
-          ## glx: failed to create drisw screen
-          ## failed to load driver: zink
-        })
-        inputs.nixgl.overlay
-      ];
-    };
   in {
     homeConfigurations."${username}" = lib.mkUsr {
       inherit pkgs username;
@@ -109,25 +86,16 @@
     nixosConfigurations = {
       deskmini = lib.mkSys {
         hostname = "deskmini";
-        inherit username pkgs system;
+        inherit pkgs username system;
         modules =
-          [
-            # (inputs.nixpkgs + "/nixos/modules/programs/wayland/wayland-session.nix")
-            ./hosts/deskmini/hardware-configuration.nix
-          ]
+          [./hosts/deskmini/hardware-configuration.nix]
           ++ (lib.scanPath {path = ./system;});
       };
       wsl = lib.mkSys {
         hostname = "wsl";
-        pkgs = pkgs-fix-gl;
-        # inherit pkgs;
-        inherit username system;
-        modules = [
-          ./hosts/wsl/system.nix
-        ];
-        hm-modules = [
-          ./hosts/wsl/home.nix
-        ];
+        inherit pkgs username system;
+        modules = [./hosts/wsl/system.nix];
+        hm-modules = [./hosts/wsl/home.nix];
       };
     };
 
@@ -136,6 +104,7 @@
         hello
       ];
     };
+    
     formatter.${system} = pkgs.alejandra;
   };
 }
