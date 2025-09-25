@@ -65,6 +65,7 @@ in {
   # };
   services.displayManager.sddm = {
     enable = true;
+    autoNumlock = true;
     package = pkgs.kdePackages.sddm;
     wayland.enable = true;
     theme = "minesddm";
