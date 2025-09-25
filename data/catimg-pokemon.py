@@ -35,11 +35,13 @@ if args.f and len(select) == 0:
 select = random.choice(select)
 # print(select)
 
-img = Path(os.environ["XDG_RUNTIME_DIR"]) / "pokemon.png"
-name = Path(os.environ["XDG_RUNTIME_DIR"]) / "pokemon"
-cnname = index[f"{id:03}"]["name"]["chs"]
+base = Path(os.environ["XDG_RUNTIME_DIR"])
+img = base / "pokemon.png"
+name = base / "pokemon"
+
+chsname = index[f"{id:03}"]["name"]["chs"]
+name.write_text(chsname)
 
 os.system(f"magick {select.as_posix()} -trim {img.as_posix()}")
 if os.environ.get("WSL_DISTRO_NAME") is None:
     os.system(f"catimg {img.as_posix()}")
-os.system(f'echo "{cnname}" > {name.as_posix()}')
