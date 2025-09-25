@@ -10,6 +10,7 @@
     openssh.enable = true;
     fwupd.enable = true;
     # davfs2.enable = true;
+    gpm.enable = true; # enables mouse support in virtual consoles.
     lanraragi.enable = true;
     duplicati = {
       enable = true;
