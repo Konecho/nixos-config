@@ -118,16 +118,16 @@ in {
 
         "Mod+WheelScrollDown" = {
           cooldown-ms = 150;
-          action = focus-workspace-down;
+          action = focus-column-right;
         };
         "Mod+WheelScrollUp" = {
           cooldown-ms = 150;
-          action = focus-workspace-up;
+          action = focus-column-left;
         };
         "Mod+WheelScrollRight".action = focus-column-right;
         "Mod+WheelScrollLeft".action = focus-column-left;
-        "Mod+Shift+WheelScrollDown".action = focus-column-right;
-        "Mod+Shift+WheelScrollUp".action = focus-column-left;
+        "Mod+Shift+WheelScrollDown".action = focus-workspace-down;
+        "Mod+Shift+WheelScrollUp".action = focus-workspace-up;
 
         "Mod+Ctrl+WheelScrollDown" = {
           cooldown-ms = 150;

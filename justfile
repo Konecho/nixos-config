@@ -2,7 +2,7 @@
 # NIX_FLAGS := "--option binary-caches \"https://mirrors.ustc.edu.cn/nix-channels/store/\""
 NIX_FLAGS := ""
 
-run: switch-sys
+run: home
 run-offline: # git-fix
     # doas nixos-rebuild switch --flake . --option substitute false
     doas nixos-rebuild switch --flake . --option binary-caches ""

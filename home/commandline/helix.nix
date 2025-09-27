@@ -37,6 +37,8 @@
         ];
       };
       color-modes = true;
+      end-of-line-diagnostics = "hint";
+      inline-diagnostics = {other-lines = "error";};
       indent-guides = {
         # "▏", "┆", "┊", "⸽", "╎"
         character = "┊";
