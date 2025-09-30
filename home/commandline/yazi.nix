@@ -33,10 +33,12 @@
       in {
         prepend_preloaders = media-info-mime;
         prepend_previewers = media-info-mime;
-        append_previewers =[ {
-          name = "*";
-          run = ''piper -- ${pkgs.hexyl}/bin/hexyl --border=none --terminal-width=$w "$1"'';
-        }];
+        append_previewers = [
+          {
+            name = "*";
+            run = ''piper -- ${pkgs.hexyl}/bin/hexyl --border=none --terminal-width=$w "$1"'';
+          }
+        ];
         prepend_fetchers = [
           {
             id = "git";
