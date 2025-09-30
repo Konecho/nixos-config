@@ -16,7 +16,7 @@
       /system/core.nix
       /system/misc.nix
       /system/nix.nix
-      # /system/age
+      /system/age.nix
     ]);
   nixpkgs.overlays = [
     inputs.nixgl.overlay
