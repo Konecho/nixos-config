@@ -1,4 +1,4 @@
-{...}: let
+{pkgs, ...}: let
   email = "konecho@outlook.com";
   name = "NixOS";
 in {
@@ -26,6 +26,10 @@ in {
       settings.user = {
         inherit email name;
       };
+    };
+    gh = {
+      enable = true;
+      extensions = with pkgs; [gh-dash];
     };
     # sudo git config --global --add safe.directory "$PWD"
   };
