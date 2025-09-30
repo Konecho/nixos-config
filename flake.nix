@@ -47,6 +47,10 @@
       url = "github:Rolv-Apneseth/starship.yazi";
       flake = false;
     };
+    yazi-mediainfo = {
+      url = "github:boydaihungst/mediainfo.yazi";
+      flake = false;
+    };
     minegrub-theme = {
       url = "github:Lxtharia/minegrub-theme";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -104,7 +108,7 @@
         hello
       ];
     };
-    
+
     formatter.${system} = pkgs.alejandra;
   };
 }

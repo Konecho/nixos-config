@@ -894,6 +894,7 @@
         "stylix": "stylix",
         "vscode-server": "vscode-server",
         "winapps": "winapps",
+        "yazi-mediainfo": "yazi-mediainfo",
         "yazi-plugins": "yazi-plugins",
         "yazi-starship": "yazi-starship"
       }
@@ -1196,6 +1197,22 @@
       "original": {
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
+        "type": "github"
+      }
+    },
+    "yazi-mediainfo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756403479,
+        "narHash": "sha256-GObz6kpBTT1HuWgsAWlbbzCw2GxZGKLTWaUKKztiTaw=",
+        "owner": "boydaihungst",
+        "repo": "mediainfo.yazi",
+        "rev": "2093ab79d47d750c0b74759d2dd93aff8c7ee5c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "boydaihungst",
+        "repo": "mediainfo.yazi",
         "type": "github"
       }
     },

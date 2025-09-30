@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.helix.extraPackages = with pkgs; [
-    nodePackages.bash-language-server
+    bash-language-server
     yaml-language-server
     ruff # python
     vscode-langservers-extracted # css/html/json/markdown
@@ -59,19 +59,15 @@
         {
           name = "python";
           formatter = {
-            command = "${black}/bin/black";
-          };
-        }
-        {
-          name = "bash";
-          formatter = {
-            command = "${shfmt}/bin/shfmt";
+            command = "${ruff}/bin/ruff";
+            args = ["format" "--line-length" "120" "-"];
           };
         }
         {
           name = "toml";
           formatter = {
-            command = "${taplo}/bin/taplo fmt -";
+            command = "${taplo}/bin/taplo";
+            args = ["fmt" "-"];
           };
         }
         {
