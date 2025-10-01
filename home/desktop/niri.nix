@@ -10,16 +10,16 @@ in {
   imports = [
     inputs.niri.homeModules.config
     inputs.niri.homeModules.stylix
-    inputs.dank.homeModules.dankMaterialShell
+    inputs.dank.homeModules.dankMaterialShell.default
+    inputs.dank.homeModules.dankMaterialShell.niri
     ./niriswitcher.nix
   ];
   programs.dankMaterialShell = {
     enable = true;
-    enableKeybinds = true;
-    enableClipboard = true;
+    niri.enableKeybinds = true;
     # 空格：启动器；V：剪贴板；M：进程；逗号：设置；Alt+L：锁屏
     # enableSystemd = true;
-    enableSpawn = true;
+    niri.enableSpawn = true;
   };
   # programs.niri.settings.xwayland-satellite = {
   #   enable = true;
