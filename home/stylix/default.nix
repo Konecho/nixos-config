@@ -60,5 +60,8 @@
     # targets.fish.enable = false;
     # targets.vscode.enable = false;
     targets.vscode.profileNames = ["stylix"];
+    targets.gtk.extraCss = ''
+      window.background { border-radius: 0; }
+    '';
   };
 }

@@ -45,6 +45,10 @@ in {
         open-floating = true;
         open-focused = false;
       }
+      {
+        matches = [{app-id = "ghostty";}];
+        draw-border-with-background = false;
+      }
     ];
     input = {
       focus-follows-mouse = {
