@@ -14,6 +14,7 @@ in {
     inputs.dank.homeModules.dankMaterialShell.niri
     ./niriswitcher.nix
   ];
+  nixpkgs.overlays = [inputs.niri.overlays.niri];
   programs.dankMaterialShell = {
     # enable = true;
     niri.enableKeybinds = true;
@@ -21,17 +22,17 @@ in {
     # enableSystemd = true;
     niri.enableSpawn = true;
   };
-  # programs.niri.settings.xwayland-satellite = {
-  #   enable = true;
-  #   path = pkgs.xwayland-satellite-unstable;
-  # };
+  programs.niri.settings.xwayland-satellite = {
+    enable = true;
+    path = lib.getExe pkgs.xwayland-satellite-unstable;
+  };
   programs.niri.settings = {
     environment = {
       NIXOS_OZONE_WL = "1";
       GDK_BACKEND = "wayland"; # gtk wayland
       QT_QPA_PLATFORM = "wayland"; # qt wayland
       MOZ_ENABLE_WAYLAND = "1"; # firefox / icecat
-      DISPLAY = ":0"; # xwayland-satellite
+      # DISPLAY = ":0"; # xwayland-satellite
     };
     prefer-no-csd = true;
     screenshot-path = "~/media/photos/screenshots/niri %Y-%m-%d %H-%M-%S.png";
