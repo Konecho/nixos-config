@@ -27,10 +27,14 @@ in {
         density = "comfortable";
         floating = true;
       };
-      colorSchemes.darkMode = false;
-      wallpaper.directory = "/home/media/photos/wallpapers";
-      general = {
+      colorSchemes = {
+        darkMode = false;
+        useWallpaperColors = true;
       };
+      wallpaper.directory = "/home/media/photos/wallpapers";
+      general = {};
+      hooks.enable = true;
+      hooks.wallpaperChange = "swww img -o $2 $1";
     };
   };
   systemd.user.services = {
@@ -63,6 +67,9 @@ in {
   };
 
   services.cliphist.enable = true;
+  services.wpaperd.enable = true;
+  services.swww.enable = true;
+  programs.fuzzel.enable = true;
   programs = {
     niri = {
       settings = let
@@ -76,6 +83,26 @@ in {
           "XF86AudioRaiseVolume".action.spawn = noctalia "volume increase";
           "XF86AudioMute".action.spawn = noctalia "volume muteOutput";
         };
+        layer-rules = [
+          # {
+          #   matches = [{namespace = "wpaperd";}];
+          #   place-within-backdrop = true;
+          # }
+          {
+            matches = [{namespace = "swww";}];
+            place-within-backdrop = true;
+          }
+          # {
+          #   matches = [{namespace = "quickshell-wallpaper";}];
+          #   # place-within-backdrop = true;
+          # }
+          # {
+          #   matches = [{namespace = "^quickshell-overview$";}];
+          #   place-within-backdrop = true;
+          # }
+        ];
+        # layout.background-color = "transparent";
+        # overview.workspace-shadow.enable = false;
       };
     };
   };

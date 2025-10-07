@@ -10,40 +10,18 @@
     # xwayland-satellite
     # gamescope
 
-    activate-linux
+    # activate-linux
 
     mpv
     # mpvpaper
 
     lswt
   ];
-  services.wpaperd = {
-    enable = true;
-    settings = {
-      HDMI-A-1 = {
-        path = "/home/media/photos/wallpapers";
-        duration = "2m";
-      };
-    };
-  };
   programs.fuzzel.enable = true;
-  services.mako = {
-    # enable = true;
-    settings = {
-      anchor = "top-center";
-      default-timeout = 5;
-      width = 450;
-      height = 300;
-    };
-  };
-  # services.cliphist.enable = true;
   programs.niri.settings.spawn-at-startup = [
     # {command = ["activate-linux" "-d"];}
-    # {command = ["wezterm start -e btm"];}
-    # {command = ["mako"];}
     {command = ["fcitx5" "-r" "-d"];}
-    # {command = ["wpaperd"];}
-    # {command = ["xwayland-satellite"];}
+    {command = ["clash-verge"];}
   ];
 
   gtk = {
