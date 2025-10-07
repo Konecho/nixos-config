@@ -45,6 +45,8 @@ in {
         matches = [{app-id = "io.github.waylyrics.Waylyrics";}];
         open-floating = true;
         open-focused = false;
+        border = {enable = false;};
+        draw-border-with-background = false;
       }
       {
         matches = [{app-id = "ghostty";}];

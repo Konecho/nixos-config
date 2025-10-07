@@ -24,6 +24,7 @@
     termusic
     waylyrics
     netease-cloud-music-gtk
+    adwaita-icon-theme
 
     pavucontrol
   ];
