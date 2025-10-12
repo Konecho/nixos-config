@@ -19,6 +19,12 @@ in {
         diff -u <(jq -S . ~/.config/noctalia/settings.json) <(jq -S . ~/.config/noctalia/gui-settings.json) | colordiff
       ''
     )
+    (
+      writeShellScriptBin "noctalia-blur" ''
+        cd /home/media/photos/wallpapers
+        fd -e jpg -e png -E '*.blur' -x magick {} -blur 0x8 {}.blur
+      ''
+    )
   ];
   programs.noctalia-shell = {
     enable = true;
@@ -33,8 +39,9 @@ in {
       };
       wallpaper.directory = "/home/media/photos/wallpapers";
       general = {};
-      hooks.enable = true;
-      hooks.wallpaperChange = "swww img -o $2 $1";
+      hooks.enabled = true;
+      # fd -e jpg -e png -E '*.blur' -x magick {} -blur 0x8 {}.blur
+      hooks.wallpaperChange = "swww img -o $2 $1.blur";
     };
   };
   systemd.user.services = {
@@ -67,7 +74,7 @@ in {
   };
 
   services.cliphist.enable = true;
-  services.wpaperd.enable = true;
+  # services.wpaperd.enable = true;
   services.swww.enable = true;
   programs.fuzzel.enable = true;
   programs = {
