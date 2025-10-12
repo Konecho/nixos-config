@@ -11,6 +11,16 @@
     openssh.enable = true;
     fwupd.enable = true;
     # davfs2.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
+      publish = {
+        enable = true;
+        addresses = true;
+        workstation = true;
+      };
+    };
     gpm.enable = true; # enables mouse support in virtual consoles.
     lanraragi.enable = true;
     lanraragi.package = pkgs.lanraragi.overrideAttrs (f: p: rec {
