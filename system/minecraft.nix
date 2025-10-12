@@ -13,7 +13,7 @@ in {
   imports = [
     inputs.minegrub-theme.nixosModules.default
     inputs.minegrub-world-sel-theme.nixosModules.default
-    inputs.minesddm.nixosModules.default
+    # inputs.minesddm.nixosModules.default
   ];
   nixpkgs.overlays = [
     inputs.minecraft-plymouth-theme.overlay
@@ -70,5 +70,14 @@ in {
     wayland.enable = true;
     theme = "minesddm";
   };
-  environment.systemPackages = with pkgs; [kdePackages.layer-shell-qt];
+  environment.systemPackages = with pkgs; [
+    inputs.minesddm.packages.${pkgs.system}.default
+    qt5.qtbase
+    qt5.qtquickcontrols2
+    qt5.qtgraphicaleffects
+
+    kdePackages.layer-shell-qt
+  ];
+
+  services.upower.enable = true;
 }

@@ -33,6 +33,8 @@
     inherit url sha256;
   };
   theme = "${pkgs.base16-schemes}/share/themes/google-light.yaml";
+  # theme = "${pkgs.base16-schemes}/share/themes/icy.yaml"; # for test
+  # theme = "${pkgs.base16-schemes}/share/themes/sakura.yaml";
   wallpaper = pkgs.runCommand "image.png" {} ''
     ${pkgs.lutgen}/bin/lutgen apply -p catppuccin-mocha ${image} -o $out
   '';

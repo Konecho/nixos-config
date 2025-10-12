@@ -9,10 +9,11 @@
     ghostty = {
       enable = true;
       settings = {
-        window-decoration = false;
+        # window-decoration = "none";
         mouse-hide-while-typing = true;
       };
     };
     kitty.enable = true;
+    foot.enable = true;
   };
 }

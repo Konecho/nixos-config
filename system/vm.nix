@@ -35,5 +35,5 @@
     docker.members = [username];
   };
 
-  environment.systemPackages = with inputs.winapps.packages.${system}; [winapps winapps-launcher];
+  # environment.systemPackages = with inputs.winapps.packages.${system}; [winapps winapps-launcher];
 }

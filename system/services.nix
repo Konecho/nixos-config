@@ -13,6 +13,11 @@
     # davfs2.enable = true;
     gpm.enable = true; # enables mouse support in virtual consoles.
     lanraragi.enable = true;
+    lanraragi.package = pkgs.lanraragi.overrideAttrs (f: p: rec {
+      postInstall = ''
+        sed -i 's|Title|AlternateSeries|g' $out/share/lanraragi/lib/LANraragi/Plugin/Metadata/ComicInfo.pm
+      '';
+    });
     duplicati = {
       enable = true;
       dataDir = "/db/duplicati";
