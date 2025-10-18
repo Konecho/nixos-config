@@ -5,12 +5,12 @@
 }: {
   imports = [
     inputs.stylix.homeModules.stylix
-    ./wallpapers.nix
   ];
 
   # https://danth.github.io/stylix/options/hm.html
   stylix = {
     enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/google-light.yaml";
     cursor = {
       size = 24;
       #   package = pkgs.phinger-cursors;
