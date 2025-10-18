@@ -6,6 +6,19 @@
 }: {
   programs.adb.enable = true;
   users.groups.adbusers.members = [username];
+  # hardware.pulseaudio.enable = lib.mkDefault false;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+        FastConnectable = true;
+      };
+    };
+  };
+  systemd.settings.Manager.DefaultTimeoutStopSec = "10s";
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   services = {
     udisks2.enable = true;
     openssh.enable = true;
@@ -13,7 +26,7 @@
     # davfs2.enable = true;
     avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
       openFirewall = true;
       publish = {
         enable = true;
@@ -31,7 +44,9 @@
     duplicati = {
       enable = true;
       dataDir = "/db/duplicati";
+      parameters = ''
+        --webservice-password=5112
+      '';
     };
   };
-  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 }

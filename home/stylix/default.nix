@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   inputs,
   ...
 }: {
@@ -29,6 +28,12 @@
       #   then "light"
       #   else "dark"
       # }";
+    };
+    icons = {
+      enable = true;
+      package = pkgs.papirus-icon-theme;
+      light = "Papirus-Light";
+      dark = "Papirus-Dark";
     };
     opacity = {
       terminal = 0.85;
@@ -63,5 +68,6 @@
     targets.gtk.extraCss = ''
       window.background { border-radius: 0; }
     '';
+    targets.fcitx5.enable = false;
   };
 }

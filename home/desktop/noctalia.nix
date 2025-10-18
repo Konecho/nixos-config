@@ -22,13 +22,14 @@ in {
     (
       writeShellScriptBin "noctalia-blur" ''
         cd /home/media/photos/wallpapers
-        fd -e jpg -e png -E '*.blur' -x magick {} -blur 0x8 {}.blur
+        fd -e jpg -e png -x sh -c 'for f; do [ -f "$f.blur" ] || magick "$f" -blur 0x8 "$f.blur"; done' _ {}
       ''
     )
   ];
   programs.noctalia-shell = {
     enable = true;
     settings = {
+      appLauncher.terminalCommand = "ghostty -e";
       bar = {
         density = "comfortable";
         floating = true;
@@ -38,10 +39,12 @@ in {
         useWallpaperColors = true;
       };
       wallpaper.directory = "/home/media/photos/wallpapers";
+      wallpaper.randomEnabled = true;
       general = {};
       hooks.enabled = true;
       # fd -e jpg -e png -E '*.blur' -x magick {} -blur 0x8 {}.blur
       hooks.wallpaperChange = "swww img -o $2 $1.blur";
+      setupCompleted = true;
     };
   };
   systemd.user.services = {

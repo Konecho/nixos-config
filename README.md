@@ -1,7 +1,5 @@
 # NixOS
 
-![wallpaper](https://pbs.twimg.com/media/GhYgRg8aQAAuh6n.jpg)
-
 ## 目录结构
 
 - `home`,`system`: 主电脑的home-manager配置与系统配置
