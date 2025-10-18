@@ -18,6 +18,10 @@
     lswt
   ];
   programs.fuzzel.enable = true;
+  services.udiskie.enable = true;
+  services.udiskie.settings = {
+    icon_names.media = ["media-optical"];
+  };
   programs.niri.settings.spawn-at-startup = [
     # {command = ["activate-linux" "-d"];}
     {command = ["fcitx5" "-r" "-d"];}
