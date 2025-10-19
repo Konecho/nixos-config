@@ -19,6 +19,6 @@
   };
   services.dae = {
     enable = true;
-    configFile = "${config.users.users."${username}".home}/config.dae";
+    configFile = "${config.user.home}/config.dae";
   };
 }

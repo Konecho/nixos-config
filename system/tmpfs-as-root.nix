@@ -29,11 +29,21 @@
           how = "symlink";
           configureParent = true;
         }
+        {
+          file = "/etc/ssh/ssh_host_rsa_key";
+          how = "symlink";
+          configureParent = true;
+        }
+        {
+          file = "/etc/ssh/ssh_host_ed25519_key";
+          how = "symlink";
+          configureParent = true;
+        }
         "/etc/ly/save.ini"
       ];
       directories = [
         {
-          directory = config.users.users."${username}".home;
+          directory = config.user.home;
           user = username;
           group = "users";
           # mode = "0700";

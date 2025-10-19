@@ -28,12 +28,7 @@
   };
   programs.virt-manager.enable = true;
   # sudo virsh net-autostart default
-  users.groups = {
-    libvirt.members = [username];
-    kvm.members = [username];
-    vboxusers.members = [username];
-    docker.members = [username];
-  };
+  mono.groupsAdd = ["libvirt" "kvm" "vboxusers" "docker"];
 
   # environment.systemPackages = with inputs.winapps.packages.${system}; [winapps winapps-launcher];
 }
