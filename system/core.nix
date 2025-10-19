@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  environment.binsh = "${pkgs.dash}/bin/dash";
+  environment.binsh = "${lib.getExe pkgs.dash}";
 
   security.sudo.enable = lib.mkDefault false;
   security.sudo.execWheelOnly = true;
@@ -22,7 +22,7 @@
     helix
 
     (lib.mkIf (!config.security.sudo.enable && config.security.doas.enable) (
-      writeScriptBin "sudo" ''exec doas "$@"''
+      writeScriptBin "sudo" ''exec ${lib.getExe doas} "$@"''
     ))
   ];
 

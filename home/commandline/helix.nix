@@ -52,21 +52,21 @@
         {
           name = "nix";
           formatter = {
-            command = "${alejandra}/bin/alejandra";
+            command = "${lib.getExe alejandra}";
           };
           language-servers = ["nixd"];
         }
         {
           name = "python";
           formatter = {
-            command = "${ruff}/bin/ruff";
+            command = "${lib.getExe ruff}";
             args = ["format" "--line-length" "120" "-"];
           };
         }
         {
           name = "toml";
           formatter = {
-            command = "${taplo}/bin/taplo";
+            command = "${lib.getExe taplo}";
             args = ["fmt" "-"];
           };
         }
@@ -77,26 +77,17 @@
             "md"
             "markdown"
           ];
-          # language-servers = ["rime-ls"];
         }
       ];
     languages.language-server = with pkgs; {
-      nixd = {
-        command = "${nixd}/bin/nixd";
-        config.home-manager.expr = "(builtins.getFlake \"/etc/nixos\").homeConfigurations.mei.options";
-        config.nixos.expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.deskmini.options";
+      nixd = let
+        userName = "mei";
+        hostName = "deskmini";
+      in {
+        command = "${lib.getExe nixd}";
+        config.home-manager.expr = ''(builtins.getFlake "/etc/nixos").homeConfigurations.${userName}.options'';
+        config.nixos.expr = ''(builtins.getFlake "/etc/nixos").nixosConfigurations.${hostName}.options'';
       };
-      # rime-ls = {
-      #   command = "${mypkgs.rime-ls}/bin/rime_ls";
-      #   config.shared_data_dir = "${rime-data}/share/rime-data";
-      #   config.user_data_dir = "~/.local/share/rime-ls";
-      #   config.log_dir = "~/.local/share/rime-ls";
-      #   config.max_candidates = 9;
-      #   config.trigger_characters = [];
-      #   config.schema_trigger_character = "&";
-      #   config.max_tokens = 4;
-      #   config.always_incomplete = true;
-      # };
     };
     settings.editor.lsp = {
       display-messages = true;
@@ -109,6 +100,5 @@
       r = ":run-shell-command zellij run -f -- just run";
       t = ":run-shell-command zellij run -f -- just test";
     };
-    # settings.theme = "monokai_pro_machine";
   };
 }

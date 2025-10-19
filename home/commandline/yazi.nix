@@ -1,11 +1,12 @@
 {
   pkgs,
   inputs,
-  config,
+  lib,
   ...
 }: {
   home.packages = with pkgs; [
     mediainfo
+    hexyl
   ];
   programs.yazi = {
     enable = true;
@@ -36,7 +37,7 @@
         append_previewers = [
           {
             name = "*";
-            run = ''piper -- ${pkgs.hexyl}/bin/hexyl --border=none --terminal-width=$w "$1"'';
+            run = ''piper -- hexyl --border=none --terminal-width=$w "$1"'';
           }
         ];
         prepend_fetchers = [

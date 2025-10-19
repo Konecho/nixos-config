@@ -1,9 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.fish = {
     enable = true;
     functions.gitui = ''
       ssh-add ~/.ssh/id_ed25519 2> /dev/null
-      ${pkgs.gitui}/bin/gitui
+      ${lib.getExe pkgs.gitui}
     '';
     loginShellInit = "";
     plugins = [

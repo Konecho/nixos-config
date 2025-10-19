@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   config,
   ...
 }: let
@@ -21,7 +22,7 @@ in {
     )
     (
       writeShellScriptBin "noctalia-blur" ''
-        cd /home/media/photos/wallpapers
+        cd ${config.xdg.userDirs.pictures}/wallpapers
         fd -e jpg -e png -x sh -c 'for f; do [ -f "$f.blur" ] || magick "$f" -blur 0x8 "$f.blur"; done' _ {}
       ''
     )
@@ -38,7 +39,7 @@ in {
         darkMode = false;
         useWallpaperColors = true;
       };
-      wallpaper.directory = "/home/media/photos/wallpapers";
+      wallpaper.directory = "${config.xdg.userDirs.pictures}/wallpapers";
       wallpaper.randomEnabled = true;
       general = {};
       hooks.enabled = true;
@@ -58,13 +59,14 @@ in {
       };
       Service = {
         Type = "exec";
-        ExecStart = "${noctaliaPkgs}/bin/noctalia-shell";
+        ExecStart = "${lib.getExe noctaliaPkgs}";
         Restart = "on-failure";
         RestartSec = 3;
         TimeoutStartSec = 10;
         TimeoutStopSec = 5;
         Environment = [
           "QT_QPA_PLATFORM=wayland"
+          "QT_QPA_PLATFORMTHEME=gtk3"
           "ELECTRON_OZONE_PLATFORM_HINT=auto"
           "NOCTALIA_SETTINGS_FALLBACK=%h/.config/noctalia/gui-settings.json"
         ];
