@@ -1,10 +1,4 @@
-# <home-manager switch --flake .#mei>
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: {
+{lib, ...}: {
   home = {
     stateVersion = "22.11";
     homeDirectory = lib.mkDefault "/home";

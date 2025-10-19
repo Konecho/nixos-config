@@ -1,10 +1,10 @@
 {
   inputs,
+  config,
   username,
   ...
 }: {
   imports = [
-    # inputs.impermanence.nixosModules.impermanence
     inputs.preservation.nixosModules.preservation
   ];
 
@@ -18,20 +18,6 @@
     ];
   };
 
-  # environment.persistence."/persist" = {
-  #   directories = [
-  # "/home"
-  # "/etc/nixos"
-  # "/etc/NetworkManager/system-connections"
-  # "/var/log"
-  # "/var/lib"
-  # ];
-  # files = [
-  # "/etc/machine-id"
-  # "/etc/passwd"
-  # "/etc/shadow"
-  #   ];
-  # };
   # This module cannot be used with scripted initrd.
   preservation = {
     enable = true;
@@ -41,12 +27,13 @@
           file = "/etc/machine-id";
           inInitrd = true;
           how = "symlink";
+          configureParent = true;
         }
         "/etc/ly/save.ini"
       ];
       directories = [
         {
-          directory = "/home";
+          directory = config.users.users."${username}".home;
           user = username;
           group = "users";
           # mode = "0700";
@@ -63,9 +50,8 @@
       users.${username} = {};
     };
   };
-  # A work round for systemd-machine-id-commit.
-  # See https://github.com/NixOS/nixpkgs/issues/351151 and issues in preservation and
-  # impermanence.
+
+  # ref: https://github.com/nix-community/preservation/blob/main/docs/src/examples.md
   systemd.suppressedSystemUnits = ["systemd-machine-id-commit.service"];
   systemd.services.systemd-machine-id-commit = {
     unitConfig.ConditionPathIsMountPoint = [
