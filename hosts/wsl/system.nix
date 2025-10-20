@@ -14,10 +14,12 @@
     ]
     ++ (map (path: rootPath + path) [
       /system/core.nix
-      /system/misc.nix
       /system/nix.nix
       /system/age.nix
+      /modules/mono.nix
     ]);
+  time.timeZone = "Asia/Shanghai";
+  i18n.defaultLocale = "zh_CN.UTF-8";
   nixpkgs.overlays = [
     inputs.nixgl.overlay
   ];
@@ -59,8 +61,7 @@
       done
     '';
   };
-  users.groups.plugdev.members = ["${username}"];
-  # users.users."${username}".extraGroups = ["plugdev"]; # not work
+  mono.groupsAdd = ["plugdev"];
   networking.proxy.default = "http://192.168.80.1:7890";
   services.udev.extraRules = ''
   '';
