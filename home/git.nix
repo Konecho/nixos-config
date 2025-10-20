@@ -6,6 +6,7 @@ in {
     git = {
       enable = true;
       delta.enable = true;
+      signing.format = "openpgp";
       ignores = [
         "*~"
         "\\#*\\#"

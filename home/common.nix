@@ -2,7 +2,7 @@
   HOME = "/home";
 in {
   home = {
-    stateVersion = "22.11";
+    stateVersion = "25.11";
     homeDirectory = lib.mkDefault HOME;
     sessionPath = ["${HOME}/.cargo/bin"];
     sessionVariables = {

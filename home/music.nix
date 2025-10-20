@@ -5,8 +5,6 @@
 }: {
   services.mpd = {
     enable = true;
-    musicDirectory = "${config.home.homeDirectory}/media/music";
-    dataDir = "${config.home.homeDirectory}/.mpd";
     extraConfig = ''
       audio_output {
         type "pulse"
