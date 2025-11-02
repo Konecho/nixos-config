@@ -7,7 +7,9 @@
 
     ./niri.nix
     ./niriswitcher.nix
-    ./noctalia.nix
+
+    # ./noctalia.nix
+    ./caelestia.nix
     # ./dank.nix
   ];
   # services.poweralertd.enable = true;

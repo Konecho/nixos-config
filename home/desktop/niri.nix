@@ -11,6 +11,9 @@ in {
     inputs.niri.homeModules.config
     inputs.niri.homeModules.stylix
   ];
+  home.packages = with pkgs; [
+    inputs.hexecute.packages.${pkgs.system}.default
+  ];
   nixpkgs.overlays = [inputs.niri.overlays.niri];
   programs.niri.settings.xwayland-satellite = {
     enable = true;
@@ -24,7 +27,7 @@ in {
       MOZ_ENABLE_WAYLAND = "1"; # firefox / icecat
     };
     prefer-no-csd = true;
-    screenshot-path = "~/media/photos/screenshots/niri %Y-%m-%d %H-%M-%S.png";
+    screenshot-path = "${config.xdg.userDirs.pictures}/screenshots/niri %Y-%m-%d %H-%M-%S.png";
     window-rules = [
       {
         matches = [{title = "Xwayland";}];
@@ -36,6 +39,15 @@ in {
         open-focused = false;
         border = {enable = false;};
         draw-border-with-background = false;
+      }
+      {
+        matches = [
+          {
+            app-id = "wechat";
+            title = "图片和视频";
+          }
+        ];
+        open-floating = true;
       }
       {
         matches = [{app-id = "ghostty";}];
@@ -59,7 +71,7 @@ in {
         attrs);
     in
       (withModifierSpawn "Mod" {
-        "D" = "fuzzel";
+        "Space" = "hexecute";
         "Return" = TERM;
       })
       // (

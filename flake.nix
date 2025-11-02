@@ -38,7 +38,6 @@
       flake = false;
     };
     niri.url = "github:sodiboo/niri-flake";
-    dank.url = "github:AvengeMedia/DankMaterialShell";
     yazi-plugins = {
       url = "github:yazi-rs/plugins";
       flake = false;
@@ -71,8 +70,27 @@
       url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    quickshell = {
+      url = "github:quickshell-mirror/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dank = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+    };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+    };
+    caelestia = {
+      url = "github:jutraim/niri-caelestia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+    };
+    hexecute = {
+      url = "github:ThatOtherAndrew/Hexecute";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -95,9 +113,7 @@
       deskmini = lib.mkSys {
         hostname = "deskmini";
         inherit pkgs username system;
-        modules =
-          [./hosts/deskmini/hardware-configuration.nix]
-          ++ (lib.scanPath {path = ./system;});
+        modules = [./hosts/deskmini/hardware-configuration.nix] ++ (lib.scanPath {path = ./system;});
       };
       wsl = lib.mkSys {
         hostname = "wsl";

@@ -90,7 +90,7 @@ in {
         # spawn-at-startup = [{command = ["noctalia-shell"];}];
         binds = with config.lib.niri.actions; {
           "Mod+Shift+L".action.spawn = noctalia "lockScreen toggle";
-          "Mod+Space".action.spawn = noctalia "launcher toggle";
+          "Mod+D".action.spawn = noctalia "launcher toggle";
           "XF86AudioLowerVolume".action.spawn = noctalia "volume decrease";
           "XF86AudioRaiseVolume".action.spawn = noctalia "volume increase";
           "XF86AudioMute".action.spawn = noctalia "volume muteOutput";
