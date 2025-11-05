@@ -2,8 +2,6 @@
   config,
   inputs,
   pkgs,
-  system,
-  username,
   rootPath,
   ...
 }: {
@@ -28,7 +26,7 @@
   # hardware.opengl.extraPackages = with pkgs; [mesa.drivers];
   wsl = {
     enable = true;
-    defaultUser = "${username}";
+    defaultUser = config.mono.username;
     # 创建软件的桌面快捷方式
     # startMenuLaunchers = true;
     extraBin = with pkgs; [
@@ -76,7 +74,7 @@
   # wsl.wslConf.
   wsl.wslConf.network.generateResolvConf = false;
   # networking.resolvconf.useLocalResolver = true;
-  services.dnscrypt-proxy2 = {
+  services.dnscrypt-proxy = {
     enable = true;
     # Settings reference:
     # https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml

@@ -1,9 +1,10 @@
 {
   inputs,
   config,
-  username,
   ...
-}: {
+}: let
+  username = config.mono.username;
+in {
   imports = [
     inputs.preservation.nixosModules.preservation
   ];

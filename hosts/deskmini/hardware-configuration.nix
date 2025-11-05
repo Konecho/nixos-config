@@ -2,9 +2,10 @@
   config,
   lib,
   modulesPath,
-  username,
   ...
-}: {
+}: let
+  username = config.mono.username;
+in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];

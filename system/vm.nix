@@ -1,10 +1,4 @@
-{
-  pkgs,
-  username,
-  inputs,
-  system,
-  ...
-}: {
+{...}: {
   # boot.binfmt.emulatedSystems = ["aarch64-linux"];
   virtualisation = {
     # virtualbox = {
@@ -29,6 +23,4 @@
   programs.virt-manager.enable = true;
   # sudo virsh net-autostart default
   mono.groupsAdd = ["libvirt" "kvm" "vboxusers" "docker"];
-
-  # environment.systemPackages = with inputs.winapps.packages.${system}; [winapps winapps-launcher];
 }

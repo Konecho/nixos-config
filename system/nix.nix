@@ -1,8 +1,7 @@
 {
-  pkgs,
   lib,
   inputs,
-  username,
+  config,
   ...
 }: {
   nix.settings.experimental-features = [
@@ -13,7 +12,7 @@
   nix.extraOptions = ''
     keep-outputs = true
     keep-derivations = true
-    trusted-users = root ${username}
+    trusted-users = root ${config.mono.username}
   '';
   nix.settings.substituters = [
     "https://mirrors.ustc.edu.cn/nix-channels/store/"
