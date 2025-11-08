@@ -20,12 +20,6 @@ in {
         diff -u <(jq -S . ~/.config/noctalia/settings.json) <(jq -S . ~/.config/noctalia/gui-settings.json) | colordiff
       ''
     )
-    (
-      writeShellScriptBin "noctalia-blur" ''
-        cd ${config.xdg.userDirs.pictures}/wallpapers
-        fd -e jpg -e png -x sh -c 'for f; do [ -f "$f.blur" ] || magick "$f" -blur 0x8 "$f.blur"; done' _ {}
-      ''
-    )
   ];
   programs.noctalia-shell = {
     enable = true;
@@ -41,10 +35,10 @@ in {
       };
       wallpaper.directory = "${config.xdg.userDirs.pictures}/wallpapers";
       wallpaper.randomEnabled = true;
+      wallpaper.overviewEnabled = true;
       general = {};
       hooks.enabled = true;
       # fd -e jpg -e png -E '*.blur' -x magick {} -blur 0x8 {}.blur
-      hooks.wallpaperChange = "swww img -o $2 $1.blur";
       setupCompleted = true;
     };
   };
@@ -79,8 +73,6 @@ in {
   };
 
   services.cliphist.enable = true;
-  # services.wpaperd.enable = true;
-  services.swww.enable = true;
   programs.fuzzel.enable = true;
   programs = {
     niri = {
@@ -88,30 +80,35 @@ in {
         noctalia = cmd: ["noctalia-shell" "ipc" "call"] ++ (pkgs.lib.splitString " " cmd);
       in {
         # spawn-at-startup = [{command = ["noctalia-shell"];}];
-        binds = with config.lib.niri.actions; {
-          "Mod+Shift+L".action.spawn = noctalia "lockScreen toggle";
+        binds = {
+          "Mod+Shift+L".action.spawn = noctalia "lockScreen lock";
           "Mod+D".action.spawn = noctalia "launcher toggle";
           "XF86AudioLowerVolume".action.spawn = noctalia "volume decrease";
           "XF86AudioRaiseVolume".action.spawn = noctalia "volume increase";
           "XF86AudioMute".action.spawn = noctalia "volume muteOutput";
         };
-        layer-rules = [
-          # {
-          #   matches = [{namespace = "wpaperd";}];
-          #   place-within-backdrop = true;
-          # }
+        window-rules = [
           {
-            matches = [{namespace = "swww";}];
+            # Rounded corners for a modern look.
+            geometry-corner-radius = {
+              bottom-left = 20.0;
+              bottom-right = 20.0;
+              top-left = 20.0;
+              top-right = 20.0;
+            };
+            # Clips window contents to the rounded corner boundaries.
+            clip-to-geometry = true;
+          }
+        ];
+        debug = {
+          # Allows notification actions and window activation from Noctalia.
+          honor-xdg-activation-with-invalid-serial = [];
+        };
+        layer-rules = [
+          {
+            matches = [{namespace = "^noctalia-overview*";}];
             place-within-backdrop = true;
           }
-          # {
-          #   matches = [{namespace = "quickshell-wallpaper";}];
-          #   # place-within-backdrop = true;
-          # }
-          # {
-          #   matches = [{namespace = "^quickshell-overview$";}];
-          #   place-within-backdrop = true;
-          # }
         ];
         # layout.background-color = "transparent";
         # overview.workspace-shadow.enable = false;

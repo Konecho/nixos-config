@@ -8,13 +8,10 @@
     ./niri.nix
     ./niriswitcher.nix
 
-    # ./noctalia.nix
-    ./caelestia.nix
+    ./noctalia.nix
+    # ./caelestia.nix
     # ./dank.nix
+    # ./minecraft.nix
   ];
   # services.poweralertd.enable = true;
-  home.packages = with pkgs; [
-    libnotify
-    sox
-  ];
 }

@@ -5,7 +5,6 @@ in {
   programs = {
     git = {
       enable = true;
-      delta.enable = true;
       signing.format = "openpgp";
       ignores = [
         "*~"
@@ -14,11 +13,16 @@ in {
         "*\\__pycache__"
         ".direnv"
       ];
-      userName = name;
-      userEmail = email;
-      extraConfig.init.defaultBranch = "main";
-      extraConfig.safe.directory = "/etc/nixos";
+      settings = {
+        user = {
+          inherit email name;
+        };
+        init.defaultBranch = "main";
+        safe.directory = "/etc/nixos";
+      };
     };
+    delta.enable = true;
+    delta.enableGitIntegration = true;
     gitui = {
       enable = true;
     };

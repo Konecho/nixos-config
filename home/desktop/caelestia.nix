@@ -14,6 +14,7 @@
       bar.status = {
         showBattery = false;
       };
+      bar.tray.background = false;
       paths.wallpaperDir = "${config.xdg.userDirs.pictures}/wallpapers";
     };
     systemd.environment = [

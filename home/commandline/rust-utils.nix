@@ -16,7 +16,7 @@
   home.packages = with pkgs; [
     hck
     fd
-    du-dust
+    dust
     ripgrep
     procs
     sd

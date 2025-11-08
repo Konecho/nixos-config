@@ -28,7 +28,7 @@ in {
   config = {
     users.groups = builtins.listToAttrs (map (n: {
         name = n;
-        value = {members = [cfg.mono.username];};
+        value = {members = [cfg.username];};
       })
       cfg.groupsAdd);
 
