@@ -6,7 +6,7 @@
   ...
 }: let
   noctaliaPkgs =
-    inputs.noctalia.packages.${config.nixpkgs.system}.default;
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in {
   imports = [
     inputs.noctalia.homeModules.default
@@ -28,14 +28,23 @@ in {
       bar = {
         density = "comfortable";
         floating = true;
+        widgets.center = [{id = "Workspace";} {id = "WallpaperSelector";}];
       };
+      dock.displayMode = "auto_hide";
       colorSchemes = {
         darkMode = false;
         useWallpaperColors = true;
       };
-      wallpaper.directory = "${config.xdg.userDirs.pictures}/wallpapers";
-      wallpaper.randomEnabled = true;
-      wallpaper.overviewEnabled = true;
+      screenRecorder = {
+        directory = "${config.xdg.userDirs.videos}/noctalia";
+        videoSource = "screen";
+      };
+      wallpaper = {
+        directory = "${config.xdg.userDirs.pictures}/wallpapers";
+        randomEnabled = true;
+        overviewEnabled = true;
+        panelPosition = "top_center";
+      };
       general = {};
       hooks.enabled = true;
       # fd -e jpg -e png -E '*.blur' -x magick {} -blur 0x8 {}.blur
@@ -79,7 +88,7 @@ in {
       settings = let
         noctalia = cmd: ["noctalia-shell" "ipc" "call"] ++ (pkgs.lib.splitString " " cmd);
       in {
-        # spawn-at-startup = [{command = ["noctalia-shell"];}];
+        spawn-at-startup = [{command = noctalia "wallpaper random";}];
         binds = {
           "Mod+Shift+L".action.spawn = noctalia "lockScreen lock";
           "Mod+D".action.spawn = noctalia "launcher toggle";

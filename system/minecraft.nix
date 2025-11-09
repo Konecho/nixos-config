@@ -71,7 +71,7 @@ in {
     theme = "minesddm";
   };
   environment.systemPackages = with pkgs; [
-    inputs.minesddm.packages.${pkgs.system}.default
+    inputs.minesddm.packages.${pkgs.stdenv.hostPlatform.system}.default
     qt5.qtbase
     qt5.qtquickcontrols2
     qt5.qtgraphicaleffects

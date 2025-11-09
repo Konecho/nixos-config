@@ -12,7 +12,7 @@ in {
     inputs.niri.homeModules.stylix
   ];
   home.packages = with pkgs; [
-    inputs.hexecute.packages.${pkgs.system}.default
+    inputs.hexecute.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
   nixpkgs.overlays = [inputs.niri.overlays.niri];
   programs.niri.settings.xwayland-satellite = {

@@ -1,10 +1,9 @@
 {
   pkgs,
   inputs,
-  config,
   ...
 }: let
-  system = config.nixpkgs.system;
+  system = pkgs.stdenv.hostPlatform.system;
 in {
   imports = [./commandline/pkm-shell.nix];
   home.sessionVariables.BROWSER = "qutebrowser";
