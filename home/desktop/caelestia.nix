@@ -21,16 +21,10 @@
       "QT_QPA_PLATFORMTHEME=gtk3"
     ];
   };
-  programs = {
-    niri = {
-      settings = let
-        caelestia = cmd: ["caelestia-shell" "ipc" "call"] ++ (pkgs.lib.splitString " " cmd);
-      in {
-        binds = {
-          "Mod+Shift+L".action.spawn = caelestia "lock lock";
-          "Mod+D".action.spawn = caelestia "drawers toggle launcher";
-        };
-      };
-    };
+  programs.niri.settings.binds = let
+    caelestia = cmd: ["caelestia-shell" "ipc" "call"] ++ (pkgs.lib.splitString " " cmd);
+  in {
+    "Mod+Shift+L".action.spawn = caelestia "lock lock";
+    "Mod+D".action.spawn = caelestia "drawers toggle launcher";
   };
 }
