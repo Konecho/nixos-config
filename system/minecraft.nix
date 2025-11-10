@@ -59,10 +59,12 @@ in {
   ];
   services.displayManager.sddm = {
     enable = true;
-    autoNumlock = true;
+    # autoNumlock = true;
     package = pkgs.kdePackages.sddm;
     wayland.enable = true;
     theme = "minesddm";
+    # https://github.com/sddm/sddm/issues/2090
+    settings.General.Numlock = 0;
   };
   environment.systemPackages = with pkgs; [
     inputs.minesddm.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -70,8 +72,20 @@ in {
     qt5.qtquickcontrols2
     qt5.qtgraphicaleffects
 
+    sddm-kcm
+
     kdePackages.layer-shell-qt
   ];
-
   services.upower.enable = true;
+  systemd.services.numLockOnTty = {
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      # /run/current-system/sw/bin/setleds -D +num < "$tty";
+      ExecStart = lib.mkForce (pkgs.writeShellScript "numLockOnTty" ''
+        for tty in /dev/tty{1..6}; do
+            ${pkgs.kbd}/bin/setleds -D +num < "$tty";
+        done
+      '');
+    };
+  };
 }
