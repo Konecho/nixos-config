@@ -13,10 +13,11 @@ in {
   imports = [
     inputs.minegrub-theme.nixosModules.default
     inputs.minegrub-world-sel-theme.nixosModules.default
+    inputs.minecraft-plymouth-theme.nixosModules.default
     # inputs.minesddm.nixosModules.default
   ];
   nixpkgs.overlays = [
-    inputs.minecraft-plymouth-theme.overlay
+    # inputs.minecraft-plymouth-theme.overlay
   ];
   boot.loader.grub = {
     configurationLimit = 30;
@@ -45,10 +46,7 @@ in {
   };
   boot.plymouth = {
     enable = true;
-    theme = "mc";
-    themePackages = [
-      pkgs.plymouth-minecraft-theme
-    ];
+    plymouth-minecraft-theme.enable = true;
   };
   boot.initrd.verbose = false;
   boot.consoleLogLevel = 3;
@@ -59,10 +57,6 @@ in {
     "udev.log_priority=3"
     "rd.systemd.show_status=auto"
   ];
-  # stylix = {
-  #   targets.grub.enable = false;
-  #   targets.plymouth.enable = false;
-  # };
   services.displayManager.sddm = {
     enable = true;
     autoNumlock = true;
