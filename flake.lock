@@ -499,11 +499,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1762731582,
-        "narHash": "sha256-nP05u1F7V1JQtoWQHqz7liZhOGklJ1guHo4poHdF3xg=",
+        "lastModified": 1762860197,
+        "narHash": "sha256-YJJ4Cktyol6jM+kt7aknXJ4AJycmB84h4yVSx0naBS4=",
         "owner": "nikp123",
         "repo": "minecraft-plymouth-theme",
-        "rev": "3640a42de552a117f58f6f431a360ccb99c1c22f",
+        "rev": "9b3abe7e84ba8ef869a1a9483b5b64ab4321f8ce",
         "type": "github"
       },
       "original": {
@@ -889,11 +889,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1762574875,
-        "narHash": "sha256-uhJab+dYUcJ+Zd3lQqACnlSu1cciaVcqa6X5DUkwF8k=",
+        "lastModified": 1762863768,
+        "narHash": "sha256-c/zsvlczXfoI+I9KaNP2vEfy2lfwfwCSH1AgaepCpVk=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "c1d43127b3c23b2ac524521d3fb4f0b46fc39cdf",
+        "rev": "3c8a49d7c09c4f886b8ec9c4c658ae1926e8d44a",
         "type": "github"
       },
       "original": {

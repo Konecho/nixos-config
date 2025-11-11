@@ -6,9 +6,11 @@
   ...
 }: let
   timestamp = inputs.nixpkgs.lastModified;
-  mctime =
-    lib.readFile (pkgs.runCommand "mctimestamp" {}
-      "date -d @${builtins.toString timestamp} '+%d/%m/%Y, %I:%M %p' |tr -d '\n' > $out");
+  mctime = lib.readFile (
+    pkgs.runCommand "mctimestamp" {}
+    "date -d @${builtins.toString timestamp} '+%d/%m/%Y, %I:%M %p' |tr -d '\n' > $out"
+  );
+  plymouthPkg = inputs.minecraft-plymouth-theme.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in {
   imports = [
     inputs.minegrub-theme.nixosModules.default
@@ -47,7 +49,9 @@ in {
   boot.plymouth = {
     enable = true;
     plymouth-minecraft-theme.enable = true;
+    font = "${plymouthPkg}/share/fonts/OTF/Minecraft.otf";
   };
+  # fonts.packages = [ plymouthPkg ];
   boot.initrd.verbose = false;
   boot.consoleLogLevel = 3;
   boot.kernelParams = [
@@ -68,11 +72,12 @@ in {
   };
   environment.systemPackages = with pkgs; [
     inputs.minesddm.packages.${pkgs.stdenv.hostPlatform.system}.default
+    plymouthPkg
     qt5.qtbase
     qt5.qtquickcontrols2
     qt5.qtgraphicaleffects
 
-    sddm-kcm
+    kdePackages.sddm-kcm
 
     kdePackages.layer-shell-qt
   ];
@@ -81,11 +86,13 @@ in {
     wantedBy = ["multi-user.target"];
     serviceConfig = {
       # /run/current-system/sw/bin/setleds -D +num < "$tty";
-      ExecStart = lib.mkForce (pkgs.writeShellScript "numLockOnTty" ''
-        for tty in /dev/tty{1..6}; do
-            ${pkgs.kbd}/bin/setleds -D +num < "$tty";
-        done
-      '');
+      ExecStart = lib.mkForce (
+        pkgs.writeShellScript "numLockOnTty" ''
+          for tty in /dev/tty{1..6}; do
+              ${pkgs.kbd}/bin/setleds -D +num < "$tty";
+          done
+        ''
+      );
     };
   };
 }
