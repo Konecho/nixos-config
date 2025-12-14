@@ -37,7 +37,8 @@
       url = "github:msikma/pokesprite";
       flake = false;
     };
-    niri.url = "github:sodiboo/niri-flake";
+    niri-flake.url = "github:sodiboo/niri-flake";
+    niri.url = "github:YaLTeR/niri";
     yazi-plugins = {
       url = "github:yazi-rs/plugins";
       flake = false;
@@ -81,7 +82,6 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.follows = "quickshell";
     };
     caelestia = {
       url = "github:jutraim/niri-caelestia-shell";

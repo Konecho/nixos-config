@@ -19,6 +19,10 @@ in {
       ''
     )
   ];
+  stylix.targets = {
+    ghostty.enable = false;
+    noctalia-shell.enable = false;
+  };
   programs.noctalia-shell = {
     enable = true;
     package = noctaliaPkgs;
@@ -30,6 +34,7 @@ in {
         widgets.center = [{id = "Workspace";} {id = "WallpaperSelector";}];
       };
       dock.displayMode = "auto_hide";
+      dock.radiusRatio = 1;
       colorSchemes = {
         darkMode = false;
         useWallpaperColors = true;
@@ -44,8 +49,14 @@ in {
         overviewEnabled = true;
         panelPosition = "top_center";
       };
-      general = {};
-      setupCompleted = true;
+      templates = {
+        ghostty = true;
+        niri = true;
+      };
+      general = {
+        # avatarImage="";
+      };
+      # setupCompleted = true;
     };
     systemd.enable = true;
   };

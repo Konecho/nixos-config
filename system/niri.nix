@@ -4,9 +4,9 @@
   ...
 }: {
   #  with cachix
-  imports = [inputs.niri.nixosModules.niri];
-  nixpkgs.overlays = [inputs.niri.overlays.niri];
-  programs.niri.enable = true;
+  imports = [inputs.niri-flake.nixosModules.niri];
   # will build from source
-  # programs.niri.package = pkgs.niri-unstable;
+  # nixpkgs.overlays = [inputs.niri.overlays.default];
+  programs.niri.enable = true;
+  programs.niri.package = pkgs.niri;
 }

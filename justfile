@@ -13,7 +13,7 @@ build-no-proxy:
 git-fix:
     doas git config --global --add safe.directory "$PWD"
 update *input:
-    if [ -z {{input}} ];then nix flake update;else nix flake update {{input}};fi
+    nix flake update {{input}}
 build-home:
     home-manager build --flake . {{NIX_FLAGS}}|& nom
     nvd diff $NIX_USER_PROFILE_DIR/profile result
@@ -53,4 +53,3 @@ deacitvate-proxy-on-daemon:
     rm /run/systemd/system/nix-daemon.service.d/override.conf
     systemctl daemon-reload
     systemctl restart nix-daemon
-    

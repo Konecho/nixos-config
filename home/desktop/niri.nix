@@ -8,13 +8,16 @@
   TERM = config.home.sessionVariables.TERMINAL;
 in {
   imports = [
-    inputs.niri.homeModules.config
-    inputs.niri.homeModules.stylix
+    inputs.niri-flake.homeModules.config
+    # inputs.niri-flake.homeModules.stylix
   ];
   home.packages = with pkgs; [
     inputs.hexecute.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
-  nixpkgs.overlays = [inputs.niri.overlays.niri];
+  nixpkgs.overlays = [
+    inputs.niri.overlays.default
+    inputs.niri-flake.overlays.niri
+  ];
   programs.niri.settings.xwayland-satellite = {
     enable = true;
     path = lib.getExe pkgs.xwayland-satellite-unstable;
@@ -37,7 +40,9 @@ in {
         matches = [{app-id = "io.github.waylyrics.Waylyrics";}];
         open-floating = true;
         open-focused = false;
-        border = {enable = false;};
+        border = {
+          enable = false;
+        };
         draw-border-with-background = false;
       }
       {
@@ -176,6 +181,39 @@ in {
 
         "Mod+Shift+E".action = quit;
         "Mod+Shift+P".action = power-off-monitors;
+
+        # "Mod+Tab".action = next-window;
+        # "Mod+Shift+Tab".action = previous-window;
+        # "Mod+Grave" = {
+        #   action = next-window;
+        #   filter = "app-id";
+        # };
+        # "Mod+Shift+Grave" = {
+        #   action = previous-window;
+        #   filter = "app-id";
+        # };
       });
+  };
+  xdg.configFile.niri-config.target = lib.mkForce "niri/config.niri-flake.kdl";
+  xdg.configFile.niri-config-wrap = {
+    enable = true;
+    target = "niri/config.kdl";
+    text = ''
+      include "config.niri-flake.kdl"
+      include "noctalia.kdl"
+      recent-windows {
+          binds {
+              Alt+Tab         { next-window; }
+              Alt+Shift+Tab   { previous-window; }
+              Alt+grave       { next-window     filter="app-id"; }
+              Alt+Shift+grave { previous-window filter="app-id"; }
+
+              Mod+Tab         { next-window; }
+              Mod+Shift+Tab   { previous-window; }
+              Mod+grave       { next-window     filter="app-id"; }
+              Mod+Shift+grave { previous-window filter="app-id"; }
+          }
+      }
+    '';
   };
 }

@@ -6,7 +6,7 @@
     ./stylix.nix
 
     ./niri.nix
-    ./niriswitcher.nix
+    # ./niriswitcher.nix
 
     ./noctalia.nix
     # ./caelestia.nix
