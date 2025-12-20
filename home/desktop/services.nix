@@ -12,10 +12,9 @@
     mpv
     lswt
   ];
-  programs.fuzzel.enable = true;
   services.udiskie.enable = true;
+  # services.ollama.enable = true;
   programs.niri.settings.spawn-at-startup = [
-    {command = ["fcitx5" "-r" "-d"];}
     {command = ["clash-verge"];}
   ];
   gtk.enable = true;

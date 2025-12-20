@@ -2,7 +2,7 @@
 unfree = [
   "segger-jlink",
   "nrfconnect",
-  "corefonts",               # onlyoffice
+  "corefonts",                           # onlyoffice
   "vista-fonts",
   "android-studio-stable",
   "microsoft-edge-stable",
@@ -12,7 +12,7 @@ unfree = [
   "wechat-uos",
   "obsidian",
   "unrar",
-  "libsciter",               # rustdesk
+  "libsciter",                           # rustdesk
   "steam-runtime",
   "steam-original",
   "steam",
@@ -21,7 +21,8 @@ unfree = [
   "fcitx5-chinese-addons",
   "fcitx5-pinyin-moegirl",
   "fcitx5-pinyin-minecraft",
-
+  "vscode-extension-mhutchie-git-graph",
+  "vscode-extension-visualjj-visualjj"
 ]
 insecure = [
   # "libxls-1.6.2",

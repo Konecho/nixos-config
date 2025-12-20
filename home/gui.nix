@@ -62,6 +62,18 @@ in {
       ];
     };
     zathura.enable = true; # pdf viewer
+    vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+      profiles.default.extensions = with pkgs.vscode-extensions; [
+        ms-ceintl.vscode-language-pack-zh-hans
+        jnoortheen.nix-ide
+        continue.continue
+        mhutchie.git-graph
+        mkhl.direnv
+        visualjj.visualjj
+      ];
+    };
     # pidgin = {
     #   enable = true;
     #   plugins = with pkgs; [purple-matrix purple-discord];

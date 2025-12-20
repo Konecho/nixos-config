@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   home.shellAliases = {
     man = "batman";
     cat = "bat";
@@ -25,18 +29,25 @@
     rustup
   ];
   programs = {
-    bat = {
-      enable = true; # cat
-      ## https://github.com/eth-p/bat-extras
-      extraPackages = with pkgs.bat-extras; [
-        batdiff
-        batman
-        batgrep
-        batwatch
-        batpipe
-        prettybat
-      ];
+    nushell = {
+      enable = true;
+      configFile.text = ''
+        $env.config = {
+          show_banner: false,
+        }
+      '';
+      shellAliases = config.home.shellAliases;
     };
+    bat.enable = true; # cat
+    ## https://github.com/eth-p/bat-extras
+    bat.extraPackages = with pkgs.bat-extras; [
+      batdiff
+      batman
+      batgrep
+      batwatch
+      batpipe
+      prettybat
+    ];
     skim = {
       # <sk> replace fzf
       enable = true;
@@ -47,22 +58,18 @@
     };
     zoxide.enable = true;
     bottom.enable = true;
-    lsd = {
-      enable = true;
-      settings = {
-        date = "relative";
-        ignore-globs = [
-          ".git"
-          ".hg"
-        ];
-      };
+    lsd.enable = true;
+    lsd.settings = {
+      date = "relative";
+      ignore-globs = [
+        ".git"
+        ".hg"
+      ];
     };
-    zellij = {
-      enable = true;
-      settings = {
-        pane_frames = false;
-        default_layout = "compact";
-      };
+    zellij.enable = true;
+    zellij.settings = {
+      pane_frames = false;
+      default_layout = "compact";
     };
   };
 }

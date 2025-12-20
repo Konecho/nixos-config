@@ -19,10 +19,8 @@ in {
       ''
     )
   ];
-  stylix.targets = {
-    ghostty.enable = false;
-    noctalia-shell.enable = false;
-  };
+
+  programs.ghostty.settings.theme = "noctalia";
   programs.noctalia-shell = {
     enable = true;
     package = noctaliaPkgs;

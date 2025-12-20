@@ -9,7 +9,6 @@
 in {
   imports = [
     inputs.niri-flake.homeModules.config
-    # inputs.niri-flake.homeModules.stylix
   ];
   home.packages = with pkgs; [
     inputs.hexecute.packages.${pkgs.stdenv.hostPlatform.system}.default

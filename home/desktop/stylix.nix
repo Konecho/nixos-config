@@ -5,11 +5,13 @@
 }: {
   imports = [
     inputs.stylix.homeModules.stylix
+    inputs.niri-flake.homeModules.stylix
   ];
 
   # https://danth.github.io/stylix/options/hm.html
   stylix = {
     enable = true;
+    # autoEnable = false;
     polarity = "light";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/google-light.yaml";
     cursor = {
@@ -63,12 +65,20 @@
         name = "Noto Color Emoji";
       };
     };
-    # targets.fish.enable = false;
-    # targets.vscode.enable = false;
-    targets.vscode.profileNames = ["stylix"];
-    targets.gtk.extraCss = ''
-      window.background { border-radius: 0; }
-    '';
-    targets.fcitx5.enable = false;
+
+    targets = {
+      # managed by noctalia
+      ghostty.enable = false;
+      noctalia-shell.enable = false;
+      niri.enable = false;
+      #
+      fish.enable = false;
+      vscode.enable = false;
+      # vscode.profileNames = ["stylix"];
+      gtk.extraCss = ''
+        window.background { border-radius: 0; }
+      '';
+      fcitx5.enable = false;
+    };
   };
 }
