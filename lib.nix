@@ -102,6 +102,7 @@ in {
         [
           {
             mono.username = "${username}";
+            mono.email = "konecho@outlook.com";
             nix.registry.nixpkgs.flake = inputs.nixpkgs;
           }
           (rootPath + /modules/mono.hm.nix)

@@ -18,8 +18,21 @@ in {
     example = "bob";
     description = "";
   };
+  options.mono.email = mkOption {
+    type = types.str;
+    default = "alice@example.com";
+    description = "";
+  };
   config = {
     home.homeDirectory = "/home";
     home.username = cfg.username;
+    programs.git.settings.user = {
+      name = cfg.username;
+      email = cfg.email;
+    };
+    programs.jujutsu.settings.user = {
+      name = cfg.username;
+      email = cfg.email;
+    };
   };
 }
