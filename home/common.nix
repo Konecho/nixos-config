@@ -1,9 +1,12 @@
-{lib, ...}: let
-  HOME = "/home";
+{
+  lib,
+  config,
+  ...
+}: let
+  HOME = config.home.homeDirectory;
 in {
   home = {
     stateVersion = "25.11";
-    homeDirectory = lib.mkDefault HOME;
     sessionPath = ["${HOME}/.cargo/bin"];
     sessionVariables = {
       DOCKER_HOST = "unix:///run/docker.sock";

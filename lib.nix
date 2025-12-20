@@ -101,9 +101,10 @@ in {
       modules =
         [
           {
-            home.username = "${username}";
+            mono.username = "${username}";
             nix.registry.nixpkgs.flake = inputs.nixpkgs;
           }
+          (rootPath + /modules/mono.hm.nix)
         ]
         ++ modules;
     };
