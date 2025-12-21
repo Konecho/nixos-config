@@ -17,6 +17,7 @@
     };
     delta.enable = true;
     delta.enableGitIntegration = true;
+    delta.enableJujutsuIntegration = true;
     gitui.enable = true;
     jujutsu.enable = true;
     gh.enable = true;

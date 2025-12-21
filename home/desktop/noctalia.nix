@@ -25,14 +25,17 @@ in {
     enable = true;
     package = noctaliaPkgs;
     settings = {
-      appLauncher.terminalCommand = "ghostty -e";
+      appLauncher = {
+        terminalCommand = "ghostty -e";
+        customLaunchPrefix = "niri msg action spawn --";
+        customLaunchPrefixEnabled = true;
+      };
       bar = {
         density = "comfortable";
         floating = true;
         widgets.center = [{id = "Workspace";} {id = "WallpaperSelector";}];
       };
       dock.displayMode = "auto_hide";
-      dock.radiusRatio = 1;
       colorSchemes = {
         darkMode = false;
         useWallpaperColors = true;
@@ -48,13 +51,16 @@ in {
         panelPosition = "top_center";
       };
       templates = {
+        gtk = true;
+        qt = true;
         ghostty = true;
         niri = true;
+        vicinae = true;
+        code = true;
       };
       general = {
         # avatarImage="";
       };
-      # setupCompleted = true;
     };
     systemd.enable = true;
   };
@@ -70,7 +76,7 @@ in {
     spawn-at-startup = [{command = noctalia "wallpaper random";}];
     binds = {
       "Mod+Shift+L".action.spawn = noctalia "lockScreen lock";
-      "Mod+D".action.spawn = noctalia "launcher toggle";
+      # "Mod+D".action.spawn = noctalia "launcher toggle";
       "XF86AudioLowerVolume".action.spawn = noctalia "volume decrease";
       "XF86AudioRaiseVolume".action.spawn = noctalia "volume increase";
       "XF86AudioMute".action.spawn = noctalia "volume muteOutput";

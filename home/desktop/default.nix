@@ -4,6 +4,7 @@
     ./fcitx.nix
     ./services.nix
     ./stylix.nix
+    ./vicinae.nix
 
     ./niri.nix
     # ./niriswitcher.nix
