@@ -12,5 +12,10 @@
     wqy_zenhei
     corefonts
     vista-fonts
+    apl386
+    ucs-fonts
+    fira-mono
+    fira-math
+    nerd-fonts.symbols-only
   ];
 }

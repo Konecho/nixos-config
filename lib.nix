@@ -9,6 +9,7 @@ in {
     import inputs.nixpkgs {
       inherit system;
       config.segger-jlink.acceptLicense = builtins.elem "segger-jlink" (toml-config.pkgs.unfree);
+      config.dyalog.acceptLicense = builtins.elem "dyalog" (toml-config.pkgs.unfree);
       config.allowUnfreePredicate = pkg:
         builtins.elem (inputs.nixpkgs.lib.getName pkg) (toml-config.pkgs.unfree);
       config.permittedInsecurePackages = toml-config.pkgs.insecure;

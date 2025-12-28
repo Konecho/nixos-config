@@ -63,5 +63,6 @@
     jq
     (python3.withPackages (py: with py; [requests ptpython]))
     devenv
+    dyalog
   ];
 }

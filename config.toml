@@ -1,5 +1,6 @@
 [pkgs]
 unfree = [
+  "dyalog",
   "segger-jlink",
   "nrfconnect",
   "corefonts",                           # onlyoffice
