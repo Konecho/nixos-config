@@ -5,16 +5,16 @@
     ./services.nix
     ./stylix.nix
     ./vicinae.nix
+    ./wallpaperengine.nix
 
     ./snipaste.nix
 
     ./niri.nix
-    # ./niriswitcher.nix
 
+    # ./ashell.nix
     ./noctalia.nix
     # ./caelestia.nix
     # ./dank.nix
     # ./minecraft.nix
   ];
-  # services.poweralertd.enable = true;
 }

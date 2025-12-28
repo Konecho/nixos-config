@@ -23,7 +23,7 @@ in {
       # microsoft-edge
       # google-chrome
       # vivaldi
-      firefox
+      # firefox
       # firefox-devedition
       librewolf
 

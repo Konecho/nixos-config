@@ -13,6 +13,7 @@
       open-focused = false;
     }
   ];
+  programs.satty.enable = true;
   programs.swayimg.enable = true;
   programs.swayimg.settings = {
     "info.viewer" = {

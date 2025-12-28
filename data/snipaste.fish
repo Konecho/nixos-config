@@ -25,3 +25,4 @@ else
 end
 
 printf "%s" "$text" | magick $size_param pango:@- png:- | swayimg -a $WIN_CLASS -
+# printf "%s" "$text" | magick $size_param pango:@- png:- | satty -f -
