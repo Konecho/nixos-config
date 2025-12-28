@@ -53,3 +53,5 @@ deacitvate-proxy-on-daemon:
     rm /run/systemd/system/nix-daemon.service.d/override.conf
     systemctl daemon-reload
     systemctl restart nix-daemon
+find-top-len:
+    fd -e nix -x wc -l | sort -rn | head -n 10
