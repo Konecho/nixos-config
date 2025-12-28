@@ -7,9 +7,9 @@
 }: {
   imports = [
     inputs.nix-index-database.homeModules.nix-index
+    inputs.direnv-instant.homeModules.direnv-instant
   ];
   nix.package = lib.mkDefault pkgs.nix; # not common
-
   nix.registry = {
     old = {
       from = {
@@ -49,6 +49,12 @@
     nix-index.enable = true;
     nix-index-database.comma.enable = true;
     nix-your-shell.enable = true;
+    direnv = {
+      enable = true;
+      silent = true;
+      nix-direnv.enable = true;
+    };
+    direnv-instant.enable = true;
     nh = {
       enable = true;
       flake = /etc/nixos;

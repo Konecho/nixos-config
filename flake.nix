@@ -42,6 +42,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nur.follows = "";
     };
+    direnv-instant = {
+      url = "github:Mic92/direnv-instant";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     niri-flake = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";

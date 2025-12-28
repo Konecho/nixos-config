@@ -33,11 +33,7 @@
     '';
     broot.enable = true; # <br> tree-view search
     carapace.enable = true;
-    direnv = {
-      enable = true;
-      silent = true;
-      nix-direnv.enable = true;
-    };
+
     ## <tldr>
     tealdeer = {
       enable = true;
