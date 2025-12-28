@@ -72,6 +72,7 @@ in {
         mhutchie.git-graph
         mkhl.direnv
         visualjj.visualjj
+        ndonfris.fish-lsp
       ];
     };
     # pidgin = {

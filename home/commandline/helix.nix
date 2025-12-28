@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   # only avaliable in helix
   programs.helix.extraPackages = with pkgs; [
+    fish-lsp
     bash-language-server
     yaml-language-server
     ruff # python

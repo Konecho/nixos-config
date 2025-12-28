@@ -6,6 +6,8 @@
     ./stylix.nix
     ./vicinae.nix
 
+    ./snipaste.nix
+
     ./niri.nix
     # ./niriswitcher.nix
 
