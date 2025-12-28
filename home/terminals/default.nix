@@ -1,10 +1,7 @@
 {...}: {
   home.sessionVariables.TERMINAL = "ghostty";
   programs = {
-    wezterm = {
-      enable = true;
-      extraConfig = builtins.readFile ./wezterm.lua;
-    };
+    wezterm.enable = true;
     # alacritty.enable = true;
     ghostty = {
       enable = true;
