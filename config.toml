@@ -17,6 +17,7 @@ unfree = [
   "steam-runtime",
   "steam-original",
   "steam",
+  "steam-unwrapped",
   "steam-run",
   "steamcmd",
   "fcitx5-chinese-addons",
