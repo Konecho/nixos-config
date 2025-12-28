@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  # only avaliable in helix
   programs.helix.extraPackages = with pkgs; [
     bash-language-server
     yaml-language-server
@@ -93,12 +94,15 @@
       display-messages = true;
       display-inlay-hints = true;
     };
-    settings.keys.normal.backspace = {
-      b = ":run-shell-command zellij run -f -- just build";
-      f = ":run-shell-command zellij run -fc -- broot";
-      g = ":run-shell-command zellij run -fc -- gitui";
-      r = ":run-shell-command zellij run -f -- just run";
-      t = ":run-shell-command zellij run -f -- just test";
+    settings.keys.normal.backspace = let
+      zr = c: ":run-shell-command zellij run " + c;
+    in {
+      b = zr "-f -- just build";
+      f = zr "-fc -- broot";
+      g = zr "-fc -- gitui";
+      j = zr "-fc -- ${pkgs.lib.getExe pkgs.lazyjj}";
+      r = zr "-f -- just run";
+      t = zr "-f -- just test";
     };
   };
 }

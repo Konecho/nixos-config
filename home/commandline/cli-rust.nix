@@ -69,7 +69,7 @@
     zellij.enable = true;
     zellij.settings = {
       pane_frames = false;
-      default_layout = "compact";
+      # default_layout = "compact";
     };
   };
 }
