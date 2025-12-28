@@ -1,18 +1,20 @@
 {
   description = "A flake";
   inputs = {
+    # not follow
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    impermanence.url = "github:nix-community/impermanence";
+    preservation.url = "github:nix-community/preservation";
+    my-nixpkgs.url = "github:Konecho/my-nixpkgs";
+    # follow nixpkgs
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    impermanence.url = "github:nix-community/impermanence";
-    preservation.url = "github:nix-community/preservation";
-    nur.url = "github:nix-community/NUR";
-    my-nixpkgs = {
-      url = "github:Konecho/my-nixpkgs";
-      # inputs.nixpkgs.follows = "nixpkgs";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
@@ -23,7 +25,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database = {
-      url = "github:Mic92/nix-index-database";
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
@@ -31,25 +33,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
-    nixgl.url = "github:guibou/nixGL";
-    stylix.url = "github:danth/stylix";
-    pokesprite = {
-      url = "github:msikma/pokesprite";
-      flake = false;
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri-flake.url = "github:sodiboo/niri-flake";
-    niri.url = "github:YaLTeR/niri";
-    yazi-plugins = {
-      url = "github:yazi-rs/plugins";
-      flake = false;
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nur.follows = "";
     };
-    yazi-starship = {
-      url = "github:Rolv-Apneseth/starship.yazi";
-      flake = false;
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    yazi-mediainfo = {
-      url = "github:boydaihungst/mediainfo.yazi";
-      flake = false;
+    niri = {
+      url = "github:YaLTeR/niri";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     minegrub-theme = {
       url = "github:Lxtharia/minegrub-theme";
@@ -73,7 +72,7 @@
     };
     quickshell = {
       url = "github:quickshell-mirror/quickshell";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     dank = {
       url = "github:AvengeMedia/DankMaterialShell";
@@ -91,6 +90,23 @@
     hexecute = {
       url = "github:ThatOtherAndrew/Hexecute";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # not flake
+    pokesprite = {
+      url = "github:msikma/pokesprite";
+      flake = false;
+    };
+    yazi-plugins = {
+      url = "github:yazi-rs/plugins";
+      flake = false;
+    };
+    yazi-starship = {
+      url = "github:Rolv-Apneseth/starship.yazi";
+      flake = false;
+    };
+    yazi-mediainfo = {
+      url = "github:boydaihungst/mediainfo.yazi";
+      flake = false;
     };
   };
 
@@ -121,13 +137,10 @@
         hm-modules = [./hosts/wsl/home.nix];
       };
     };
-
     devShells.${system}.default = pkgs.mkShell {
       packages = with pkgs; [
         hello
       ];
     };
-
-    formatter.${system} = pkgs.alejandra;
   };
 }
