@@ -6,10 +6,9 @@
   inputs,
   ...
 }: let
-  patchPathInFish = p: builtins.replaceStrings ["\$\{"] ["\{\$"] p;
 in {
   imports =
-    map (path: rootPath + path) [
+    map (p: rootPath + p) [
       /home/common.nix
       /home/nix.nix
       /home/git.nix
@@ -27,14 +26,6 @@ in {
       bg = "blue";
       fg = "white";
     };
-  };
-  age.secrets.test = {
-    file = rootPath + /secrets/test.age;
-  };
-  programs = {
-    fish.functions.fish_greeting = patchPathInFish ''
-      cat ${config.age.secrets.test.path}
-    '';
   };
   home.pointerCursor = {
     gtk.enable = true;
