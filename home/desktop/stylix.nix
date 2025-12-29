@@ -13,7 +13,7 @@
     enable = true;
     # autoEnable = false;
     polarity = "light";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/google-light.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     cursor = {
       size = 24;
       #   package = pkgs.phinger-cursors;
