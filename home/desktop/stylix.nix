@@ -68,7 +68,7 @@
 
     targets = {
       # managed by noctalia
-      ghostty.enable = false;
+      # ghostty.enable = false;
       noctalia-shell.enable = false;
       niri.enable = false;
       #

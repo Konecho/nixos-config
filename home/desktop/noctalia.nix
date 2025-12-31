@@ -33,11 +33,25 @@ in {
       bar = {
         density = "comfortable";
         floating = true;
-        widgets.center = [{id = "Workspace";} {id = "WallpaperSelector";}];
+        widgets.left = [
+          {
+            id = "CustomButton";
+            icon = "live-photo";
+            leftClickExec = "systemctl --user restart linux-wallpaperengine.service";
+          }
+          {id = "Clock";}
+          {
+            id = "SystemMonitor";
+            diskPath = "/nix";
+          }
+          {id = "ActiveWindow";}
+          {id = "MediaMini";}
+          {id = "WallpaperSelector";}
+        ];
       };
       dock.displayMode = "auto_hide";
       colorSchemes = {
-        darkMode = false;
+        darkMode = true;
         useWallpaperColors = true;
       };
       screenRecorder = {

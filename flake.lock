@@ -191,11 +191,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1765783616,
-        "narHash": "sha256-Q7jTQSKUjtptdYHkLyFkxxNQMwRj8ocFksaJW1a74Cg=",
+        "lastModified": 1767085469,
+        "narHash": "sha256-vdJbSEX72K6LRhD1n1c7xycVloPuruGvZISqCvwLmbI=",
         "owner": "Mic92",
         "repo": "direnv-instant",
-        "rev": "1c247e133ba15784b4ae5d192666dc5de26642b4",
+        "rev": "c88b6c7dd0a5892a99338feba8e56276cfe55c7d",
         "type": "github"
       },
       "original": {
@@ -856,11 +856,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766773944,
-        "narHash": "sha256-uewJMh9vERx+H6Zs45nm+ltslBeB/ddrEnUEqvPYER0=",
+        "lastModified": 1767186477,
+        "narHash": "sha256-2v/hmJbzgyhd3KYyouqeq/1G18hlrcG2bvR9BJ5mLEw=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "a1470cb51f27950c9106f7510151aac8995a5013",
+        "rev": "f71e32ce8840a6c35c9eccf0f0e8ee92824ac16d",
         "type": "github"
       },
       "original": {

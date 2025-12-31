@@ -94,6 +94,7 @@ in {
       "Mod+Period".action = expel-window-from-column;
       "Mod+BracketLeft".action = consume-or-expel-window-left;
       "Mod+BracketRight".action = consume-or-expel-window-right;
+      "Mod+W".action = toggle-column-tabbed-display;
 
       "Mod+R".action = switch-preset-column-width;
       "Mod+F".action = maximize-column;

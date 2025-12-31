@@ -8,20 +8,11 @@
     systemd.enable = true;
     settings = {
       faviconService = "twenty";
-      font = {
-        size = 10;
-      };
-      popToRootOnClose = false;
       rootSearch = {
         searchFiles = false;
       };
       theme = {
-        name = "matugen";
-      };
-      window = {
-        csd = true;
-        opacity = 0.95;
-        rounding = 10;
+        name = "Noctalia";
       };
     };
   };
