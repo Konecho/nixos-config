@@ -14,9 +14,6 @@
   ];
   services.udiskie.enable = true;
   # services.ollama.enable = true;
-  programs.niri.settings.spawn-at-startup = [
-    {command = ["clash-verge"];}
-  ];
   gtk.enable = true;
   ## [[mpvpaper]]
   systemd.user.sessionVariables.PATH = "${pkgs.systemd}:${config.home.homeDirectory}/.nix-profile/bin:/run/current-system/sw/bin/";

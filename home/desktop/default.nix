@@ -7,9 +7,7 @@
     ./vicinae.nix
     ./wallpaperengine.nix
 
-    ./snipaste.nix
-
-    ./niri.nix
+    ./niri
 
     # ./ashell.nix
     ./noctalia.nix

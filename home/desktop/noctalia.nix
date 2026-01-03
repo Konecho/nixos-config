@@ -84,37 +84,22 @@ in {
     "ELECTRON_OZONE_PLATFORM_HINT=auto"
   ];
   services.cliphist.enable = true;
-  programs.niri.settings = let
+  wayland.windowManager.niri.settings = let
     noctalia = cmd: ["noctalia-shell" "ipc" "call"] ++ (pkgs.lib.splitString " " cmd);
   in {
-    spawn-at-startup = [{command = noctalia "wallpaper random";}];
     binds = {
-      "Mod+Shift+L".action.spawn = noctalia "lockScreen lock";
-      # "Mod+D".action.spawn = noctalia "launcher toggle";
-      "XF86AudioLowerVolume".action.spawn = noctalia "volume decrease";
-      "XF86AudioRaiseVolume".action.spawn = noctalia "volume increase";
-      "XF86AudioMute".action.spawn = noctalia "volume muteOutput";
+      "Mod+Shift+L".spawn = noctalia "lockScreen lock";
+      # "Mod+D".spawn = noctalia "launcher toggle";
+      "XF86AudioLowerVolume".spawn = noctalia "volume decrease";
+      "XF86AudioRaiseVolume".spawn = noctalia "volume increase";
     };
-    window-rules = [
-      {
-        # Rounded corners for a modern look.
-        geometry-corner-radius = {
-          bottom-left = 20.0;
-          bottom-right = 20.0;
-          top-left = 20.0;
-          top-right = 20.0;
-        };
-        # Clips window contents to the rounded corner boundaries.
-        clip-to-geometry = true;
-      }
-    ];
     debug = {
       # Allows notification actions and window activation from Noctalia.
       honor-xdg-activation-with-invalid-serial = [];
     };
-    layer-rules = [
+    layer-rule = [
       {
-        matches = [{namespace = "^noctalia-overview*";}];
+        match = {_props.namespace._raw = ''r#"^noctalia-overview*"#'';};
         place-within-backdrop = true;
       }
     ];

@@ -16,6 +16,8 @@
       };
     };
   };
-  programs.niri.settings.binds."Mod+D".action.spawn = ["vicinae" "toggle"];
-  programs.niri.settings.binds."Mod+V".action.spawn = ["vicinae" "vicinae://extensions/vicinae/clipboard/history"];
+  wayland.windowManager.niri.settings.binds = {
+    "Mod+D".spawn = ["vicinae" "toggle"];
+    "Mod+V".spawn = ["vicinae" "vicinae://extensions/vicinae/clipboard/history"];
+  };
 }

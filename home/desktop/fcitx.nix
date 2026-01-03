@@ -19,7 +19,4 @@ in {
     ];
     fcitx5.waylandFrontend = true;
   };
-  programs.niri.settings.spawn-at-startup = [
-    {command = ["fcitx5" "-r" "-d"];}
-  ];
 }
