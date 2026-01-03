@@ -13,7 +13,7 @@
     inputs.hexecute.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
   nixpkgs.overlays = [
-    inputs.niri.overlays.default
+    # inputs.niri.overlays.default
     inputs.niri-flake.overlays.niri
   ];
   programs.niri.settings.xwayland-satellite = {

@@ -5,7 +5,6 @@
 }: {
   imports = [
     inputs.stylix.homeModules.stylix
-    inputs.niri-flake.homeModules.stylix
   ];
 
   # https://danth.github.io/stylix/options/hm.html
@@ -70,7 +69,7 @@
       # managed by noctalia
       # ghostty.enable = false;
       noctalia-shell.enable = false;
-      niri.enable = false;
+      # niri.enable = false;
       #
       fish.enable = false;
       vscode.enable = false;
