@@ -1,5 +1,6 @@
 {...}: {
-  home.sessionVariables.TERMINAL = "ghostty";
+  imports = [./wezterm.nix];
+  home.sessionVariables.TERMINAL = "wezterm";
   programs = {
     wezterm.enable = true;
     alacritty.enable = true;

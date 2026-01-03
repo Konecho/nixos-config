@@ -71,7 +71,7 @@ in {
         continue.continue
         mhutchie.git-graph
         mkhl.direnv
-        visualjj.visualjj
+        # visualjj.visualjj
         ndonfris.fish-lsp
       ];
     };
