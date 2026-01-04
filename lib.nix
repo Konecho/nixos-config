@@ -86,6 +86,7 @@ in {
           then []
           else [
             inputs.home-manager.nixosModules.home-manager
+            (rootPath + /modules/alias-hm.nix)
             {
               home-manager.extraSpecialArgs = {inherit inputs rootPath;};
               home-manager.useGlobalPkgs = true;
