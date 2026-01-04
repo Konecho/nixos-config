@@ -2,6 +2,7 @@
   imports = [
     ./cli-rust.nix
     ./cli.nix
+    ./starship.nix
     ./fish.nix
     ./gpg.nix
     ./helix.nix
