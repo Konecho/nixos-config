@@ -12,10 +12,6 @@
     noti.enable = true; # <do-something>;noti> or <noti do-something>
     aria2.enable = true;
     atuin.enable = true; # <ctrl+r>
-    atuin.enableFishIntegration = false;
-    fish.interactiveShellInit = ''
-      ${lib.getExe pkgs.atuin} init fish | sed 's/-k up/up/' | source
-    '';
     broot.enable = true; # <br> tree-view search
     carapace.enable = true;
 
@@ -42,7 +38,19 @@
 
     # calc
     jq
-    (python3.withPackages (py: with py; [requests ptpython]))
+    (python3.withPackages (
+      p:
+        with p; [
+          pygments
+          ptpython
+          # xd deps
+          beautifulsoup4
+          requests
+          prompt-toolkit
+          wcwidth
+        ]
+    ))
+
     devenv
   ];
 }

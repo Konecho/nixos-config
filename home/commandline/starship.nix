@@ -26,7 +26,11 @@
               separate(" ",
                 bookmarks.map(|x| truncate_end(10, x.name(), "…")).join(" "),
                 tags.map(|x| truncate_end(10, x.name(), "…")).join(" "),
+                raw_escape_sequence("\x1b[1;32m") ++ if(empty, "(empty)"),
+                raw_escape_sequence("\x1b[1;32m") ++ coalesce(
                 surround("\"", "\"", truncate_end(24, description.first_line(), "…")),
+                  "(???)",
+                ) ++ raw_escape_sequence("\x1b[0m"),
                 if(conflict, "conflict"),
                 if(divergent, "divergent"),
                 if(hidden, "hidden"),
