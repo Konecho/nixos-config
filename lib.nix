@@ -1,5 +1,28 @@
 inputs: let
   toml-config = builtins.fromTOML (builtins.readFile ./config.toml);
+  username = toml-config.user.name;
+  email = toml-config.user.email;
+  monoNixosModules = [
+    {
+      mono.username = username;
+      user = {
+        hashedPassword = toml-config.user.password;
+        extraGroups = toml-config.user.groups;
+      };
+      users = {
+        mutableUsers = false;
+        extraUsers.root.initialHashedPassword = "!";
+      };
+    }
+    (rootPath + /modules/mono.nix)
+  ];
+  monoHomeModules = [
+    {
+      mono.username = username;
+      mono.email = email;
+    }
+    (rootPath + /modules/mono.hm.nix)
+  ];
   rootPath = ./.;
 in {
   mkPkgs = {
@@ -26,9 +49,7 @@ in {
 
   mkSys = {
     hostname,
-    username,
     pkgs,
-    system,
     modules,
     hm-modules ? null,
   }: let
@@ -50,66 +71,43 @@ in {
     nixosSystem = inputs.nixpkgs.lib.nixosSystem;
   in
     nixosSystem {
-      specialArgs = {inherit inputs system rootPath;};
+      specialArgs = {inherit inputs rootPath;};
       modules =
         [
           {
             nixpkgs.pkgs = pkgs;
             networking.hostName = "${hostname}";
-            # alias mono
-            mono.username = username;
-            user = {
-              # mkpasswd -m sha-512
-              hashedPassword = "$6$uiElHlBCyxUEkWFo$FqTxpsOFPhU0ak3V9.xGTvHblsRxQOffE6zfUGJMflt9B.11NqiokVB.yETtBU0hJn5Z.SNS6IFrlUj6hToAO/";
-              shell = pkgs.fish;
-              extraGroups = ["wheel" "input" "networkmanager" "video"];
-            };
-            users = {
-              mutableUsers = false;
-              extraUsers.root.initialHashedPassword = "!";
-            };
+            # TODO: move to mono
+            user.shell = pkgs.fish;
           }
-          # (rootPath + /modules/alias.nix)
-          (rootPath + /modules/mono.nix)
         ]
         ++ (
-          if (hm-modules != null)
-          then [
+          if (hm-modules == null)
+          then []
+          else [
             inputs.home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = {inherit inputs rootPath;};
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username} = {
-                imports = hm-modules;
-              };
               home-manager.backupFileExtension = "bak";
+              user-hm.imports = monoHomeModules ++ hm-modules;
             }
           ]
-          else []
         )
-        ++ modules;
+        ++ monoNixosModules ++ modules;
     };
 
   mkUsr = {
-    username,
     pkgs,
     modules,
-  }:
-    inputs.home-manager.lib.homeManagerConfiguration {
+  }: {
+    "${username}" = inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = {inherit inputs rootPath username;};
-      modules =
-        [
-          {
-            mono.username = "${username}";
-            mono.email = "konecho@outlook.com";
-            nix.registry.nixpkgs.flake = inputs.nixpkgs;
-          }
-          (rootPath + /modules/mono.hm.nix)
-        ]
-        ++ modules;
+      extraSpecialArgs = {inherit inputs rootPath;};
+      modules = monoHomeModules ++ modules;
     };
+  };
   scanPath = {
     path,
     excludeFiles ? [],

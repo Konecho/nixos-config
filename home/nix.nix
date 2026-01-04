@@ -11,6 +11,7 @@
   ];
   nix.package = lib.mkDefault pkgs.nix; # not common
   nix.registry = {
+    nixpkgs.flake = inputs.nixpkgs;
     old = {
       from = {
         id = "old";

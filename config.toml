@@ -1,3 +1,10 @@
+[user]
+name = "mei"
+email = "konecho@outlook.com"
+groups = ["wheel", "input", "networkmanager", "video"]
+# mkpasswd -m sha-512
+password = "$6$uiElHlBCyxUEkWFo$FqTxpsOFPhU0ak3V9.xGTvHblsRxQOffE6zfUGJMflt9B.11NqiokVB.yETtBU0hJn5Z.SNS6IFrlUj6hToAO/"
+
 [pkgs]
 unfree = [
   "dyalog",
@@ -24,7 +31,7 @@ unfree = [
   "fcitx5-pinyin-moegirl",
   "fcitx5-pinyin-minecraft",
   "vscode-extension-mhutchie-git-graph",
-  "vscode-extension-visualjj-visualjj"
+  "vscode-extension-visualjj-visualjj",
 ]
 insecure = [
   # "libxls-1.6.2",

@@ -116,31 +116,28 @@
 
   outputs = inputs: let
     system = "x86_64-linux";
-    username = "mei";
     lib = import ./lib.nix inputs;
     pkgs = lib.mkPkgs {inherit system;};
   in {
-    homeConfigurations."${username}" = lib.mkUsr {
-      inherit pkgs username;
-      modules = lib.scanPath {
-        path = ./home;
-        # excludeFiles = ["stylix"];
-      };
+    homeConfigurations = lib.mkUsr {
+      inherit pkgs;
+      modules = lib.scanPath {path = ./home;};
     };
 
     nixosConfigurations = {
       deskmini = lib.mkSys {
         hostname = "deskmini";
-        inherit pkgs username system;
+        inherit pkgs;
         modules = [./hosts/deskmini/hardware-configuration.nix] ++ (lib.scanPath {path = ./system;});
       };
       wsl = lib.mkSys {
         hostname = "wsl";
-        inherit pkgs username system;
+        inherit pkgs;
         modules = [./hosts/wsl/system.nix];
         hm-modules = [./hosts/wsl/home.nix];
       };
     };
+
     devShells.${system}.default = pkgs.mkShell {
       packages = with pkgs; [
         hello
