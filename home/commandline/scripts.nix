@@ -27,12 +27,11 @@ in {
       (write "nixlf")
       yazi
       jq
-      (writeRs "side_by_side.rs")
       chafa
       disfetch
       (
         writeShellScriptBin "pokefetch" ''
-          side_by_side.rs "chafa $XDG_RUNTIME_DIR/pokemon.png" "disfetch -n"
+          paste <(chafa "$XDG_RUNTIME_DIR/pokemon.png") <(disfetch -n)
         ''
       )
     ]
