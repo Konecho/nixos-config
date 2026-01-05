@@ -6,18 +6,15 @@
   ...
 }: let
   TERM = config.home.sessionVariables.TERMINAL;
-  mkWorkspaceBinds = num:
-    if (num == 0)
+  workspaceBind = num: {
+    "Mod+${builtins.toString num}".focus-workspace = num;
+    "Mod+Shift+${builtins.toString num}".move-window-to-workspace = num;
+    "Mod+Ctrl+${builtins.toString num}".move-column-to-workspace = num;
+  };
+  mkWorkspaceBinds = n:
+    if n == 0
     then {}
-    else
-      (
-        {
-          "Mod+${builtins.toString num}".focus-workspace = num;
-          "Mod+Shift+${builtins.toString num}".move-window-to-workspace = num;
-          "Mod+Ctrl+${builtins.toString num}".move-column-to-workspace = num;
-        }
-        // mkWorkspaceBinds (num - 1)
-      );
+    else workspaceBind n // mkWorkspaceBinds (n - 1);
 in {
   home.packages = with pkgs; [
     inputs.hexecute.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -87,7 +84,6 @@ in {
       "Mod+Ctrl+Shift+WheelScrollDown".move-column-right = [];
       "Mod+Ctrl+Shift+WheelScrollUp".move-column-left = [];
 
-      # "Mod+Tab".focus-workspace-previous = [];
       # "Mod+Comma".consume-window-into-column = [];
       "Mod+Period".expel-window-from-column = [];
       "Mod+BracketLeft".consume-or-expel-window-left = [];
@@ -99,7 +95,6 @@ in {
       "Mod+Shift+F".fullscreen-window = [];
       "Mod+C".center-column = [];
 
-      # "Mod+Space".toggle-overview = [];
       "Mod+T".toggle-window-floating = [];
       "Mod+Shift+T".switch-focus-between-floating-and-tiling = [];
 

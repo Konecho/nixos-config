@@ -29,15 +29,6 @@
     rustup
   ];
   programs = {
-    nushell = {
-      enable = true;
-      configFile.text = ''
-        $env.config = {
-          show_banner: false,
-        }
-      '';
-      shellAliases = config.home.shellAliases;
-    };
     bat.enable = true; # cat
     ## https://github.com/eth-p/bat-extras
     bat.extraPackages = with pkgs.bat-extras; [
@@ -61,10 +52,6 @@
     lsd.enable = true;
     lsd.settings = {
       date = "relative";
-      ignore-globs = [
-        ".git"
-        ".hg"
-      ];
     };
     zellij.enable = true;
     zellij.settings = {

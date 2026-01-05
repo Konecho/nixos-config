@@ -72,19 +72,11 @@
             args = ["fmt" "-"];
           };
         }
-        {
-          name = "markdown";
-          scope = "source.markdown";
-          file-types = [
-            "md"
-            "markdown"
-          ];
-        }
       ];
     languages.language-server = {
       nixd = {
         command = with pkgs; "${lib.getExe nixd}";
-        args = [ "--semantic-tokens=true" ];
+        args = ["--semantic-tokens=true"];
         config.nixd = let
           getFlake = ''(builtins.getFlake (builtins.toString ./.))'';
         in {

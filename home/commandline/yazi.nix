@@ -10,7 +10,6 @@
   ];
   programs.yazi = {
     enable = true;
-    enableZshIntegration = true;
     shellWrapperName = "lf";
     settings = {
       mgr = {
@@ -56,8 +55,6 @@
     };
     plugins = let
       yazi-plugins = inputs.yazi-plugins;
-      yazi-starship = inputs.yazi-starship;
-      yazi-mediainfo = inputs.yazi-mediainfo;
     in {
       chmod = "${yazi-plugins}/chmod.yazi";
       full-border = "${yazi-plugins}/full-border.yazi";
@@ -65,8 +62,8 @@
       git = "${yazi-plugins}/git.yazi";
       smart-filter = "${yazi-plugins}/smart-filter.yazi";
       piper = "${yazi-plugins}/piper.yazi";
-      starship = yazi-starship;
-      mediainfo = yazi-mediainfo;
+      starship = inputs.yazi-starship;
+      mediainfo = inputs.yazi-mediainfo;
     };
 
     initLua = ''
