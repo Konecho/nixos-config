@@ -31,7 +31,7 @@ in {
       disfetch
       (
         writeShellScriptBin "pokefetch" ''
-          paste <(chafa "$XDG_RUNTIME_DIR/pokemon.png") <(disfetch -n)
+          paste <(chafa -f symbols --scale 9 "$XDG_RUNTIME_DIR/pokemon.png") <(disfetch -n)
         ''
       )
     ]

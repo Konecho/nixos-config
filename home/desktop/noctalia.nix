@@ -88,7 +88,10 @@ in {
     noctalia = cmd: ["noctalia-shell" "ipc" "call"] ++ (pkgs.lib.splitString " " cmd);
   in {
     binds = {
-      "Mod+Shift+L".spawn = noctalia "lockScreen lock";
+      "Mod+Shift+L" = {
+        _props.hotkey-overlay-title = "Lock Screen";
+        spawn = noctalia "lockScreen lock";
+      };
       # "Mod+D".spawn = noctalia "launcher toggle";
       "XF86AudioLowerVolume".spawn = noctalia "volume decrease";
       "XF86AudioRaiseVolume".spawn = noctalia "volume increase";

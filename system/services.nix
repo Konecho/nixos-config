@@ -3,8 +3,6 @@
   lib,
   ...
 }: {
-  programs.adb.enable = true;
-  mono.groupsAdd = ["adbusers"];
   # hardware.pulseaudio.enable = lib.mkDefault false;
   hardware.bluetooth = {
     enable = true;

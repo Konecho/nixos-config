@@ -18,6 +18,9 @@
   };
   wayland.windowManager.niri.settings.binds = {
     "Mod+D".spawn = ["vicinae" "toggle"];
-    "Mod+V".spawn = ["vicinae" "vicinae://extensions/vicinae/clipboard/history"];
+    "Mod+V" = {
+      _props.hotkey-overlay-title = "Clipboard Manager";
+      spawn = ["vicinae" "vicinae://extensions/vicinae/clipboard/history"];
+    };
   };
 }
