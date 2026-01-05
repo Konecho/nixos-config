@@ -81,14 +81,18 @@
           ];
         }
       ];
-    languages.language-server = with pkgs; {
-      nixd = let
-        userName = "mei";
-        hostName = "deskmini";
-      in {
-        command = "${lib.getExe nixd}";
-        config.home-manager.expr = ''(builtins.getFlake "/etc/nixos").homeConfigurations.${userName}.options'';
-        config.nixos.expr = ''(builtins.getFlake "/etc/nixos").nixosConfigurations.${hostName}.options'';
+    languages.language-server = {
+      nixd = {
+        command = with pkgs; "${lib.getExe nixd}";
+        args = [ "--semantic-tokens=true" ];
+        config.nixd = let
+          getFlake = ''(builtins.getFlake (builtins.toString ./.))'';
+        in {
+          options = {
+            home-manager.expr = ''${getFlake}.homeConfigurations.''${builtins.head(builtins.attrNames ${getFlake}.homeConfigurations)}.options'';
+            nixos.expr = ''${getFlake}.nixosConfigurations.''${builtins.head(builtins.attrNames ${getFlake}.nixosConfigurations)}.options'';
+          };
+        };
       };
     };
     settings.editor.lsp = {
