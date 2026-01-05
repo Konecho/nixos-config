@@ -95,6 +95,10 @@
       url = "github:ThatOtherAndrew/Hexecute";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    jj-starship = {
+      url = "github:dmmulroy/jj-starship";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # not flake
     pokesprite = {
       url = "github:msikma/pokesprite";

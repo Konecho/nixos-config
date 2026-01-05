@@ -10,7 +10,7 @@
       inputs.nixos-wsl.nixosModules.wsl
       inputs.vscode-server.nixosModules.default
     ]
-    ++ (map (path: rootPath + path) [
+    ++ (map (p: rootPath + p) [
       /system/core.nix
       /system/nix.nix
       /system/age.nix
@@ -84,4 +84,5 @@
     enable = true;
     # enableFHS = true;
   };
+  services.openssh.enable = true;
 }
