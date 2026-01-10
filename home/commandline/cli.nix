@@ -35,8 +35,8 @@
     xdg-utils # <xdg-open>
     sysz
     usbutils # <lsusb>
+    witr
 
-    # calc
     jq
     (python3.withPackages (
       p:
