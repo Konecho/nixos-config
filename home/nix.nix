@@ -7,23 +7,9 @@
 }: {
   imports = [
     inputs.nix-index-database.homeModules.nix-index
-    # inputs.direnv-instant.homeModules.direnv-instant
+    inputs.direnv-instant.homeModules.direnv-instant
   ];
-  nix.package = lib.mkDefault pkgs.nix; # not common
   nix.registry = {
-    nixpkgs.flake = inputs.nixpkgs;
-    old = {
-      from = {
-        id = "old";
-        type = "indirect";
-      };
-      to = {
-        owner = "NixOS";
-        ref = "22.11";
-        repo = "nixpkgs";
-        type = "github";
-      };
-    };
     n = {
       from = {
         id = "n";
@@ -52,11 +38,10 @@
     nix-your-shell.enable = true;
     direnv = {
       enable = true;
-      # enableFishIntegration = lib.mkForce false;
       silent = true;
       nix-direnv.enable = true;
     };
-    # direnv-instant.enable = true;
+    direnv-instant.enable = true;
     nh = {
       enable = true;
       flake = /etc/nixos;
