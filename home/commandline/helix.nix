@@ -6,6 +6,7 @@
     bash-language-server
     yaml-language-server
     ruff # python
+    ty
     vscode-langservers-extracted # css/html/json/markdown
     taplo # toml
     marksman

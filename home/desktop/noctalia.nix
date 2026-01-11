@@ -54,10 +54,6 @@ in {
         darkMode = true;
         useWallpaperColors = true;
       };
-      screenRecorder = {
-        directory = "${config.xdg.userDirs.videos}/noctalia";
-        videoSource = "screen";
-      };
       wallpaper = {
         directory = "${config.xdg.userDirs.pictures}/wallpapers";
         randomEnabled = true;

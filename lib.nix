@@ -77,8 +77,6 @@ in {
           {
             nixpkgs.pkgs = pkgs;
             networking.hostName = "${hostname}";
-            # TODO: move to mono
-            user.shell = pkgs.fish;
           }
         ]
         ++ (

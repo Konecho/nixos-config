@@ -9,15 +9,10 @@ in {
   home.sessionVariables.BROWSER = "qutebrowser";
   home.packages = with pkgs;
     [
-      # rustdesk
-      # motrix
       clash-verge-rev
       # clash-nyanpasu
 
       # czkawka # duplicates
-      # logseq
-      # prusa-slicer
-      # bambu-studio
 
       # surf
       # microsoft-edge
@@ -28,11 +23,6 @@ in {
       librewolf
 
       # hyper
-
-      # telegram-desktop
-      # element-desktop-wayland # matrix
-      # kotatogram-desktop-with-webkit
-      #
 
       qt6.qtwayland
       # hydrus
@@ -46,13 +36,16 @@ in {
       #     hash = "sha256-qVoA8IZYLUJ6Li/M8ORjkfntc06oMVD7739F79sFLjM=";
       #   };
       # }))
-      # android-studio
     ]
     ++ (
       with inputs.winapps.packages.${system}; [winapps winapps-launcher]
     );
   programs = {
     qutebrowser.enable = true;
+    # librewolf = {
+    #   enable = true;
+    #   languagePacks = ["en-GB" "zh-CN"];
+    # };
     obs-studio = {
       enable = true;
       plugins = with pkgs.obs-studio-plugins; [
@@ -67,6 +60,7 @@ in {
       package = pkgs.vscodium;
       profiles.default.extensions = with pkgs.vscode-extensions; [
         ms-ceintl.vscode-language-pack-zh-hans
+        ms-python.python
         jnoortheen.nix-ide
         continue.continue
         mhutchie.git-graph

@@ -5,6 +5,8 @@
   ...
 }: {
   environment.binsh = "${lib.getExe pkgs.dash}";
+  # by mono
+  user.shell = pkgs.fish;
 
   security.sudo.enable = lib.mkDefault false;
   security.sudo.execWheelOnly = true;
@@ -25,6 +27,7 @@
       writeScriptBin "sudo" ''exec ${lib.getExe doas} "$@"''
     ))
   ];
+  console.font = "${pkgs.mypkgs.cengluan}/share/consolefonts/cengluan.psfu.gz";
 
   programs = {
     git.enable = true;
