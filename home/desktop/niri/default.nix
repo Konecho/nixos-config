@@ -10,10 +10,11 @@
     ./spawn-at-startup.nix
     ./window-rule.nix
     ./binds.nix
+    ./blur.nix
   ];
 
   wayland.windowManager.niri.enable = true;
-  wayland.windowManager.niri.package = pkgs.niri;
+  wayland.windowManager.niri.package = lib.mkDefault pkgs.niri;
   wayland.windowManager.niri.systemd.variables = ["--all"];
   wayland.windowManager.niri.settings = {
     environment = {

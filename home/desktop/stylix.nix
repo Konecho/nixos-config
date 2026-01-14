@@ -58,7 +58,7 @@
     in {
       serif = MAPLE;
       sansSerif = MAPLE;
-      monospace = CC;
+      monospace = MAPLE;
       emoji = {
         package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
