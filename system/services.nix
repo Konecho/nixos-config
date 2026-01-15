@@ -4,6 +4,7 @@
   ...
 }: {
   # hardware.pulseaudio.enable = lib.mkDefault false;
+  hardware.rtl-sdr.enable = true;
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;

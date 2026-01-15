@@ -46,6 +46,7 @@ in {
     #   enable = true;
     #   languagePacks = ["en-GB" "zh-CN"];
     # };
+
     obs-studio = {
       enable = true;
       plugins = with pkgs.obs-studio-plugins; [

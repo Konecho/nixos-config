@@ -20,6 +20,7 @@
     delta.enableJujutsuIntegration = true;
     gitui.enable = true;
     jujutsu.enable = true;
+    jjui.enable = true;
     gh.enable = true;
     gh.extensions = with pkgs; [gh-dash];
   };
