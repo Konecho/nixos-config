@@ -1052,7 +1052,8 @@
         "winapps": "winapps",
         "yazi-mediainfo": "yazi-mediainfo",
         "yazi-plugins": "yazi-plugins",
-        "yazi-starship": "yazi-starship"
+        "yazi-starship": "yazi-starship",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -1437,6 +1438,29 @@
       "original": {
         "owner": "Rolv-Apneseth",
         "repo": "starship.yazi",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768379550,
+        "narHash": "sha256-z94S29l5V86h11LZbPIMbHTJyksDG63aqISsZkTTuJY=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "06f61b4e4f4f6ba8027c96a5611c63dc0db12b90",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

@@ -6,21 +6,12 @@
   system = pkgs.stdenv.hostPlatform.system;
 in {
   imports = [./commandline/pkm-shell.nix];
-  home.sessionVariables.BROWSER = "qutebrowser";
   home.packages = with pkgs;
     [
       clash-verge-rev
       # clash-nyanpasu
 
       # czkawka # duplicates
-
-      # surf
-      # microsoft-edge
-      # google-chrome
-      # vivaldi
-      # firefox
-      # firefox-devedition
-      librewolf
 
       # hyper
 
@@ -41,12 +32,6 @@ in {
       with inputs.winapps.packages.${system}; [winapps winapps-launcher]
     );
   programs = {
-    qutebrowser.enable = true;
-    # librewolf = {
-    #   enable = true;
-    #   languagePacks = ["en-GB" "zh-CN"];
-    # };
-
     obs-studio = {
       enable = true;
       plugins = with pkgs.obs-studio-plugins; [

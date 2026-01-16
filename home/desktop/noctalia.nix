@@ -51,7 +51,7 @@ in {
       };
       dock.displayMode = "auto_hide";
       colorSchemes = {
-        darkMode = true;
+        # darkMode = true;
         useWallpaperColors = true;
       };
       wallpaper = {
