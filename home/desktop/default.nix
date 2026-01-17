@@ -8,11 +8,6 @@
     ./wallpaperengine.nix
 
     ./niri
-
-    # ./ashell.nix
-    ./noctalia.nix
-    # ./caelestia.nix
-    # ./dank.nix
-    # ./minecraft.nix
+    ./shells
   ];
 }
