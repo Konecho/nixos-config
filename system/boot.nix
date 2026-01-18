@@ -14,6 +14,9 @@
     useOSProber = true;
     device = "nodev";
   };
+  boot.extraModprobeConfig = ''
+    options btusb disable_autosuspend=1
+  '';
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs"];
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;

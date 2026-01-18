@@ -48,7 +48,7 @@ in {
         ms-ceintl.vscode-language-pack-zh-hans
         ms-python.python
         jnoortheen.nix-ide
-        continue.continue
+        # continue.continue
         mhutchie.git-graph
         mkhl.direnv
         # visualjj.visualjj

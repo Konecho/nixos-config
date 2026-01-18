@@ -18,12 +18,12 @@
   systemd.settings.Manager.DefaultTimeoutStopSec = "10s";
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   services = {
-    ollama = {
-      enable = true;
-      # Optional: preload models, see https://ollama.com/library
-      loadModels = ["qwen2.5-coder:1.5b"];
-      package = pkgs.ollama-vulkan;
-    };
+    # ollama = {
+    #   enable = true;
+    #   # Optional: preload models, see https://ollama.com/library
+    #   loadModels = ["qwen2.5-coder:1.5b"];
+    #   package = pkgs.ollama-vulkan;
+    # };
     udisks2.enable = true;
     openssh.enable = true;
     fwupd.enable = true;

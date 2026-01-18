@@ -4,7 +4,8 @@ let
   users = [wsl-user deskmini-user];
 
   wsl-host = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBsWQUYB/KhKLag6J0C3hDwdNGOpqelzQ/gXt8jAG9pE";
-  systems = [wsl-host];
+  deskmini-host = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9+kvgMDcvBUGkR+tcUCdkwmTsawgGqQEUSv6SNpZFN root@deskmini";
+  systems = [wsl-host deskmini-host];
 
   all-secrets = users ++ systems;
 in {
