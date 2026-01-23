@@ -1,21 +1,19 @@
 {pkgs, ...}: {
-  # only avaliable in helix
-  programs.helix.extraPackages = with pkgs; [
-    fish-lsp
-    just-lsp
-    bash-language-server
-    yaml-language-server
-    ruff # python
-    ty
-    vscode-langservers-extracted # css/html/json/markdown
-    taplo # toml
-    marksman
-    markdown-oxide
-    shellcheck
-  ];
-  programs.gitui.enable = true;
   programs.helix = {
     enable = true;
+    extraPackages = with pkgs; [
+      fish-lsp
+      just-lsp
+      bash-language-server
+      yaml-language-server
+      ruff # python
+      ty
+      vscode-langservers-extracted # css/html/json/markdown
+      taplo # toml
+      marksman
+      markdown-oxide
+      shellcheck
+    ];
     defaultEditor = true;
     settings.editor = {
       cursorline = true;

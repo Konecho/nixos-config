@@ -1,14 +1,13 @@
 {
   pkgs,
   inputs,
-  lib,
   ...
 }: {
-  home.packages = with pkgs; [
-    inputs.jj-starship.packages.${pkgs.stdenv.hostPlatform.system}.default
-  ];
   programs.starship = {
     enable = true;
+    extraPackages = [
+      inputs.jj-starship.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
     enableTransience = true;
     settings =
       (removeAttrs (builtins.fromTOML (
