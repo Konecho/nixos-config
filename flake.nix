@@ -111,18 +111,6 @@
       url = "github:msikma/pokesprite";
       flake = false;
     };
-    yazi-plugins = {
-      url = "github:yazi-rs/plugins";
-      flake = false;
-    };
-    yazi-starship = {
-      url = "github:Rolv-Apneseth/starship.yazi";
-      flake = false;
-    };
-    yazi-mediainfo = {
-      url = "github:boydaihungst/mediainfo.yazi";
-      flake = false;
-    };
   };
 
   outputs = inputs: let

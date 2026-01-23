@@ -1,16 +1,14 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}: {
-  home.packages = with pkgs; [
-    mediainfo
-    hexyl
-  ];
+{pkgs, ...}: {
   programs.yazi = {
     enable = true;
     shellWrapperName = "lf";
+    extraPackages = with pkgs; [
+      glow
+      ouch
+      mediainfo
+      hexyl
+      trash-cli
+    ];
     settings = {
       mgr = {
         show_hidden = true;
@@ -19,10 +17,9 @@
         max_width = 1000;
         max_height = 1000;
       };
-
       plugin = let
         media-info-mime =
-          builtins.map (x: {
+          map (x: {
             mime = x;
             run = "mediainfo";
           }) [
@@ -32,7 +29,14 @@
           ];
       in {
         prepend_preloaders = media-info-mime;
-        prepend_previewers = media-info-mime;
+        prepend_previewers =
+          media-info-mime
+          ++ [
+            {
+              mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}";
+              run = "ouch";
+            }
+          ];
         append_previewers = [
           {
             name = "*";
@@ -53,37 +57,33 @@
         ];
       };
     };
-    plugins = let
-      yazi-plugins = inputs.yazi-plugins;
-    in {
-      chmod = "${yazi-plugins}/chmod.yazi";
-      full-border = "${yazi-plugins}/full-border.yazi";
-      max-preview = "${yazi-plugins}/max-preview.yazi";
-      git = "${yazi-plugins}/git.yazi";
-      smart-filter = "${yazi-plugins}/smart-filter.yazi";
-      piper = "${yazi-plugins}/piper.yazi";
-      starship = inputs.yazi-starship;
-      mediainfo = inputs.yazi-mediainfo;
+    plugins = {
+      inherit
+        (pkgs.yaziPlugins)
+        chmod
+        starship
+        mediainfo
+        full-border
+        git
+        smart-filter
+        piper
+        ouch
+        recycle-bin
+        restore
+        ;
     };
 
     initLua = ''
       require("full-border"):setup()
       require("starship"):setup()
       require("git"):setup()
+      require("recycle-bin"):setup()
     '';
 
     keymap = {
       mgr.prepend_keymap = [
         {
-          on = "T";
-          run = "plugin max-preview";
-          desc = "Maximize or restore the preview pane";
-        }
-        {
-          on = [
-            "c"
-            "m"
-          ];
+          on = ["c" "m"];
           run = "plugin chmod";
           desc = "Chmod on selected files";
         }
@@ -91,6 +91,21 @@
           on = "F";
           run = "plugin smart-filter";
           desc = "Smart filter";
+        }
+        {
+          on = ["C"];
+          run = "plugin ouch";
+          desc = "Compress with ouch";
+        }
+        {
+          on = ["R" "b"];
+          run = "plugin recycle-bin";
+          desc = "Open Recycle Bin menu";
+        }
+        {
+          on = "u";
+          run = "plugin restore";
+          desc = "Restore last deleted files/folders";
         }
       ];
     };

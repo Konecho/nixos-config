@@ -25,7 +25,6 @@ in {
       catimg
       imagemagick
       (write "nixlf")
-      yazi
       jq
       chafa
       disfetch

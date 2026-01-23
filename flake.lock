@@ -1050,9 +1050,6 @@
         "stylix": "stylix",
         "vscode-server": "vscode-server",
         "winapps": "winapps",
-        "yazi-mediainfo": "yazi-mediainfo",
-        "yazi-plugins": "yazi-plugins",
-        "yazi-starship": "yazi-starship",
         "zen-browser": "zen-browser"
       }
     },
@@ -1390,54 +1387,6 @@
       "original": {
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
-        "type": "github"
-      }
-    },
-    "yazi-mediainfo": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1767232597,
-        "narHash": "sha256-PJyZ9Rs5WjHHfHPd9ROmWvos1YzBc83ppj4Y/obx4BE=",
-        "owner": "boydaihungst",
-        "repo": "mediainfo.yazi",
-        "rev": "90a165237447778109a281f5bfc8e7b73d371cd5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "boydaihungst",
-        "repo": "mediainfo.yazi",
-        "type": "github"
-      }
-    },
-    "yazi-plugins": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1767370143,
-        "narHash": "sha256-5dMAJ6W/L66XuH4CCwRRFpKSLy0ZDFIABAYleFX0AsQ=",
-        "owner": "yazi-rs",
-        "repo": "plugins",
-        "rev": "03cdd4b5b15341b3c0d0f4c850d633fadd05a45f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "yazi-rs",
-        "repo": "plugins",
-        "type": "github"
-      }
-    },
-    "yazi-starship": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1764770713,
-        "narHash": "sha256-xcz2+zepICZ3ji0Hm0SSUBSaEpabWUrIdG7JmxUl/ts=",
-        "owner": "Rolv-Apneseth",
-        "repo": "starship.yazi",
-        "rev": "eca186171c5f2011ce62712f95f699308251c749",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Rolv-Apneseth",
-        "repo": "starship.yazi",
         "type": "github"
       }
     },
