@@ -55,12 +55,12 @@ enable-flake:
 # set -gx HTTPS_PROXY http://192.168.2.158:7890
 
 # doas just xxx
-acitvate-proxy-on-daemon:
+acitvate-proxy-on-daemon proxy:
     #!/bin/sh
     mkdir -p /run/systemd/system/nix-daemon.service.d/
     cat <<EOF >/run/systemd/system/nix-daemon.service.d/override.conf
     [Service]
-    Environment="https_proxy=http://192.168.2.158:7890"
+    Environment="https_proxy={{proxy}}"
     EOF
     systemctl daemon-reload
     systemctl restart nix-daemon

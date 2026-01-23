@@ -14,7 +14,7 @@
       /system/core.nix
       /system/nix.nix
       /system/age.nix
-      /modules/mono.nix
+      /system/lix.nix
     ]);
   time.timeZone = "Asia/Shanghai";
   i18n.defaultLocale = "zh_CN.UTF-8";
@@ -47,18 +47,6 @@
     # docker-desktop.enable = true;
     # wslConf.user.default = "${username}";
   };
-  systemd.user = {
-    paths.vscode-remote-workaround = {
-      wantedBy = ["default.target"];
-      pathConfig.PathChanged = "%h/.vscode-server/bin";
-    };
-    services.vscode-remote-workaround.script = ''
-      for i in ~/.vscode-server/bin/*; do
-        echo "Fixing vscode-server in $i..."
-        ln -sf ${pkgs.nodejs}/bin/node $i/node
-      done
-    '';
-  };
   mono.groupsAdd = ["plugdev"];
   services.udev.extraRules = ''
   '';
@@ -75,14 +63,17 @@
     # gnuradio
   ];
 
-  nix.gc.automatic = true;
-  nix.gc.dates = "18:00";
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
   programs.nix-ld = {
     enable = true;
   };
   services.vscode-server = {
     enable = true;
-    # enableFHS = true;
+    enableFHS = true;
   };
   services.openssh.enable = true;
 }

@@ -1,7 +1,6 @@
 {
   lib,
   inputs,
-  config,
   ...
 }: {
   nix.settings.experimental-features = [
@@ -9,11 +8,10 @@
     "flakes"
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-  nix.extraOptions = ''
-    keep-outputs = true
-    keep-derivations = true
-    trusted-users = root ${config.mono.username}
-  '';
+  nix.settings = {
+    keep-outputs = true;
+    keep-derivations = true;
+  };
   nix.settings.substituters =
     [
       "https://mirrors.ustc.edu.cn/nix-channels/store/"

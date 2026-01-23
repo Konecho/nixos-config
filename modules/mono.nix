@@ -32,11 +32,18 @@ in {
       })
       cfg.groupsAdd);
 
-    # alias user in alias.nix
+    # alias user to users.users.<name> in alias.nix
     user = {
       isNormalUser = true;
       createHome = true;
       home = "/home";
     };
+
+    users = {
+      mutableUsers = false;
+      extraUsers.root.initialHashedPassword = "!";
+    };
+
+    nix.settings.trusted-users = [cfg.username];
   };
 }

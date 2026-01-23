@@ -129,17 +129,18 @@
     system = "x86_64-linux";
     lib = import ./lib.nix inputs;
     pkgs = lib.mkPkgs {inherit system;};
+    scanPath = lib.scanPath;
   in {
     homeConfigurations = lib.mkUsr {
       inherit pkgs;
-      modules = lib.scanPath {path = ./home;};
+      modules = scanPath {_path = ./home;};
     };
 
     nixosConfigurations = {
       deskmini = lib.mkSys {
         hostname = "deskmini";
         inherit pkgs;
-        modules = [./hosts/deskmini/hardware-configuration.nix] ++ (lib.scanPath {path = ./system;});
+        modules = [./hosts/deskmini/hardware-configuration.nix] ++ (scanPath {_path = ./system;});
       };
       wsl = lib.mkSys {
         hostname = "wsl";
