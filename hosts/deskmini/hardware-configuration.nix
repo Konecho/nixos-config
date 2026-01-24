@@ -73,6 +73,17 @@ in {
       neededForBoot = true;
       options = btrfsops ++ ["subvol=@tmp"];
     };
+    "/swap" = {
+      device = "/dev/disk/by-label/nixos";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = [
+        "subvol=@swap"
+        "noatime"
+        "compress=none"
+        "discard=async"
+      ];
+    };
     # "/backup" = {
     #   device = "/dev/disk/by-label/backup";
     #   fsType = "btrfs";
@@ -89,7 +100,12 @@ in {
       ];
     };
   };
-  swapDevices = [];
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 16 * 1024; # 16 GB
+    }
+  ];
 
   networking.useDHCP = lib.mkDefault true;
 
