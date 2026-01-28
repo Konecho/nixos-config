@@ -45,12 +45,5 @@
         sed -i 's|Title|AlternateSeries|g' $out/share/lanraragi/lib/LANraragi/Plugin/Metadata/ComicInfo.pm
       '';
     });
-    duplicati = {
-      enable = true;
-      dataDir = "/db/duplicati";
-      parameters = ''
-        --webservice-password=5112
-      '';
-    };
   };
 }
