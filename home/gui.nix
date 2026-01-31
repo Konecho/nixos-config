@@ -9,6 +9,7 @@ in {
   home.packages = with pkgs;
     [
       clash-verge-rev
+      nemo
       # clash-nyanpasu
 
       # czkawka # duplicates

@@ -90,15 +90,15 @@ in {
     #   # neededForBoot = false;
     #   options = ["defaults"];
     # };
-    "/backup" = {
-      device = "/dev/disk/by-uuid/1E86F54E4D9F5874";
-      fsType = "ntfs-3g";
-      neededForBoot = false;
-      options = [
-        "rw"
-        "uid=${username}"
-      ];
-    };
+    # "/backup" = {
+    #   device = "/dev/disk/by-uuid/1E86F54E4D9F5874";
+    #   fsType = "ntfs-3g";
+    #   neededForBoot = false;
+    #   options = [
+    #     "rw"
+    #     "uid=${username}"
+    #   ];
+    # };
   };
   swapDevices = [
     {
