@@ -26,11 +26,11 @@
         };
       };
     in {
-      logseq = mkBackup "logseq" "/home/logseq";
-      photos = mkBackup "photos" "/home/media/photos";
-      pictures = mkBackup "pictures" "/db/Pictures";
-      cwm-novel = mkBackup "cwm-novel" "/db/HedgehogCatAppNovelDownload";
-      pixiv-novel = mkBackup "pixiv-novel" "/db/pixiv-novel";
+      # logseq = mkBackup "logseq" "/home/logseq";
+      # photos = mkBackup "photos" "/home/media/photos";
+      # pictures = mkBackup "pictures" "/db/Pictures";
+      # cwm-novel = mkBackup "cwm-novel" "/db/HedgehogCatAppNovelDownload";
+      # pixiv-novel = mkBackup "pixiv-novel" "/db/pixiv-novel";
     };
   };
 }
