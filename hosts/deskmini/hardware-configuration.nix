@@ -2,12 +2,16 @@
   config,
   lib,
   modulesPath,
+  rootPath,
+  inputs,
   ...
 }: let
   username = config.mono.username;
 in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    (rootPath + "/disko-config.nix")
+    inputs.disko.nixosModules.default
   ];
   boot.initrd.systemd.enable = true;
   boot.initrd.availableKernelModules = [
@@ -43,62 +47,10 @@ in {
       # neededForBoot = true;
       # options = btrfsops ++ ["subvol=@boot"];
     };
-    "/nix" = {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      neededForBoot = true;
-      options = btrfsops ++ ["subvol=@nix"];
-    };
-    "/gnu" = {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      neededForBoot = true;
-      options = btrfsops ++ ["subvol=@gnu"];
-    };
-    "/persist" = {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      neededForBoot = true;
-      options = btrfsops ++ ["subvol=@persist"];
-    };
-    "/db" = {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      neededForBoot = true;
-      options = btrfsops ++ ["subvol=@db"];
-    };
-    "/tmp" = {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      neededForBoot = true;
-      options = btrfsops ++ ["subvol=@tmp"];
-    };
-    "/swap" = {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      neededForBoot = true;
-      options = [
-        "subvol=@swap"
-        "noatime"
-        "compress=none"
-        "discard=async"
-      ];
-    };
-    # "/backup" = {
-    #   device = "/dev/disk/by-label/backup";
-    #   fsType = "btrfs";
-    #   # neededForBoot = false;
-    #   options = ["defaults"];
-    # };
-    # "/backup" = {
-    #   device = "/dev/disk/by-uuid/1E86F54E4D9F5874";
-    #   fsType = "ntfs-3g";
-    #   neededForBoot = false;
-    #   options = [
-    #     "rw"
-    #     "uid=${username}"
-    #   ];
-    # };
+    "/nix".neededForBoot = true;
+    "/persist".neededForBoot = true;
+    # "/tmp".neededForBoot = true;
+    # "/swap".neededForBoot = true;
   };
   swapDevices = [
     {

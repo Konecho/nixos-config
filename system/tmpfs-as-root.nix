@@ -9,16 +9,6 @@ in {
     inputs.preservation.nixosModules.preservation
   ];
 
-  fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = [
-      "defaults"
-      "size=2G"
-      "mode=755"
-    ];
-  };
-
   # This module cannot be used with scripted initrd.
   preservation = {
     enable = true;
