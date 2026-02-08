@@ -9,6 +9,11 @@ in {
     inputs.preservation.nixosModules.preservation
   ];
 
+  fileSystems = {
+    "/nix".neededForBoot = true;
+    "/persist".neededForBoot = true;
+  };
+
   # This module cannot be used with scripted initrd.
   preservation = {
     enable = true;

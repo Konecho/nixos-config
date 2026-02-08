@@ -7,6 +7,7 @@
     impermanence.url = "github:nix-community/impermanence";
     preservation.url = "github:nix-community/preservation";
     my-nixpkgs.url = "github:Konecho/my-nixpkgs";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     # follow nixpkgs
     home-manager = {
       url = "github:nix-community/home-manager";

@@ -11,6 +11,7 @@ in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (rootPath + "/disko-config.nix")
+    (rootPath + "/disko-raid.nix")
     inputs.disko.nixosModules.default
   ];
   boot.initrd.systemd.enable = true;
@@ -24,34 +25,13 @@ in {
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  fileSystems = let
-    # https://archive.kernel.org/oldwiki/btrfs.wiki.kernel.org/index.php/FAQ.html#Can_I_mount_subvolumes_with_different_mount_options.3F
-    btrfsops = [
-      "noatime"
-      "defaults"
-      "nodev"
-      "nosuid"
-      "rw"
-      # ^:generic v:specific
-      "autodefrag"
-      "compress=zstd"
-      "space_cache=v2"
-      "ssd"
-    ];
-  in {
+  fileSystems = {
     "/boot" = {
       device = "/dev/disk/by-uuid/4944-6404";
       fsType = "vfat";
-      # device = "/dev/disk/by-label/nixos";
-      # fsType = "btrfs";
-      # neededForBoot = true;
-      # options = btrfsops ++ ["subvol=@boot"];
     };
-    "/nix".neededForBoot = true;
-    "/persist".neededForBoot = true;
-    # "/tmp".neededForBoot = true;
-    # "/swap".neededForBoot = true;
   };
+  boot.loader.efi.efiSysMountPoint = "/boot";
   swapDevices = [
     {
       device = "/swap/swapfile";
