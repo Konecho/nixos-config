@@ -8,7 +8,7 @@
     ./helix.nix
     ./uiua.nix
     ./nushell.nix
-    ./pkm-shell.nix
+    # ./pkm-shell.nix
     ./scripts.nix
     ./yazi.nix
   ];

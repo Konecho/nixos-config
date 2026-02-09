@@ -7,7 +7,7 @@
 }: {
   imports = [
     inputs.nix-index-database.homeModules.nix-index
-    inputs.direnv-instant.homeModules.direnv-instant
+    # inputs.direnv-instant.homeModules.direnv-instant
   ];
   nix.registry = {
     n = {
@@ -41,7 +41,7 @@
       silent = true;
       nix-direnv.enable = true;
     };
-    direnv-instant.enable = true;
+    # direnv-instant.enable = true;
     nh = {
       enable = true;
       flake = /etc/nixos;

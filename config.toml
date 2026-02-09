@@ -41,4 +41,6 @@ insecure = [
   # "electron-19.0.7",
   # "electron-12.2.3",
   # "openssl-1.1.1u",
+  "nodejs-20.20.2",
+  "nodejs-slim-20.20.2"
 ]

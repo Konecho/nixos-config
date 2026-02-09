@@ -40,6 +40,7 @@
         append_previewers = [
           {
             name = "*";
+            mime = "*";
             run = ''piper -- hexyl --border=none --terminal-width=$w "$1"'';
           }
         ];
@@ -47,12 +48,16 @@
           {
             id = "git";
             name = "*";
+            mime = "*";
             run = "git";
+            group = "1";
           }
           {
             id = "git";
             name = "*/";
+            mime = "*";
             run = "git";
+            group = "1";
           }
         ];
       };

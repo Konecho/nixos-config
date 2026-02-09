@@ -15,7 +15,8 @@ in {
 
       /home/commandline/default.nix
     ]
-    ++ [inputs.agenix.homeManagerModules.default];
+    # ++ [inputs.agenix.homeManagerModules.default]
+    ;
   programs.helix.settings.theme = "base16";
   programs.helix.themes.base16 = {
     inherits = "github_light";

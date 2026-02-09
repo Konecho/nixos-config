@@ -14,7 +14,7 @@
     ++ (map (p: rootPath + p) [
       /system/core.nix
       /system/nix.nix
-      /system/age.nix
+      # /system/age.nix
       /system/lix.nix
     ]);
   programs.nixos-cli = {
@@ -75,9 +75,9 @@
   programs.nix-ld = {
     enable = true;
   };
-  services.vscode-server = {
-    enable = true;
-    enableFHS = true;
-  };
+  # services.vscode-server = {
+  #   enable = true;
+  #   enableFHS = true;
+  # };
   services.openssh.enable = true;
 }

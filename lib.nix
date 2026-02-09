@@ -46,7 +46,7 @@ in {
           (self: super: {
             mypkgs = inputs.my-nixpkgs.packages."${system}";
           })
-          inputs.nur.overlays.default
+          # inputs.nur.overlays.default
         ]
         ++ overlays;
     };
