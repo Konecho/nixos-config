@@ -12,6 +12,7 @@ unfree = [
   "nrfconnect",
   "corefonts",                           # onlyoffice
   "vista-fonts",
+  "vista-fonts-chs",
   "android-studio-stable",
   "microsoft-edge-stable",
   "google-chrome",

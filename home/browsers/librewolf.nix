@@ -5,7 +5,6 @@
 }: let
   rycee-addons = pkgs.nur.repos.rycee.firefox-addons;
 in {
-  stylix.targets.librewolf.enable = false;
   programs = {
     librewolf = {
       enable = true;

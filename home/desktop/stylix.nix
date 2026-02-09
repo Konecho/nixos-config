@@ -7,9 +7,23 @@
     inputs.stylix.homeModules.stylix
   ];
 
+  home.pointerCursor = {
+    package = pkgs.mypkgs.neuro-sama-cursor;
+    name = "Neuro-sama";
+    size = 24;
+    x11.enable = true;
+    gtk.enable = true;
+  };
+  gtk = {
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Light";
+    };
+  };
+
   # https://danth.github.io/stylix/options/hm.html
   stylix = {
-    enable = true;
+    enable = false;
     # autoEnable = false;
     polarity = "light";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
@@ -42,8 +56,6 @@
     };
     fonts = let
       MAPLE = {
-        # package = pkgs.maple-mono.CN;
-        # name = "Maple Mono CN";
         package = pkgs.maple-mono.NF-CN;
         name = "Maple Mono NF CN";
       };
@@ -52,12 +64,12 @@
         name = "Cascadia Code NF";
       };
       YAHEI = {
-        package = pkgs.nur.repos.vanilla.Win10_LTSC_2021_fonts;
+        package = pkgs.vista-fonts-chs;
         name = "Microsoft YaHei";
       };
     in {
       serif = MAPLE;
-      sansSerif = MAPLE;
+      sansSerif = YAHEI;
       monospace = MAPLE;
       emoji = {
         package = pkgs.noto-fonts-color-emoji;
@@ -74,9 +86,10 @@
       fish.enable = false;
       vscode.enable = false;
       # vscode.profileNames = ["stylix"];
-      gtk.extraCss = ''
-        window.background { border-radius: 0; }
-      '';
+      # gtk.extraCss = ''
+      #   window.background { border-radius: 0; }
+      # '';
+      gtk.enable = false;
       fcitx5.enable = false;
     };
   };

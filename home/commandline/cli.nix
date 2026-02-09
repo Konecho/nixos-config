@@ -48,6 +48,8 @@
           requests
           prompt-toolkit
           wcwidth
+          pyserial
+          matplotlib
         ]
     ))
 

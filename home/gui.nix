@@ -54,6 +54,8 @@ in {
         mkhl.direnv
         # visualjj.visualjj
         ndonfris.fish-lsp
+        rust-lang.rust-analyzer
+        nefrob.vscode-just-syntax
       ];
     };
     # pidgin = {

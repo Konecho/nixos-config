@@ -37,7 +37,4 @@ in {
       inherit (pkgs) fetchgit stdenv zip;
     };
   };
-
-  # stylix.targets.zen-browser.profileNames = ["default"];
-  stylix.targets.zen-browser.enable = false;
 }
