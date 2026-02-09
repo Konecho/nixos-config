@@ -2,6 +2,7 @@
   config,
   inputs,
   pkgs,
+  lib,
   rootPath,
   ...
 }: {
@@ -16,6 +17,9 @@
       /system/age.nix
       /system/lix.nix
     ]);
+  programs.nixos-cli = {
+    enable = lib.mkForce false;
+  };
   time.timeZone = "Asia/Shanghai";
   i18n.defaultLocale = "zh_CN.UTF-8";
   nixpkgs.overlays = [

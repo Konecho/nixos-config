@@ -14,8 +14,6 @@ in {
       /home/git.nix
 
       /home/commandline/default.nix
-
-      /home/desktop/fonts.nix
     ]
     ++ [inputs.agenix.homeManagerModules.default];
   programs.helix.settings.theme = "base16";
@@ -27,10 +25,25 @@ in {
       fg = "white";
     };
   };
-  home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.adwaita-icon-theme;
-    name = "Adwaita";
-    size = 16;
-  };
+  home.packages = with pkgs; [
+    # maple-mono.NF-CN
+    wqy_zenhei
+    # corefonts
+    # vista-fonts
+
+    (python3.withPackages (
+      p:
+        with p; [
+          pygments
+          ptpython
+          # xd deps
+          beautifulsoup4
+          requests
+          prompt-toolkit
+          wcwidth
+          pyserial
+          matplotlib
+        ]
+    ))
+  ];
 }
