@@ -19,17 +19,20 @@
       basicBorgJob "lanraragi"
       // rec {
         paths = "/db/lanraragi";
+        exclude = map (x: paths + "/" + x) [
+          "**/.direnv"
+        ];
       };
     hydrus =
       basicBorgJob "hydrus"
-      // rec {
+      // {
         paths = "/db/hydrus";
       };
     home =
       basicBorgJob "home"
       // (let
         home = config.user.home;
-      in rec {
+      in {
         paths = map (x: home + "/" + x) [
           "acgn/comic"
           "acgn/novel"

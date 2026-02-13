@@ -32,6 +32,7 @@ in {
         Fingerprinting = true;
       };
     };
+    profiles.default.sine.enable = true;
     profiles.default.extensions.packages = import ./firefox-addons.nix {
       inherit rycee-addons;
       inherit (pkgs) fetchgit stdenv zip;
