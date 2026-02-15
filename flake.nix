@@ -56,7 +56,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
-      url = "github:visualglitch91/niri/feat/blur";
+      url = "github:niri-wm/niri/wip/branch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     minegrub-theme = {

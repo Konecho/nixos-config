@@ -69,7 +69,7 @@ in {
         code = true;
       };
       general = {
-        avatarImage = "${pkgs.nixos-icons}/share/icons/hicolor/256x256/apps/nix-snowflake.png";
+        avatarImage = "/home/cover.png";
       };
     };
     systemd.enable = true;
