@@ -38,20 +38,20 @@
     witr
 
     jq
-    (python3.withPackages (
-      p:
-        with p; [
-          pygments
-          ptpython
-          # xd deps
-          beautifulsoup4
-          requests
-          prompt-toolkit
-          wcwidth
-          pyserial
-          matplotlib
-        ]
-    ))
+    # (python3.withPackages (
+    #   p:
+    #     with p; [
+    #       pygments
+    #       ptpython
+    #       # xd deps
+    #       beautifulsoup4
+    #       requests
+    #       prompt-toolkit
+    #       wcwidth
+    #       pyserial
+    #       matplotlib
+    #     ]
+    # ))
 
     devenv
   ];

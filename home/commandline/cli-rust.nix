@@ -26,6 +26,7 @@
     sd
     trashy
     just
+    just-lsp
     rustup
   ];
   programs = {

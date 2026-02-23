@@ -14,6 +14,7 @@ in {
 
   programs.zen-browser = {
     enable = true;
+    suppressXdgMigrationWarning = true;
     policies = {
       AutofillAddressEnabled = true;
       AutofillCreditCardEnabled = false;
@@ -32,10 +33,13 @@ in {
         Fingerprinting = true;
       };
     };
-    profiles.default.sine.enable = true;
+    # profiles.default.sine.enable = true;
     profiles.default.extensions.packages = import ./firefox-addons.nix {
       inherit rycee-addons;
       inherit (pkgs) fetchgit stdenv zip;
     };
+    profiles.default.mods = [
+      "642854b5-88b4-4c40-b256-e035532109df"
+    ];
   };
 }

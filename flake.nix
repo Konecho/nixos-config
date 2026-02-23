@@ -96,6 +96,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell";
     };
+    ambxst = {
+      url = "github:Axenide/Ambxst";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+    };
     hexecute = {
       url = "github:ThatOtherAndrew/Hexecute";
       inputs.nixpkgs.follows = "nixpkgs";

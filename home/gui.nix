@@ -14,6 +14,8 @@ in {
 
       # czkawka # duplicates
 
+      trilium-desktop
+
       # hyper
 
       qt6.qtwayland

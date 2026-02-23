@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   # hardware.pulseaudio.enable = lib.mkDefault false;
@@ -45,5 +46,14 @@
         sed -i 's|Title|AlternateSeries|g' $out/share/lanraragi/lib/LANraragi/Plugin/Metadata/ComicInfo.pm
       '';
     });
+    memos.enable = true;
+    memos.settings = {
+      MEMOS_MODE = "prod";
+      MEMOS_ADDR = "0.0.0.0";
+      MEMOS_PORT = "5230";
+      MEMOS_DATA = config.services.memos.dataDir;
+      MEMOS_DRIVER = "sqlite";
+      MEMOS_INSTANCE_URL = "http://localhost:5230";
+    };
   };
 }

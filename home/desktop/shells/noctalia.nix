@@ -30,6 +30,9 @@ in {
         customLaunchPrefix = "niri msg action spawn --";
         customLaunchPrefixEnabled = true;
       };
+      ui = {
+        panelBackgroundOpacity = 0.6;
+      };
       bar = {
         density = "comfortable";
         floating = true;
@@ -102,6 +105,7 @@ in {
         place-within-backdrop = true;
       }
     ];
+    include = ["noctalia.kdl"];
     # layout.background-color = "transparent";
     # overview.workspace-shadow.enable = false;
   };

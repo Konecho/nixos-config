@@ -15,15 +15,16 @@
   };
   wayland.windowManager.niri.settings.window-rule = [
     {
-      background-effect = {
-        # xray = true;
-        blur = true;
-      };
+      # background-effect = {
+      #   # xray = true;
+      #   blur = true;
+      # };
     }
     {
       _children = [
         # {match._props.app-id = "ghostty";}
         # {match._props.app-id = "zen-beta";}
+        {match._props.app-id._raw = ''r#"zen$"#'';}
       ];
       background-effect.blur = true;
     }
@@ -31,10 +32,23 @@
   wayland.windowManager.niri.settings.layer-rule = [
     {
       _children = [
-        {match._props.namespace = "noctalia-bar-content-*";}
+        # {match._props.namespace = "noctalia-bar-content-*";}
         # {match._props.namespace = "noctalia-bar-exclusion-*";}
+        {match._props.namespace = "vicinae";}
       ];
-      background-effect.blur = true;
+      background-effect = {
+        xray = false;
+        blur = true;
+      };
+    }
+    {
+      _children = [
+        {match._props.namespace = "noctalia-background-.*$";}
+      ];
+      background-effect = {
+        xray = false;
+        blur = true;
+      };
     }
   ];
 }

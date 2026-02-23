@@ -1,13 +1,13 @@
 {inputs, ...}: {
   imports = [
-    inputs.dank.homeModules.dankMaterialShell.default
-    inputs.dank.homeModules.dankMaterialShell.niri
+    inputs.dank.homeModules.dank-material-shell
+    # inputs.dank.homeModules.niri
   ];
-  programs.dankMaterialShell = {
+  programs.dank-material-shell = {
     enable = true;
-    niri.enableKeybinds = true;
+    # niri.enableKeybinds = true;
     # 空格：启动器；V：剪贴板；M：进程；逗号：设置；Alt+L：锁屏
     # enableSystemd = true;
-    niri.enableSpawn = true;
+    # niri.enableSpawn = true;
   };
 }

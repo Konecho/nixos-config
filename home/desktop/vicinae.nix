@@ -7,13 +7,14 @@
     enable = true;
     systemd.enable = true;
     settings = {
-      faviconService = "twenty";
-      rootSearch = {
-        searchFiles = false;
-      };
-      theme = {
-        name = "Noctalia";
-      };
+      # rootSearch = {
+      #   searchFiles = false;
+      # };
+      # theme = {
+      #   light.name = "Noctalia";
+      #   dark.name = "Noctalia";
+      # };
+      # launcher_window.opacity = 0.85;
     };
   };
   wayland.windowManager.niri.settings.binds = {
