@@ -7,7 +7,6 @@
     ./gpg.nix
     ./helix.nix
     ./uiua.nix
-    # ./lowfreq.nix
     ./nushell.nix
     ./pkm-shell.nix
     ./scripts.nix

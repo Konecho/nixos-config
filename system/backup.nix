@@ -39,6 +39,7 @@
           "media"
           "system"
           "documents"
+          ".local/share/trilium-data"
         ];
         exclude = map (x: home + "/" + x) [
           "**/target/*"

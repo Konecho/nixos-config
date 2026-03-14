@@ -18,6 +18,14 @@ with rycee-addons; [
   })
   bitwarden
   floccus
+  (buildFirefoxXpiAddon rec {
+    pname = "triliumnextweb-clipper";
+    version = "1.1.0";
+    addonId = "web-clipper@triliumnotes.org";
+    url = "https://github.com/TriliumNext/Trilium/releases/download/web-clipper-v${version}/${pname}-${version}-firefox.zip";
+    sha256 = "sha256-tASHckgXrFMvcY1F3PfN3tLLUbOuut5UWWf33vRPCmQ=";
+    meta.homepage = "https://docs.triliumnotes.org/user-guide/setup/web-clipper";
+  })
   (stdenv.mkDerivation rec {
     pname = "hydrus-companion";
     version = "3.2";

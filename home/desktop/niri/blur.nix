@@ -22,7 +22,8 @@
     }
     {
       _children = [
-        # {match._props.app-id = "ghostty";}
+        {match._props.app-id = "ghostty";}
+        {match._props.app-id = "trilium";}
         # {match._props.app-id = "zen-beta";}
         {match._props.app-id._raw = ''r#"zen$"#'';}
       ];

@@ -13,9 +13,12 @@ in {
   home.packages = with pkgs; [
     noctaliaPkgs
     difftastic
+    json-diff
+    jq
     (
       writeShellScriptBin "noctalia-diff" ''
-        difft ~/.config/noctalia/{settings,gui-settings}.json
+        # difft ~/.config/noctalia/{settings,gui-settings}.json
+        json-diff <(jq -S . ~/.config/noctalia/settings.json) <(noctalia-shell ipc call state all | jq -S .settings)
       ''
     )
   ];
@@ -32,10 +35,13 @@ in {
       };
       ui = {
         panelBackgroundOpacity = 0.6;
+        translucentWidgets = true;
       };
+      notifications.backgroundOpacity = 0.7;
       bar = {
         density = "comfortable";
         floating = true;
+        capsuleOpacity = 0.5;
         widgets.left = [
           {
             id = "CustomButton";
@@ -59,18 +65,22 @@ in {
       };
       wallpaper = {
         directory = "${config.xdg.userDirs.pictures}/wallpapers";
-        randomEnabled = true;
+        automationEnabled = true;
         overviewEnabled = true;
         panelPosition = "top_center";
       };
-      templates = {
-        gtk = true;
-        qt = true;
-        ghostty = true;
-        niri = true;
-        vicinae = true;
-        code = true;
-      };
+      templates.activeTemplates =
+        map (id: {
+          enabled = true;
+          inherit id;
+        }) [
+          "gtk"
+          "qt"
+          "ghostty"
+          "niri"
+          "vicinae"
+          "code"
+        ];
       general = {
         avatarImage = "/home/cover.png";
       };
