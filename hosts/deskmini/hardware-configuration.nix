@@ -11,7 +11,7 @@ in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (rootPath + "/disko-config.nix")
-    (rootPath + "/disko-raid.nix")
+    # (rootPath + "/disko-raid.nix")
     inputs.disko.nixosModules.default
   ];
   boot.initrd.systemd.enable = true;

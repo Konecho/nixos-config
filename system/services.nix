@@ -18,6 +18,9 @@
   };
   systemd.settings.Manager.DefaultTimeoutStopSec = "10s";
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.services.lanraragi.serviceConfig = {
+    ReadWritePaths = ["/db/lanraragi/content"];
+  };
   services = {
     # ollama = {
     #   enable = true;

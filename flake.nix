@@ -138,7 +138,15 @@
       deskmini = lib.mkSys {
         hostname = "deskmini";
         inherit pkgs;
-        modules = [./hosts/deskmini/hardware-configuration.nix] ++ (scanPath {_path = ./system;});
+        modules =
+          [./hosts/deskmini/hardware-configuration.nix]
+          ++ (scanPath {
+            _path = ./system;
+            excludeFiles = [
+              "vm.nix"
+              # "backup.nix"
+            ];
+          });
       };
       wsl = lib.mkSys {
         hostname = "wsl";

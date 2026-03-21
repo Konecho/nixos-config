@@ -1,4 +1,15 @@
-{config, ...}: {
+{
+  config,
+  rootPath,
+  ...
+}: {
+  imports = [
+    (rootPath + "/disko-raid.nix")
+  ];
+  # https://github.com/NixOS/nixpkgs/issues/72394#issuecomment-549110501
+  environment.etc."mdadm.conf".text = ''
+    MAILADDR root
+  '';
   services.borgbackup.jobs = let
     basicBorgJob = target: {
       encryption.mode = "none";

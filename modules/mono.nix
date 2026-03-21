@@ -20,8 +20,7 @@ in {
   };
   options.mono.groupsAdd = mkOption {
     type = types.nullOr (types.listOf types.str);
-    default = null;
-    example = [];
+    default = [];
     description = "";
   };
   imports = [./alias.nix];
