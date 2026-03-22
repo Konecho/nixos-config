@@ -16,6 +16,7 @@ in {
   ];
   boot.initrd.systemd.enable = true;
   boot.initrd.availableKernelModules = [
+    "uas"
     "nvme"
     "xhci_pci"
     "usb_storage"

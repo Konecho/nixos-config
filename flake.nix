@@ -8,6 +8,10 @@
     preservation.url = "github:nix-community/preservation";
     my-nixpkgs.url = "github:Konecho/my-nixpkgs";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    nixos-cli = {
+      url = "github:nix-community/nixos-cli";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
     # follow nixpkgs
     home-manager = {
       url = "github:nix-community/home-manager";

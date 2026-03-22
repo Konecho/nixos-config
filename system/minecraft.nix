@@ -14,7 +14,7 @@
 in {
   imports = [
     inputs.minegrub-theme.nixosModules.default
-    inputs.minegrub-world-sel-theme.nixosModules.default
+    # inputs.minegrub-world-sel-theme.nixosModules.default
     inputs.minecraft-plymouth-theme.nixosModules.default
     # inputs.minesddm.nixosModules.default
   ];
@@ -24,27 +24,27 @@ in {
   boot.loader.grub = {
     configurationLimit = 30;
     minegrub-theme = {
-      # enable = true;
+      enable = true;
       splash = "100% Flakes!";
       background = "background_options/1.8  - [Classic Minecraft].png";
       boot-options-count = 4;
     };
-    minegrub-world-sel = {
-      enable = true;
-      customIcons = [
-        {
-          name = "nixos";
-          lineTop = "NixOS (${mctime})";
-          lineBottom = "Survival Mode, No Cheats, Version: ${config.system.nixos.release}";
-          # Icon: you can use an icon from the remote repo, or load from a local file
-          imgName = "nixos";
-          # customImg = builtins.path {
-          #   path = ./nixos-logo.png;
-          #   name = "nixos-img";
-          # };
-        }
-      ];
-    };
+    # minegrub-world-sel = {
+    #   enable = true;
+    #   customIcons = [
+    #     {
+    #       name = "nixos";
+    #       lineTop = "NixOS (${mctime})";
+    #       lineBottom = "Survival Mode, No Cheats, Version: ${config.system.nixos.release}";
+    #       # Icon: you can use an icon from the remote repo, or load from a local file
+    #       imgName = "nixos";
+    #       # customImg = builtins.path {
+    #       #   path = ./nixos-logo.png;
+    #       #   name = "nixos-img";
+    #       # };
+    #     }
+    #   ];
+    # };
   };
   boot.plymouth = {
     enable = true;
