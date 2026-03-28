@@ -38,12 +38,12 @@ in {
         "/etc/ly/save.ini"
       ];
       directories = [
-        {
-          directory = config.user.home;
-          user = username;
-          group = "users";
-          # mode = "0700";
-        }
+        # {
+        #   directory = config.user.home;
+        #   user = username;
+        #   group = "users";
+        #   # mode = "0700";
+        # }
         {
           directory = "/etc/nixos";
           user = username;

@@ -139,12 +139,16 @@
         hostname = "deskmini";
         inherit pkgs;
         modules =
-          [./hosts/deskmini/hardware-configuration.nix]
+          [
+            ./hosts/deskmini/hardware-configuration.nix
+            ./disko-raid.nix
+          ]
           ++ (scanPath {
             _path = ./system;
             excludeFiles = [
               "vm.nix"
-              # "backup.nix"
+              "backup.nix"
+              # "home-merge.nix"
             ];
           });
       };
