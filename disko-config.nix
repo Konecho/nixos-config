@@ -16,8 +16,14 @@
   in {
     disk.main = {
       type = "disk";
-      # 仅接管挂载，不做分区操作
-      device = "/dev/disk/by-label/nixos";
+      # device = "/dev/disk/by-label/nixos";
+
+      # 先按id找需要挂载的硬盘，容易识别，比如：
+      # device = "/dev/disk/by-id/usb-External_M.2_NVME_012345678905-0:0"; # 512G
+      # 空的盘不会有uuid,但是disko格式化之后就可以改成uuid了
+      device = "/dev/disk/by-uuid/e6295561-5f86-4254-9bf8-df62ff93cb81"; # 512G
+
+      # device = "/dev/disk/by-uuid/abce7227-3c3e-42ca-af09-fb8f1b29d959"; # 256G
 
       content = {
         type = "btrfs";

@@ -6,6 +6,17 @@
   imports = [inputs.nixos-cli.nixosModules.nixos-cli];
   programs.nixos-cli = {
     enable = true;
+    settings = {
+      aliases = {
+        list = ["generation" "list"];
+      };
+      apply = {
+        reexec_as_root = true;
+        use_nom = true;
+        use_git_commit_msg = true;
+      };
+      root.command = "doas";
+    };
   };
   nix.settings.experimental-features = [
     "nix-command"
