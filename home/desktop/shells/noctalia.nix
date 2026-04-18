@@ -43,11 +43,11 @@ in {
         floating = true;
         capsuleOpacity = 0.5;
         widgets.left = [
-          {
-            id = "CustomButton";
-            icon = "live-photo";
-            leftClickExec = "systemctl --user restart linux-wallpaperengine.service";
-          }
+          # {
+          #   id = "CustomButton";
+          #   icon = "live-photo";
+          #   leftClickExec = "systemctl --user restart linux-wallpaperengine.service";
+          # }
           {id = "Clock";}
           {
             id = "SystemMonitor";
@@ -55,7 +55,8 @@ in {
           }
           {id = "ActiveWindow";}
           {id = "MediaMini";}
-          {id = "WallpaperSelector";}
+          {id = "plugin:linux-wallpaperengine-controller";}
+          # {id = "WallpaperSelector";}
         ];
       };
       dock.displayMode = "auto_hide";
@@ -85,7 +86,6 @@ in {
         avatarImage = "/home/cover.png";
       };
     };
-    systemd.enable = true;
   };
   systemd.user.services.noctalia-shell.Service.Environment = [
     "QT_QPA_PLATFORM=wayland"
@@ -115,7 +115,15 @@ in {
         place-within-backdrop = true;
       }
     ];
-    include = ["noctalia.kdl"];
+    include = [
+      {
+        _props.optional = true;
+        _args = ["noctalia.kdl"];
+      }
+    ];
+    spawn-at-startup = [
+      ["noctalia-shell"]
+    ];
     # layout.background-color = "transparent";
     # overview.workspace-shadow.enable = false;
   };
