@@ -103,14 +103,9 @@
     ambxst = {
       url = "github:Axenide/Ambxst";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.follows = "quickshell";
     };
     hexecute = {
       url = "github:ThatOtherAndrew/Hexecute";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    jj-starship = {
-      url = "github:dmmulroy/jj-starship";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
@@ -135,7 +130,10 @@
   in {
     homeConfigurations = lib.mkUsr {
       inherit pkgs;
-      modules = scanPath {_path = ./home;};
+      modules = scanPath {
+        _path = ./home;
+        excludeFiles = ["guix.nix"];
+      };
     };
 
     nixosConfigurations = {

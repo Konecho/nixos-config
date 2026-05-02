@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  nixpkgs.overlays = [inputs.niri.overlays.default];
+  # nixpkgs.overlays = [inputs.niri.overlays.default];
   # pacakge is overwrote by system
   # left here for evaluation purposes
   wayland.windowManager.niri.package = pkgs.niri;

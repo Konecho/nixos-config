@@ -24,4 +24,5 @@ in {
     pictures = "${HOME}/media/photos";
     videos = "${HOME}/media/video";
   };
+  xdg.userDirs.setSessionVariables = true;
 }
