@@ -1,6 +1,7 @@
 {
   config,
   rootPath,
+  lib,
   ...
 }: {
   imports = [
@@ -25,6 +26,16 @@
       persistentTimer = true;
       user = config.mono.username;
     };
+    fromFile = path: let
+      # 读取文件内容
+      content = builtins.readFile path;
+      # 按换行符分割
+      lines = lib.splitString "\n" content;
+      # 1. 去除每行首尾空格 (可选)
+      # 2. 过滤掉空行
+      processed = builtins.filter (line: line != "") (map lib.trim lines);
+    in
+      processed;
   in {
     lanraragi =
       basicBorgJob "lanraragi"
@@ -44,14 +55,14 @@
       // (let
         home = config.user.home;
       in {
-        paths = map (x: home + "/" + x) [
-          "acgn/comic"
-          "acgn/novel"
-          "media"
-          "system"
-          "documents"
-          ".local/share/trilium-data"
-        ];
+        paths = map (x: home + "/" + x) ([
+            "acgn/comic"
+            "acgn/novel"
+            "media"
+            "system"
+            "documents"
+          ]
+          ++ (fromFile (rootPath + /data/home-backup.list)));
         exclude = map (x: home + "/" + x) [
           "**/target/*"
           "**/.direnv"

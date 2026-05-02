@@ -151,7 +151,7 @@
             _path = ./system;
             excludeFiles = [
               "vm.nix"
-              "backup.nix"
+              # "backup.nix"
               # "home-merge.nix"
             ];
           });
