@@ -1,8 +1,4 @@
-{
-  pkgs,
-  rootPath,
-  ...
-}: let
+{pkgs, ...}: let
   writeRustBin = pname: src:
     pkgs.stdenv.mkDerivation {
       inherit pname src;
@@ -17,9 +13,9 @@
 in {
   home.packages = with pkgs; (
     let
-      write = name: (writeShellScriptBin name (builtins.readFile (rootPath + "/data/${name}")));
-      writePy = name: (writers.writePython3Bin name {} (builtins.readFile (rootPath + "/data/${name}")));
-      writeRs = name: (writeRustBin name (rootPath + "/data/${name}"));
+      write = name: (writeShellScriptBin name (builtins.readFile ../../../data/${name}));
+      writePy = name: (writers.writePython3Bin name {} (builtins.readFile ../../../data/${name}));
+      writeRs = name: (writeRustBin name ../../../data/${name});
     in [
       (writePy "catimg-pokemon.py")
       catimg

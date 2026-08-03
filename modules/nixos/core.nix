@@ -2,11 +2,11 @@
   pkgs,
   lib,
   config,
+  flake,
   ...
 }: {
   environment.binsh = "${lib.getExe pkgs.dash}";
-  # by mono
-  user.shell = pkgs.fish;
+  users.users.${config.username}.shell = pkgs.fish;
 
   security.sudo.enable = lib.mkDefault false;
   security.sudo.execWheelOnly = true;

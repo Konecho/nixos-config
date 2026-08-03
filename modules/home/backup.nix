@@ -6,7 +6,7 @@
   programs.borgmatic = {
     enable = true;
     backups = let
-      mnt = "/run/media/${config.mono.username}/546B-6466";
+      mnt = "/run/media/${config.home.username}/546B-6466";
       mkBackup = name: p: {
         location = {
           sourceDirectories = [p];

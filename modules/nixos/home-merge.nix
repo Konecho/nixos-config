@@ -1,6 +1,6 @@
 {
-  config,
   pkgs,
+  config,
   ...
 }: {
   environment.systemPackages = with pkgs; [
@@ -47,9 +47,9 @@
 
     # 2. 物理层“遍地开花”：在每个物理分支根部预建回收站结构
     # 确保无论文件物理在哪块盘，MergerFS 逻辑层都能命中“同盘移动”的条件
-    "d /persist/home/.Trash-1000 1700 ${config.mono.username} users -"
-    "d /persist/data/.Trash-1000 1700 ${config.mono.username} users -"
-    "d /backup/cold/.Trash-1000  1700 ${config.mono.username} users -"
+    "d /persist/home/.Trash-1000 1700 ${config.username} users -"
+    "d /persist/data/.Trash-1000 1700 ${config.username} users -"
+    "d /backup/cold/.Trash-1000  1700 ${config.username} users -"
 
     # 3. 逻辑层“偷梁换柱”：将用户的默认回收站路径强行链接到 MergerFS 内部
     # 彻底解决 "os error 18 (Invalid cross-device link)"

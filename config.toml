@@ -1,5 +1,4 @@
 [user]
-name = "mei"
 email = "konecho@outlook.com"
 groups = ["wheel", "input", "networkmanager", "video"]
 # mkpasswd -m sha-512

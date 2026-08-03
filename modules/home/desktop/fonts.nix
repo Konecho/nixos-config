@@ -1,8 +1,4 @@
-{
-  pkgs,
-  rootPath,
-  ...
-}: {
+{pkgs, ...}: {
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     maple-mono.NF-CN
@@ -42,6 +38,6 @@
     label = "default";
     priority = 90;
     text =
-      builtins.readFile (rootPath + /data/fonts.xml);
+      builtins.readFile ../../../data/fonts.xml;
   };
 }

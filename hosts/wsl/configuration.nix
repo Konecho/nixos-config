@@ -1,22 +1,22 @@
 {
-  config,
   inputs,
   pkgs,
   lib,
-  rootPath,
+  config,
+  flake,
   ...
 }: {
-  imports =
-    [
-      inputs.nixos-wsl.nixosModules.wsl
-      inputs.vscode-server.nixosModules.default
-    ]
-    ++ (map (p: rootPath + p) [
-      /system/core.nix
-      /system/nix.nix
-      /system/age.nix
-      /system/lix.nix
-    ]);
+  imports = [
+    inputs.nixos-wsl.nixosModules.wsl
+    inputs.vscode-server.nixosModules.default
+    flake.modules.nixos.user
+    flake.modules.nixos.core
+    flake.modules.nixos.nix
+    flake.modules.nixos.age
+    flake.modules.nixos.lix
+  ];
+  nixpkgs.hostPlatform = "x86_64-linux";
+  networking.hostName = "wsl";
   programs.nixos-cli = {
     enable = lib.mkForce false;
   };
@@ -30,7 +30,7 @@
   # hardware.opengl.extraPackages = with pkgs; [mesa.drivers];
   wsl = {
     enable = true;
-    defaultUser = config.mono.username;
+    defaultUser = config.username;
     # 创建软件的桌面快捷方式
     # startMenuLaunchers = true;
     extraBin = with pkgs; [
@@ -51,7 +51,9 @@
     # docker-desktop.enable = true;
     # wslConf.user.default = "${username}";
   };
-  mono.groupsAdd = ["plugdev"];
+  # 创建 plugdev 组并把用户加入
+  users.groups.plugdev.members = [config.username];
+  users.users.${config.username}.extraGroups = ["plugdev"];
   services.udev.extraRules = ''
   '';
 

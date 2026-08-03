@@ -7,7 +7,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = {self, home-manager, ...}: {
+  outputs = {
+    self,
+    home-manager,
+    ...
+  }: {
     nixosModules = {
       mono = ./nixos.nix;
       # NixOS + home-manager 集成：自动接入 home-manager 模块、强制 user-hm.* alias、

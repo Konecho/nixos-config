@@ -5,7 +5,9 @@
 }: let
   system = pkgs.stdenv.hostPlatform.system;
 in {
-  imports = [./commandline/pkm-shell.nix];
+  # pkm-shell 依赖 inputs.pokesprite（数百 MB 精灵图数据仓库），且本身在 commandline/default.nix 中已注释，
+  # 这里不再单独引入；启用时先在 commandline 中启用并引入 pokesprite input
+  # imports = [./commandline/pkm-shell.nix];
   home.packages = with pkgs;
     [
       clash-verge-rev

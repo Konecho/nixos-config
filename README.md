@@ -1,40 +1,42 @@
 # NixOS
 
 个人 NixOS 配置仓库（flake），覆盖两台机器，单用户管理模式，密钥用 agenix 加密，版本控制使用 jj（基于 git）。
+目录结构完全遵循 [blueprint](https://github.com/numtide/blueprint) 约定：目录/文件名 ↔ flake 输出一一映射，`flake.nix` 只做 input 声明与 nixpkgs 配置。
 
 ## 机器
 
 | 主机 | 说明 |
 |---|---|
-| `wsl` | NixOS-WSL（当前），`hosts/wsl/` 下有 `system.nix` / `home.nix` |
-| `deskmini` | 物理台式机，`hosts/deskmini/hardware-configuration.nix` |
+| `wsl` | NixOS-WSL（当前），`hosts/wsl/configuration.nix` + `hosts/wsl/users/<user>/home-configuration.nix`（目录名即用户名，blueprint 机制） |
+| `deskmini` | 物理台式机，`hosts/deskmini/configuration.nix`（含 hardware-configuration 与 disko）+ `hosts/deskmini/users/<user>/home-configuration.nix` |
+
+## blueprint 结构 ↔ flake 输出
+
+| 路径 | flake 输出 |
+|---|---|
+| `hosts/<host>/configuration.nix` | `nixosConfigurations.<host>` |
+| `hosts/<host>/users/<user>/home-configuration.nix` | 自动接入该主机 home-manager + `homeConfigurations."<user>@<host>"` |
+| `modules/nixos/<name>.nix` | `nixosModules.<name>`（主机经 `flake.modules.nixos.<name>` 导入） |
+| `modules/home/<name>.nix` | `homeModules.<name>`（用户经 `flake.homeModules.<name>` 导入） |
+| `lib/default.nix` | `lib`（模块内经 `flake.lib.<...>` 访问，如 `flake.lib.username`） |
+| `devshell.nix` / `formatter.nix` / `packages/` | `devShells.default` / `formatter`（`nix fmt`，alejandra）/ `packages.*` |
+| `checks/` | `checks.*`（blueprint 还会从 hosts/packages/devshells 自动生成） |
 
 ## 核心机制
 
-- **单用户 mono**：`modules/mono.nix` 强制单用户（用户名 `mei`、home `/home`、附加组），`config.toml` 集中存放用户信息与 unfree/insecure 包白名单；`alias.nix` 把 `user.*` 映射到 `users.users.<name>.*`
-- **自动扫描**：`lib.nix` 的 `scanPath` 自动导入 `home/` 与 `system/` 下的 `.nix`（去掉 `default.nix`），新增文件即生效
-- **agenix 密钥**：`system/age.nix` + `secrets/secrets.nix`（SSH 公钥注册表 + 按密文路径/属主声明），`*.age` 加密文件入库，解密到指定路径
+- **单用户**：`modules/nixos/user.nix` 创建用户（home 目录 / 密码 / 附加组）并定义 `config.username`（由 blueprint 从目录名推导），`modules/home/identity.nix` 设置 home 身份（git/jj，用户名取 `config.home.username`、邮箱来自 config.toml）
+- **config.toml**：用户邮箱、密码、附加组与 unfree/insecure 包白名单的唯一来源，`flake.nix` 用它配置 nixpkgs；用户名不在此配置
+- **agenix 密钥**：`modules/nixos/age.nix` + `secrets/secrets.nix`（SSH 公钥注册表 + 按密文路径/属主声明），`*.age` 加密文件入库，解密到指定路径
 - **jj 版本控制**：仓库同时有 `.git` / `.jj`，提交历史以 jj 管理
-
-## 目录结构
-
-| 目录 | 作用 |
-|---|---|
-| `home/` | home-manager 模块：common、nix、git、gui、commandline（fish/helix/nushell/starship/yazi/pi/scripts…）、terminals、browsers、desktop、games 等 |
-| `system/` | 系统模块：core、nix、lix、age（agenix）、boot、network、services、backup、tmpfs-as-root、vm 等 |
-| `hosts/` | 各主机个性化配置与硬件配置，通过 `imports` 复用一部分主电脑配置 |
-| `modules/` | 本地模块集合：mono 单用户（`modules/mono/` 独立 flake，经 inputs 引入，见 `modules/README.md`）、keybinds |
-| `secrets/` | agenix：`secrets.nix` + `*.age` 加密密文 |
-| `packages/` | 自定义包 |
-| `data/` | 非 Nix 配置文件 |
 
 ## 常用命令
 
 ```sh
 just sys        # build + switch（系统）
-just home       # home-manager switch
+just home       # home-manager switch（当前主机自动解析到 <user>@<host>）
 just update nixpkgs   # 更新某个 flake input
 doas nixos-rebuild switch --flake .#wsl
+nix fmt         # alejandra 格式化
 ```
 
 ## 磁盘迁移
@@ -52,6 +54,7 @@ doas nixos-rebuild switch --flake .#wsl
 
 ## 部署要点
 
-- 磁盘用 disko 管理（`disko-config.nix` / `disko-raid.nix`），迁移流程见上方"磁盘迁移"
-- 当前机器为 WSL，`hosts/wsl/system.nix` 启用 nixos-wsl、vscode-server、age.nix
-- pi-agent 的模型默认值在 `home/commandline/pi.nix`，API key 由 `secrets/pi-auth.age` 解密到 `~/.pi/agent/auth.json`
+- 磁盘用 disko 管理（`disko-config.nix` / `disko-raid.nix`，由 `hosts/deskmini/` 引入），迁移流程见上方"磁盘迁移"
+- 当前机器为 WSL，`hosts/wsl/configuration.nix` 启用 nixos-wsl、vscode-server、age.nix
+- pi-agent 的模型默认值在 `modules/home/commandline/pi.nix`，API key 由 `secrets/pi-auth.age` 解密到 `~/.pi/agent/auth.json`
+- ⚠️ 部分模块依赖注释中的 flake input（minegrub-theme / nix-cachyos-kernel / zen-browser / winapps / stylix / pokesprite 等），deskmini 与部分 home 模块当前无法评估，启用对应 input 后即可恢复（预先存在问题，非 blueprint 迁移引入）

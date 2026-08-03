@@ -1,22 +1,16 @@
 {
   pkgs,
-  rootPath,
   lib,
-  config,
-  inputs,
+  flake,
   ...
-}: let
-in {
-  imports =
-    map (p: rootPath + p) [
-      /home/common.nix
-      /home/nix.nix
-      /home/git.nix
-
-      /home/commandline/default.nix
-    ]
-    # ++ [inputs.agenix.homeManagerModules.default]
-    ;
+}: {
+  imports = [
+    flake.homeModules.identity
+    flake.homeModules.common
+    flake.homeModules.nix
+    flake.homeModules.git
+    flake.homeModules.commandline
+  ];
   programs.helix.settings.theme = "base16";
   programs.helix.themes.base16 = {
     inherits = "github_light";

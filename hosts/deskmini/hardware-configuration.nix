@@ -2,16 +2,13 @@
   config,
   lib,
   modulesPath,
-  rootPath,
   inputs,
   ...
-}: let
-  username = config.mono.username;
-in {
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    (rootPath + "/disko-config.nix")
-    # (rootPath + "/disko-raid.nix")
+    ../../disko-config.nix
+    # ../../disko-raid.nix
     inputs.disko.nixosModules.default
   ];
   boot.initrd.systemd.enable = true;

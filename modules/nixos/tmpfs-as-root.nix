@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  username = config.mono.username;
+  username = config.username;
 in {
   imports = [
     inputs.preservation.nixosModules.preservation

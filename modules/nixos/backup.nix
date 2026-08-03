@@ -1,11 +1,11 @@
 {
   config,
-  rootPath,
   lib,
+  flake,
   ...
 }: {
   imports = [
-    (rootPath + "/disko-raid.nix")
+    ../../disko-raid.nix
   ];
   # https://github.com/NixOS/nixpkgs/issues/72394#issuecomment-549110501
   environment.etc."mdadm.conf".text = ''
@@ -19,12 +19,12 @@
       extraCreateArgs = "--verbose --stats --checkpoint-interval 600";
       # repo = "ssh://user@example.com//media/backup/${name}";
       repo = "/backup/borg/${target}";
-      # repo = "/run/media/${config.mono.username}/546B-6466/borgbackup/${target}";
+      # repo = "/run/media/${config.username}/546B-6466/borgbackup/${target}";
       # removableDevice = true;
       compression = "zstd,1";
       startAt = "daily";
       persistentTimer = true;
-      user = config.mono.username;
+      user = config.username;
     };
     fromFile = path: let
       # 读取文件内容
@@ -53,7 +53,7 @@
     home =
       basicBorgJob "home"
       // (let
-        home = config.user.home;
+        home = config.users.users.${config.username}.home;
       in {
         paths = map (x: home + "/" + x) ([
             "acgn/comic"
@@ -62,7 +62,7 @@
             "system"
             "documents"
           ]
-          ++ (fromFile (rootPath + /data/home-backup.list)));
+          ++ (fromFile ../../data/home-backup.list));
         exclude = map (x: home + "/" + x) [
           "**/target/*"
           "**/.direnv"

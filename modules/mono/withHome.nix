@@ -4,10 +4,7 @@
 #   - 直接导入 home-manager 的 NixOS 模块（无需用户另行接线）
 #   - 强制提供 `user-hm.*` → `home-manager.users.<username>.*` 别名
 #   - 把 `mono.homeModules` 接线到 `home-manager.users.<username>.imports`
-{
-  home-manager,
-  ...
-}: {
+{home-manager, ...}: {
   lib,
   config,
   ...

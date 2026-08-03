@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   # boot.binfmt.emulatedSystems = ["aarch64-linux"];
   virtualisation = {
     # virtualbox = {
@@ -22,5 +22,10 @@
   };
   programs.virt-manager.enable = true;
   # sudo virsh net-autostart default
-  mono.groupsAdd = ["libvirt" "kvm" "vboxusers" "docker"];
+  users.users.${config.username}.extraGroups = ["libvirt" "kvm" "vboxusers" "docker"];
+  users.groups = builtins.listToAttrs (map (n: {
+      name = n;
+      value = {members = [config.username];};
+    })
+    ["libvirt" "kvm" "vboxusers" "docker"]);
 }
