@@ -41,6 +41,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
+    # 本地模块（mono/ 目录自包含，可整体发布为独立 flake）
+    mono = {
+      url = "path:./modules/mono";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";

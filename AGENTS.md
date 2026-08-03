@@ -32,5 +32,5 @@ doas nixos-rebuild switch --flake .#wsl
 
 - `README.md`：项目概况、目录结构、磁盘迁移步骤
 - `lib.nix`：mkPkgs / mkSys / mkUsr / scanPath 核心逻辑
-- `modules/mono.nix`、`modules/mono.hm.nix`：单用户模块
+- `modules/`：本地模块集合（`modules/mono/` 独立 flake，经 `inputs.mono` 引入，可发布到 GitHub 后改 URL）；新增模块仿照 mono 结构
 - `system/age.nix` + `secrets/`：agenix 密钥管理

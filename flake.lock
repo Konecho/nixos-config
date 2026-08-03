@@ -253,6 +253,26 @@
         "type": "github"
       }
     },
+    "mono": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-AN9V4p1VLoyHiIVWIXLZuTekju59AXx6nDYCpBc9c+k=",
+        "path": "./modules/mono",
+        "type": "path"
+      },
+      "original": {
+        "path": "./modules/mono",
+        "type": "path"
+      }
+    },
     "my-nixpkgs": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
@@ -526,6 +546,7 @@
         "disko": "disko",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
+        "mono": "mono",
         "my-nixpkgs": "my-nixpkgs",
         "nix-index-database": "nix-index-database",
         "nixgl": "nixgl",

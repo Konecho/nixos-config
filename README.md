@@ -23,7 +23,7 @@
 | `home/` | home-manager 模块：common、nix、git、gui、commandline（fish/helix/nushell/starship/yazi/pi/scripts…）、terminals、browsers、desktop、games 等 |
 | `system/` | 系统模块：core、nix、lix、age（agenix）、boot、network、services、backup、tmpfs-as-root、vm 等 |
 | `hosts/` | 各主机个性化配置与硬件配置，通过 `imports` 复用一部分主电脑配置 |
-| `modules/` | 共享模块：mono 单用户（`mono.nix`）、alias 映射、keybinds |
+| `modules/` | 本地模块集合：mono 单用户（`modules/mono/` 独立 flake，经 inputs 引入，见 `modules/README.md`）、keybinds |
 | `secrets/` | agenix：`secrets.nix` + `*.age` 加密密文 |
 | `packages/` | 自定义包 |
 | `data/` | 非 Nix 配置文件 |

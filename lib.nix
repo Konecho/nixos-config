@@ -3,7 +3,7 @@ inputs: let
   username = toml-config.user.name;
   email = toml-config.user.email;
   monoNixosModules = [
-    ./modules/mono.nix
+    inputs.mono.nixosModules.default
     {
       mono.username = username;
       user = {
@@ -13,21 +13,22 @@ inputs: let
     }
   ];
   monoHomeModules = [
-    ./modules/mono.hm.nix
+    inputs.mono.homeModules.default
     {
       mono.username = username;
       mono.email = email;
     }
   ];
   homeModulesToNixosModules = hm-modules: [
-    inputs.home-manager.nixosModules.home-manager
-    ./modules/alias-hm.nix
+    # mono.withHome：自动接入 home-manager 模块 + 强制 user-hm.* alias +
+    # 把 mono.homeModules 接线到 home-manager.users.<username>.imports
+    inputs.mono.nixosModules.withHome
     {
+      mono.homeModules = hm-modules;
       home-manager.extraSpecialArgs = {inherit inputs rootPath;};
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "bak";
-      user-hm.imports = hm-modules;
     }
   ];
   rootPath = ./.;
