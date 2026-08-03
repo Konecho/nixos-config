@@ -11,5 +11,6 @@
     # ./pkm-shell.nix
     ./scripts.nix
     ./yazi.nix
+    ./pi.nix
   ];
 }

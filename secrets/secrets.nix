@@ -10,4 +10,12 @@ let
   all-secrets = users ++ systems;
 in {
   "openrouter.age".publicKeys = all-secrets;
+  # pi agent auth (auth.json), decrypted to ~/.pi/agent/auth.json
+  "pi-auth.age" = {
+    publicKeys = all-secrets;
+    path = "/home/.pi/agent/auth.json";
+    owner = "mei";
+    group = "users";
+    mode = "0600";
+  };
 }

@@ -14,7 +14,7 @@
     ++ (map (p: rootPath + p) [
       /system/core.nix
       /system/nix.nix
-      # /system/age.nix
+      /system/age.nix
       /system/lix.nix
     ]);
   programs.nixos-cli = {
