@@ -31,6 +31,7 @@ in {
     wqy_zenhei
     # corefonts
     # vista-fonts
+    qutebrowser
 
     (python3.withPackages (
       p:

@@ -31,7 +31,6 @@
     };
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -55,10 +54,10 @@
       url = "github:Mic92/direnv-instant";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri-nix = {
-      url = "git+https://codeberg.org/BANanaD3V/niri-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # niri-nix = {
+    #   url = "git+https://codeberg.org/BANanaD3V/niri-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # niri = {
     #   url = "github:niri-wm/niri";
     #   inputs.nixpkgs.follows = "nixpkgs";
