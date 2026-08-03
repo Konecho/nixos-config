@@ -34,3 +34,48 @@ doas nixos-rebuild switch --flake .#wsl
 - `lib.nix`：mkPkgs / mkSys / mkUsr / scanPath 核心逻辑
 - `modules/`：本地模块集合（`modules/mono/` 独立 flake，经 `inputs.mono` 引入，可发布到 GitHub 后改 URL）；新增模块仿照 mono 结构
 - `system/age.nix` + `secrets/`：agenix 密钥管理
+
+## MCP 使用流程（nixos server）
+
+遇到任何 nix 相关问题（包、NixOS/home-manager/darwin 选项、flake input、版本、缓存、/nix/store）**一律先走 MCP**，不要手动 curl search.nixos.org（需要 auth，且 MCP 更快更全）。
+
+配置：`home/commandline/pi.nix` 注册 mcp-nixos（`~/.pi/agent/mcp.json` 由 home-manager 生成，store symlink）。改配置后 `just home`，然后在 pi 里 `/reload`。
+
+两个工具：
+- `nixos_nix`：统一查询，`action` ∈ search / info / stats / browse / channels / flake-inputs / cache / store，`source` ∈ nixos（默认）/ home-manager / darwin / flakes / flakehub / nixvim / wiki / nix-dev / noogle / nixhub
+- `nixos_nix_versions`：NixHub 版本历史（哪个 commit 发货了某版本）
+
+常用调用模板（直接照抄）：
+```
+包搜索              → nixos_nix  {"action":"search","query":"X"}                       # 默认 type=packages
+包是否在频道         → nixos_nix  {"action":"info","query":"X","channel":"Y"}
+NixOS 选项搜索      → nixos_nix  {"action":"search","query":"X","type":"options"}
+home-manager 选项   → nixos_nix  {"action":"search","query":"X","source":"home-manager"}
+选项树浏览（前缀）   → nixos_nix  {"action":"browse","query":"programs.git","source":"home-manager"}
+版本历史            → nixos_nix_versions {"package":"X","version":"Y"}
+
+⚠ action 必填，缺了会报 missing argument。
+⚠ home-manager 选项源当前依赖本地 overlay（上游 #192 修复，未发 release）：
+  `just update mcp-nixos` 跟随上游 main；nixpkgs 更新后可删 flake.nix 里的 input+overlay。
+⚠ pi 启动时一次性加载 mcp.json：rebuild 后必须 `/reload`，再 mcp({connect:"nixos"})；
+  lazy 常驻进程不会自动重启，必要时 kill 旧进程 + 删 ~/.pi/agent/mcp-cache.json。
+```
+
+## 快速 CLI 工具（系统已装，优先使用）
+
+能用 Rust/Go 系快工具就不用手动慢命令：
+
+| 慢 | 快 | 说明 |
+|---|---|---|
+| grep | `rg` | 默认遵守 .gitignore，更快 |
+| find | `fd` | 更快更友好，`fd -t f -e nix pattern` 等 |
+| cat 读文件 | `bat`（或 read 工具） | 语法高亮 + 分页 |
+| sed | `sd` | 简单替换语法 |
+| ls | `lsd` | 颜色/图标 |
+| ps | `procs` | 可读进程列表 |
+| du | `dust` | 交互式磁盘占用 |
+| cd | `zoxide`（`z`） | 智能跳转 |
+| git diff | `delta` | 高亮 diff |
+| — | `jq` | JSON 处理（C，非 rust 但标配） |
+
+用法注意：搜代码用 `rg`；找文件用 `fd`；看进程 `procs`；磁盘占用 `dust`；`lsd` 的别名 `ls` 已由 shell 配置接管时直接 `ls` 即可。

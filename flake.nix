@@ -36,6 +36,13 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # 上游 main 已修复 home-manager 选项搜索（options.xhtml 改版为 print.html），
+    # 但未发 release，nixpkgs 仍是 2.4.3。overlay 临时指向上游 main，
+    # nixpkgs 更新到修复版后可删除 input + overlay。
+    mcp-nixos = {
+      url = "github:utensils/mcp-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -130,7 +137,17 @@
   outputs = inputs: let
     system = "x86_64-linux";
     lib = import ./lib.nix inputs;
-    pkgs = lib.mkPkgs {inherit system;};
+    # mcp-nixos 2.4.3 抓的 options.xhtml 已被 home-manager 文档改版为 JS 重定向页，
+    # 导致 home-manager 选项搜索失效；上游 #192 修复后仍在 main 分支（未发 release）。
+    # 用上游官方 lib.mkMcpNixos 从 main 构建，不用 overlays.default：后者会附带
+    # fastmcp3 overlay 把 fastmcp 锁到 3.2.4（本机 nixpkgs 已是 3.3.1，无需降级）。
+    mcpNixosOverlay = final: prev: {
+      mcp-nixos = inputs.mcp-nixos.lib.mkMcpNixos {pkgs = final;};
+    };
+    pkgs = lib.mkPkgs {
+      inherit system;
+      overlays = [mcpNixosOverlay];
+    };
     scanPath = lib.scanPath;
   in {
     homeConfigurations = lib.mkUsr {
