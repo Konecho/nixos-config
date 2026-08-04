@@ -1,10 +1,17 @@
 {
   description = "个人 NixOS 配置（blueprint 目录结构）";
   inputs = {
-    # not follow
+    # not follow（my-nixpkgs 自定义包仓库、cachyos 内核需自行确认兼容性）
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    impermanence.url = "github:nix-community/impermanence";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     preservation.url = "github:nix-community/preservation";
     my-nixpkgs.url = "github:Konecho/my-nixpkgs";
     # nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
@@ -13,7 +20,7 @@
     };
     nixos-cli = {
       url = "github:nix-community/nixos-cli";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # follow nixpkgs
     home-manager = {
@@ -49,6 +56,7 @@
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
       inputs.darwin.follows = "";
     };
     # 单用户接线由 modules/nixos/user.nix + modules/home/identity.nix 承担，用户名由 blueprint 从目录名读取

@@ -59,6 +59,7 @@
     alejandra # formatter
     nvfetcher
     cachix
+    flake-checker
 
     nix-output-monitor # nom build/develop/shell
   ];
