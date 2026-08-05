@@ -1,4 +1,57 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  # yazi 预览插件：读取 EPUB 的 container.xml/OPF，展示 meta 信息
+  epub-meta-preview = pkgs.writeShellApplication {
+    name = "epub-meta-preview";
+    runtimeInputs = [pkgs.unzip pkgs.libxml2.bin];
+    text = ''
+      #!/usr/bin/env bash
+      set -euo pipefail
+
+      if [ "$#" -lt 1 ] || [ ! -f "$1" ]; then
+        printf '%s\n' "无法读取 EPUB 文件"
+        exit 0
+      fi
+      epub="$1"
+
+      container="$(unzip -p "$epub" META-INF/container.xml 2>/dev/null || true)"
+      if [ -z "$container" ]; then
+        printf '%s\n' "不是有效的 EPUB 文件（缺少 META-INF/container.xml）"
+        exit 0
+      fi
+
+      opf="$(printf '%s' "$container" | sed -nE 's/.*full-path="([^"]+)".*/\1/p' | head -n1)"
+      if [ -z "$opf" ]; then
+        opf="OEBPS/content.opf"
+      fi
+
+      xml="$(unzip -p "$epub" "$opf" 2>/dev/null || true)"
+      if [ -z "$xml" ]; then
+        printf '未找到 OPF 文件：%s\n' "$opf"
+        exit 0
+      fi
+
+      meta() {
+        printf '%s' "$xml" | xmllint --xpath "string(//*[local-name()='$1'])" - 2>/dev/null || true
+      }
+
+      emit() {
+        if [ -n "$2" ]; then
+          printf '%s: %s\n' "$1" "$2"
+        fi
+      }
+
+      printf '%s\n' "📖 $(basename "$epub")"
+      printf '%s\n' "──────────────────────────────────────────"
+      emit "标题" "$(meta title)"
+      emit "作者" "$(meta creator)"
+      emit "出版方" "$(meta publisher)"
+      emit "日期" "$(meta date)"
+      emit "语言" "$(meta language)"
+      emit "标识符" "$(meta identifier)"
+      emit "简介" "$(meta description)"
+    '';
+  };
+in {
   programs.yazi = {
     enable = true;
     shellWrapperName = "lf";
@@ -8,6 +61,7 @@
       mediainfo
       hexyl
       trash-cli
+      epub-meta-preview
     ];
     settings = {
       mgr = {
@@ -32,6 +86,11 @@
         prepend_previewers =
           media-info-mime
           ++ [
+            {
+              name = "*.epub";
+              mime = "application/epub+zip";
+              run = ''piper -- epub-meta-preview "$1"'';
+            }
             {
               mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}";
               run = "ouch";

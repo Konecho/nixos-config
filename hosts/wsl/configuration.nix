@@ -7,7 +7,6 @@
 }: {
   imports = [
     inputs.nixos-wsl.nixosModules.wsl
-    inputs.vscode-server.nixosModules.default
     flake.modules.nixos.user
     flake.modules.nixos.core
     flake.modules.nixos.nix
