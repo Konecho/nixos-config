@@ -38,6 +38,7 @@
     witr
 
     jq
+    glow # markdown 渲染（yazi epub 预览也用，见 commandline/yazi.nix）
     # (python3.withPackages (
     #   p:
     #     with p; [

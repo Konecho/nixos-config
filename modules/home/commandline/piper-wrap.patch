@@ -1,0 +1,12 @@
+--- a/piper.yazi/main.lua 08:00:01.000000000 +0800
++++ /tmp/piper-main.lua	2026-08-05 11:28:30.942619411 +0800
+@@ -51,7 +51,8 @@
+ 	local format = job.args.format
+ 	if format ~= "url" then
+ 		local s = table.concat(lines, ""):gsub("\t", string.rep(" ", rt.preview.tab_size))
+-		return ui.Text.parse(s):area(job.area)
++		-- yazi 侧折行（CJK 安全、自适应预览面板宽度）；glow -w 只在空格处折行，纯中文不折
++		return ui.Text.parse(s):wrap(ui.Wrap.YES):area(job.area)
+ 	end
+ 
+ 	for i = 1, #lines do

@@ -17,6 +17,8 @@ just sys                      # nixos-rebuild build + switch
 just home                     # home-manager switch（当前主机自动解析到 <user>@<host>）
 just update <input>           # nix flake update <input>
 doas nixos-rebuild switch --flake .#wsl
+nix build .#checks.x86_64-linux.yazi   # 只跑 yazi 配置 check（改 yazi.nix 后必跑，秒级）
+nix flake check                        # 全部 checks（含主机 closure，较重）
 nix fmt                       # alejandra 格式化
 ```
 
@@ -40,6 +42,8 @@ nix fmt                       # alejandra 格式化
 6. home-manager 生成的运行时配置（如 pi 的 `settings.json`/`models.json`）是 store symlink，程序运行时写不进去（pi 会静默吞掉写入错误），属预期行为，不要"修复"
 7. 单用户接线由 `modules/nixos/user.nix` + `modules/home/identity.nix` 承担（用户名由 blueprint 从目录名读取）
 8. 部分模块依赖注释中的 flake input（nix-cachyos-kernel / minegrub-theme / winapps / stylix / niri-nix / hexecute 已启用；pokesprite / quickshell / NUR / zen-browser / noctalia 等仍注释）：deskmini 与各 home 配置当前均可评估；半成品模块（shells/noctalia、browsers 扩展、pkm-shell）注释中留有启用说明
+9. `checks/yazi.nix`：校验 `modules/home/commandline/yazi.nix` 生成的 yazi 配置可被当前 yazi 版本解析（覆盖规则字段 name→url 等 26.x 变更、规则须含 url/mime 的校验），并取出配置里实际的 epub 预览命令做冒烟测试（container.xml 居首的非 OCF 标准 epub）。改 yazi.nix 后跑 `nix build .#checks.x86_64-linux.yazi`；home 配置里 `homeConfigurations` 在 blueprint 中位于 `legacyPackages.<system>.homeConfigurations`（顶层没有，nix3 的 `.#homeConfigurations` 能通是自动前缀）
+10. **尽量不要新增非 nix 脚本**（bash/python 预览脚本等），优先组合现成工具：epub 预览 = `exiftool -json` 提取元信息（自带 EPUB 解析，不依赖 file(1) 的 mime 识别）→ `jq` 转 markdown → `glow` 渲染（见 commandline/yazi.nix）。**glow 管道必加 `CLICOLOR_FORCE=1` + `-s=$t`**：glow 检测到 stdout 非 TTY（被 piper 管道）时完全不渲染 markdown，`#`/`**`/`>` 会原样输出；`$t` 是 piper 注入的明暗主题（dark/light）。**CJK 折行**：glow 的 `-w` 只在空格处折行（纯中文不折），且 `>` 引用块在 CJK 下渲染错乱——所以预览里 glow 用 `-w=0`，折行交给 `piper-wrap.patch`（给 piper 的 `ui.Text.parse` 加 `:wrap(ui.Wrap.YES)`，yazi 侧折行 CJK 安全、自适应面板宽度）；markdown 里不要用 `>` 引用块
 
 ## 参考
 

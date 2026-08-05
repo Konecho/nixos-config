@@ -1,67 +1,16 @@
-{pkgs, ...}: let
-  # yazi 预览插件：读取 EPUB 的 container.xml/OPF，展示 meta 信息
-  epub-meta-preview = pkgs.writeShellApplication {
-    name = "epub-meta-preview";
-    runtimeInputs = [pkgs.unzip pkgs.libxml2.bin];
-    text = ''
-      #!/usr/bin/env bash
-      set -euo pipefail
-
-      if [ "$#" -lt 1 ] || [ ! -f "$1" ]; then
-        printf '%s\n' "无法读取 EPUB 文件"
-        exit 0
-      fi
-      epub="$1"
-
-      container="$(unzip -p "$epub" META-INF/container.xml 2>/dev/null || true)"
-      if [ -z "$container" ]; then
-        printf '%s\n' "不是有效的 EPUB 文件（缺少 META-INF/container.xml）"
-        exit 0
-      fi
-
-      opf="$(printf '%s' "$container" | sed -nE 's/.*full-path="([^"]+)".*/\1/p' | head -n1)"
-      if [ -z "$opf" ]; then
-        opf="OEBPS/content.opf"
-      fi
-
-      xml="$(unzip -p "$epub" "$opf" 2>/dev/null || true)"
-      if [ -z "$xml" ]; then
-        printf '未找到 OPF 文件：%s\n' "$opf"
-        exit 0
-      fi
-
-      meta() {
-        printf '%s' "$xml" | xmllint --xpath "string(//*[local-name()='$1'])" - 2>/dev/null || true
-      }
-
-      emit() {
-        if [ -n "$2" ]; then
-          printf '%s: %s\n' "$1" "$2"
-        fi
-      }
-
-      printf '%s\n' "📖 $(basename "$epub")"
-      printf '%s\n' "──────────────────────────────────────────"
-      emit "标题" "$(meta title)"
-      emit "作者" "$(meta creator)"
-      emit "出版方" "$(meta publisher)"
-      emit "日期" "$(meta date)"
-      emit "语言" "$(meta language)"
-      emit "标识符" "$(meta identifier)"
-      emit "简介" "$(meta description)"
-    '';
-  };
-in {
+{pkgs, ...}: {
   programs.yazi = {
     enable = true;
     shellWrapperName = "lf";
+    # epub 预览用 exiftool + jq + glow（见 prepend_previewers 规则），不新增自写脚本
     extraPackages = with pkgs; [
       glow
+      exiftool
+      jq
       ouch
       mediainfo
       hexyl
       trash-cli
-      epub-meta-preview
     ];
     settings = {
       mgr = {
@@ -87,15 +36,25 @@ in {
           media-info-mime
           ++ [
             {
-              # 用 url 匹配扩展名（yazi 26.x 已把规则字段 name 改名为 url），
-              # 不要写 mime = "application/epub+zip"：file(1) 的 magic 只在 OCF 标准结构
-              # （第一个成员是未压缩的 mimetype 文件）下才识别为 EPUB document，旧版
-              # 基于 container.xml 的规则已被注释掉；很多工具生成的 epub 把
-              # META-INF/container.xml 放第一个，file 只报 application/zip，mime 条件
-              # 会永远匹配不上而落到 ouch/hexyl。脚本内部会自行校验 container.xml，
-              # 非 epub 时给出提示，所以只用 url 匹配即可。
+              # markdown 文件也用 glow 渲染（默认内置 code 预览器只做语法高亮）。
+              # 官方 glow.yazi 插件已废弃，改用 piper + glow（与 epub 预览同一套路，
+              # CLICOLOR_FORCE=1 强制非 TTY 下渲染 markdown，$t 是 piper 的明暗主题）。
+              # glow 的 -w 只在空格处折行（纯中文不折），折行交给 piper 补丁后的 yazi 侧 wrap
+              url = "*.md";
+              run = "piper -- CLICOLOR_FORCE=1 glow -s=$t -w=0 \"$1\"";
+            }
+            {
+              # epub 预览：exiftool 提取元信息（自带 EPUB 解析，不依赖 file(1) 的
+              # mime 识别——container.xml 居首的非 OCF 标准 epub 也能读）→ jq 转成
+              # markdown → glow 渲染样式。
+              # 折行注意：glow -w 只在空格处折行（纯中文不折）且 `>` 引用块在 CJK 下
+              # 渲染错乱（孤立竖线/宽度不一致），所以简介不用引用块、glow -w=0，
+              # 折行交给 piper 补丁后的 yazi 侧 wrap（CJK 安全、自适应面板宽度）。
+              # 不要写 mime = "application/epub+zip"：file(1) 5.48 只在 mimetype 是
+              # 首个未压缩成员时识别为 EPUB document，其余 epub 会报 application/zip，
+              # mime 条件会永远匹配不上而落到 ouch/hexyl。
               url = "*.epub";
-              run = ''piper -- epub-meta-preview "$1"'';
+              run = "piper -- exiftool -json \"$1\" | jq -r '.[0] | \"# \\(.Title)\\n\\n**作者**: \\(.Creator // \"\")\\n**语言**: \\(.Language // \"\")\\n**标识符**: \\(.Identifier // \"\")\\n\\n\\(.Description // \"\")\"' | CLICOLOR_FORCE=1 glow -s=$t -w=0";
             }
             {
               mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}";
@@ -136,11 +95,15 @@ in {
         full-border
         git
         smart-filter
-        piper
         ouch
         recycle-bin
         restore
         ;
+      # piper 补丁：启用 yazi 侧折行（glow -w 只在空格处折行，纯中文不折；
+      # yazi 的 Text wrap 是 CJK 安全且自适应预览面板宽度的）
+      piper = pkgs.yaziPlugins.piper.overrideAttrs (old: {
+        patches = [./piper-wrap.patch];
+      });
     };
 
     initLua = ''
