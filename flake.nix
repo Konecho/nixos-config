@@ -1,7 +1,6 @@
 {
   description = "个人 NixOS 配置（blueprint 目录结构）";
   inputs = {
-    # not follow（my-nixpkgs 自定义包仓库、cachyos 内核需自行确认兼容性）
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
@@ -13,7 +12,11 @@
       inputs.home-manager.follows = "home-manager";
     };
     preservation.url = "github:nix-community/preservation";
-    my-nixpkgs.url = "github:Konecho/my-nixpkgs";
+    # 2026-08 起 follow 主 nixpkgs：包与系统同源构建（本地 ~/my-nixpkgs lock 已同步到同 rev）
+    my-nixpkgs = {
+      url = "github:Konecho/my-nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel/release";
