@@ -13,8 +13,8 @@ NixOS 配置仓库（flake）开发指南。
 ## 常用命令
 
 ```sh
-just sys                      # nixos-rebuild build + switch
-just home                     # home-manager switch（当前主机自动解析到 <user>@<host>）
+just sys                      # nixos-rebuild build + switch（wsl 上 home 配置随系统一起应用）
+just home                     # home-manager switch（仅 deskmini 用；wsl 已走 NixOS 模块，justfile 里有主机守卫）
 just update <input>           # nix flake update <input>
 doas nixos-rebuild switch --flake .#wsl
 nix build .#checks.x86_64-linux.yazi   # 只跑 yazi 配置 check（改 yazi.nix 后必跑，秒级）
@@ -57,7 +57,7 @@ nix fmt                       # alejandra 格式化
 
 遇到任何 nix 相关问题（包、NixOS/home-manager/darwin 选项、flake input、版本、缓存、/nix/store）**一律先走 MCP**，不要手动 curl search.nixos.org（需要 auth，且 MCP 更快更全）。
 
-配置：`modules/home/commandline/pi.nix` 注册 mcp-nixos（`~/.pi/agent/mcp.json` 由 home-manager 生成，store symlink）。改配置后 `just home`，然后在 pi 里 `/reload`。
+配置：`modules/home/commandline/pi.nix` 注册 mcp-nixos（`~/.pi/agent/mcp.json` 由 home-manager 生成，store symlink）。改配置后 `just sys`（wsl 上 home 随系统模块一起应用），然后在 pi 里 `/reload`。
 
 两个工具：
 - `nixos_nix`：统一查询，`action` ∈ search / info / stats / browse / channels / flake-inputs / cache / store，`source` ∈ nixos（默认）/ home-manager / darwin / flakes / flakehub / nixvim / wiki / nix-dev / noogle / nixhub

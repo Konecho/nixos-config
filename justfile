@@ -3,23 +3,17 @@
 
 NIX_FLAGS := ""
 
-# 系统侧构建流已切换为 nixos-cli（`nixos`，nixos-rebuild 的 Rust 重写）：
-#   nixos build   = apply --no-activate --no-boot --output ./result（同 nixos-rebuild build）
-#   nixos switch  = apply（构建 + 激活）
-#   nixos dry-build / dry-activate = apply 加 --dry
-# FLAKE-REF 缺省按 $HOSTNAME 解析 nixosConfigurations.<host>，即同 `--flake .`
-# home 侧 nixos-cli 暂无子命令，仍用 home-manager
+# 系统侧构建用 nixos-cli（`nixos`，nixos-rebuild 的 Rust 重写）：
+#   build/switch/dry-build 为 apply 变体；FLAKE-REF 缺省按 $HOSTNAME 解析（同 `--flake .`）
+# home 侧 nixos-cli 无子命令。wsl 已启用 home-manager NixOS 模块（home 随 just sys 应用，
+# 见 hosts/wsl/configuration.nix 的 homeUserProfile 激活脚本）；CLI 仅 deskmini 用
 
 run: home
 
 run-offline:
     # doas nixos switch . --option substitute false
     doas nixos switch . --option binary-caches ""
-    # 离线部署已构建好的 toplevel（等价旧的 nix-env --set + switch-to-configuration 两步）：
-    #   doas nixos switch --store-path /nix/store/xxxx
-    # 说明：--store-path 跳过求值与构建直接激活；PATH 须为合法 NixOS system closure
-    #   （含 nixos-version 与 bin/switch-to-configuration，可在 CI/远程构建机产出后拷贝）；
-    #   与 FLAKE-REF / --vm / --image 互斥，--output / --upgrade-all / --use-nom 被忽略
+    # 离线部署已构建好的 toplevel：doas nixos switch --store-path /nix/store/xxxx
 
 build-no-proxy:
     all_proxy= http_proxy= https_proxy= nixos build . {{ NIX_FLAGS }}
@@ -31,16 +25,18 @@ update *input:
     nix flake update {{ input }}
 
 build-home:
+    @if [ "$(hostname)" = "wsl" ]; then echo "wsl 已启用 home-manager NixOS 模块：home 配置随 just sys 一起应用，请勿再运行 CLI" >&2; exit 1; fi
     home-manager build --flake . {{ NIX_FLAGS }}|& nom
     nvd diff $NIX_USER_PROFILE_DIR/profile result
 
 home:
+    @if [ "$(hostname)" = "wsl" ]; then echo "wsl 已启用 home-manager NixOS 模块：home 配置随 just sys 一起应用，请勿再运行 CLI" >&2; exit 1; fi
     home-manager switch --flake . -b backup {{ NIX_FLAGS }}
 
 sys: build-sys git-fix switch-sys
 
 build-sys:
-    nixos build . {{ NIX_FLAGS }}|& nom
+    nixos build . --use-nom {{ NIX_FLAGS }}
     nvd diff /run/current-system result
 
 switch-sys:
