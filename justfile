@@ -3,16 +3,26 @@
 
 NIX_FLAGS := ""
 
+# 系统侧构建流已切换为 nixos-cli（`nixos`，nixos-rebuild 的 Rust 重写）：
+#   nixos build   = apply --no-activate --no-boot --output ./result（同 nixos-rebuild build）
+#   nixos switch  = apply（构建 + 激活）
+#   nixos dry-build / dry-activate = apply 加 --dry
+# FLAKE-REF 缺省按 $HOSTNAME 解析 nixosConfigurations.<host>，即同 `--flake .`
+# home 侧 nixos-cli 暂无子命令，仍用 home-manager
+
 run: home
 
 run-offline:
-    # doas nixos-rebuild switch --flake . --option substitute false
-    doas nixos-rebuild switch --flake . --option binary-caches ""
+    # doas nixos switch . --option substitute false
+    doas nixos switch . --option binary-caches ""
+    # 离线部署已构建好的 toplevel（等价旧的 nix-env --set + switch-to-configuration 两步）：
+    #   doas nixos switch --store-path /nix/store/xxxx
+    # 说明：--store-path 跳过求值与构建直接激活；PATH 须为合法 NixOS system closure
+    #   （含 nixos-version 与 bin/switch-to-configuration，可在 CI/远程构建机产出后拷贝）；
+    #   与 FLAKE-REF / --vm / --image 互斥，--output / --upgrade-all / --use-nom 被忽略
 
 build-no-proxy:
-    all_proxy= http_proxy= https_proxy= nixos-rebuild build
-    # doas nix-env -p /nix/var/nix/profiles/system --set /nix/store/xxxx
-    # doas xxxxxx/bin/switch-to-configuration switch
+    all_proxy= http_proxy= https_proxy= nixos build . {{ NIX_FLAGS }}
 
 git-fix:
     doas git config --global --add safe.directory "$PWD"
@@ -30,11 +40,14 @@ home:
 sys: build-sys git-fix switch-sys
 
 build-sys:
-    nixos-rebuild build --flake . {{ NIX_FLAGS }}|& nom
+    nixos build . {{ NIX_FLAGS }}|& nom
     nvd diff /run/current-system result
 
 switch-sys:
-    doas nixos-rebuild switch --flake . {{ NIX_FLAGS }}
+    doas nixos switch . {{ NIX_FLAGS }}
+
+dry-sys:
+    nixos dry-build . {{ NIX_FLAGS }}
 
 clean:
     yazi /nix/var/nix/profiles
