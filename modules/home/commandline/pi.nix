@@ -15,7 +15,13 @@
       # home-manager 生成的 store symlink，程序运行时写不进去（会被静默吞掉）；
       # 写在这里 pi 启动时会自动补装缺失的包（装到 ~/.pi/agent/npm/，不影响
       # 只读的 settings.json）。
-      packages = ["npm:pi-mcp-adapter"];
+      packages = [
+        "npm:pi-mcp-adapter"
+        # web 搜索/URL 抓取/PDF 提取等（npm 包，pi 启动时自动补装）
+        "npm:pi-web-access"
+        "npm:pi-deepseek-search"
+        "npm:@alexanderfortin/pi-deepseek-usage"
+      ];
     };
     # pi-mcp-adapter 有 npm 依赖，pi 装包时需要 npm 在 PATH 上（nodejs 自带 npm）
     extraPackages = [pkgs.nodejs];
