@@ -87,8 +87,14 @@ in {
           media-info-mime
           ++ [
             {
-              name = "*.epub";
-              mime = "application/epub+zip";
+              # 用 url 匹配扩展名（yazi 26.x 已把规则字段 name 改名为 url），
+              # 不要写 mime = "application/epub+zip"：file(1) 的 magic 只在 OCF 标准结构
+              # （第一个成员是未压缩的 mimetype 文件）下才识别为 EPUB document，旧版
+              # 基于 container.xml 的规则已被注释掉；很多工具生成的 epub 把
+              # META-INF/container.xml 放第一个，file 只报 application/zip，mime 条件
+              # 会永远匹配不上而落到 ouch/hexyl。脚本内部会自行校验 container.xml，
+              # 非 epub 时给出提示，所以只用 url 匹配即可。
+              url = "*.epub";
               run = ''piper -- epub-meta-preview "$1"'';
             }
             {
@@ -98,7 +104,7 @@ in {
           ];
         append_previewers = [
           {
-            name = "*";
+            url = "*";
             mime = "*";
             run = ''piper -- hexyl --border=none --terminal-width=$w "$1"'';
           }
@@ -106,14 +112,14 @@ in {
         prepend_fetchers = [
           {
             id = "git";
-            name = "*";
+            url = "*";
             mime = "*";
             run = "git";
             group = "1";
           }
           {
             id = "git";
-            name = "*/";
+            url = "*/";
             mime = "*";
             run = "git";
             group = "1";
