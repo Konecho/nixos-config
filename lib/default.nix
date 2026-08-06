@@ -1,7 +1,5 @@
-# 自定义 lib（blueprint 约定：lib/default.nix → outputs.lib，specialArgs 为 { inputs, flake }）。
-# 模块内通过 `flake.lib.<...>` 访问；config.toml 存放用户邮箱 / 密码 / 附加组 / 包白名单。
-# 注意：用户名不再来自 config.toml，由 blueprint 从 hosts/<host>/users/<user>/ 目录名读取
-# （NixOS 侧经 user.nix 的 `config.username`，home 侧经 `config.home.username`）。
+# 自定义 lib（blueprint 约定：lib/default.nix → outputs.lib，模块内经 flake.lib 访问）。
+# config.toml：用户邮箱 / 密码 / 附加组 / 包白名单（用户名由 blueprint 从目录名读取，见 user.nix）
 {
   inputs,
   flake,

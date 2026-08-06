@@ -8,6 +8,7 @@
   flake,
   ...
 }: {
+  # 模块模式由 HM 从 users.users.<name>.home 自动注入；standalone 需显式指定（同 user.nix 值）
   home.homeDirectory = "/home";
 
   programs.git.settings.user = {

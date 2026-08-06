@@ -1,14 +1,7 @@
 # checks/yazi.nix
-# 校验 yazi 配置（modules/home/commandline/yazi.nix）生成的 yazi.toml / keymap.toml /
-# init.lua 能被当前 yazi 版本解析，并用配置里实际的 epub 预览命令做冒烟测试。
-#
-# 覆盖的回归点：
-# - 规则字段 name → url（yazi 26.x 改名为 url，name 被忽略，且 26.5.6 起校验
-#   报错 "at least one of `url` or `mime` must be specified"）
-# - epub 预览规则不得依赖 mime：file(1) 5.48 只在 OCF 标准结构（mimetype 是
-#   首个未压缩成员）下识别为 application/epub+zip，container.xml 居首的 epub
-#   会被识别为 application/zip，mime 条件永不匹配而落到 ouch/hexyl
-# - epub 预览管道（exiftool → jq → glow）能处理 container.xml 居首的非标准 epub
+# 校验 yazi 配置生成的 yazi.toml/keymap.toml/init.lua 可被当前版本解析，并冒烟测试 epub 预览。
+# 回归点：规则 name→url（26.x）；epub 规则不得依赖 mime（file(1) 对 container.xml 居首的
+# epub 识别为 application/zip）；exiftool→jq→glow 管道处理非标准 epub
 {
   pkgs,
   flake,
@@ -16,8 +9,7 @@
   ...
 }: let
   lib = pkgs.lib;
-  # blueprint 把 homeConfigurations 挂在 legacyPackages.<system>.homeConfigurations
-  # （顶层没有；nix3 的 .#homeConfigurations 能通是 legacyPackages 自动前缀）
+  # homeConfigurations 挂在 legacyPackages.<system> 下（nix3 .# 自动前缀）
   homes = flake.legacyPackages.${system}.homeConfigurations;
   users = builtins.attrNames homes;
 
@@ -36,8 +28,7 @@
     homes.${builtins.head users}.config.programs.yazi.settings.plugin.prepend_previewers
   );
 
-  # 逐用户：组装 XDG_CONFIG_HOME 后用 yazi --help 验证配置可解析
-  #（--help 会先解析全部配置，规则字段错误会在这里暴露）
+  # 组装 XDG_CONFIG_HOME 后 yazi --help 验证（--help 解析全部配置，规则错误在此暴露）
   configSteps = lib.concatStringsSep "\n" (map (name: let
       c = userCfg name;
     in ''
@@ -57,8 +48,7 @@
     '')
     users);
 
-  # 与 piper 插件相同的调用方式：sh -c '<run 去掉 "piper -- " 前缀>' sh <文件>
-  #（$1 = 文件路径，$w/$h/$t = 预览区宽高/明暗主题，piper 会设置这些环境变量）
+  # 同 piper 调用方式：sh -c '<run>' sh <文件>（$1/$w/$h/$t 由 piper 设置）
   epubCmd = lib.removePrefix "piper -- " epubRule.run;
 in
   assert lib.assertMsg (epubRule != null)
@@ -80,8 +70,7 @@ in
       import zipfile
 
       with zipfile.ZipFile("fixture.epub", "w") as z:
-          # 复现用户真实文件结构：container.xml 是第一个成员且 deflate，
-          # mimetype 反而在后面（file(1) 因此识别为 application/zip，规则不得依赖 mime）
+          # 复现真实结构：container.xml 居首且 deflate（file(1) 识别为 zip，规则不得依赖 mime）
           z.writestr(
               "META-INF/container.xml",
               """<?xml version="1.0" encoding="UTF-8"?>

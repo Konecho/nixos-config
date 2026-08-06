@@ -5,8 +5,7 @@ NIX_FLAGS := ""
 
 # 系统侧构建用 nixos-cli（`nixos`，nixos-rebuild 的 Rust 重写）：
 #   build/switch/dry-build 为 apply 变体；FLAKE-REF 缺省按 $HOSTNAME 解析（同 `--flake .`）
-# home 侧 nixos-cli 无子命令。wsl 已启用 home-manager NixOS 模块（home 随 just sys 应用，
-# 见 hosts/wsl/configuration.nix 的 homeUserProfile 激活脚本）；CLI 仅 deskmini 用
+# home 侧 nixos-cli 无子命令；wsl 的 home 随 just sys 应用（CLI 仅 deskmini）
 
 run: home
 
@@ -25,12 +24,12 @@ update *input:
     nix flake update {{ input }}
 
 build-home:
-    @if [ "$(hostname)" = "wsl" ]; then echo "wsl 已启用 home-manager NixOS 模块：home 配置随 just sys 一起应用，请勿再运行 CLI" >&2; exit 1; fi
+    @if [ "$(hostname)" = "wsl" ]; then echo "wsl：home 已随 just sys 应用，勿再用 CLI" >&2; exit 1; fi
     home-manager build --flake . {{ NIX_FLAGS }}|& nom
     nvd diff $NIX_USER_PROFILE_DIR/profile result
 
 home:
-    @if [ "$(hostname)" = "wsl" ]; then echo "wsl 已启用 home-manager NixOS 模块：home 配置随 just sys 一起应用，请勿再运行 CLI" >&2; exit 1; fi
+    @if [ "$(hostname)" = "wsl" ]; then echo "wsl：home 已随 just sys 应用，勿再用 CLI" >&2; exit 1; fi
     home-manager switch --flake . -b backup {{ NIX_FLAGS }}
 
 sys: build-sys git-fix switch-sys

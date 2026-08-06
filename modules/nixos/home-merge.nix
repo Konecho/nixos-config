@@ -39,21 +39,17 @@
   };
 
   systemd.tmpfiles.rules = [
-    # 1. 开放物理挂载点的“穿透”权限 (0755)
-    # 消除 "os error 13 (Permission denied)"，让 trash 工具能探测到物理盘根部的回收站
+    # 物理挂载点 0755：trash 需探测物理盘根回收站（消除 os error 13）
     "z /backup 0755 root users -"
     "z /persist 0755 root users -"
     "z /backup/cold 0755 root users -"
 
-    # 2. 物理层“遍地开花”：在每个物理分支根部预建回收站结构
-    # 确保无论文件物理在哪块盘，MergerFS 逻辑层都能命中“同盘移动”的条件
+    # 物理分支根预建回收站：命中同盘移动
     "d /persist/home/.Trash-1000 1700 ${config.username} users -"
     "d /persist/data/.Trash-1000 1700 ${config.username} users -"
     "d /backup/cold/.Trash-1000  1700 ${config.username} users -"
 
-    # 3. 逻辑层“偷梁换柱”：将用户的默认回收站路径强行链接到 MergerFS 内部
-    # 彻底解决 "os error 18 (Invalid cross-device link)"
-    # 即使工具尝试回退到 ~/.local，实际上也会在 /home 内部完成 rename 操作
+    # 默认回收站路径链到 MergerFS 内：避免 os error 18 跨设备 rename
     "L+ /home/.local/share/Trash - - - - /home/.Trash-1000"
   ];
 }

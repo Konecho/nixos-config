@@ -4,19 +4,17 @@
   ...
 }: {
   nixpkgs.overlays = [
-    # Use the exact kernel versions as defined in this repo.
-    # Guarantees you have binary cache.
+    # 用仓库同 rev 内核（有二进制缓存）
     inputs.nix-cachyos-kernel.overlays.pinned
 
-    # Alternatively, build the kernels on top of nixpkgs version in your flake.
-    # This might cause version mismatch/build failures!
+    # 基于 nixpkgs 版本构建可能版本不匹配/构建失败
     # inputs.nix-cachyos-kernel.overlays.default
 
-    # Only use one of the two overlays!
+    # 二选一
   ];
   boot.loader.grub = {
     efiSupport = true;
-    #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+    #efiInstallAsRemovable = true; # canTouchEfiVariables 失效时用
     useOSProber = true;
     device = "nodev";
   };

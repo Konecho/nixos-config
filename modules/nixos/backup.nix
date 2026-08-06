@@ -27,12 +27,9 @@
       user = config.username;
     };
     fromFile = path: let
-      # 读取文件内容
+      # 读取文件内容（去首尾空格、过滤空行）
       content = builtins.readFile path;
-      # 按换行符分割
       lines = lib.splitString "\n" content;
-      # 1. 去除每行首尾空格 (可选)
-      # 2. 过滤掉空行
       processed = builtins.filter (line: line != "") (map lib.trim lines);
     in
       processed;

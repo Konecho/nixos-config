@@ -4,8 +4,7 @@
   ...
 }: {
   # nixpkgs.overlays = [inputs.niri.overlays.default];
-  # pacakge is overwrote by system
-  # left here for evaluation purposes
+  # package 被系统覆盖，保留供 eval 参考
   wayland.windowManager.niri.package = pkgs.niri;
   wayland.windowManager.niri.settings.blur = {
     passes = 3;

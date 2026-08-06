@@ -13,8 +13,9 @@ in {
   # pi agent auth (auth.json), decrypted to ~/.pi/agent/auth.json
   "pi-auth.age" = {
     publicKeys = all-secrets;
+    # 须与用户 home 一致
     path = "/home/.pi/agent/auth.json";
-    owner = "mei";
+    # age.nix 默认取 config.username
     group = "users";
     mode = "0600";
   };

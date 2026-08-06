@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    # 半成品：librewolf / zen-browser 的扩展列表依赖 NUR（rycee.firefox-addons），
-    # nixpkgs 已移除 firefox-addons；需引入 NUR 或改用其它扩展来源后再启用
+    # 半成品：扩展依赖 NUR（nixpkgs 已移除 firefox-addons），需引入 NUR 后启用
     # ./librewolf.nix
     # ./zen-browser.nix
   ];
