@@ -20,6 +20,11 @@
       fg = "white";
     };
   };
+  # 浅色主题，背景用终端色（vscode 白终端）
+  programs.fresh-editor.settings = {
+    theme = "light";
+    editor.use_terminal_bg = true;
+  };
   home.packages = with pkgs; [
     # maple-mono.NF-CN
     wqy_zenhei

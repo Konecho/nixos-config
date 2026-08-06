@@ -6,7 +6,7 @@
   programs.pi-coding-agent = {
     enable = true;
     settings = {
-      theme = "dark";
+      theme = "light";
       defaultProvider = "deepseek";
       defaultModel = "deepseek-v4-flash";
       defaultThinkingLevel = "high";

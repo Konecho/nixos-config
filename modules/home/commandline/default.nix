@@ -6,6 +6,7 @@
     ./fish.nix
     ./gpg.nix
     ./helix.nix
+    ./fresh-editor.nix
     ./uiua.nix
     ./nushell.nix
     # ./pkm-shell.nix
